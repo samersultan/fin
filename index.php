@@ -1,0 +1,1 @@
+<?php get_template_part('templates/content/excerpt', get_post_format()); ?>
