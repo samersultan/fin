@@ -1,6 +1,6 @@
 <?php
 function fin_create_menus() {
-	$customMenus = array('Primary');
+	$customMenus = array('Primary', 'Secondary');
 	foreach ($customMenus as $customMenu) {
 		$customMenuSlug = strtolower(str_replace('_', ' ', $customMenu));
 		
