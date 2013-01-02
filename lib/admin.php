@@ -84,6 +84,17 @@ function fin_change_default_dashboard_panels() {
 add_action('admin_menu', 'fin_change_default_dashboard_panels');
 
 /**
+ * Remove Update Alert
+ *
+ */
+function fin_remove_update_alert() {
+	if(!current_user_can('manage_options')) {
+		add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
+		add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
+	}
+}
+add_action('admin_init','fin_remove_update_alert');
+/**
  * Remove Editor menu
  *
  */
