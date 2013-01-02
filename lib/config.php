@@ -44,6 +44,19 @@ function fin_setup() {
 }
 add_action('after_setup_theme', 'fin_setup');
 
+/**
+ * Create default content for new posts and pages by pulling from /pages/page-default
+ *
+ */
+function fin_add_default_content( $content ) {
+	$content = file_get_contents(locate_template('/lib/pages/page-default.php'));
+	return $content;
+}
+add_filter('default_content', 'fin_add_default_content');
+/**
+ * Change text for password protected areas
+ *
+ */
 function fin_change_password_text($content) {
 	$content = str_replace(
 		'This post is password protected. To view it please enter your password below:', 
