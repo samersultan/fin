@@ -43,7 +43,7 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 		$htaccess_file = $home_path . '.htaccess';
 		$mod_rewrite_enabled = function_exists('got_mod_rewrite') ? got_mod_rewrite() : false;
 		
-		if ((!file_exists($htaccess_file) && is_writable() && $wp_rewrite->using_mod_rewrite_permalinks()) || is_writable($htaccess_file)) {
+		if ((!file_exists($htaccess_file) && is_writable($htaccess_file) && $wp_rewrite->using_mod_rewrite_permalinks()) || is_writable($htaccess_file)) {
 		  if ($mod_rewrite_enabled) {
 		    $customRules = extract_from_markers($htaccess_file, 'customRules');
 		    if ($customRules === array()) {
