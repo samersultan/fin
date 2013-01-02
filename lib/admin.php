@@ -20,7 +20,9 @@ add_editor_style('assets/css/editor-style.css');
  *
  */
 function fin_change_default_menus() {
-	if(!current_user_can('manage_options')) {
+	global $current_user;
+	$current_user = wp_get_current_user();
+	if($current_user->ID != 1) {
 		global $menu;
 	  $restricted = array(
 	  	//__('Links'),
@@ -45,7 +47,9 @@ add_action('admin_menu', 'fin_change_default_menus');
  *
  */
 function fin_change_default_submenus() {
-	if(!current_user_can('manage_options')) {
+	global $current_user;
+	$current_user = wp_get_current_user();
+	if($current_user->ID != 1) {
 	  global $submenu;
 	  unset($submenu['index.php'][10]); // Removes 'Updates'.
 	  unset($submenu['themes.php'][5]); // Removes 'Themes'.
@@ -71,8 +75,8 @@ add_action('wp_dashboard_setup', 'fin_remove_welcome_panel');
  */
 function fin_change_default_dashboard_panels() {
 	// remove_meta_box('dashboard_right_now', 'dashboard', 'core');    // Right Now Panel
-	//remove_meta_box('dashboard_recent_comments', 'dashboard', 'core'); // Comments Panel
-	//remove_meta_box('dashboard_incoming_links', 'dashboard', 'core');  // Incoming Links Panel
+	// remove_meta_box('dashboard_recent_comments', 'dashboard', 'core'); // Comments Panel
+	// remove_meta_box('dashboard_incoming_links', 'dashboard', 'core');  // Incoming Links Panel
 	remove_meta_box('dashboard_plugins', 'dashboard', 'core');         // Plugins Panel
 
 	// remove_meta_box('dashboard_quick_press', 'dashboard', 'core');  // Quick Press Panel
@@ -99,7 +103,9 @@ add_action('admin_init', 'fin_check_tagline');
  *
  */
 function fin_remove_update_alert() {
-	if(!current_user_can('manage_options')) {
+	global $current_user;
+	$current_user = wp_get_current_user();
+	if($current_user->ID != 1) {
 		add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
 		add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
 	}
@@ -110,7 +116,9 @@ add_action('admin_init','fin_remove_update_alert');
  *
  */
 function fin_remove_editor_menu() {
-	if(!current_user_can('manage_options')) {
+	global $current_user;
+	$current_user = wp_get_current_user();
+	if($current_user->ID != 1) {
 	  remove_action('admin_menu', '_add_themes_utility_last', 101);
 	}
 }
