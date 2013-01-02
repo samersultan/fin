@@ -18,25 +18,41 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	// Show an admin notice if .htaccess isn't writable
 	function fin_htaccess_writable() {
 		if (!is_writable(get_home_path() . '.htaccess')) {
-			if (current_user_can('administrator')) {
+			if (current_user_can('manage_options')) {
 				add_action('admin_notices', create_function('', "echo '<div class=\"error\"><p>" . sprintf(__('Please make sure your <a href="%s">.htaccess</a> file is writable ', 'roots'), admin_url('options-permalink.php')) . "</p></div>';"));
 			}
 		}
 	}
-
 	add_action('admin_init', 'fin_htaccess_writable');
 
 	function fin_add_rewrites($content) {
+	  // general rewrites
 		global $wp_rewrite;
 		$fin_new_non_wp_rules = array(
-			'assets/css/(.*)'      => THEME_PATH . '/assets/css/$1',
-			'assets/js/(.*)'       => THEME_PATH . '/assets/js/$1',
-			'assets/img/(.*)'      => THEME_PATH . '/assets/img/$1',
-			'plugins/(.*)'         => RELATIVE_PLUGIN_PATH . '/$1',
-			'login'					=> 'wp-login.php',
-			'admin'					=> 'wp-admin'
+			'assets/css/(.*)' => THEME_PATH . '/assets/css/$1',
+			'assets/js/(.*)'  => THEME_PATH . '/assets/js/$1',
+			'assets/img/(.*)' => THEME_PATH . '/assets/img/$1',
+			'plugins/(.*)'    => RELATIVE_PLUGIN_PATH . '/$1',
+			'login'					  => 'wp-login.php',
+			'admin'					  => 'wp-admin'
 		);
 		$wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $fin_new_non_wp_rules);
+		
+		// insert contents of .htaccess-custom file
+		$home_path = function_exists('get_home_path') ? get_home_path() : ABSPATH;
+		$htaccess_file = $home_path . '.htaccess';
+		$mod_rewrite_enabled = function_exists('got_mod_rewrite') ? got_mod_rewrite() : false;
+		
+		if ((!file_exists($htaccess_file) && is_writable() && $wp_rewrite->using_mod_rewrite_permalinks()) || is_writable($htaccess_file)) {
+		  if ($mod_rewrite_enabled) {
+		    $customRules = extract_from_markers($htaccess_file, 'customRules');
+		    if ($customRules === array()) {
+		      $filename = dirname(__FILE__) . '/htaccess-custom';
+		      return insert_with_markers($htaccess_file, 'customRules', extract_from_markers($filename, 'customRules'));
+		    }
+		  }
+		}
+		
 		return $content;
 	}
 
