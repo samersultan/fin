@@ -84,6 +84,17 @@ function fin_change_default_dashboard_panels() {
 add_action('admin_menu', 'fin_change_default_dashboard_panels');
 
 /**
+ * Checks to see if your tagline is set to the default and shows an admin notice to update it
+ * Throw this in function.php for your theme
+ */
+function fin_check_tagline() {
+	if(get_option('blogdescription') == 'Just another WordPress site' || get_option('blogdescription') == '') {
+		add_action('admin_notices', create_function( '', "echo '<div class=\"error\"><p>".sprintf(__('Please update your <a href="%s">Tagline</a>', 'bb'), admin_url('options-general.php'))."</p></div>';" ));
+	}
+}
+add_action('admin_init', 'fin_check_tagline');
+
+/**
  * Remove Update Alert
  *
  */

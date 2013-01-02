@@ -5,6 +5,11 @@
  */
 
 function fin_setup() {
+	//Change Default Tagline
+	if(get_bloginfo('description') == 'Just another WordPress site') {
+		update_option('blogdescription','');
+	}
+	
 	//Keep wordpress from reformatting posts
 	remove_filter('the_content', 'wpautop');
 	
@@ -48,7 +53,7 @@ add_action('after_setup_theme', 'fin_setup');
  * Create default content for new posts and pages by pulling from /pages/page-default
  *
  */
-function fin_add_default_content( $content ) {
+function fin_add_default_content($content) {
 	$content = file_get_contents(locate_template('/lib/pages/page-default.php'));
 	return $content;
 }

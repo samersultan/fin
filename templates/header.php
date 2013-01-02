@@ -14,6 +14,6 @@
 	<?php } ?>
 	<hgroup>
 		<h1 class="brand"><a href="<?php echo home_url(); ?>/"><?php bloginfo('name'); ?></a></h1>
-		<h2 class="description"><?php echo get_bloginfo ( 'description' ); ?></h2>
+		<h2 class="description"><?php echo get_bloginfo('description'); ?></h2>
 	</hgroup>
 </header>
