@@ -39,9 +39,8 @@
  RewriteCond %{QUERY_STRING} \=\\%27$   [NC,OR]
  RewriteCond %{QUERY_STRING} \=\\\'$    [NC,OR]
  RewriteCond %{QUERY_STRING} \.\./      [NC,OR]
- RewriteCond %{QUERY_STRING} \:         [NC,OR]
- RewriteCond %{QUERY_STRING} \[         [NC,OR]
- RewriteCond %{QUERY_STRING} \]         [NC]
+ RewriteCond %{QUERY_STRING} \?         [NC,OR]
+ RewriteCond %{QUERY_STRING} \:         [NC]
  RewriteRule .* - [F]
 </ifModule>
 
