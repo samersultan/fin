@@ -7,11 +7,12 @@
  */
 require_once locate_template('/lib/utils.php');      // Base templating System and Other Utilities
 require_once locate_template('/lib/config.php');     // Basic Config and Constants
+require_once locate_template('/lib/cleanup.php');    // Cleanup Wordpress Stuffs
+require_once locate_template('/lib/rewrites.php');   // Custom .htaccess rewrites
 require_once locate_template('/lib/options.php');    // Additional Theme Options
 require_once locate_template('/lib/sidebar.php');    // Create Sidebars
 require_once locate_template('/lib/post-types.php'); // Custom Post Types
 require_once locate_template('/lib/nav.php');        // Custom Nav Menus
-require_once locate_template('/lib/rewrites.php');   // Custom .htaccess rewrites
 require_once locate_template('/lib/shortcodes.php'); // Custom Shortcodes
 require_once locate_template('/lib/scripts.php');    // Enque All Scripts
 
