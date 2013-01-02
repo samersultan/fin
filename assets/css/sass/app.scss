@@ -1,0 +1,4 @@
+// Sticky Footer
+@import "compass/layout/sticky-footer";
+
+@include sticky-footer(100px, '#wrap', '#push', '#content-info');

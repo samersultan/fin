@@ -1,0 +1,27 @@
+/** Adminbar CSS **/
+#wp-admin-bar-wp-logo {
+	display: none;
+	visibility: hidden;
+}
+#wp-admin-bar-themes {
+	display: none;
+	visibility: hidden;
+}
+
+/** Login CSS **/
+body.login {
+	h1 a {
+		background-image: url(../img/logo.png);
+		background-position: top;
+		background-repeat: no-repeat;
+		background-size: 50% auto;
+	}
+	#login_error {
+		display: none;
+	}
+}
+/** Admin CSS **/
+#wp-version-message, #wp-version-message + br.clear { display: none; }
+
+// Hide first admin user
+body.users-php tr#user-1 { display: none; }
