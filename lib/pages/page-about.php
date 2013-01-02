@@ -1,8 +1,11 @@
 <?php
 // Check if page already exists
+$existingPageTitles = array();
 $existing_pages = get_pages();
-foreach ($existing_pages as $page) {
-  $existingPageTitles[] = $page->post_title;
+if($existing_pages != ''){
+	foreach ($existing_pages as $page) {
+		$existingPageTitles[] = $page->post_title;
+	}
 }
 if(!in_array('About', $existingPageTitles) && !in_array('About Us', $existingPageTitles) && !in_array('About Me', $existingPageTitles)) {
 	$add_page = array(

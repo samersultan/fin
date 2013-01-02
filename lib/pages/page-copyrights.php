@@ -1,10 +1,13 @@
 <?php
 // Check if page already exists
+$existingPageTitles = array();
 $existing_pages = get_pages();
-foreach ($existing_pages as $page) {
-  $existingPageTitles[] = $page->post_title;
+if($existing_pages != ''){
+	foreach ($existing_pages as $page) {
+		$existingPageTitles[] = $page->post_title;
+	}
 }
-if(!in_array('Copyright', $existingPageTitles) && !in_array('Copyright', $existingPageTitles) ) {
+if(!in_array('Copyright', $existingPageTitles) && !in_array('Copyrights', $existingPageTitles) ) {
 	$add_page = array(
 		'post_type' => 'page',
 		'post_status' => 'publish',
