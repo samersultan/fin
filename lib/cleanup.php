@@ -89,6 +89,37 @@ add_action('init', 'fin_cleanup_head');
 add_filter('the_generator', '__return_false');
 
 /**
+ * Change Robots.txt
+ *
+ */
+function fin_change_robotstxt($output, $public) {
+	$homeURL = get_bloginfo('url');
+	$robotstxt = 'Disallow: /wp-content/plugins
+Disallow: /wp-content/cache
+Disallow: /wp-content/themes
+Disallow: /wp-includes/js
+Disallow: /feed/
+Disallow: /trackback/
+Disallow: /rss/
+Disallow: /comments/feed/
+Disallow: /tag
+Disallow: /author
+Disallow: /wget/
+Disallow: /httpd/
+Disallow: /category/*/*
+Disallow: */trackback
+Disallow: /*?*
+Disallow: /*?
+Disallow: /*~*
+Disallow: /*~
+
+Sitemap: ' . $homeURL . '/sitemap.xml';
+	$output .= $robotstxt;
+	return $output;
+}
+add_filter('robots_txt','fin_change_robotstxt', 10, 2);
+
+/**
  * Fix Canonical Links
  *
  */
