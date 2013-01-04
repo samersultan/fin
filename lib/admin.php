@@ -13,6 +13,7 @@ add_action('admin_head', 'fin_admin_css');
 // calling it when logged in as admin
 add_action('wp_head', 'fin_admin_css');
 // Tell the TinyMCE editor to use a custom stylesheet
+add_theme_support('editor_style');
 add_editor_style('assets/css/editor-style.css');
 
 /**
