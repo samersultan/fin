@@ -40,7 +40,7 @@ function register_post_type_rotator() {
     'supports'           => array('title', 'thumbnail', 'excerpt')
   );
 
-  register_post_type('base_rotator', $args);
+  register_post_type('rotator', $args);
 }
 add_action('init', 'register_post_type_rotator');
 
@@ -63,12 +63,12 @@ function register_taxonomy_location() {
   );
 
   $args = array(
-    'hierarchical' => true,
+    'hierarchical' => false,
     'labels'       => $labels,
     'show_ui'      => true,
     'query_var'    => true,
     'rewrite'      => array('slug' => 'rotator-location'),
   );
-  register_taxonomy('base_rotator_location', 'base_rotator', $args);
+  register_taxonomy('rotator_location', 'rotator', $args);
 }
 add_action('init', 'register_taxonomy_location');

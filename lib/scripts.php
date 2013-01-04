@@ -24,9 +24,13 @@ function fin_scripts() {
 	// load foundation js
 	wp_register_script('fin_foundation_js', get_template_directory_uri() . '/assets/js/foundation.min.js', false, null, false);
 	wp_enqueue_script('fin_foundation_js');
+	
 	// load master js
-	wp_register_script('fin_js', get_template_directory_uri() . '/assets/js/app.js', false, null, false);
+	wp_register_script('fin_js', get_template_directory_uri() . '/assets/js/app.min.js', false, null, false);
 	wp_enqueue_script('fin_js');
+	
+	// register orbit js
+	wp_register_script('fin_orbit_js', get_template_directory_uri() . '/assets/js/orbit.min.js', false, null, false);
 	
 	// load wordpress comment reply if threaded comments are enabled
 	if (is_single() && comments_open() && get_option('thread_comments')) {

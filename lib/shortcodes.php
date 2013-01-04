@@ -4,7 +4,7 @@
  *
  * Output posts from the base_rotator custom post type
  * Use location="" attribute to pull in posts from a specific location
- * from the base_rotator_location taxonomy
+ * from the fin_rotator_location taxonomy
  *
  * Example:
  * [rotator location="home"]
@@ -13,8 +13,9 @@ function shortcode_rotator($atts) {
   extract(shortcode_atts(array(
     'location' => ''
   ), $atts));
-	
-  return get_template_part('templates/rotator','');
+  global $rotator_loc;
+  $rotator_loc = $location;
+  return get_template_part('templates/rotator', $location);
 }
 add_shortcode('rotator', 'shortcode_rotator');
 
