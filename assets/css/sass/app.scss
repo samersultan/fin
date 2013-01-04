@@ -1,4 +1,302 @@
+// You custom settings file to override Foundation defaults
+@import "foundation/settings";
+
+// Comment out this import if you are customizing you imports below
+@import "foundation";
+
 // Sticky Footer
 @import "compass/layout/sticky-footer";
 
 @include sticky-footer(100px, '#wrap', '#push', '#content-info');
+
+// Body
+/////////////////
+html, body {}
+body {
+	.rtl {}
+	.home {} /* home page */
+	.blog {} 
+	.archive {} /* archive page */
+	.date {} /* date archive page */
+		.date-paged-1 {} /* replace the number to the corresponding page number */
+	.search {} /* search page */
+		.search-results {} /* search result page */
+		.search-no-results {} /* no results search page */
+		.search-paged-1 {} /* individual paged search (i.e. body.search-paged-3) */
+	.error404 {} /* 404 page */
+	.single {} /* single post page */
+		.postid-1 {} /* individual post page by id (i.e. body.postid-73) */
+		.single-paged-1 {} /* individual paged single (i.e. body.single-paged-3) */
+	.attachment {} /* attatchment page */
+		.attachmentid-1 {} /* individual attatchment page (i.e. body.attachmentid-763) */
+		.attachment-mime-type {} /* style mime type pages */
+	.author {} /* author page */
+		.author-nicename {} /* user nicename (i.e. body.author-samueladams) */
+		.author-paged-1 {} /* paged author archives (i.e. body.author-paged-4) for page 4 */
+	.category {} /* category page */
+		.category-1 {} /* individual category page (i.e. body.category-6) */
+		.category-paged-1 {} /* replace the number to the corresponding page number */
+	.tag {} /* tag page */
+		.tag-slug {} /* individual tag page (i.e. body.tag-news) */
+		.tag-paged-1 {} /* replace the number to the corresponding page number */
+	.page-template {} /* custom page template page */
+		.page-template-page-php {} /* individual page template (i.e. body.page-template-contact-php */
+		.page-paged-1 {} /* replace the number to the corresponding page number */
+		.page-parent {}
+		.page-child {}
+		.parent-pageid-1 {} /* replace the number to the corresponding page number */
+	.logged-in {} /* if user is logged in */
+	.paged {} /* paged items like search results or archives */
+		.paged-1 {} /* individual paged (i.e. body.paged-3) */
+}
+
+#wrap { }
+
+// Menu
+///////
+.nav-menu {
+	.menu {
+		li {
+			&.active {}
+			a {}
+		}
+	}
+	ul.sub-menu {
+		li {
+			&.active {}
+			a {}
+		}
+	}
+}
+
+// Search
+/////////
+.main-header form.searchform {}
+
+// Header
+/////////
+.main-header {
+	a { }
+	figure {
+		img {}
+	}
+	h1 { }
+	h2 { }
+	figure.logo + h1, figure.logo ~ h2 {}
+}
+
+// Main
+//////////
+#main { }
+
+// Articles & Excerpts & Pages
+//////////////////////
+.hentry {
+	.entry-thumbnail {}
+	.content { 
+		&>*:last-child {}
+	}
+	.gallery-image {}
+	footer {
+		ul { }
+		li {}
+		.meta_time { }
+		.meta_categories { 
+			a {}
+		}
+		.meta_tags { 
+			a {}
+		}
+		.meta_count { 
+			a {}
+		}
+		.meta_comments { 
+			a {}
+		}
+	}
+	.meta_edit { 
+		a {}
+	}
+	&:hover {
+		.meta_edit a {  }
+	}
+}
+
+// Excerpts
+///////////
+.hentry.excerpt {
+	.entry-title {  }
+	.entry-summary {  }	
+	.entry-title { }
+	.entry-thumbnail { }
+	.entry-content { }
+	footer { }	
+}
+
+// Post Formats
+.hentry.excerpt { 
+	&.format-aside { }
+	&.format-gallery { }
+	&.format-image { }
+	&.format-link { }
+	&.format-page { }
+	&.format-quote { }
+	&.format-slideshow { }
+	&.format-video { }
+}
+
+// Specific Article Types
+.hentry.excerpt {
+	&.post { }
+	&.page { }
+	&.attachment { }
+	&.sticky { }
+}
+
+// Articles
+///////////
+.hentry.single {
+	.entry-title { }
+	.entry-thumbnail { }
+	.entry-content { }
+	footer { }	
+}
+
+// Post Formats
+.hentry.single {
+	&.format-aside { }
+	&.format-gallery { }
+	&.format-image { }
+	&.format-link { }
+	&.format-page { }
+	&.format-quote { }
+	&.format-slideshow { }
+	&.format-video { }
+}
+
+// Specific Article Types
+.hentry.single {
+	&.full { }
+	&.post { }
+	&.page { }
+	&.attachment { }
+	&.sticky { }
+}
+
+// Pages
+////////
+.hentry.page { }
+
+// Navigation
+/////////////
+.nav-page, .nav-single {
+	.previous a, .next a { }
+	.previous { }
+	.next { }
+}
+// Respond
+//////////
+#respond {
+	.logged-in { }
+	a.logout {}
+}
+
+// Reply Form
+ol #respond {
+	a#cancel-comment-reply-link { }
+}
+ul.children #respond { }
+
+// Comments
+///////////
+#comments {
+	h3 { }
+}
+ol.commentlist {}
+li.comment {
+	.comment-author {
+		.comment-avatar img {}
+		cite {
+			a {}
+		}
+		time a {}
+	}
+	section {
+		&>*:last-child { }
+	}
+	footer {
+		time {  }
+	}
+	a.comment-edit-link, a.comment-reply-link {}
+	a.comment-reply-link {}
+}
+// Show Reply/Edit Options on hover
+li.comment {
+	article:hover {
+		a.comment-edit-link, a.comment-reply-link {}
+	}
+}
+
+// Comment Striping
+.commentlist > li.comment {
+	 &.alt {}
+	 &.odd {}
+	 &.even {}
+	 &.thread-alt {}
+	 &.thread-even {}
+	 ul.children .alt {}
+	 ul.children .odd {}
+	 ul.children .even {}
+}
+
+// Comment Threading
+#comments {
+	li.comment.parent {}
+	ul.children {
+		li.comment.depth-1 {}
+		li.comment.depth-2 {}
+		li.comment.depth-3 {}
+		li.comment.depth-4 {}
+		li.comment.depth-5 {}
+	}
+}
+// Specific Comment Types
+details ol.commentlist li.comment.byuser {/* User Comment */}
+details ol.commentlist li.comment.bypostauthor {/* Author Comment */}
+details ol.commentlist li.comment.comment-author-admin {/* Admin Comment */}
+
+// Comment Content Styles
+li.comment article {
+	a {}
+	a:hover {}
+	acronym {}
+	blockquote {}
+	b {}
+	cite {}
+	code {}
+	del {}
+	em {}
+	i {}
+	q {}
+	strike {}
+	strong {}
+}
+
+// Sidebars
+///////////
+.sidebar { }
+#sidebar-default { }
+#sidebar-home { }
+#sidebar-single { }
+
+// Widgets
+.widget {}
+
+// Footer
+/////////
+
+#main-info { }
+#main-info p small { } // copyright
+
+// Misc.
+////////

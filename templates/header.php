@@ -1,6 +1,6 @@
 <header>
 	<?php if (has_nav_menu('primary_menu')) { ?>
-		<nav id="primary_navigation" role="navigation">
+		<nav id="primary_navigation" class="top-bar" role="navigation">
 			<ul>
 	      <li class="name show-for-medium-down">
 	          <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>

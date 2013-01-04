@@ -21,6 +21,9 @@ function fin_scripts() {
 	  wp_register_script('jquery', '', '', '1.8.3', false);
 	}
 	
+	// load foundation js
+	wp_register_script('fin_foundation_js', get_template_directory_uri() . '/assets/js/foundation.min.js', false, null, false);
+	wp_enqueue_script('fin_foundation_js');
 	// load master js
 	wp_register_script('fin_js', get_template_directory_uri() . '/assets/js/app.js', false, null, false);
 	wp_enqueue_script('fin_js');
