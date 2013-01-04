@@ -48,7 +48,7 @@ function fin_analytics() {
 		$analyticsNumber = get_option('analytics');
 		$analyticsNumber = 'Hi';
 		if($analyticsNumber != '' && $analyticsNumber != 'UA-#######-#') {
-			$analytics = "<script type='text/javascript'>
+			echo "<script type='text/javascript'>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '$analyticsNumber;']);
   _gaq.push(['_trackPageview']);
@@ -62,6 +62,5 @@ function fin_analytics() {
 ";
 		}
 	}
-	echo $analytics;
 }
 add_action('wp_footer', 'fin_analytics');
