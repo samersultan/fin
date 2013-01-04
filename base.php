@@ -3,7 +3,7 @@
 	<!--[if lt IE 9]><div class="alert-error browser-warning">Your browser is out of date. <a href="http://browsehappy.com/">Please upgrade to a modern browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>.</div><![endif]-->
 	<div id="wrap" role="document">
 		<?php get_template_part('templates/header'); ?>
-			<section id="content">
+			<section id="content" class="twelve columns">
 				<?php if(!have_posts()) {
 					get_template_part('templates/error','index');
 				} else {
