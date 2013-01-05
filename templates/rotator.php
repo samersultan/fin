@@ -28,31 +28,28 @@ if($rotator_query->have_posts()){
 		// collect captions
 		$captions='';
 	?>
-	<div class="row">
-		<div id="rotator-" class="rotator">
-			<i class="icon-spinner icon-spin icon-2x"></i>
-			<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
-				<?php $i++; ?>
-				<?php if (has_post_thumbnail()) {
-					if(has_excerpt()) {
-						$captions .= '<span class="orbit-caption" id="caption' . $i . '">' . get_the_excerpt() . '</span>'; ?>
-						<div data-caption="#caption<?php echo $i; ?>">
-					<?php }else { ?>
-						<div class="center">
-					<?php }
-							the_post_thumbnail('full'); ?>
-						</div>
+	<div id="rotator-" class="rotator">
+		<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
+			<?php $i++; ?>
+			<?php if (has_post_thumbnail()) {
+				if(has_excerpt()) {
+					$captions .= '<span class="orbit-caption" id="caption' . $i . '">' . get_the_excerpt() . '</span>'; ?>
+					<div data-caption="#caption<?php echo $i; ?>">
 				<?php }else { ?>
-					<div>
-						<h3><?php the_title(); ?></h3>
-						<?php the_excerpt(); ?>
+					<div class="center">
+				<?php }
+						the_post_thumbnail('full'); ?>
 					</div>
-				<?php } ?>
-		  <?php endwhile; ?>
-		</div>
-		<?php if($captions != '') {
-			echo $captions;
-		} ?>
+			<?php }else { ?>
+				<div>
+					<h3><?php the_title(); ?></h3>
+					<?php the_excerpt(); ?>
+				</div>
+			<?php } ?>
+		<?php endwhile; ?>
 	</div>
+	<?php if($captions != '') {
+		echo $captions;
+	} ?>
 	<?php wp_reset_postdata(); ?>
 <?php } ?>
