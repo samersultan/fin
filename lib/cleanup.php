@@ -15,45 +15,6 @@ function fin_cleanup_default_content() {
 add_action('after_theme_switch','fin_cleanup_default_content');
 
 /**
- * Replace default blogroll name with 'General'
- *
- */
-function fin_cleanup_blogroll() {
-	// Rename 'Blogroll'
-	$terms = get_terms('link_category',array('hide_empty'=>false));
-	// rename blogroll
-	if($terms) {
-		foreach ($terms as $term) {
-			if($term->slug == 'blogroll') {
-				$updated = wp_update_term($term->term_id,'link_category',array(
-					'name'=>'General',
-					'slug'=>'bookmarks-general',
-					'description'=>'General Links'
-				));
-			}
-		}
-	}
-
-	// Delete Links WP has created
-	$defaultLinks = array('Documentation','Plugins','Suggest Ideas','Support Forum','Themes','WordPress Blog', 'WordPress Planet', 'Support Forums', 'Feedback');
-	$links = get_bookmarks();
-	if($links){
-		foreach ($links as $link) {
-			if(in_array($link->link_name, $defaultLinks)){
-				$link_id = $link->link_id;
-				global $wpdb;
-				do_action( 'delete_link', $link_id );
-				wp_delete_object_term_relationships( $link_id, 'link_category' );
-				$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->links WHERE link_id = %d", $link_id ) );
-				do_action( 'deleted_link', $link_id );
-				clean_bookmark_cache( $link_id );
-			}
-		}
-	}
-}
-add_action('after_theme_switch','fin_cleanup_blogroll');
-
-/**
  * Replace default category name with 'General'
  *
  */
