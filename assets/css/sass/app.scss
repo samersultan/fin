@@ -1,8 +1,10 @@
-// You custom settings file to override Foundation defaults
 @import "settings";
 
 // Comment out this import if you are customizing you imports below
 @import "foundation";
+
+// Font Awesome
+@import "font-awesome";
 
 // Sticky Footer
 @import "compass/layout/sticky-footer";
@@ -14,11 +16,10 @@
   &:hover .slider-nav span { @include opacity(1); }
 }
 
-.rotator { background: url(../img/foundation/orbit/loading.gif) center center transparent; background-repeat: no-repeat;
-	height: 300px; }
+.rotator i { }
 .rotator img { display: none; }
 
-.rotator.orbit { background: none; }
+.rotator.orbit i { display: none; }
 .rotator.orbit img { display: block; margin: 0 auto; }
 
 // Fractions
@@ -108,8 +109,7 @@ h1,h2,h3,h4,h5,h6 {
 // Body
 /////////////////
 html, body {
-	background: #ddd;
-	background-image: url('../img/bg.png');
+	background: gray;
 }
 body {
 	.rtl {}
@@ -383,7 +383,7 @@ li.comment article {
 
 // Sidebars
 ///////////
-.sidebar { }
+.sidebar { background: #999; }
 #sidebar-default { }
 #sidebar-home { }
 #sidebar-single { }
@@ -394,7 +394,7 @@ li.comment article {
 // Footer
 /////////
 
-#main-info { }
+#main-info { background: #444;}
 #main-info p small { } // copyright
 
 // Misc.
