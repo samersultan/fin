@@ -30,6 +30,7 @@ if($rotator_query->have_posts()){
 	?>
 	<div class="row">
 		<div id="rotator-" class="rotator">
+			<i class="icon-spinner icon-spin icon-2x"></i>
 			<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
 				<?php $i++; ?>
 				<?php if (has_post_thumbnail()) {
