@@ -1,3 +1,51 @@
+// You custom settings file to override Foundation defaults
+@import "foundation/settings";
+
+@import "settings";
+
+@import "compass/css3";
+
+@import "modular-scale";
+
+@import "foundation/functions/all";
+
+@import "foundation/mixins/all";
+
+/** Login CSS **/
+body.login {
+	#login {
+		h1 a {
+			background-image: url(../img/logo.png);
+			background-position: top;
+			background-repeat: no-repeat;
+			background-size: 50% auto;
+		}
+		#loginform {
+			p {
+				label {}
+			}
+			input {}
+			input#user_login {}
+			input#user_pass {}
+			p.forgetmenot {
+				input#rememberme {}
+			}
+			p.submit {
+				input#wp-submit {}
+			}
+		}
+		#nav {
+			a {}
+		}
+		#backtoblog {
+			a {}
+		}
+		#login_error {
+			display: none;
+		}
+	}
+}
+
 /** Adminbar CSS **/
 #wp-admin-bar-wp-logo {
 	display: none;
@@ -8,18 +56,6 @@
 	visibility: hidden;
 }
 
-/** Login CSS **/
-body.login {
-	h1 a {
-		background-image: url(../img/logo.png);
-		background-position: top;
-		background-repeat: no-repeat;
-		background-size: 50% auto;
-	}
-	#login_error {
-		display: none;
-	}
-}
 /** Admin CSS **/
 #wp-version-message, #wp-version-message + br.clear { display: none; }
 
