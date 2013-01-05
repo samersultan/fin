@@ -1,5 +1,5 @@
 // You custom settings file to override Foundation defaults
-@import "foundation/settings";
+@import "settings";
 
 // Comment out this import if you are customizing you imports below
 @import "foundation";
@@ -95,9 +95,22 @@
 	width: gridCalc(7, 8);
 }
 
+// BASE STYLES //
+input[type="submit"] {
+	@extend .button;
+}
+h1,h2,h3,h4,h5,h6 {
+	text-align: center;
+}
+
+// SITE LAYOUT //
+
 // Body
 /////////////////
-html, body {}
+html, body {
+	background: #ddd;
+	background-image: url('../img/bg.png');
+}
 body {
 	.rtl {}
 	.home {} /* home page */
