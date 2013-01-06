@@ -1,6 +1,6 @@
 <?php if(is_front_page()){
 	$sidebar = 'Home';
-}elseif((is_attachment() || get_post_format() == 'image')){
+}elseif(is_attachment()){
 	$sidebar = 'Image';
 }elseif(is_single()){
 	$sidebar = 'Single';
