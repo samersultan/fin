@@ -63,11 +63,12 @@ function register_taxonomy_location() {
   );
 
   $args = array(
-    'hierarchical' => false,
-    'labels'       => $labels,
-    'show_ui'      => true,
-    'query_var'    => true,
-    'rewrite'      => array('slug' => 'rotator-location'),
+    'hierarchical'      => false,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array('slug' => 'rotator-location'),
   );
   register_taxonomy('rotator_location', 'rotator', $args);
 }
