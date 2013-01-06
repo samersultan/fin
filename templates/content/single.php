@@ -25,7 +25,8 @@
 				if ( comments_open() && $comment_count['approved'] > 0 ){ ?>
 				<li class="meta_comments"><?php comments_popup_link(__(''),__('1 Comment'),__('% Comments')); ?></li>
 			<?php } ?>
+			<?php edit_post_link('edit', '<li class="meta_edit">', '</li>'); ?>
 			</ul>
 	</footer>
-	<?php edit_post_link('edit', '<span class="meta_edit">', '</span>'); ?>
+	<?php comments_template('/templates/comments.php'); ?>
 </article>
