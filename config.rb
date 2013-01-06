@@ -8,8 +8,9 @@ images_dir = "assets/img"
 javascripts_dir = "assets/js"
 fonts_dir = "assets/fonts"
 
-output_style = :compressed
 environment = :development
+output_style = (environment == :production) ? :compressed : :expanded
+
 
 relative_assets = true
 
