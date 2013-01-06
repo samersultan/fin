@@ -29,13 +29,13 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	  // general rewrites
 		global $wp_rewrite;
 		$fin_new_non_wp_rules = array(
-			'assets/css/(.*)' => THEME_PATH . '/assets/css/$1',
-			'assets/js/(.*)'  => THEME_PATH . '/assets/js/$1',
-			'assets/img/(.*)' => THEME_PATH . '/assets/img/$1',
+			'assets/css/(.*)'  => THEME_PATH . '/assets/css/$1',
+			'assets/js/(.*)'   => THEME_PATH . '/assets/js/$1',
+			'assets/img/(.*)'  => THEME_PATH . '/assets/img/$1',
 			'assets/font/(.*)' => THEME_PATH . '/assets/font/$1',
-			'plugins/(.*)'    => RELATIVE_PLUGIN_PATH . '/$1',
-			'login'					  => 'wp-login.php',
-			'admin'					  => 'wp-admin'
+			'plugins/(.*)'     => RELATIVE_PLUGIN_PATH . '/$1',
+			'login'					   => 'wp-login.php',
+			'admin'					   => 'wp-admin'
 		);
 		$wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $fin_new_non_wp_rules);
 		

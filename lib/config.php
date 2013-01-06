@@ -24,12 +24,8 @@ function fin_setup() {
 	update_option('upload_path', 'assets');
 	
 	// Rewrite Permalink Structure
-	update_option('permalink_structure', '/%category%/%postname%/');
 	update_option('category_base', '/.');
-	
-	global $wp_rewrite;
-	$wp_rewrite->init();
-	$wp_rewrite->flush_rules();
+	update_option('permalink_structure', '/%category%/%postname%/');
 	
 	// change start of week to Sunday
 	update_option('start_of_week',0);
@@ -38,7 +34,7 @@ function fin_setup() {
 	update_option('use_smilies', 0);
 	
 	// Set the size of the Post Editor
-	update_option('default_post_edit_rows', 40);
+	update_option('default_post_edit_rows', 60);
 	
 	// Set Timezone
 	//$timezone = "America/New_York";

@@ -12,7 +12,7 @@ function fin_cleanup_default_content() {
 	$post = get_page_by_title( 'Hello world!', 'OBJECT', 'post');
 	if($post) {	wp_delete_post($post->ID, true); }
 }
-add_action('after_theme_switch','fin_cleanup_default_content');
+add_action('after_setup_theme','fin_cleanup_default_content');
 
 /**
  * Replace default category name with 'General'
@@ -26,7 +26,7 @@ function fin_cleanup_default_category() {
 	}	
 	wp_update_term( $category->term_id, 'category', array( 'slug' => $category->slug, 'name'=> $category->name ) );
 }
-add_action('after_theme_switch','fin_cleanup_default_category');
+add_action('after_setup_theme','fin_cleanup_default_category');
 
 /**
  * Remove actions from wp_head
