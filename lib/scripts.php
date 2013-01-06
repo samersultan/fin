@@ -45,8 +45,7 @@ add_action('wp_enqueue_scripts','fin_scripts', 100);
  */
 function fin_analytics() {
 	if(!current_user_can('edit_posts')) {
-		$analyticsNumber = get_option('analytics');
-		$analyticsNumber = 'Hi';
+		$analyticsNumber = of_get_option('analytics');
 		if($analyticsNumber != '' && $analyticsNumber != 'UA-#######-#') {
 			echo "<script type='text/javascript'>
   var _gaq = _gaq || [];

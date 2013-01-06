@@ -14,7 +14,7 @@ function optionsframework_option_name() {
 
 	// This gets the theme name from the stylesheet
 	$themename = get_option( 'stylesheet' );
-	$themename = preg_replace("/\W/", "_", strtolower($themename) );
+	$themename = preg_replace('/\W/', '_', strtolower($themename) );
 
 	$optionsframework_settings = get_option( 'optionsframework' );
 	$optionsframework_settings['id'] = $themename;
@@ -31,39 +31,6 @@ function optionsframework_option_name() {
  */
 
 function optionsframework_options() {
-
-	// Test data
-	$test_array = array(
-		'one' => __('One', 'fin'),
-		'two' => __('Two', 'fin'),
-		'three' => __('Three', 'fin'),
-		'four' => __('Four', 'fin'),
-		'five' => __('Five', 'fin')
-	);
-
-	// Multicheck Array
-	$multicheck_array = array(
-		'one' => __('French Toast', 'fin'),
-		'two' => __('Pancake', 'fin'),
-		'three' => __('Omelette', 'fin'),
-		'four' => __('Crepe', 'fin'),
-		'five' => __('Waffle', 'fin')
-	);
-
-	// Multicheck Defaults
-	$multicheck_defaults = array(
-		'one' => '1',
-		'five' => '1'
-	);
-
-	// Background Defaults
-	$background_defaults = array(
-		'color' => '',
-		'image' => '',
-		'repeat' => 'repeat',
-		'position' => 'top center',
-		'attachment'=>'scroll' );
-
 	// Typography Defaults
 	$typography_defaults = array(
 		'size' => '15px',
@@ -72,249 +39,228 @@ function optionsframework_options() {
 		'color' => '#bada55' );
 		
 	// Typography Options
-	$typography_options = array(
-		'sizes' => array( '6','12','14','16','20' ),
-		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue','Arial' => 'Arial' ),
-		'styles' => array( 'normal' => 'Normal','bold' => 'Bold' ),
-		'color' => false
+	$font_faces = array(
+		'Arvo, serif' => 'Arvo',
+    'Copse, sans-serif' => 'Copse',
+    'Droid Sans, sans-serif' => 'Droid Sans',
+    'Droid Serif, serif' => 'Droid Serif',
+    'Lobster, cursive' => 'Lobster',
+    'Nobile, sans-serif' => 'Nobile',
+    'Open Sans, sans-serif' => 'Open Sans',
+    'Oswald, sans-serif' => 'Oswald',
+    'Pacifico, cursive' => 'Pacifico',
+    'Rokkitt, serif' => 'Rokkit',
+    'PT Sans, sans-serif' => 'PT Sans',
+    'Quattrocento, serif' => 'Quattrocento',
+    'Raleway, cursive' => 'Raleway',
+    'Ubuntu, sans-serif' => 'Ubuntu',
+    'Yanone Kaffeesatz, sans-serif' => 'Yanone Kaffeesatz'
+	);
+	$defaultFace = '"Helvetica Neue", Helvetica, sans-serif';
+		
+	// If using image radio buttons, define a directory path
+	$imagepath =  get_template_directory_uri() . '/assets/img/';
+	
+	// Background Defaults
+	$background_defaults = array(
+		'color' => '',
+		'image' => '',
+		'repeat' => 'repeat',
+		'position' => 'top center',
+		'attachment'=>'scroll'
 	);
 
-	// Pull all the categories into an array
+	$options = array();
+
+	$options[] = array(
+		'name' => 'Typography',
+		'type' => 'heading'
+	);
+
+	$options[] = array(
+		'name' => 'Headings',
+		'desc' => 'Font used for headers',
+		'id' => 'heading_typography',
+		'std' => $defaultFace,
+		'type' => 'select',
+		'options' => $font_faces
+	);
+	
+	$options[] = array(
+		'name' => 'Main',
+		'desc' => 'Font used main text',
+		'id' => 'main_typography',
+		'std' => $defaultFace,
+		'type' => 'select',
+		'options' => $font_faces
+	);		
+							
+	$options[] = array(
+		'name' => 'Colors',
+		'type' => 'heading'
+	);
+										
+	$options[] = array(
+		'name' => 'Link Color',
+		'desc' => 'Default used if no color is selected.',
+		'id' => 'link_color',
+		'std' => '#2BA6CB',
+		'type' => 'color'
+	);
+				
+	$options[] = array(
+		'name' => 'Link:hover Color',
+		'desc' => 'Default used if no color is selected.',
+		'id' => 'link_hover_color',
+		'std' => '#2795B6',
+		'type' => 'color'
+	);
+					
+	$options[] = array(
+		'name' => 'Link:active Color',
+		'desc' => 'Default used if no color is selected.',
+		'id' => 'link_active_color',
+		'std' => '#2BA6CB',
+		'type' => 'color'
+	);
+
+	$options[] = array(
+		'name' => 'Navbar Color',
+		'desc' => 'Background Color for Navbar',
+		'id' => 'top_bar_bg_color',
+		'std' => '#111111',
+		'type' => 'color'
+	);
+
+	$options[] = array(
+		'name' => 'Nav Background Color',
+		'desc' => 'Background color.',
+		'id' => 'top_nav_bg_color',
+		'std' => '#111111',
+		'type' => 'color'
+	);
+
+	$options[] = array(
+		'name' => 'Nav Text Color',
+		'desc' => 'Link color.',
+		'id' => 'top_nav_link_color',
+		'std' => '#FFFFFF',
+		'type' => 'color'
+	);
+
+	$options[] = array(
+		'name' => 'Nav Background Hover Color',
+		'desc' => 'Background hover color.',
+		'id' => 'top_nav_hover_bg_color',
+		'std' => '#333333',
+		'type' => 'color'
+	);
+
+	$options[] = array(
+		'name' => 'Nav Text Hover Color',
+		'desc' => 'Link hover color.',
+		'id' => 'top_nav_link_hover_color',
+		'std' => '#E6E6E6',
+		'type' => 'color'
+	);
+
+		
+	$options[] = array(
+		'name' => 'Backgrounds',
+		'type' => 'heading'
+	);
+
+	$options[] = array(
+		'name' => 'Main Background',
+		'desc' => 'Main Background image or color.',
+		'id' => 'main_background',
+		'std' => $background_defaults,
+		'type' => 'background'
+	);
+
+	$options[] = array(
+		'name' => 'Header Image',
+		'desc' => 'Header image or color.',
+		'id' => 'content_background',
+		'std' => $background_defaults,
+		'type' => 'background'
+	);
+
+	$options[] = array(
+		'name' => 'Content Background',
+		'desc' => 'Background image or color.',
+		'id' => 'content_background',
+		'std' => $background_defaults,
+		'type' => 'background'
+	);
+								
+	$options[] = array(
+		'name' => 'Other Settings',
+		'type' => 'heading'
+	);
+							
+	$options[] = array(
+		'name' => '"Comments are closed" message on pages',
+		'desc' => 'Suppress "Comments are closed" message',
+		'id' => 'suppress_comments_message',
+		'std' => '1',
+		'type' => 'checkbox'
+	);
+	
+	$options[] = array(
+		'name' => 'Google Analytics',
+		'desc' => 'Input your Google Analytics Profile Number',
+		'id' => 'analytics',
+		'std' => 'UA-#######-#',
+		'type' => 'text'
+	);
+
+	return $options;
+}
+
+/**
+ * Add relevant styles to wp_head
+ *
+ */
+function of_add_styles() {
+	$output = '\n<style>\n';
+	$output .= '</style>\n';
+	echo $output;
+}
+add_action('wp_head', 'of_add_styles');
+/**
+ * Helper Functions
+ *
+ */
+// Pull all the categories into an array
+function of_get_categories() {
 	$options_categories = array();
 	$options_categories_obj = get_categories();
 	foreach ($options_categories_obj as $category) {
 		$options_categories[$category->cat_ID] = $category->cat_name;
 	}
-	
-	// Pull all tags into an array
+	return $options_categories;
+}	
+
+// Pull all tags into an array
+function of_get_tags() {
 	$options_tags = array();
 	$options_tags_obj = get_tags();
 	foreach ( $options_tags_obj as $tag ) {
 		$options_tags[$tag->term_id] = $tag->name;
 	}
+	return $options_tags;
+}
 
-
-	// Pull all the pages into an array
+// Pull all the pages into an array
+function of_get_pages() {
 	$options_pages = array();
-	$options_pages_obj = get_pages('sort_column=post_parent,menu_order');
+	$options_pages_obj = get_pages('sort_column=post_parent,menu_order'
+	);
+
 	$options_pages[''] = 'Select a page:';
 	foreach ($options_pages_obj as $page) {
 		$options_pages[$page->ID] = $page->post_title;
 	}
-
-	// If using image radio buttons, define a directory path
-	$imagepath =  get_template_directory_uri() . '/assets/img/';
-
-	$options = array();
-
-	$options[] = array(
-		'name' => __('Basic Settings', 'fin'),
-		'type' => 'heading');
-
-	$options[] = array(
-		'name' => __('Input Text Mini', 'fin'),
-		'desc' => __('A mini text input field.', 'fin'),
-		'id' => 'example_text_mini',
-		'std' => 'Default',
-		'class' => 'mini',
-		'type' => 'text');
-
-	$options[] = array(
-		'name' => __('Input Text', 'fin'),
-		'desc' => __('A text input field.', 'fin'),
-		'id' => 'example_text',
-		'std' => 'Default Value',
-		'type' => 'text');
-
-	$options[] = array(
-		'name' => __('Textarea', 'fin'),
-		'desc' => __('Textarea description.', 'fin'),
-		'id' => 'example_textarea',
-		'std' => 'Default Text',
-		'type' => 'textarea');
-
-	$options[] = array(
-		'name' => __('Input Select Small', 'fin'),
-		'desc' => __('Small Select Box.', 'fin'),
-		'id' => 'example_select',
-		'std' => 'three',
-		'type' => 'select',
-		'class' => 'mini', //mini, tiny, small
-		'options' => $test_array);
-
-	$options[] = array(
-		'name' => __('Input Select Wide', 'fin'),
-		'desc' => __('A wider select box.', 'fin'),
-		'id' => 'example_select_wide',
-		'std' => 'two',
-		'type' => 'select',
-		'options' => $test_array);
-
-	$options[] = array(
-		'name' => __('Select a Category', 'fin'),
-		'desc' => __('Passed an array of categories with cat_ID and cat_name', 'fin'),
-		'id' => 'example_select_categories',
-		'type' => 'select',
-		'options' => $options_categories);
-	
-	if ($options_tags) {
-	$options[] = array(
-		'name' => __('Select a Tag', 'options_check'),
-		'desc' => __('Passed an array of tags with term_id and term_name', 'options_check'),
-		'id' => 'example_select_tags',
-		'type' => 'select',
-		'options' => $options_tags);
-	}
-
-	$options[] = array(
-		'name' => __('Select a Page', 'fin'),
-		'desc' => __('Passed an pages with ID and post_title', 'fin'),
-		'id' => 'example_select_pages',
-		'type' => 'select',
-		'options' => $options_pages);
-
-	$options[] = array(
-		'name' => __('Input Radio (one)', 'fin'),
-		'desc' => __('Radio select with default options "one".', 'fin'),
-		'id' => 'example_radio',
-		'std' => 'one',
-		'type' => 'radio',
-		'options' => $test_array);
-
-	$options[] = array(
-		'name' => __('Example Info', 'fin'),
-		'desc' => __('This is just some example information you can put in the panel.', 'fin'),
-		'type' => 'info');
-
-	$options[] = array(
-		'name' => __('Input Checkbox', 'fin'),
-		'desc' => __('Example checkbox, defaults to true.', 'fin'),
-		'id' => 'example_checkbox',
-		'std' => '1',
-		'type' => 'checkbox');
-
-	$options[] = array(
-		'name' => __('Advanced Settings', 'fin'),
-		'type' => 'heading');
-
-	$options[] = array(
-		'name' => __('Check to Show a Hidden Text Input', 'fin'),
-		'desc' => __('Click here and see what happens.', 'fin'),
-		'id' => 'example_showhidden',
-		'type' => 'checkbox');
-		
-	$options[] = array(
-		'name' => __('Hidden Text Input', 'fin'),
-		'desc' => __('This option is hidden unless activated by a checkbox click.', 'fin'),
-		'id' => 'example_text_hidden',
-		'std' => 'Hello',
-		'class' => 'hidden',
-		'type' => 'text');
-
-	$options[] = array(
-		'name' => __('Uploader Test', 'fin'),
-		'desc' => __('This creates a full size uploader that previews the image.', 'fin'),
-		'id' => 'example_uploader',
-		'type' => 'upload');
-
-	$options[] = array(
-		'name' => "Example Image Selector",
-		'desc' => "Images for layout.",
-		'id' => "example_images",
-		'std' => "2c-l-fixed",
-		'type' => "images",
-		'options' => array(
-			'1col-fixed' => $imagepath . '1col.png',
-			'2c-l-fixed' => $imagepath . '2cl.png',
-			'2c-r-fixed' => $imagepath . '2cr.png')
-	);
-
-	$options[] = array(
-		'name' =>  __('Example Background', 'fin'),
-		'desc' => __('Change the background CSS.', 'fin'),
-		'id' => 'example_background',
-		'std' => $background_defaults,
-		'type' => 'background' );
-
-	$options[] = array(
-		'name' => __('Multicheck', 'fin'),
-		'desc' => __('Multicheck description.', 'fin'),
-		'id' => 'example_multicheck',
-		'std' => $multicheck_defaults, // These items get checked by default
-		'type' => 'multicheck',
-		'options' => $multicheck_array);
-
-	$options[] = array(
-		'name' => __('Colorpicker', 'fin'),
-		'desc' => __('No color selected by default.', 'fin'),
-		'id' => 'example_colorpicker',
-		'std' => '',
-		'type' => 'color' );
-		
-	$options[] = array( 'name' => __('Typography', 'fin'),
-		'desc' => __('Example typography.', 'fin'),
-		'id' => "example_typography",
-		'std' => $typography_defaults,
-		'type' => 'typography' );
-		
-	$options[] = array(
-		'name' => __('Custom Typography', 'fin'),
-		'desc' => __('Custom typography options.', 'fin'),
-		'id' => "custom_typography",
-		'std' => $typography_defaults,
-		'type' => 'typography',
-		'options' => $typography_options );
-
-	$options[] = array(
-		'name' => __('Text Editor', 'fin'),
-		'type' => 'heading' );
-
-	/**
-	 * For $settings options see:
-	 * http://codex.wordpress.org/Function_Reference/wp_editor
-	 *
-	 * 'media_buttons' are not supported as there is no post to attach items to
-	 * 'textarea_name' is set by the 'id' you choose
-	 */
-
-	$wp_editor_settings = array(
-		'wpautop' => true, // Default
-		'textarea_rows' => 5,
-		'tinymce' => array( 'plugins' => 'wordpress' )
-	);
-	
-	$options[] = array(
-		'name' => __('Default Text Editor', 'fin'),
-		'desc' => sprintf( __( 'You can also pass settings to the editor.  Read more about wp_editor in <a href="%1$s" target="_blank">the WordPress codex</a>', 'fin' ), 'http://codex.wordpress.org/Function_Reference/wp_editor' ),
-		'id' => 'example_editor',
-		'type' => 'editor',
-		'settings' => $wp_editor_settings );
-
-	return $options;
-}
-
-/*
- * This is an example of how to add custom scripts to the options panel.
- * This example shows/hides an option when a checkbox is clicked.
- */
-
-add_action('optionsframework_custom_scripts', 'optionsframework_custom_scripts');
-
-function optionsframework_custom_scripts() { ?>
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-
-	$('#example_showhidden').click(function() {
-  		$('#section-example_text_hidden').fadeToggle(400);
-	});
-
-	if ($('#example_showhidden:checked').val() !== undefined) {
-		$('#section-example_text_hidden').show();
-	}
-
-});
-</script>
-
-<?php
+	return $options_pages;
 }
