@@ -6,7 +6,7 @@
 			<section id="content" class="row">
 				<?php if(!have_posts()) {
 					get_template_part('templates/error','index');
-				} else {
+				}else {
 					while (have_posts()) : the_post();
 						include fin_template_path(); // custom template structure
 					endwhile;

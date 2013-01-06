@@ -9,18 +9,25 @@
 // Sticky Footer
 @import "compass/layout/sticky-footer";
 
-@include sticky-footer(100px, '#wrap', '#push', '#content-info');
+@include sticky-footer($baseFontSize * 1.2, '#wrap', '#push', '#content-info');
 
 .orbit-wrapper {
   .slider-nav span { @include opacity(0); @include single-transition(opacity, 400ms); }
   &:hover .slider-nav span { @include opacity(1); }
 }
 
-.rotator i { }
+.rotator { 
+	background: url(../img/load.gif) center center transparent;
+	background-repeat: no-repeat;
+	height: 300px;
+}
 .rotator img { display: none; }
 
-.rotator.orbit i { display: none; }
-.rotator.orbit img { display: block; margin: 0 auto; }
+.rotator.orbit { background: none; }
+.rotator.orbit img { 
+	display: block;
+	margin: 0 auto;
+}
 
 // Fractions
 .one-half,

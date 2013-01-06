@@ -5197,14 +5197,14 @@ html, body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin-bottom: -100px; }
+  margin-bottom: -16.8px; }
   #wrap #push {
-    height: 100px; }
+    height: 16.8px; }
 
 #content-info {
   clear: both;
   position: relative;
-  height: 100px; }
+  height: 16.8px; }
 
 .orbit-wrapper .slider-nav span {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
@@ -5217,11 +5217,16 @@ html, body {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1; }
 
+.rotator {
+  background: url(../img/load.gif) center center transparent;
+  background-repeat: no-repeat;
+  height: 300px; }
+
 .rotator img {
   display: none; }
 
-.rotator.orbit i {
-  display: none; }
+.rotator.orbit {
+  background: none; }
 
 .rotator.orbit img {
   display: block;

@@ -1,8 +1,8 @@
 <header>
-	<div class="alert-error fade-in">
+	<div class="alert-box alert">
 		<a class="close" data-dismiss="alert">&times;</a>
-		<h4><?php _e( 'It appears that the page you are looking for is not there anymore.'); ?></h4>
-		<h4><?php _e('Sorry about the inconvenience.'); ?></h4>
+		<h5><?php _e( 'It appears that the page you are looking for is not there anymore.'); ?></h5>
+		<h5><?php _e('Sorry about the inconvenience.'); ?></h5>
 	</div>
 </header>
 <section class="hentry page single full">
