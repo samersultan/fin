@@ -1,9 +1,19 @@
 <?php
 /**
+ * Custom Admin and Login CSS
+ *
+ */
+function fin_admin_css() {
+	if(is_login() || is_admin() || is_admin_bar_showing()) {
+		wp_enqueue_style('fin_admin', get_template_directory_uri() . '/assets/css/admin.css');
+	}
+}
+add_action('wp_enqueue_scripts', 'fin_admin_css');
+
+/**
  * Basic Config and Constants
  *
  */
-
 function fin_setup() {
 	//Change Default Tagline
 	if(get_bloginfo('description') == 'Just another WordPress site') {
