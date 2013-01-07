@@ -1,4 +1,5 @@
-<?php if(post_password_required() && !$suppress_comments_message) { ?>
+<?php $suppress_comments_message = of_get_option('suppress_comments_message');
+if(post_password_required() && !$suppress_comments_message) { ?>
   <section id="comments">
 	    <div class="alert-box secondary">
 	      <a href="" class="close">&times;</a>
@@ -31,7 +32,6 @@
           <?php endif; ?>
         </ul>
       </nav>
-
     <?php } ?>
 
     <?php if(!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && !$suppress_comments_message) { ?>

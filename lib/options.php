@@ -40,6 +40,7 @@ function optionsframework_options() {
 		
 	// Typography Options
 	$font_faces = array(
+		'' => '*Default',
 		'Arvo, serif' => 'Arvo',
     'Copse, sans-serif' => 'Copse',
     'Droid Sans, sans-serif' => 'Droid Sans',
@@ -56,7 +57,7 @@ function optionsframework_options() {
     'Ubuntu, sans-serif' => 'Ubuntu',
     'Yanone Kaffeesatz, sans-serif' => 'Yanone Kaffeesatz'
 	);
-	$defaultFace = '"Helvetica Neue", Helvetica, sans-serif';
+	$defaultFace = '';
 		
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_template_directory_uri() . '/assets/img/';
@@ -81,7 +82,7 @@ function optionsframework_options() {
 		'name' => 'Headings',
 		'desc' => 'Font used for headers',
 		'id' => 'heading_typography',
-		'std' => $defaultFace,
+		'std' => '',
 		'type' => 'select',
 		'options' => $font_faces
 	);
@@ -99,28 +100,28 @@ function optionsframework_options() {
 		'name' => 'Colors',
 		'type' => 'heading'
 	);
-										
+	
+	$options[] = array(
+		'name' => 'Headings Text Color',
+		'desc' => 'Default used if no color is selected.',
+		'id' => 'heading_color',
+		'std' => '',
+		'type' => 'color'
+	);
+	
+	$options[] = array(
+		'name' => 'Main Text Color',
+		'desc' => 'Default used if no color is selected.',
+		'id' => 'main_color',
+		'std' => '',
+		'type' => 'color'
+	);
+									
 	$options[] = array(
 		'name' => 'Link Color',
 		'desc' => 'Default used if no color is selected.',
 		'id' => 'link_color',
-		'std' => '#2BA6CB',
-		'type' => 'color'
-	);
-				
-	$options[] = array(
-		'name' => 'Link:hover Color',
-		'desc' => 'Default used if no color is selected.',
-		'id' => 'link_hover_color',
-		'std' => '#2795B6',
-		'type' => 'color'
-	);
-					
-	$options[] = array(
-		'name' => 'Link:active Color',
-		'desc' => 'Default used if no color is selected.',
-		'id' => 'link_active_color',
-		'std' => '#2BA6CB',
+		'std' => '',
 		'type' => 'color'
 	);
 
@@ -128,7 +129,7 @@ function optionsframework_options() {
 		'name' => 'Navbar Color',
 		'desc' => 'Background Color for Navbar',
 		'id' => 'top_bar_bg_color',
-		'std' => '#111111',
+		'std' => '',
 		'type' => 'color'
 	);
 
@@ -136,7 +137,7 @@ function optionsframework_options() {
 		'name' => 'Nav Background Color',
 		'desc' => 'Background color.',
 		'id' => 'top_nav_bg_color',
-		'std' => '#111111',
+		'std' => '',
 		'type' => 'color'
 	);
 
@@ -144,7 +145,7 @@ function optionsframework_options() {
 		'name' => 'Nav Text Color',
 		'desc' => 'Link color.',
 		'id' => 'top_nav_link_color',
-		'std' => '#FFFFFF',
+		'std' => '',
 		'type' => 'color'
 	);
 
@@ -152,7 +153,7 @@ function optionsframework_options() {
 		'name' => 'Nav Background Hover Color',
 		'desc' => 'Background hover color.',
 		'id' => 'top_nav_hover_bg_color',
-		'std' => '#333333',
+		'std' => '',
 		'type' => 'color'
 	);
 
@@ -160,7 +161,7 @@ function optionsframework_options() {
 		'name' => 'Nav Text Hover Color',
 		'desc' => 'Link hover color.',
 		'id' => 'top_nav_link_hover_color',
-		'std' => '#E6E6E6',
+		'std' => '',
 		'type' => 'color'
 	);
 
@@ -179,16 +180,8 @@ function optionsframework_options() {
 	);
 
 	$options[] = array(
-		'name' => 'Header Image',
-		'desc' => 'Header image or color.',
-		'id' => 'content_background',
-		'std' => $background_defaults,
-		'type' => 'background'
-	);
-
-	$options[] = array(
 		'name' => 'Content Background',
-		'desc' => 'Background image or color.',
+		'desc' => 'Background image or color for content areas',
 		'id' => 'content_background',
 		'std' => $background_defaults,
 		'type' => 'background'
@@ -223,11 +216,79 @@ function optionsframework_options() {
  *
  */
 function of_add_styles() {
-	$output = '\n<style>\n';
-	$output .= '</style>\n';
-	echo $output;
+	$options = '';
+	
+	$heading_typography = of_get_option('heading_typography');
+	if($heading_typography) {
+		$options .= "h1,h2,h3,h4,h5,h6 { font-family: $heading_typography; }";
+	}
+	
+	$main_typography = of_get_option('main_typography');
+	if($main_typography) {
+		$options .= "body,div,dl,dt,dd,ul,ol,li,pre,form,p,blockquote,th,td { font-family: $main_typography; }";
+	}
+	
+	$headings_color = of_get_option('headings_color');
+	if($headings_color) {
+		$options .= "h1,h2,h3,h4,h5,h6 { color: $headings_color; }";
+	}
+	
+	$main_color = of_get_option('main_color');
+	if($main_color) {
+		$options .= "body,div,dl,dt,dd,ul,ol,li,pre,form,p,blockquote,th,td { color: $main_color; }";
+	}
+	
+	$link_color = of_get_option('link_color');
+	if($link_color) {
+		$options .= "a { color: $link_color;}
+		a:hover {color: " . brightness($link_color, .25) . "; }
+		a:visited { color: " . brightness($link_color, -.25) . "; }";
+	}
+	
+	$top_nav_bg_color = of_get_option('top_nav_bg_color');
+	if($top_nav_bg_color) {
+		$options .= "#nav-main { background: $top_nav_bg_color; }";
+	}
+	
+	$top_nav_link_color = of_get_option('top_nav_link_color');
+	if($top_nav_link_color) {
+		$options .= "#nav-main a { color: $top_nav_link_color; }";
+	}
+	
+	$top_nav_hover_bg_color = of_get_option('top_nav_hover_bg_color');
+	if($top_nav_hover_bg_color) {
+		$options .= "#nav-main a:hover { background: $top_nav_bg_color; }";
+	}
+	
+	$top_nav_link_hover_color = of_get_option('top_nav_link_hover_color');
+	if($top_nav_link_hover_color) {
+		$options .= "#nav-main a:hover { color: $top_nav_link_color; }";
+	}
+	
+	$main_background = of_get_option('main_background');
+	if($main_background) {
+		if($main_background['image']) {
+			$options .= "body { background:url(" . $main_background['image'] . "); }";
+		}elseif($main_background['image']) {
+			$options .= "body { background-color:" . $main_background['color'] . ";}";
+		}	
+	}
+	
+	$content_background = of_get_option('content_background');
+	if($content_background) {
+		if($content_background['image']) {
+			$options .= "#content { background:url(" . $content_background['image'] . "); }";
+		}elseif($content_background['image']) {
+			$options .= "#content { background-color:" . $content_background['color'] . ";}";
+		}	
+	}
+	
+	if($options != '') {
+		echo '<style>' . $options . '<style>';
+	}
 }
 add_action('wp_head', 'of_add_styles');
+
 /**
  * Helper Functions
  *
