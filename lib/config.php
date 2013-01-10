@@ -1,16 +1,5 @@
 <?php
 /**
- * Custom Admin and Login CSS
- *
- */
-function fin_admin_css() {
-	if(is_login() || is_admin() || is_admin_bar_showing()) {
-		wp_enqueue_style('fin_admin', get_template_directory_uri() . '/assets/css/admin.css');
-	}
-}
-add_action('wp_enqueue_scripts', 'fin_admin_css');
-
-/**
  * Basic Config and Constants
  *
  */
@@ -28,6 +17,10 @@ function fin_setup() {
 	
 	// Add post formats (http://codex.wordpress.org/Post_Formats)
 	add_theme_support('post-formats', array('gallery', 'image', 'video', 'audio'));
+	
+	// Allow shortcodes in widgets
+	add_filter( 'widget_text', 'shortcode_unautop');
+	add_filter( 'widget_text', 'do_shortcode', 11);
 	
 	// Change Uploads folder to /Assets
 	update_option('uploads_use_yearmonth_folders', 0);
