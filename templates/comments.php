@@ -1,5 +1,6 @@
-<?php $suppress_comments_message = of_get_option('suppress_comments_message');
-if(post_password_required() && !$suppress_comments_message) { ?>
+<?php $options = get_option('fin_theme_options');
+$comments_warning = $options['comments_warning'];
+if(post_password_required() && $comments_warning) { ?>
   <section id="comments">
 	    <div class="alert-box secondary">
 	      <a href="" class="close">&times;</a>
