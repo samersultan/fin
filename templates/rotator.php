@@ -28,7 +28,7 @@ if($rotator_query->have_posts()){
 		// collect captions
 		$captions='';
 	?>
-	<div id="rotator-" class="rotator">
+	<div id="rotator-<?php echo $location; ?>" class="rotator">
 		<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
 			<?php $i++; ?>
 			<?php if (has_post_thumbnail()) {
@@ -36,7 +36,7 @@ if($rotator_query->have_posts()){
 					$captions .= '<span class="orbit-caption" id="caption' . $i . '">' . get_the_excerpt() . '</span>'; ?>
 					<div data-caption="#caption<?php echo $i; ?>">
 				<?php }else { ?>
-					<div class="center">
+					<div>
 				<?php }
 						the_post_thumbnail('full'); ?>
 					</div>
