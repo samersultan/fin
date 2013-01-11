@@ -49,6 +49,16 @@ function fin_change_default_submenus() {
 add_action('admin_menu', 'fin_change_default_submenus');
 
 /**
+ * Add Customize link to the admin menu
+ *
+ */
+function fin_add_customize_menu() {
+	// add the Customize link to the admin menu
+	add_theme_page( 'Customize', 'Customize', 'edit_theme_options', 'customize.php' ); 
+}
+add_action ('admin_menu', 'fin_add_customize_menu');
+
+/**
  * Remove Wordpress Welcome Panel
  *
  */
