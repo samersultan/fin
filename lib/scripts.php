@@ -4,6 +4,9 @@
  *
  */
 function fin_scripts() {
+	// Load Google Fonts
+	$options = get_option('fin_theme_options');
+	wp_enqueue_style( 'fin_fonts', 'http://fonts.googleapis.com/css?family=' . str_replace(" ", "+", $options['heading_font'] ) . '|' . str_replace(" ", "+", $options['text_font'] ) , false, null);
 	// Custom Admin and Login CSS
 	if(is_login() || is_admin() || is_admin_bar_showing()) {
 		wp_enqueue_style('fin_admin', get_template_directory_uri() . '/assets/css/admin.css', false, null);
@@ -52,7 +55,8 @@ add_action('login_enqueue_scripts','fin_scripts', 10);
  */
 function fin_analytics() {
 	if(!current_user_can('edit_posts')) {
-		$analyticsNumber = of_get_option('analytics');
+		$options = get_option('fin_theme_options');
+		$analyticsNumber = $options['analytics'];
 		if($analyticsNumber != '' && $analyticsNumber != 'UA-#######-#') {
 			echo "<script type='text/javascript'>
   var _gaq = _gaq || [];

@@ -17,7 +17,7 @@ require_once locate_template('/lib/shortcodes.php'); // Custom Shortcodes
 require_once locate_template('/lib/scripts.php');    // Enqueue All Scripts
 
 /**
- * More Admin Scripts
+ * Load Admin Scripts
  *
  */
 if(current_user_can('edit_posts')) {
