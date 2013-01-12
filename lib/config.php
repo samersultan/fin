@@ -27,7 +27,7 @@ function fin_setup() {
 	update_option('upload_path', 'assets');
 	
 	// Rewrite Permalink Structure
-	update_option('category_base', '/.');
+	update_option('category_base', '/site/');
 	update_option('permalink_structure', '/%category%/%postname%/');
 	
 	// change start of week to Sunday
