@@ -262,7 +262,7 @@ add_filter('login_headertitle', 'fin_change_login_title');
  *
  */
 function fin_edit_post_link($output) {
- $output = str_replace('class="post-edit-link"', 'class="post-edit-link button secondary"', $output);
+ $output = str_replace('class="post-edit-link"', 'class="post-edit-link button secondary small"', $output);
  return $output;
 }
 add_filter('edit_post_link', 'fin_edit_post_link');
