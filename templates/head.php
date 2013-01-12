@@ -18,6 +18,20 @@
 	?></title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<?php // Meta Description
+	if(get_bloginfo('description','Display')) {
+		echo '<meta name="description" content="' . get_bloginfo('description','Display') . '">';
+	}else {
+	
+	} ?>
+	<?php // Meta Keywords
+	$options = get_option('fin_theme_options');
+	$default_keywords = $options['keywords'];
+	$tags = get_the_tag_list('', ', ','');
+	if($default_keywords != '' || $tags != '') {
+		echo '<meta name="keywords" content="' . $tags . ', ' . $default_keywords . '">';
+	} ?>
 		
 	<?php // Only include rss if there are posts
 	if (wp_count_posts()->publish > 0) { ?>

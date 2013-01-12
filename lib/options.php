@@ -169,6 +169,18 @@ function fin_customize_register($wp_customize) {
 		'type'    => 'text',
 	) );
 	
+	// Keywords
+	$wp_customize->add_setting( 'fin_theme_options[keywords]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[keywords]', array(
+		'label'   => 'Default Keywords',
+		'section' => 'fin_settings',
+		'type'    => 'text',
+	) );
+	
 	// Suppress Comments Closed Warning
 	$wp_customize->add_setting( 'fin_theme_options[comments_warning]', array(
 		'default'       => '',
