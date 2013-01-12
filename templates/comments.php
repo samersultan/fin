@@ -35,7 +35,7 @@ if(post_password_required() && $comments_warning) { ?>
       </nav>
     <?php } ?>
 
-    <?php if(!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && !$suppress_comments_message) { ?>
+    <?php if(!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
       <div class="alert-box secondary">
         <a href="" class="close">&times;</a>
         <p><?php _e('Comments are closed.', 'fin'); ?></p>
@@ -44,7 +44,7 @@ if(post_password_required() && $comments_warning) { ?>
   </section><!-- /#comments -->
 <?php } ?>
 
-<?php if(!have_comments() && !comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && !$suppress_comments_message) { ?>
+<?php if(!have_comments() && !comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
   <section id="comments">
     <div class="alert-box secondary">
       <a href="" class="close">&times;</a>
