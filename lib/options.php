@@ -178,9 +178,99 @@ function fin_customize_register($wp_customize) {
 		'settings' => 'fin_theme_options[comments_warning]',
 		'label'    => __( 'Show warning for Comments Closed' ),
 		'section'  => 'fin_settings',
-		'type'     => 'checkbox',
+		'type'     => 'checkbox'
 	) );
 	
+	/**** Social ****/
+	$wp_customize->add_section('fin_social', array(
+		'title'          => __( 'Social Links', 'fin' ),
+		'priority'       => 104,
+	) );
+	
+	// include ?
+	$wp_customize->add_setting( 'fin_theme_options[social]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'social', array(
+		'settings' => 'fin_theme_options[social]',
+		'label'    => __( 'Include Social Icons in the footer' ),
+		'section'  => 'fin_social',
+		'type'     => 'checkbox',
+		'priority' => 1
+	) );
+	
+	// Facebook
+	$wp_customize->add_setting( 'fin_theme_options[social_facebook]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[social_facebook]', array(
+		'label'   => 'Facebook URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
+	
+	// Twitter
+	$wp_customize->add_setting( 'fin_theme_options[social_twitter]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[social_twitter]', array(
+		'label'   => 'Twitter URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
+	
+	// Google Plus
+	$wp_customize->add_setting( 'fin_theme_options[social_google_plus]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[social_google_plus]', array(
+		'label'   => 'Google+ URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
+	
+	// Pinterest
+	$wp_customize->add_setting( 'fin_theme_options[social_pinterest]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[social_pinterest]', array(
+		'label'   => 'Pinterest URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
+	
+	// Linkedin
+	$wp_customize->add_setting( 'fin_theme_options[social_linkedin]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[social_linkedin]', array(
+		'label'   => 'Linkedin URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
+	
+	// Github
+	$wp_customize->add_setting( 'fin_theme_options[social_github]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	
+	$wp_customize->add_control( 'fin_theme_options[social_github]', array(
+		'label'   => 'Github URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
 }
 add_action('customize_register', 'fin_customize_register');
 
