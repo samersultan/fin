@@ -1,8 +1,8 @@
-<header>
+<header id="header">
 	<?php if (has_nav_menu('primary_menu')) { ?>
 		<nav id="primary_navigation" class="top-bar" role="navigation">
 			<ul>
-	      <li class="name show-for-medium-down">
+	      <li class="name show-for-small">
 	          <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
 	      </li>          
 	      	<li class="toggle-topbar"><a href="#"></a></li>

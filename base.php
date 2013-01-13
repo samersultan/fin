@@ -3,7 +3,8 @@
 	<!--[if lt IE 9]><div class="alert-error browser-warning">Your browser is out of date. <a href="http://browsehappy.com/">Please upgrade to a modern browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>.</div><![endif]-->
 	<div id="wrap" role="document">
 		<?php get_template_part('templates/header'); ?>
-			<section id="content" class="row">
+		<section id="main">
+			<div id="content" class="row">
 				<?php if(!have_posts()) {
 					get_template_part('templates/error','index');
 				}else {
@@ -11,12 +12,11 @@
 						include fin_template_path(); // custom template structure
 					endwhile;
 				} ?>
-			</section>
-		<?php get_template_part('templates/sidebar'); ?>
-		<div id="push"></div>
-	</div>
-	<div id="footer">
+			</div>
+			<?php get_template_part('templates/sidebar'); ?>
+		</section>
 		<?php get_template_part('templates/footer'); ?>
 	</div>
+	<?php wp_footer(); ?>
 </body>
 </html>

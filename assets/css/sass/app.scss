@@ -7,26 +7,26 @@
 @import "font-awesome";
 
 // Sticky Footer
-@import "compass/layout/sticky-footer";
-
-@include sticky-footer($baseFontSize * 1.2, '#wrap', '#push', '#content-info');
-
-.orbit-wrapper {
-  .slider-nav span { @include opacity(0); @include single-transition(opacity, 400ms); }
-  &:hover .slider-nav span { @include opacity(1); }
+html, body {
+	height: 100%;
+	margin: 0pt;
 }
 
-.rotator { 
-	background: url(../img/load.gif) center center transparent;
-	background-repeat: no-repeat;
-	height: 300px;
+#wrap {
+	display: table;
+	width: 100%;
 }
-.rotator img { display: none; }
+html>/**/body #wrap {
+	height: 100%;
+}
 
-.rotator.orbit { background: none; }
-.rotator.orbit img { 
-	display: block;
-	margin: 0 auto;
+#main, #footer {
+	display: table-row;
+	height: 1px;
+	overflow: hidden;
+}
+html>body #main {
+	height: auto;
 }
 
 // Fractions
@@ -116,7 +116,7 @@ h1,h2,h3,h4,h5,h6 {
 // Body
 /////////////////
 html, body {
-	background: gray;
+	background: $backgroundColor;
 }
 body {
 	.rtl {}
@@ -158,30 +158,13 @@ body {
 
 #wrap { }
 
-// Menu
-///////
-.nav-menu {
-	.menu {
-		li {
-			&.active {}
-			a {}
-		}
-	}
-	ul.sub-menu {
-		li {
-			&.active {}
-			a {}
-		}
-	}
-}
-
-// Search
-/////////
-.main-header form.searchform {}
-
 // Header
 /////////
-.main-header {
+#header {
+	background: black;
+	margin-bottom: -100px;
+	padding-bottom: 100px;
+	width: 100%;
 	a { }
 	figure {
 		img {}
@@ -191,9 +174,31 @@ body {
 	figure.logo + h1, figure.logo ~ h2 {}
 }
 
+// Menu
+///////
+.top-bar {
+	li {
+		&.active {}
+		a {}
+	}
+	ul.sub-menu {
+		li {
+			&.active {}
+			a {}
+		}
+	}
+}
+
+
+
 // Main
 //////////
-#main { }
+#main {
+}
+#content {
+	@include box-shadow(0 0 20px $shadowColor);
+	margin-bottom: 20px;
+}
 
 // Articles & Excerpts & Pages
 //////////////////////
@@ -224,7 +229,7 @@ body {
 		a {}
 	}
 	&:hover {
-		.meta_edit a {  }
+		.meta_edit a {}
 	}
 }
 
@@ -390,7 +395,7 @@ li.comment article {
 
 // Sidebars
 ///////////
-.sidebar { background: #999; }
+.sidebar { }
 #sidebar-default { }
 #sidebar-home { }
 #sidebar-single { }
@@ -400,8 +405,11 @@ li.comment article {
 
 // Footer
 /////////
-
-#main-info { background: #444;}
+#footer {
+	background: black;
+	margin-top: $baseFontSize * 2.4;
+}
+#main-info { }
 #main-info p small { } // copyright
 
 // Misc.
