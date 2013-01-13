@@ -114,16 +114,18 @@ function fin_customize_register($wp_customize) {
 		'section' => 'fin_typography',
 		'type'    => 'select',
 		'choices'    => array(
-			'Lobster Two' => 'Lobster Two',
-			'Quattrocento' => 'Quattrocento',
-			'Droid Sans' => 'Droid Sans',
-			'PT Sans' => 'PT Sans',
-			'Yanone Kaffeesatz' => 'Yanone Kaffeesatz',
-			'Cabin' => 'Cabin',
-			'Black Ops One' => 'Black Ops One',
-			'Nixie One' => 'Nixie One',
-			'Bangers' => 'Bangers',
-			'Monofett' => 'Monofett',
+			'Great Vibes' => 'Great Vibes',
+			'Croissant One' => 'Croissant One',
+			'Elsie' => 'Elsie',
+			'Sail' => 'Sail',
+			'Sevillana' => 'Sevillana',
+			'Cinzel Decorative' => 'Cinzel Decorative',
+			'Oleo Script Swash Caps' => 'Oleo Script Swash Caps',
+			'Alfa Slab One' => 'Alfa Slab One',
+			'Special Elite' => 'Special Elite',
+			'Glass Antiqua' => 'Glass Antiqua',
+			'Poiret One' => 'Poiret One',
+			'Cherry Swash' => 'Cherry Swash'
 		),
 	) );
 	
@@ -138,16 +140,18 @@ function fin_customize_register($wp_customize) {
 		'section' => 'fin_typography',
 		'type'    => 'select',
 		'choices'    => array(
-			'Lobster Two' => 'Lobster Two',
-			'Quattrocento' => 'Quattrocento',
-			'Droid Sans' => 'Droid Sans',
-			'PT Sans' => 'PT Sans',
-			'Yanone Kaffeesatz' => 'Yanone Kaffeesatz',
-			'Cabin' => 'Cabin',
-			'Black Ops One' => 'Black Ops One',
 			'Nixie One' => 'Nixie One',
-			'Bangers' => 'Bangers',
-			'Monofett' => 'Monofett',
+			'Corben' => 'Corben',
+			'Flamenco' => 'Flamenco',
+			'Special Elite' => 'Special Elite',
+			'Alegreya' => 'Alegreya',
+			'Prata' => 'Prata',
+			'Cutive' => 'Cutive',
+			'Kotta One' => 'Kotta One',
+			'Merriweather' => 'Merriweather',
+			'Poiret One' => 'Poiret One',
+			'Raleway' => 'Raleway',
+			'Duru Sans' => 'Duru Sans'
 		),
 	) );
 	
@@ -295,20 +299,12 @@ function fin_add_custom_styles() {
 	$output = '';
 	$main_background = $options['main_background'];
 	if($main_background) {
-		if($main_background['image']) {
-			$output .= "body { background:url(" . $main_background['image'] . "); }";
-		}elseif($main_background['image']) {
-			$output .= "body { background-color:" . $main_background['color'] . ";}";
-		}	
+		$output .= "html, body { background:url(" . $main_background . "); }";
 	}
 	
 	$content_background = $options['content_background'];
 	if($content_background) {
-		if($content_background['image']) {
-			$output .= "#content { background:url(" . $content_background['image'] . "); }";
-		}elseif($content_background['image']) {
-			$output .= "#content { background-color:" . $content_background['color'] . ";}";
-		}	
+		$output .= "#content { background:url(" . $content_background . "); }";
 	}
 	
 	$heading_color = $options['heading_color'];
@@ -324,8 +320,8 @@ function fin_add_custom_styles() {
 	$link_color = $options['link_color'];
 	if($link_color) {
 		$output .= "a { color: $link_color;}
-		a:hover {color: " . brightness($link_color, .25) . "; }
-		a:visited { color: " . brightness($link_color, -.25) . "; }";
+		a:visited {color: " . brightness($link_color, -.75) . "; }
+		a:hover { color: " . brightness($link_color, .5) . "; }";
 	}
 	
 	$nav_color = $options['nav_color'];
