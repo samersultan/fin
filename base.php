@@ -15,6 +15,8 @@
 		<?php get_template_part('templates/sidebar'); ?>
 		<div id="push"></div>
 	</div>
-	<?php get_template_part('templates/footer'); ?>
+	<div id="footer">
+		<?php get_template_part('templates/footer'); ?>
+	</div>
 </body>
 </html>
