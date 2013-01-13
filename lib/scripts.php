@@ -6,7 +6,10 @@
 function fin_scripts() {
 	// Load Google Fonts
 	$options = get_option('fin_theme_options');
-	wp_enqueue_style( 'fin_fonts', 'http://fonts.googleapis.com/css?family=' . str_replace(" ", "+", $options['heading_font'] ) . '|' . str_replace(" ", "+", $options['text_font'] ) , false, null);
+	if($options['text_font'] != '' || $options['heading_font'] != '') {
+		wp_enqueue_style( 'fin_fonts', 'http://fonts.googleapis.com/css?family=' . str_replace(" ", "+", $options['heading_font'] ) . '|' . str_replace(" ", "+", $options['text_font'] ) , false, null);
+	}
+	
 	// Custom Admin and Login CSS
 	if(is_login() || is_admin() || is_admin_bar_showing()) {
 		wp_enqueue_style('fin_admin', get_template_directory_uri() . '/assets/css/admin.css', false, null);
