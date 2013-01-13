@@ -28,9 +28,15 @@
 	<?php // Meta Keywords
 	$options = get_option('fin_theme_options');
 	$default_keywords = $options['keywords'];
-	$tags = get_the_tag_list('', ', ','');
+	$tags = '';
+	$posttags = get_the_tags();
+	if ($posttags) {
+		foreach($posttags as $tag) {
+			$tags .= $tag->name . ', ';
+		}
+	}
 	if($default_keywords != '' || $tags != '') {
-		echo '<meta name="keywords" content="' . $tags . ', ' . $default_keywords . '">';
+		echo '<meta name="keywords" content="' . $tags . $default_keywords . '">';
 	} ?>
 		
 	<?php // Only include rss if there are posts
