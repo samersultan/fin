@@ -11,13 +11,14 @@
 // $blockGridElements: 12; // Highest number of block grid elements, Maximum of 24 supported
 
 // Colors Settings
-
+ $backgroundColor: gray;
  $mainColor: orange;
  $secondaryColor: pink;
  $alertColor: red;
  $successColor: green;
  $txtColor: #eee;
  $highlightColor: #ffff99;
+ $shadowColor: #222222;
 // $black: #000;
 // $white: #fff;
 // $shinyEdge: rgba(#fff, .5);
@@ -110,7 +111,7 @@
 // $topBarDropToggleColor: #fff;
 // $topBarDropToggleAlpha: 0.5;
 // $topBarSearchWidth: 200px;
-// $topBarBreakPoint: 940px; // Change to 9999px for always mobile layout
+ $topBarBreakPoint: 400px; // Change to 9999px for always mobile layout
 // $topBarNavToggleSize: 8px;
 
 // UI Settings

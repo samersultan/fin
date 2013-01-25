@@ -15,5 +15,7 @@
 @import "foundation/common/typography";
 
 body {
+	background: $backgroundColor;
+	color: $txtColor;
 	padding: 10px;
 }

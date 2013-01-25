@@ -3,22 +3,28 @@ body.login #login h1 a {
   background-image: url(../img/logo.png);
   background-position: top;
   background-repeat: no-repeat;
-  background-size: 50% auto; }
+  background-size: 50% auto;
+}
 body.login #login #login_error {
-  display: none; }
+  display: none;
+}
 
 /** Adminbar CSS **/
 #wp-admin-bar-wp-logo {
   display: none;
-  visibility: hidden; }
+  visibility: hidden;
+}
 
 #wp-admin-bar-themes {
   display: none;
-  visibility: hidden; }
+  visibility: hidden;
+}
 
 /** Admin CSS **/
 #wp-version-message, #wp-version-message + br.clear {
-  display: none; }
+  display: none;
+}
 
 body.users-php tr#user-1 {
-  display: none; }
+  display: none;
+}

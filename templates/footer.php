@@ -1,15 +1,5 @@
 <div id="footer">
-	<aside class="sidebar footer row">
-		<?php dynamic_sidebar('Footer'); ?>
-	</aside>
 	<footer id="main-info" role="contentinfo" class="row">
-		<p class="pull-left"><a href="<?php echo esc_url(get_permalink(get_page_by_title( 'Copyrights'))); ?>">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></a></p>
-		<?php /* Developer Info */
-		$themeData = wp_get_theme();
-		$developerName =$themeData->Author;
-		if($developerName != ''){
-			echo '<p class="pull-right">Built by: ' . $developerName . '</p>';
-		} ?>
 		<?php $options = get_option('fin_theme_options');
 		if($options['social'] != '') { ?>
 			<div class="social six columns push-six">
@@ -34,11 +24,18 @@
 				if($options['social_linkedin'] != '') { ?>
 					<a href="<?php echo 'http://' . preg_replace('`^http://`is', '', $options['social_linkedin']); ?>"><i class="icon-linkedin-sign icon-2x"></i></a>
 				<?php } ?>
-				<?php // Linkedin
+				<?php // Github
 				if($options['social_github'] != '') { ?>
 					<a href="<?php echo 'http://' . preg_replace('`^http://`is', '', $options['social_github']); ?>"><i class="icon-github-sign icon-2x"></i></a>
-				<?php } ?>
+				<?php }else {
+					$themeData = wp_get_theme();
+					$developerURL = $themeData->{'Author URI'};
+					if($developerURL != ''){ ?>
+						<a href="<?php echo $developerURL ?>"><i class="icon-desktop icon-2x"></i></a>
+					<?php }
+				} ?>
 			</div>
 		<?php } ?>
+		<p class="copyright six columns pull-six"><a href="<?php echo esc_url(get_permalink(get_page_by_title( 'Copyrights'))); ?>">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></a></p>
 	</footer>
 </div>

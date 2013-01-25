@@ -11,6 +11,9 @@ fonts_dir = "assets/fonts"
 environment = :development
 output_style = (environment == :production) ? :compressed : :expanded
 
+if environment != :production
+    sass_options = {:debug_info => true}
+end
 
 relative_assets = true
 
