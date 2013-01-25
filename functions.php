@@ -29,7 +29,7 @@ if(current_user_can('edit_posts')) {
  *
  */
 function fin_add_pages(){
-	$defaultPages = array('about', 'contact', 'copyrights', 'home', 'privacy');
+	$defaultPages = array('home', 'about', 'contact', 'copyrights', 'privacy', 'maintenance');
 	foreach ($defaultPages as $defaultPage) {
 		require_once locate_template('/lib/pages/page-' . $defaultPage . '.php');
 	}

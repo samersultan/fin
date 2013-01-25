@@ -287,6 +287,25 @@ function fin_customize_register($wp_customize) {
 		'section' => 'fin_social',
 		'type'    => 'text',
 	) );
+	
+	/**** Maintenance ****/
+	$wp_customize->add_section('fin_construction', array(
+		'title'          => __( 'Construction Page', 'fin' ),
+		'priority'       => 304,
+	) );
+	
+	// include ?
+	$wp_customize->add_setting( 'fin_theme_options[construction]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'construction', array(
+		'settings' => 'fin_theme_options[construction]',
+		'label'    => __( 'Redirect to "Under Construction"' ),
+		'section'  => 'fin_construction',
+		'type'     => 'checkbox',
+		'priority' => 1
+	) );
 }
 add_action('customize_register', 'fin_customize_register');
 
