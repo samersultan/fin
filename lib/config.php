@@ -53,7 +53,7 @@ function fin_setup() {
 	//$timezone = "America/Los_Angeles";
 	update_option('timezone_string',$timezone);
 }
-add_action('after_setup_theme', 'fin_setup');
+add_action('after_switch_theme', 'fin_setup');
 
 /**
  * Create default content for new posts and pages by pulling from /pages/page-default
