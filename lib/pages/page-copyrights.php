@@ -12,7 +12,7 @@ if(!in_array('Copyright', $existingPageTitles) && !in_array('Copyrights', $exist
 		'post_type' => 'page',
 		'post_status' => 'publish',
 		'post_title' => 'Copyrights',
-		'post_content' => "All content is copyrighted. Please don't steal the images or text from this website. Thanks you." 
+		'post_content' => "All content is copyrighted. Please don't steal the images or text from this website. Thank you." 
 	);
 	$page = wp_insert_post($add_page);
 	
