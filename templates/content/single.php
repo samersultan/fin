@@ -8,7 +8,7 @@
 			</a>
 		</figure>
 	<?php } ?>
-	<div class="entry-content content">
+	<div class="entry-content">
 		<?php the_content(); ?>
 	</div>
 	<footer>

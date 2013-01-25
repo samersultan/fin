@@ -15,7 +15,7 @@
 			</a>
 		</figure>
 	<?php } ?>
-	<div class="entry-content content">
+	<div class="entry-content">
 		<?php the_content(); ?>
 	</div>
 	<?php edit_post_link('edit', '<span class="meta_edit">', '</span>'); ?>
