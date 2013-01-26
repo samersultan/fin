@@ -257,6 +257,7 @@ add_filter('login_headerurl', 'fin_change_login_url');
  */
 function fin_change_login_title() { return get_option('blogname'); }
 add_filter('login_headertitle', 'fin_change_login_title');
+
 /**
  * change the default edit_post_link() 
  *
@@ -266,3 +267,30 @@ function fin_edit_post_link($output) {
  return $output;
 }
 add_filter('edit_post_link', 'fin_edit_post_link');
+
+/**
+ * Add classes to pagination links
+ * 
+ */
+function fin_change_previous_posts_link_attributes() {
+    return 'class="button secondary tiny left" rel="prev"';
+}
+add_filter('previous_posts_link_attributes', 'fin_change_previous_posts_link_attributes');
+
+function fin_change_next_posts_link_attributes() {
+    return 'class="button secondary tiny right"  rel="next"';
+}
+add_filter('next_posts_link_attributes', 'fin_change_next_posts_link_attributes');
+
+function fin_change_previous_post_link($link) {
+	$link = str_replace('href=', 'class="button secondary tiny right" href=', $link);
+	return $link;
+}
+add_filter('previous_post_link', 'fin_change_previous_post_link');
+
+function fin_change_next_post_link($link) {
+	$link = str_replace('href=', 'class="button secondary tiny left" href=', $link);
+	return $link;
+}
+add_filter('next_post_link', 'fin_change_next_post_link');
+ 

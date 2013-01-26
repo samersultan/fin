@@ -17,8 +17,8 @@ if($options['construction'] && !is_admin() && !is_admin_bar_showing()) {
 						endwhile;
 					} ?>
 				</div>
+				<?php get_template_part('templates/pagination'); ?>
 				<?php get_template_part('templates/sidebar'); ?>
-				<?php /* TODO: Pagination is missing %( */ ?>
 			</section>
 			<div id="push"></div>
 		</div>
