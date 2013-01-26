@@ -189,3 +189,142 @@ add_shortcode('gallery', 'shortcode_gallery');
  add_shortcode( 'child-pages', 'shortcode_list_pages' );
  add_shortcode( 'sibling-pages', 'shortcode_list_pages' );
  add_shortcode( 'list-pages', 'shortcode_list_pages' );
+ 
+ /**
+  * [row] shortcode
+  *
+  * Creates a row 
+  *
+  * Example:
+  * [row][/row]
+  */
+  
+ function shortcode_row( $atts, $content = null ) {
+    return '<div class="row">' . do_shortcode($content) . '</div>';
+ }
+  
+ add_shortcode( 'row', 'shortcode_row' );
+  
+ /**
+  * [column] shortcode
+  *
+  * Creates a column
+  *
+  * Example:
+  * [column span="(one, two, three... one-third, three-fourths...)" offset="(one, two, three...)" centered="(true, false)"][/column]
+  */
+ function shortcode_column( $atts, $content = null ) {
+     extract( shortcode_atts( array(
+         'centered' => '',
+         'span' => '',
+         'offset' => ''
+         ), $atts ) );
+  
+     // Set the 'center' variable
+     if ($centered == 'true') {
+         $centered = 'centered';
+     }
+     if($offset != '') {
+         $offset = 'offset-by-' . $offset;
+     }
+  
+     return '<div class="' . esc_attr($span) . ' columns ' . esc_attr($centered) . ' ' . esc_attr($offset) . '">' . do_shortcode($content) . '</div>';
+ }
+ add_shortcode( 'column', 'shortcode_column' );
+ 
+ /**
+  * [button] shortcode
+  *
+  * Creates a button
+  *
+  * Example:
+  * [button type="(radius round)" size="(small medium large)" type="(primary secondary success alert)" nice="true false" url="http://#"]This is a button[/button]
+  * or
+  * [button text="This is a button." url="http://#"]
+  */
+ function shortcode_button( $atts, $content = null ) {
+     extract( shortcode_atts( array(
+     'type' => 'radius', /* radius, round */
+     'size' => 'medium', /* small, medium, large */
+     'type' => 'secondary', /* primary, secondary, warning, success, error */
+     'nice' => 'false',
+     'url'  => '',
+     'text' => '', 
+     ), $atts ) );
+      
+     if($text == ''){
+         $text = do_shortcode($content);
+     }
+      
+     $output = '<a href="' . $url . '" class="button '. $type . ' ' . $size . ' ' . $color;
+     if( $nice == 'true' ){ $output .= ' nice';}
+     $output .= '">';
+     $output .= $text;
+     $output .= '</a>';
+      
+     return $output;
+ }
+  
+ add_shortcode('button', 'shortcode_button'); 
+  
+ /**
+  * [alert] shortcode
+  *
+  * Creates an alert
+  *
+  * Example:
+  * [alert type="(warning success error)" close="(true false)"]This is an alert[/alert]
+  * or
+  * [alert text="This is an alert."]
+  */
+ function shortcode_alert( $atts, $content = null ) {
+     extract( shortcode_atts( array(
+     'type' => '  ', /* warning, success, error */
+     'close' => 'true', /* display close link */
+     'text' => '', 
+     ), $atts ) );
+      
+     if($text == ''){
+         $text = do_shortcode($content);
+     }
+      
+     $output = '<div class="fade in alert-box '. $type . '">';
+     $output .= $text;
+     if($close == 'true') {
+         $output .= '<a class="close" href="#">×</a></div>';
+     }
+      
+     return $output;
+ }
+  
+ add_shortcode('alert', 'shortcode_alert');
+  
+ /**
+  * [panel] shortcode
+  *
+  * Creates a panel
+  *
+  * Example:
+  * [panel]This is panel[/panel]
+  * or
+  * [panel text="This is a panel."]
+  */
+ function shortcode_panel( $atts, $content = null ) {
+     extract( shortcode_atts( array(
+     'type' => '  ', /* warning, success, error */
+     'close' => 'false', /* display close link */
+     'text' => '', 
+     ), $atts ) );
+      
+     if($text == ''){
+         $text = do_shortcode($content);
+     }
+      
+     $output = '<div class="panel">';
+     $output .= $text;
+     $output .= '</div>';
+      
+     return $output;
+ }
+ add_shortcode('panel', 'shortcode_panel');
+ 
