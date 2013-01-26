@@ -4,6 +4,10 @@
 
 // Grid Settings
 
+$screenSmall: 569px;
+$screenMedium: 1000px;
+$screenXlarge: 1223px;
+
 // $rowWidth: 1000px;
 // $columnGutter: 30px;
 // $totalColumns: 12;
@@ -96,7 +100,7 @@
 
 // Top Bar Settings
 
-// $topBarBgColor: #222;
+ $topBarBgColor: $backgroundColor;
 // $topBarHeight: 45px;
 // $topBarHeightMobile: 45px;
 // $topBarBtmMargin: 30px;
@@ -111,7 +115,7 @@
 // $topBarDropToggleColor: #fff;
 // $topBarDropToggleAlpha: 0.5;
 // $topBarSearchWidth: 200px;
- $topBarBreakPoint: 400px; // Change to 9999px for always mobile layout
+ $topBarBreakPoint: $screenSmall; // Change to 9999px for always mobile layout
 // $topBarNavToggleSize: 8px;
 
 // UI Settings

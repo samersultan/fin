@@ -12,7 +12,7 @@
 // Sticky Footer
 @import "compass/layout/sticky-footer";
 
-@include sticky-footer($baseFontSize * 1.2, '#wrap', '#push', '#content-info');
+@include sticky-footer($baseFontSize * 3.2, '#wrap', '#push', '#content-info');
 
 // Fractions
 .one-half,
@@ -24,27 +24,27 @@
 .one-eighth, .three-eighths, .five-eighths, .seven-eighths {
 	@extend .columns;
 }
-.one-half {       width: gridCalc(1, 2); }
-.one-third {      width: gridCalc(1, 3); }
-.two-thirds {     width: gridCalc(2, 3); }
-.one-fourth {     width: gridCalc(1, 4); }
-.three-fourths {  width: gridCalc(3, 4); }
-.one-fifth {      width: gridCalc(1, 5); }
-.two-fifths {     width: gridCalc(2, 5); }
-.three-fifths {   width: gridCalc(3, 5); }
-.four-fifths {    width: gridCalc(4, 5); }
-.one-sixth {      width: gridCalc(1, 6); }
-.five-sixths {    width: gridCalc(5, 6); }
-.one-seventh {    width: gridCalc(1, 7); }
-.two-sevenths {   width: gridCalc(2, 7); }
-.three-sevenths { width: gridCalc(3, 7); }
-.four-sevenths {  width: gridCalc(4, 7); }
-.five-sevenths {  width: gridCalc(5, 7); }
-.six-sevenths {   width: gridCalc(6, 7); }
-.one-eighth {     width: gridCalc(1, 8); }
-.three-eighths {  width: gridCalc(3, 8); }
-.five-eighths {   width: gridCalc(5, 8); }
-.seven-eighths {  width: gridCalc(7, 8); }
+.one-half        { width: gridCalc(1, 2); }
+.one-third       { width: gridCalc(1, 3); }
+.two-thirds      { width: gridCalc(2, 3); }
+.one-fourth      { width: gridCalc(1, 4); }
+.three-fourths   { width: gridCalc(3, 4); }
+.one-fifth       { width: gridCalc(1, 5); }
+.two-fifths      { width: gridCalc(2, 5); }
+.three-fifths    { width: gridCalc(3, 5); }
+.four-fifths     { width: gridCalc(4, 5); }
+.one-sixth       { width: gridCalc(1, 6); }
+.five-sixths     { width: gridCalc(5, 6); }
+.one-seventh     { width: gridCalc(1, 7); }
+.two-sevenths    { width: gridCalc(2, 7); }
+.three-sevenths  { width: gridCalc(3, 7); }
+.four-sevenths   { width: gridCalc(4, 7); }
+.five-sevenths   { width: gridCalc(5, 7); }
+.six-sevenths    { width: gridCalc(6, 7); }
+.one-eighth      { width: gridCalc(1, 8); }
+.three-eighths   { width: gridCalc(3, 8); }
+.five-eighths    { width: gridCalc(5, 8); }
+.seven-eighths   { width: gridCalc(7, 8); }
 
 // BASE STYLES //
 input[type="submit"] {
@@ -57,10 +57,45 @@ hr {
 	border-top: 1px solid $shadowColor;
 	@include box-shadow(inset 0 1px 0 $highlightColor);
 }
-.alignleft { float: left; }
-.alignright { float: right; }
-.aligncenter { margin: 0 auto; }
+.alignleft { float: left; text-align: left; }
+.alignright { float: right; text-align: right; }
+.aligncenter { margin: 0 auto; text-align: center; }
 .alignnone { float: none; }
+.hide {
+	border: none; 
+	height: 0;
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+	width: 0;	
+}
+
+// ROTATOR //
+// prior to loading .js
+.rotator {
+	background: url(../img/foundation/orbit/loading.gif) center center transparent;
+	background-repeat: no-repeat;
+}
+.rotator img {
+	display: none;
+}
+// after loading .js
+.rotator.orbit {
+	background: none;
+	border: 5px solid black;
+}
+.rotator.orbit img {
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	height: auto;
+}
+.orbit-wrapper {
+	margin: 10px auto;
+	width: gridCalc(2, 3) !important;
+  .slider-nav span { @include opacity(0); @include single-transition(opacity, 400ms); }
+  &:hover .slider-nav span { @include opacity(1); }
+}
 
 // SITE LAYOUT //
 
@@ -116,6 +151,16 @@ body {
 		&.active {}
 		a {}
 	}
+	li.search {
+		form {
+			input#search {
+				margin-top: ($topBarHeight - ($topBarHeight / 2))/2;
+			}
+			#searchsubmit {
+				border-left: none; @include border-left-radius(0); float: left; font-size: ms(0) - 2; margin-top: -1px; padding: 5px 12px 4px;
+			}
+		}
+	}
 	ul.sub-menu {
 		li {
 			&.active {}
@@ -127,7 +172,6 @@ body {
 // Header
 /////////
 #header {
-	background: black;
 	margin-bottom: -100px;
 	padding-bottom: 100px;
 	width: 100%;
@@ -394,20 +438,14 @@ li.comment article {
 // Footer
 /////////
 #footer {
-	background: $backgroundColor;
-	color: $highlightColor;
 	p, ul, li {
-		color: $highlightColor;
 	}
 	a {
-		color: $secondaryColor;
 		&:hover {
-			color: darken($secondaryColor, 10);
 		}
 	}
 	h1,h2,h3,h4,h5,h6 {
-		color: darken($secondaryColor, 20);
-		text-shadow: 1px 2px 0 #222;
+		text-shadow: 1px 2px 0 $shadowColor;
 	}
 	#main-info {}
 	.copyright {}

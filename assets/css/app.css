@@ -903,7 +903,7 @@ form.custom .custom.disabled {
 .row {
   width: 1000px;
   max-width: 100%;
-  min-width: 768px;
+  min-width: 569px;
   margin: 0 auto;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/_grid\.scss}line{font-family:\000034}}
@@ -2290,7 +2290,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 /* Element that controls breakpoint, no need to change this ever */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000316}}
 .top-bar-js-breakpoint {
-  width: 400px !important;
+  width: 569px !important;
   visibility: hidden;
 }
 
@@ -2298,7 +2298,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000319}}
 .contain-to-grid {
   width: 100%;
-  background: #222222;
+  background: gray;
 }
 
 /* Wrapped around .top-bar to make it fixed at the top */
@@ -2314,7 +2314,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 /* <nav> */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000325}}
 .top-bar {
-  background: #222222;
+  background: gray;
   height: 45px;
   line-height: 45px;
   margin: 0 0 30px;
@@ -2348,7 +2348,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000339}}
 .top-bar.expanded {
-  height: 45px;
+  height: inherit;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000342}}
 .top-bar ul {
@@ -2382,7 +2382,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000348}}
 .top-bar ul > li:not(.name):hover, .top-bar ul > li:not(.name).active, .top-bar ul > li:not(.name):focus {
-  background: black;
+  background: #5a5a5a;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000349}}
 .top-bar ul > li:not(.name):hover a, .top-bar ul > li:not(.name).active a, .top-bar ul > li:not(.name):focus a {
@@ -2390,7 +2390,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000354}}
 .top-bar ul > li.divider {
-  background: black;
+  background: #5a5a5a;
   -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
   -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
   box-shadow: 1px 0 0 rgba(255, 255, 255, 0.1);
@@ -2404,7 +2404,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000359}}
 .top-bar ul > li.has-button:hover, .top-bar ul > li.has-button:focus {
-  background: #222222;
+  background: gray;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000360}}
 .top-bar ul > li.has-button:hover a, .top-bar ul > li.has-button:focus a {
@@ -2455,7 +2455,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000372}}
 .top-bar ul > li.search:hover, .top-bar ul > li.search:focus {
-  background: #222222;
+  background: gray;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000376}}
 .top-bar ul > li.toggle-topbar {
@@ -2548,7 +2548,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000393}}
 .top-bar ul > li.has-dropdown .dropdown li.active a {
-  background: black;
+  background: #5a5a5a;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\0000399}}
 .top-bar ul > li.has-dropdown .dropdown li.has-dropdown > a {
@@ -2641,7 +2641,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_topbar\.scss}line{font-family:\00003136}}
 .lt-ie9 .top-bar ul li a.active {
-  background: #151515;
+  background: #737373;
   color: #d9d9d9;
 }
 
@@ -2722,7 +2722,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
   position: absolute;
   top: 0;
   left: -20px;
-  background: url('../img/../img/rotator-black.png?1355189736') no-repeat;
+  background: url('../img/foundation/orbit/rotator-black.png') no-repeat;
   z-index: 3;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000327}}
@@ -2744,7 +2744,7 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 .orbit-wrapper span.mask.move {
   width: 40px;
   left: 0;
-  background: url('../img/../img/timer-black.png?1355189736') repeat 0 0;
+  background: url('../img/foundation/orbit/timer-black.png') repeat 0 0;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000332}}
 .orbit-wrapper span.pause {
@@ -2754,13 +2754,13 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
   position: absolute;
   top: 0;
   left: 0;
-  background: url('../img/../img/pause-black.png?1355189736') no-repeat;
+  background: url('../img/foundation/orbit/pause-black.png') no-repeat;
   z-index: 4;
   opacity: 0;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000333}}
 .orbit-wrapper span.pause.active {
-  background: url('../img/../img/pause-black.png?1355189736') no-repeat 0 -40px;
+  background: url('../img/foundation/orbit/pause-black.png') no-repeat 0 -40px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000335}}
 .orbit-wrapper .timer:hover span.pause, .orbit-wrapper .timer:focus span.pause, .orbit-wrapper span.pause.active {
@@ -2807,24 +2807,24 @@ ul.flyout li.active a, .nav-bar li ul li.active a {
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000348}}
 .orbit-wrapper .slider-nav span.right {
-  background: url('../img/../img/right-arrow.png?1355189736');
+  background: url('../img/foundation/orbit/right-arrow.png');
   background-size: 100%;
   right: 0;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000349}}
 .orbit-wrapper .slider-nav span.left {
-  background: url('../img/../img/left-arrow.png?1355189736');
+  background: url('../img/foundation/orbit/left-arrow.png');
   background-size: 100%;
   left: 0;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000354}}
 .lt-ie9 .orbit-wrapper .slider-nav span.right {
-  background: url('../img/../img/right-arrow-small.png?1355189736');
+  background: url('../img/foundation/orbit/right-arrow-small.png');
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000355}}
 .lt-ie9 .orbit-wrapper .slider-nav span.left {
-  background: url('../img/../img/left-arrow-small.png?1355189736');
+  background: url('../img/foundation/orbit/left-arrow-small.png');
 }
 
 /* Bullet Nav ---------------------- */
@@ -2845,7 +2845,7 @@ ul.orbit-bullets li {
   cursor: pointer;
   color: #999999;
   text-indent: -9999px;
-  background: url('../img/../img/bullets.jpg?1355189736') no-repeat 4px 0;
+  background: url('../img/foundation/orbit/bullets.jpg') no-repeat 4px 0;
   width: 13px;
   height: 12px;
   overflow: hidden;
@@ -2905,7 +2905,7 @@ ul.orbit-bullets li.active.has-thumb {
   zoom: 1;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 568px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_orbit\.scss}line{font-family:\0000383}}
   .orbit.orbit-stack-on-small img.fluid-placeholder {
     visibility: visible;
@@ -4514,7 +4514,7 @@ div.progress.round .meter {
 }
 
 /* Very large display targeting */
-@media only screen and (min-width: 1441px) {
+@media only screen and (min-width: 1223px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\0000327}}
   .hide-for-small,
   .hide-for-medium,
@@ -4536,7 +4536,7 @@ div.progress.round .meter {
   }
 }
 /* Medium display targeting */
-@media only screen and (max-width: 1279px) and (min-width: 768px) {
+@media only screen and (max-width: 1000px) and (min-width: 569px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\0000344}}
   .hide-for-small,
   .show-for-medium,
@@ -4558,7 +4558,7 @@ div.progress.round .meter {
   }
 }
 /* Small display targeting */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 568px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\0000361}}
   .show-for-small,
   .hide-for-medium,
@@ -4648,7 +4648,7 @@ table.hide-for-medium {
   display: table !important;
 }
 
-@media only screen and (max-width: 1279px) and (min-width: 768px) {
+@media only screen and (max-width: 1000px) and (min-width: 569px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003108}}
   .touch table.hide-for-xlarge,
   .touch table.hide-for-large,
@@ -4657,7 +4657,7 @@ table.hide-for-medium {
     display: table !important;
   }
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 568px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003115}}
   table.hide-for-xlarge,
   table.hide-for-large,
@@ -4683,7 +4683,7 @@ table.hide-for-medium {
   }
 }
 /* Between Medium and Small */
-@media only screen and (max-width: 1279px) and (min-width: 768px) {
+@media only screen and (max-width: 1000px) and (min-width: 569px) {
   /* NavBar --- */
   /*            */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003139}}
@@ -4745,7 +4745,7 @@ table.hide-for-medium {
   }
 }
 /* Small Devices ------------ */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 568px) {
   /* Global Misc --- */
   /*                 */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003172}}
@@ -5637,7 +5637,7 @@ table.hide-for-medium {
   /* Tooltips */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003334}}
   .tooltip {
-    font-size: 14px;
+    font-size: 14;
     line-height: 1.4;
     padding: 7px 10px 9px 10px;
     left: 50% !important;
@@ -5655,7 +5655,7 @@ table.hide-for-medium {
   }
 }
 /* Topbar Specific Breakpoint that you can customize */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 569px) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003354}}
   .top-bar {
     margin-bottom: 0;
@@ -5844,7 +5844,7 @@ table.hide-for-medium {
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003408}}
   .top-bar ul > li.has-dropdown.moved > .dropdown li a:hover {
-    background: #3c3c3c;
+    background: #9a9a9a;
     display: block;
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003409}}
@@ -5916,7 +5916,7 @@ table.hide-for-medium {
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003428}}
   .top-bar ul > li.has-dropdown .dropdown li.has-dropdown > a li a:hover {
-    background: #3c3c3c;
+    background: #9a9a9a;
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/foundation\/components\/modules\/_mqueries\.scss}line{font-family:\00003431}}
   .top-bar ul > li.has-dropdown .dropdown li.has-dropdown.moved {
@@ -7513,18 +7513,18 @@ html, body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin-bottom: -16.8px;
+  margin-bottom: -44.8px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/layout\/_sticky-footer\.scss}line{font-family:\0000318}}
 #wrap #push {
-  height: 16.8px;
+  height: 44.8px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Library\/Ruby\/Gems\/1\.8\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/layout\/_sticky-footer\.scss}line{font-family:\0000320}}
 #content-info {
   clear: both;
   position: relative;
-  height: 16.8px;
+  height: 44.8px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000327}}
@@ -7648,16 +7648,19 @@ hr {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000360}}
 .alignleft {
   float: left;
+  text-align: left;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000361}}
 .alignright {
   float: right;
+  text-align: right;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000362}}
 .aligncenter {
   margin: 0 auto;
+  text-align: center;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000363}}
@@ -7665,12 +7668,67 @@ hr {
   float: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000369}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000364}}
+.hide {
+  border: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  width: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000375}}
+.rotator {
+  background: url(../img/foundation/orbit/loading.gif) center center transparent;
+  background-repeat: no-repeat;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000379}}
+.rotator img {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000383}}
+.rotator.orbit {
+  background: none;
+  border: 5px solid black;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000387}}
+.rotator.orbit img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000393}}
+.orbit-wrapper {
+  margin: 10px auto;
+  width: 66.66667% !important;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000396}}
+.orbit-wrapper .slider-nav span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: opacity 400ms;
+  -moz-transition: opacity 400ms;
+  -o-transition: opacity 400ms;
+  transition: opacity 400ms;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000397}}
+.orbit-wrapper:hover .slider-nav span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003104}}
 html, body {
   background: gray;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003107}}
 body {
   /* home page */
   /* archive page */
@@ -7705,15 +7763,33 @@ body {
   /* individual paged (i.e. body.paged-3) */
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003129}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003156}}
+.top-bar li.search form input#search {
+  margin-top: 11.25px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003159}}
+.top-bar li.search form #searchsubmit {
+  border-left: none;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  float: left;
+  font-size: 12px;
+  margin-top: -1px;
+  padding: 5px 12px 4px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003174}}
 #header {
-  background: black;
   margin-bottom: -100px;
   padding-bottom: 100px;
   width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003146}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003190}}
 #content {
   -webkit-box-shadow: 0 0 20px #222222;
   -moz-box-shadow: 0 0 20px #222222;
@@ -7722,54 +7798,36 @@ body {
   padding: 20px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003407}}
 details ol.commentlist li.comment.byuser {
   /* User Comment */
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003408}}
 details ol.commentlist li.comment.bypostauthor {
   /* Author Comment */
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003365}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003409}}
 details ol.commentlist li.comment.comment-author-admin {
   /* Admin Comment */
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003396}}
-#footer {
-  background: gray;
-  color: #ffff99;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003399}}
-#footer p, #footer ul, #footer li {
-  color: #ffff99;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003402}}
-#footer a {
-  color: pink;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003404}}
-#footer a:hover {
-  color: #ff8da1;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003408}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003447}}
 #footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
-  color: #ff5a77;
-  text-shadow: 1px 2px 0 #222;
+  text-shadow: 1px 2px 0 #222222;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003414}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003452}}
 #footer .social {
   text-align: right;
 }
 
-@media only screen and (max-width: 767px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003421}}
+@media only screen and (max-width: 568px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003459}}
   #footer .copyright {
     text-align: center;
   }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003424}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/app\.scss}line{font-family:\00003462}}
   #footer .social {
     margin-bottom: 5px;
     text-align: center;

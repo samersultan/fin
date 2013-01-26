@@ -1,30 +1,36 @@
 /** Login CSS **/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/admin\.scss}line{font-family:\0000316}}
 body.login #login h1 a {
   background-image: url(../img/logo.png);
   background-position: top;
   background-repeat: no-repeat;
   background-size: 50% auto;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/admin\.scss}line{font-family:\0000342}}
 body.login #login #login_error {
   display: none;
 }
 
 /** Adminbar CSS **/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/admin\.scss}line{font-family:\0000349}}
 #wp-admin-bar-wp-logo {
   display: none;
   visibility: hidden;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/admin\.scss}line{font-family:\0000353}}
 #wp-admin-bar-themes {
   display: none;
   visibility: hidden;
 }
 
 /** Admin CSS **/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/admin\.scss}line{font-family:\0000359}}
 #wp-version-message, #wp-version-message + br.clear {
   display: none;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Applications\/MAMP\/htdocs\/wedding-rsvp\.com\/wp-content\/themes\/fin\/assets\/css\/sass\/admin\.scss}line{font-family:\0000362}}
 body.users-php tr#user-1 {
   display: none;
 }
