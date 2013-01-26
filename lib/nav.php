@@ -107,7 +107,6 @@ function fin_nav_menu_css_class($classes, $item) {
 
   return array_filter($classes, 'is_element_empty');
 }
-
 add_filter('nav_menu_css_class', 'fin_nav_menu_css_class', 10, 2);
 add_filter('nav_menu_item_id', '__return_null');
 
@@ -134,3 +133,20 @@ function fin_nav_menu_args($args = '') {
 }
 
 add_filter('wp_nav_menu_args', 'fin_nav_menu_args');
+
+/**
+ * Add search to nav menu
+ *
+ */
+function fin_add_nav_search($items, $args) {
+	$options = get_option('fin_theme_options');
+	if($options['include_search']) {
+		ob_start();
+		get_template_part('templates/searchbar');
+		$search = ob_get_contents();
+		ob_end_clean();
+		$items .= '<li class="search">' . $search . '</li>';
+	}
+	return $items;
+}
+add_filter('wp_nav_menu_items', 'fin_add_nav_search', 10, 2);

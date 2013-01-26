@@ -19,6 +19,18 @@ function fin_customize_register($wp_customize) {
 		'settings' => 'fin_theme_options[main_background]'
 	) ) );
 	
+	// Nav Background
+	$wp_customize->add_setting( 'fin_theme_options[nav_background]', array(
+	  'default'        => '',
+	  'type'           => 'option',
+	  'capability'     => 'edit_theme_options',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'nav_background', array(
+		'label' => 'Navigation Background',
+		'section' => 'fin_backgrounds',
+		'settings' => 'fin_theme_options[nav_background]'
+	) ) );
+	
 	// Content Background
 	$wp_customize->add_setting( 'fin_theme_options[content_background]', array(
 	  'default'        => '',
@@ -71,18 +83,6 @@ function fin_customize_register($wp_customize) {
 		'label'   => 'Link Color',
 		'section' => 'fin_colors',
 		'settings'   => 'fin_theme_options[link_color]',
-	) ) );
-	
-	// Nav
-	$wp_customize->add_setting( 'fin_theme_options[nav_color]', array(
-	  'default'        => '',
-	  'type'           => 'option',
-	  'capability'     => 'edit_theme_options',
-	) );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'nav_color', array(
-		'label'   => 'Nav Color',
-		'section' => 'fin_colors',
-		'settings'   => 'fin_theme_options[nav_color]',
 	) ) );
 	
 	// Nav Links
@@ -183,6 +183,18 @@ function fin_customize_register($wp_customize) {
 		'label'   => 'Default Keywords',
 		'section' => 'fin_settings',
 		'type'    => 'text',
+	) );
+	
+	// Include Search in Nav
+	$wp_customize->add_setting( 'fin_theme_options[include_search]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'include_search', array(
+		'settings' => 'fin_theme_options[include_search]',
+		'label'    => __( 'Include Searchbar in Nav' ),
+		'section'  => 'fin_settings',
+		'type'     => 'checkbox'
 	) );
 	
 	// Suppress Comments Closed Warning
@@ -321,6 +333,11 @@ function fin_add_custom_styles() {
 		$output .= "html, body { background:url(" . $main_background . "); }";
 	}
 	
+	$nav_background = $options['nav_background'];
+	if($nav_background) {
+		$output .= "#header { background:url(" . $nav_background . "); }";
+	}
+	
 	$content_background = $options['content_background'];
 	if($content_background) {
 		$output .= "#content { background:url(" . $content_background . "); }";
@@ -331,26 +348,22 @@ function fin_add_custom_styles() {
 		$output .= "h1,h2,h3,h4,h5,h6 { color: $heading_color; }";
 	}
 	
-	$main_color = $options['text_color'];
-	if($main_color) {
-		$output .= "body,div,dl,dt,dd,ul,ol,li,pre,form,p,blockquote,th,td { color: $main_color; }";
+	$text_color = $options['text_color'];
+	if($text_color) {
+		$output .= "body,div,dl,dt,dd,ul,ol,li,pre,form,p,blockquote,th,td { color: $text_color; }";
 	}
 	
 	$link_color = $options['link_color'];
 	if($link_color) {
 		$output .= "a { color: $link_color;}
-		a:visited {color: " . brightness($link_color, -.75) . "; }
-		a:hover { color: " . brightness($link_color, .5) . "; }";
-	}
-	
-	$nav_color = $options['nav_color'];
-	if($nav_color) {
-		$output .= "#nav-main { background: $nav_color; }";
+		a:visited {color: " . brightness($link_color, -.95) . "; }
+		a:hover { color: " . brightness($link_color, .85) . "; }";
 	}
 	
 	$nav_link_color = $options['nav_link_color'];
 	if($nav_link_color) {
-		$output .= "#nav-main a { color: $nav_link_color; }";
+		$output .= "#nav-main a, a:visited { color: $nav_link_color; }
+		#nav-main a:hover { color: " . brightness($link_color, .85) . "; }";
 	}
 	
 	$heading_font = $options['heading_font'];
