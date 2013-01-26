@@ -8,7 +8,7 @@
 			</a>
 		</figure>
 	<?php } ?>
-	<div class="entry-summary">
+	<div class="entry-summary row">
 		<?php the_excerpt(); ?>
 	</div>
 	<footer>
