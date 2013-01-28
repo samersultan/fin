@@ -1,16 +1,16 @@
 <?php
 /**
- * Basic Config and Constants
+ * Basic Config and Constants Setup After Installation
  *
  */
-function fin_setup() {
+function fin_init() {
 	//Change Default Tagline
 	if(get_bloginfo('description') == 'Just another WordPress site') {
 		update_option('blogdescription','');
 	}
 	
 	//Keep wordpress from reformatting posts
-	remove_filter('the_content', 'wpautop');
+	//remove_filter('the_content', 'wpautop');
 	
 	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
 	add_theme_support('post-thumbnails');
@@ -53,8 +53,17 @@ function fin_setup() {
 	//$timezone = "America/Los_Angeles";
 	update_option('timezone_string',$timezone);
 }
-add_action('after_switch_theme', 'fin_setup');
+add_action('after_switch_theme', 'fin_init');
 
+/**
+ * Basic Config and Constants Called Every Load
+ *
+ */
+function fin_setup() {
+	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
+	add_theme_support('post-thumbnails');
+}
+add_action('after_setup_theme', 'fin_setup');
 /**
  * Create default content for new posts and pages by pulling from /pages/page-default
  *
