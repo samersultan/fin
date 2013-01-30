@@ -151,7 +151,9 @@ function fin_customize_register($wp_customize) {
 			'Merriweather' => 'Merriweather',
 			'Poiret One' => 'Poiret One',
 			'Raleway' => 'Raleway',
-			'Duru Sans' => 'Duru Sans'
+			'Duru Sans' => 'Duru Sans',
+			'Kreon' => 'Kreon',
+			'Enriqueta' => 'Enriqueta'
 		),
 	) );
 	
@@ -161,12 +163,24 @@ function fin_customize_register($wp_customize) {
 		'priority'       => 103,
 	) );
 	
+	// Reset
+	$wp_customize->add_setting( 'fin_theme_options[reset_options]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'reset_options', array(
+		'settings' => 'fin_theme_options[reset_options]',
+		'label'    => __( 'Reset all theme options' ),
+		'section'  => 'fin_settings',
+		'type'     => 'checkbox',
+		'priority' => 1
+	) );
+	
 	// Analytics
 	$wp_customize->add_setting( 'fin_theme_options[analytics]', array(
 		'default'       => 'UA-#######-#',
 		'type'					=> 'option'
 	) );
-	
 	$wp_customize->add_control( 'fin_theme_options[analytics]', array(
 		'label'   => 'Google Analytics Code',
 		'section' => 'fin_settings',
@@ -178,7 +192,6 @@ function fin_customize_register($wp_customize) {
 		'default'       => '',
 		'type'					=> 'option'
 	) );
-	
 	$wp_customize->add_control( 'fin_theme_options[keywords]', array(
 		'label'   => 'Default Keywords',
 		'section' => 'fin_settings',
@@ -233,7 +246,6 @@ function fin_customize_register($wp_customize) {
 		'default'       => '',
 		'type'					=> 'option'
 	) );
-	
 	$wp_customize->add_control( 'fin_theme_options[social_facebook]', array(
 		'label'   => 'Facebook URL',
 		'section' => 'fin_social',
@@ -257,7 +269,6 @@ function fin_customize_register($wp_customize) {
 		'default'       => '',
 		'type'					=> 'option'
 	) );
-	
 	$wp_customize->add_control( 'fin_theme_options[social_google_plus]', array(
 		'label'   => 'Google+ URL',
 		'section' => 'fin_social',
@@ -268,8 +279,7 @@ function fin_customize_register($wp_customize) {
 	$wp_customize->add_setting( 'fin_theme_options[social_pinterest]', array(
 		'default'       => '',
 		'type'					=> 'option'
-	) );
-	
+	) );	
 	$wp_customize->add_control( 'fin_theme_options[social_pinterest]', array(
 		'label'   => 'Pinterest URL',
 		'section' => 'fin_social',
@@ -281,7 +291,6 @@ function fin_customize_register($wp_customize) {
 		'default'       => '',
 		'type'					=> 'option'
 	) );
-	
 	$wp_customize->add_control( 'fin_theme_options[social_linkedin]', array(
 		'label'   => 'Linkedin URL',
 		'section' => 'fin_social',
@@ -293,33 +302,38 @@ function fin_customize_register($wp_customize) {
 		'default'       => '',
 		'type'					=> 'option'
 	) );
-	
 	$wp_customize->add_control( 'fin_theme_options[social_github]', array(
 		'label'   => 'Github URL',
 		'section' => 'fin_social',
 		'type'    => 'text',
 	) );
 	
-	/**** Maintenance ****/
-	$wp_customize->add_section('fin_construction', array(
-		'title'          => __( 'Construction Page', 'fin' ),
-		'priority'       => 304,
-	) );
-	
-	// include ?
+	/**** Under Construction ****/
 	$wp_customize->add_setting( 'fin_theme_options[construction]', array(
-		'default'       => '',
-		'type'					=> 'option'
+			'default'       => '',
+			'type'					=> 'option'
 	) );
 	$wp_customize->add_control( 'construction', array(
 		'settings' => 'fin_theme_options[construction]',
 		'label'    => __( 'Redirect to "Under Construction"' ),
-		'section'  => 'fin_construction',
+		'section'  => 'static_front_page',
 		'type'     => 'checkbox',
 		'priority' => 1
 	) );
 }
 add_action('customize_register', 'fin_customize_register');
+
+/**
+ * Reset all options to default
+ *
+ */
+function fin_reset_options() {
+	$options = get_option('fin_theme_options');
+	if($options['reset_options']) {
+		delete_option('fin_theme_options');
+	}
+}
+add_action('init', 'fin_reset_options');
 
 /**
  * Add relevant styles to wp_head
@@ -362,8 +376,9 @@ function fin_add_custom_styles() {
 	
 	$nav_link_color = $options['nav_link_color'];
 	if($nav_link_color) {
-		$output .= "#nav-main a, a:visited { color: $nav_link_color; }
-		#nav-main a:hover { color: " . brightness($link_color, .85) . "; }";
+		$output .= "#nav-main a, #nav-main a:visited { color: $nav_link_color; }
+		#nav-main a:hover { color: " . brightness($link_color, .85) . "; }
+		#header h1 a, #header h2 a { color: $nav_link_color; }";
 	}
 	
 	$heading_font = $options['heading_font'];
