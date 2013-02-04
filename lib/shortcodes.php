@@ -33,90 +33,90 @@ remove_shortcode('gallery', 'gallery_shortcode');
 // Replace with custom shortcode
 function shortcode_gallery($attr) {
 	$post = get_post();
-
-  static $instance = 0;
-  $instance++;
-
-  if (!empty($attr['ids'])) {
-    if (empty($attr['orderby'])) {
-      $attr['orderby'] = 'post__in';
-    }
-    $attr['include'] = $attr['ids'];
-  }
-
-  $output = apply_filters('post_gallery', '', $attr);
-
-  if ($output != '') {
-    return $output;
-  }
-
-  if (isset($attr['orderby'])) {
-    $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
-    if (!$attr['orderby']) {
-      unset($attr['orderby']);
-    }
-  }
-
-  extract(shortcode_atts(array(
-    'order'      => 'ASC',
-    'orderby'    => 'menu_order ID',
-    'id'         => $post->ID,
-    'itemtag'    => '',
-    'icontag'    => '',
-    'captiontag' => '',
-    'columns'    => 4,
-    'size'       => 'thumbnail',
-    'include'    => '',
-    'exclude'    => ''
-  ), $attr));
-
-  $id = intval($id);
-
-  if ($order === 'RAND') {
-    $orderby = 'none';
-  }
-
-  if (!empty($include)) {
-    $_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-
-    $attachments = array();
-    foreach ($_attachments as $key => $val) {
-      $attachments[$val->ID] = $_attachments[$key];
-    }
-  } elseif (!empty($exclude)) {
-    $attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-  } else {
-    $attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-  }
-
-  if (empty($attachments)) {
-    return '';
-  }
-
-  if (is_feed()) {
-    $output = "\n";
-    foreach ($attachments as $att_id => $attachment) {
-      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
-    }
-    return $output;
-  }
-
-  $output = '<ul class="block-grid four-up gallery">';
-
-  $i = 0;
-  foreach ($attachments as $id => $attachment) {
-    $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-
-    $output .= '<li>' . $link;
-    if (trim($attachment->post_excerpt)) {
-      $output .= '<div class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</div>';
-    }
-    $output .= '</li>';
-  }
-
-  $output .= '</ul>';
-
-  return $output;
+	
+	  static $instance = 0;
+	  $instance++;
+	
+	  if (!empty($attr['ids'])) {
+	    if (empty($attr['orderby'])) {
+	      $attr['orderby'] = 'post__in';
+	    }
+	    $attr['include'] = $attr['ids'];
+	  }
+	
+	  $output = apply_filters('post_gallery', '', $attr);
+	
+	  if ($output != '') {
+	    return $output;
+	  }
+	
+	  if (isset($attr['orderby'])) {
+	    $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
+	    if (!$attr['orderby']) {
+	      unset($attr['orderby']);
+	    }
+	  }
+	
+	  extract(shortcode_atts(array(
+	    'order'      => 'ASC',
+	    'orderby'    => 'menu_order ID',
+	    'id'         => $post->ID,
+	    'itemtag'    => '',
+	    'icontag'    => '',
+	    'captiontag' => '',
+	    'columns'    => 3,
+	    'size'       => 'thumbnail',
+	    'include'    => '',
+	    'exclude'    => ''
+	  ), $attr));
+	
+	  $id = intval($id);
+	
+	  if ($order === 'RAND') {
+	    $orderby = 'none';
+	  }
+	
+	  if (!empty($include)) {
+	    $_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	
+	    $attachments = array();
+	    foreach ($_attachments as $key => $val) {
+	      $attachments[$val->ID] = $_attachments[$key];
+	    }
+	  } elseif (!empty($exclude)) {
+	    $attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	  } else {
+	    $attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	  }
+	
+	  if (empty($attachments)) {
+	    return '';
+	  }
+	
+	  if (is_feed()) {
+	    $output = "\n";
+	    foreach ($attachments as $att_id => $attachment) {
+	      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+	    }
+	    return $output;
+	  }
+	
+	  $output = '<ul class="thumbnails gallery">';
+	
+	  $i = 0;
+	  foreach ($attachments as $id => $attachment) {
+	    $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+	
+	    $output .= '<li>' . $link;
+	    if (trim($attachment->post_excerpt)) {
+	      $output .= '<div class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</div>';
+	    }
+	    $output .= '</li>';
+	  }
+	
+	  $output .= '</ul>';
+	
+	  return $output;
 }
 add_shortcode('gallery', 'shortcode_gallery');
 
@@ -213,24 +213,23 @@ add_shortcode('gallery', 'shortcode_gallery');
   * Example:
   * [column span="(one, two, three... one-third, three-fourths...)" offset="(one, two, three...)" centered="(true, false)"][/column]
   */
- function shortcode_column( $atts, $content = null ) {
-     extract( shortcode_atts( array(
-         'centered' => '',
-         'span' => '',
-         'offset' => ''
-         ), $atts ) );
-  
-     // Set the 'center' variable
-     if ($centered == 'true') {
-         $centered = 'centered';
-     }
-     if($offset != '') {
-         $offset = 'offset-by-' . $offset;
-     }
-  
-     return '<div class="' . esc_attr($span) . ' columns ' . esc_attr($centered) . ' ' . esc_attr($offset) . '">' . do_shortcode($content) . '</div>';
- }
- add_shortcode( 'column', 'shortcode_column' );
+function shortcode_column( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'span' => '',
+		'offset' => ''
+		), $atts ) );
+	
+	if($span != '') {
+		$span = 'span' . $span;
+	}
+	
+	if($offset != '') {
+		$offset = ' offset' . $offset;
+	}
+
+	return '<div class="' . esc_attr($span) . esc_attr($offset) . '">' . do_shortcode($content) . '</div>';
+}
+add_shortcode( 'column', 'shortcode_column' );
  
  /**
   * [button] shortcode
@@ -256,7 +255,7 @@ add_shortcode('gallery', 'shortcode_gallery');
          $text = do_shortcode($content);
      }
       
-     $output = '<a href="' . $url . '" class="button '. $type . ' ' . $size . ' ' . $color;
+     $output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size . ' ' . $color;
      if( $nice == 'true' ){ $output .= ' nice';}
      $output .= '">';
      $output .= $text;
@@ -288,10 +287,10 @@ add_shortcode('gallery', 'shortcode_gallery');
          $text = do_shortcode($content);
      }
       
-     $output = '<div class="fade in alert-box '. $type . '">';
+     $output = '<div class="alert alert- '. $type . '">';
      $output .= $text;
      if($close == 'true') {
-         $output .= '<a class="close" href="#">×</a></div>';
+         $output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
      }
       
      return $output;

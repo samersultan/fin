@@ -65,7 +65,7 @@
 			} ?>
 			<?php $options = get_option('fin_theme_options');
 			if($options['social'] != '') { ?>
-				<div class="social six columns push-six">
+				<div class="social span6">
 					<a href="<?php echo esc_url(get_permalink(get_page_by_title('Contact'))); ?>"<i class="icon-phone-sign icon-2x"></i></a>
 					<?php // Facebook
 					if($options['social_facebook'] != '') { ?>

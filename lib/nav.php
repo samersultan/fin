@@ -55,41 +55,45 @@ add_action('after_setup_theme','fin_register_menus');
  *   <li class="menu-sample-page"><a href="/sample-page/">Sample Page</a></li>
  */
 class Fin_Nav_Walker extends Walker_Nav_Menu {
-  function check_current($classes) {
-    return preg_match('/(current[-_])|active|dropdown/', $classes);
-  }
+	function check_current($classes) {
+		return preg_match('/(current[-_])|active|dropdown/', $classes);
+	}
 
-  function start_lvl(&$output, $depth = 0, $args = array()) {
-    $output .= "\n<ul class=\"dropdown\">\n";
-  }
+	function start_lvl(&$output, $depth = 0, $args = array()) {
+		$output .= "\n<ul class=\"dropdown-menu\">\n";
+	}
 
-  function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-    $item_html = '';
-    parent::start_el($item_html, $item, $depth, $args);
+	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+		$item_html = '';
+		parent::start_el($item_html, $item, $depth, $args);
 
-    if (stristr($item_html, 'li class="divider')) {
-      $item_html = preg_replace('/<a[^>]*>.*?<\/a>/iU', '', $item_html);    
-    }
-    elseif (stristr($item_html, 'li class="nav-header')) {
-      $item_html = preg_replace('/<a[^>]*>(.*)<\/a>/iU', '$1', $item_html);
-    }   
+		if ($item->is_dropdown && ($depth === 0)) {
+			$item_html = str_replace('<a', '<a class="dropdown-toggle" data-toggle="dropdown" data-target="#"', $item_html);
+			$item_html = str_replace('</a>', ' <b class="caret"></b></a>', $item_html);
+		}
+		elseif (stristr($item_html, 'li class="divider')) {
+			$item_html = preg_replace('/<a[^>]*>.*?<\/a>/iU', '', $item_html);    
+		}
+		elseif (stristr($item_html, 'li class="nav-header')) {
+			$item_html = preg_replace('/<a[^>]*>(.*)<\/a>/iU', '$1', $item_html);
+		}   
 
-    $output .= $item_html;
-  }
+		$output .= $item_html;
+	}
 
-  function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
-    $element->is_dropdown = !empty($children_elements[$element->ID]);
+	function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
+		$element->is_dropdown = !empty($children_elements[$element->ID]);
 
-    if ($element->is_dropdown) {
-      if ($depth === 0) {
-        $element->classes[] = 'has-dropdown';
-      } elseif ($depth === 1) {
-        $element->classes[] = 'has-dropdown';
-      }
-    }
+		if ($element->is_dropdown) {
+			if ($depth === 0) {
+				$element->classes[] = 'dropdown';
+			} elseif ($depth === 1) {
+				$element->classes[] = 'dropdown-submenu';
+			}
+		}
 
-    parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
-  }
+		parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+	}
 }
 
 /**
@@ -145,7 +149,7 @@ function fin_add_nav_search($items, $args) {
 		get_template_part('templates/searchbar');
 		$search = ob_get_contents();
 		ob_end_clean();
-		$items .= '<li class="search">' . $search . '</li>';
+		$items .= '</ul><ul class="nav pull-right"><li class="search">' . $search . '</li>';
 	}
 	return $items;
 }

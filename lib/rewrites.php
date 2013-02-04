@@ -19,7 +19,7 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	function fin_htaccess_writable() {
 		if (!is_writable(get_home_path() . '.htaccess')) {
 			if (current_user_can('manage_options')) {
-				add_action('admin_notices', create_function('', "echo '<div class=\"error\"><p>" . sprintf(__('Please make sure your <a href="%s">.htaccess</a> file is writable ', 'roots'), admin_url('options-permalink.php')) . "</p></div>';"));
+				add_action('admin_notices', create_function('', "echo '<div class=\"error\"><p>" . sprintf(__('Please make sure your <a href="%s">.htaccess</a> file is writable ', 'fin'), admin_url('options-permalink.php')) . "</p></div>';"));
 			}
 		}
 	}

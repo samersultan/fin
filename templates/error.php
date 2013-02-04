@@ -1,6 +1,6 @@
 <header>
-	<div class="alert-box alert">
-		<a class="close" data-dismiss="alert">&times;</a>
+	<div class="alert alert-error">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<h5><?php _e( 'It appears that the page you are looking for is not there anymore.'); ?></h5>
 		<h5><?php _e('Sorry about the inconvenience.'); ?></h5>
 	</div>

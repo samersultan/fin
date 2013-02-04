@@ -20,36 +20,34 @@ $rotator_args = array(
 
 $rotator_query = new WP_Query($rotator_args);
 if($rotator_query->have_posts()){
-	// enqueue orbit.js
-	wp_enqueue_script('fin_orbit_js');
+	// Add carousel js
+	wp_enqueue_script('fin_carousel');
 	
 	// pre-loop stuffs
 		$i = 0;
 		// collect captions
 		$captions='';
 	?>
-	<div id="rotator-<?php echo $location; ?>" class="rotator">
-		<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
-			<?php $i++; ?>
-			<?php if (has_post_thumbnail()) {
-				if(has_excerpt()) {
-					$captions .= '<span class="orbit-caption" id="caption' . $i . '">' . get_the_excerpt() . '</span>'; ?>
-					<div data-caption="#caption<?php echo $i; ?>">
-				<?php }else { ?>
-					<div>
-				<?php }
+	<div id="rotator-<?php echo $location; ?>" class="carousel slide">
+		<div class="carousel-inner">
+			<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
+				<div class="item">
+					<?php if (has_post_thumbnail()) {
 						the_post_thumbnail('full'); ?>
-					</div>
-			<?php }else { ?>
-				<div>
-					<h3><?php the_title(); ?></h3>
-					<?php the_excerpt(); ?>
+						<?php if(has_excerpt()) { ?>
+							<div class="carousel-caption">
+								<?php the_excerpt(); ?>
+							</div>
+						<? }
+					}else { ?>
+						<h3><?php the_title(); ?></h3>
+						<?php the_excerpt(); ?>
+					<?php } ?>
 				</div>
-			<?php } ?>
-		<?php endwhile; ?>
+			<?php endwhile; ?>
+		</div>
+		<a class="carousel-control left" href="#rotator-<?php echo $location; ?>" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#rotator-<?php echo $location; ?>" data-slide="next">&rsaquo;</a>
 	</div>
-	<?php if($captions != '') {
-		echo $captions;
-	} ?>
 	<?php wp_reset_postdata(); ?>
 <?php } ?>

@@ -1,9 +1,9 @@
-<div id="footer">
-	<footer id="main-info" role="contentinfo" class="row">
+<footer id="footer" role="contentinfo" class="row">
+	<div class="container">
 		<?php $options = get_option('fin_theme_options');
 		if($options['social'] != '') { ?>
-			<div class="social six columns push-six">
-				<a href="<?php echo esc_url(get_permalink(get_page_by_title('Contact'))); ?>"<i class="icon-phone-sign icon-2x"></i></a>
+			<div class="span4 pull-right">
+				<a href="<?php echo esc_url(get_permalink(get_page_by_title('Contact'))); ?>"><i class="icon-phone-sign icon-2x"></i></a>
 				<?php // Facebook
 				if($options['social_facebook'] != '') { ?>
 					<a href="<?php echo 'http://' . preg_replace('`^http://`is', '', $options['social_facebook']); ?>"><i class="icon-facebook-sign icon-2x"></i></a>
@@ -36,6 +36,8 @@
 				} ?>
 			</div>
 		<?php } ?>
-		<p class="copyright six columns pull-six"><a href="<?php echo esc_url(get_permalink(get_page_by_title( 'Copyrights'))); ?>">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></a></p>
-	</footer>
-</div>
+		<div class="span4">
+			<a href="<?php echo esc_url(get_permalink(get_page_by_title( 'Copyrights'))); ?>">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></a>
+		</div>
+	</div>
+</footer>

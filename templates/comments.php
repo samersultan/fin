@@ -1,19 +1,23 @@
-<?php $options = get_option('fin_theme_options');
+<?php if (comments_open()) {
+	comment_form();
+}
+
+$options = get_option('fin_theme_options');
 $comments_warning = $options['comments_warning'];
 if(post_password_required() && $comments_warning) { ?>
   <section id="comments">
-	    <div class="alert-box secondary">
-	      <a href="" class="close">&times;</a>
+	    <div class="alert alert-info">
+	      <button type="button" class="close" data-dismiss="alert">&times;</button>
 	      <p><?php _e('This area is password protected. Enter the password to view comments.', 'fin'); ?></p>
     	</div>
-  </section><!-- /#comments -->
+  </section>
 <?php } ?>
 
 <?php if(have_comments()) { ?>
   <section id="comments">
     <h5><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h5>
 
-    <ol class="commentlist">
+    <ol class="commentlist media-list">
       <?php wp_list_comments(array('callback' => 'fin_comment')); ?>
     </ol>
 
@@ -36,23 +40,19 @@ if(post_password_required() && $comments_warning) { ?>
     <?php } ?>
 
     <?php if(!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
-      <div class="alert-box secondary">
-        <a href="" class="close">&times;</a>
+      <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p><?php _e('Comments are closed.', 'fin'); ?></p>
       </div>
    <?php } ?>
-  </section><!-- /#comments -->
+  </section>
 <?php } ?>
 
 <?php if(!have_comments() && !comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
   <section id="comments">
-    <div class="alert-box secondary">
-      <a href="" class="close">&times;</a>
+    <div class="alert alert-info">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
       <p><?php _e('Comments are closed.', 'fin'); ?></p>
     </div>
   </section><!-- /#comments -->
-<?php } ?>
-
-<?php if (comments_open()) { ?>
-	<?php comment_form(); ?>
 <?php } ?>

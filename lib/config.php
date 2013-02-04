@@ -133,35 +133,55 @@ function fin_media_size() {
 add_action('after_setup_theme', 'fin_media_size');
 
 /**
+ * Change the_category and get_the_category_list
+ *
+ */
+function fin_the_category($list) {
+	$list = str_replace('rel="category tag">', 'rel="category tag" class="meta_category btn btn-small btn-info">', $list);
+	return $list;
+}
+add_filter('the_category', 'fin_the_category');
+
+/**
+ * Change the_tags and get_tag_list
+ *
+ */
+function fin_the_tags($list) {
+	$list = str_replace('rel="tag">', 'rel="tag" class="meta_tag btn btn-small btn-info">', $list);
+	return $list;
+}
+add_filter('the_tags', 'fin_the_tags');
+
+/**
  * Default Comment Structure
  *
  */
 function fin_comment($comment, $args, $depth) {
   $GLOBALS['comment'] = $comment; ?>
-  <li <?php comment_class(); ?>>
-    <article id="comment-<?php comment_ID(); ?>">
-      <header class="comment-author vcard">
-        <?php echo get_avatar($comment, $size = '32'); ?>
-        <?php printf(__('<cite class="fn">%s</cite>', 'fin'), get_comment_author_link()); ?>
-        <time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php printf(__('%1$s', 'fin'), get_comment_date(),  get_comment_time()); ?></a></time>
-        <?php edit_comment_link(__('(Edit)', 'fin'), '', ''); ?>
-      </header>
-
-      <?php if ($comment->comment_approved == '0') : ?>
-        <div class="secondary alert-box">
-          <a class="close">&times;</a>
-          <p><?php _e('Your comment is awaiting moderation.', 'fin'); ?></p>
-        </div>
-      <?php endif; ?>
-
-      <section class="comment">
-        <?php comment_text(); ?>
-      </section>
-
-      <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
-
-    </article>
-<?php }
+  <li <?php comment_class('media'); ?>>
+  	<?php if ($comment->comment_approved == '0') { ?>
+  	  <div class="alert alert-info">
+  	    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  	    <i class="icon-magic"></i> <?php _e('Your comment is awaiting moderation.', 'fin'); ?>
+  	  </div>
+  	<?php } ?>
+  	<div class="media-object pull-left">
+			<?php echo get_avatar($comment, $size = '64'); ?>
+			<br>
+			<div class="btn-group">
+				<?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => '<i class="icon-comments"></i> Reply'))); ?>
+			</div>
+		</div>
+    <section class="comment media-body">
+  		<header class="comment-author vcard">
+  		  <?php printf(__('<cite class="fn">%s</cite>', 'fin'), get_comment_author_link()); ?>
+  		  <time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php printf(__('%1$s', 'fin'), get_comment_date(),  get_comment_time()); ?></a></time>
+  		  <?php edit_comment_link(__('(Edit)', 'fin'), '', ''); ?>
+  		</header>
+      <?php comment_text(); ?>
+    </section>
+<?php // "</li>" gets added automatically by WordPress
+}
 
 /**
  * Default Comment Form
@@ -177,21 +197,33 @@ function fin_change_comment_form($arg) {
 	$urlReg = "";
 	
 	$fields = array(
-		'author' => '<div class="one-half mobile-four"><label for="author">' . __( 'Name' ) .( $req ? '<span class="required"> *</span>' : '' ) . '</label><input id="author" name="author" type="text" value="' .esc_attr( $commenter['comment_author'] ) . '" placeholder="'. __( 'Name' ) . ($req ? ' (required)':'') . '" tabindex="1"' . ($req ? ' required ':'') . ' />',
+		'author' => '<label for="author" class="hide">' . __( 'Name' ) .( $req ? '<span class="required"> *</span>' : '' ) . '</label>
+		<div class="input-group span6">
+			<span class="input-group-addon"><i class="icon-user"></i></span>
+			<input id="author" name="author" type="text" value="' .esc_attr( $commenter['comment_author'] ) . '" placeholder="'. __( 'Name' ) . ($req ? ' (required)':'') . '" tabindex="1"' . ($req ? ' required ':'') . '>
+		</div><br>',
 		
-		'email'  => '<label for="email">' . __( 'Email' ) .( $req ? '<span class="required"> *</span>' : '' ) . '</label><input id="email" name="email" type="email"'.$emailReg.'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email' ) . ($req ? ' (required)':'') .'" tabindex="2"' . ($req ? ' required ':'') . ' />',
+		'email'  => '<label for="email" class="hide">' . __( 'Email' ) .( $req ? '<span class="required"> *</span>' : '' ) . '</label>
+		<div class="input-group span6">
+			<span class="input-group-addon"><i class="icon-envelope"></i></span>
+			<input id="email" name="email" type="email"'.$emailReg.'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email' ) . ($req ? ' (required)':'') .'" tabindex="2"' . ($req ? ' required ':'') . '>
+		</div><br>',
 		
-		'url'    => '<label for="url">' . __( 'Website' ) .'</label><input id="url" name="url" type="url"'.$urlReg.'" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . __( 'Website (optional)' ) .'" tabindex="3" /></div>'
+		'url'    => '<label for="url" class="hide">' . __( 'Website' ) .'</label>
+		<div class="input-group span6">
+			<span class="input-group-addon"><i class="icon-home"></i></span>
+			<input id="url" name="url" type="url"'.$urlReg.'" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . __( 'Website (optional)' ) .'" tabindex="3">
+		</div><br>'
 		);
 
 	$arg = array(
 		'fields' => apply_filters('comment_form_default_fields', $fields),
 	
-	    'comment_field' => '<div class="one-half columns mobile-four"><label for="comment">' . __( 'Comment' ) . '<span class="required"> *</span></label><textarea id="comment" name="comment" cols="45" rows="9" placeholder="' . __( 'Your Comment (required)' ) .'" tabindex="4" required></textarea></div>',
+	    'comment_field' => '<div class="input-group span6"><label for="comment" class="hide">' . __( 'Comment' ) . '<span class="required"> *</span></label><textarea id="comment" name="comment" cols="45" rows="9" placeholder="' . __( 'Your Comment (required)' ) .'" tabindex="4" required></textarea></div><br>',
 	                
-	    'must_log_in' => sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
+	    'must_log_in' => sprintf( __( 'You must be <a class="btn btn-primary" href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
 		
-		'logged_in_as' => sprintf( __( '<p class="label success logged-in">Logged in as <a href="%s">%s</a>.</p> <a href="%s" title="Log out of this account" class="button secondary logout">Log out?</a>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
+		'logged_in_as' => sprintf( __( '<p>Logged in as: <div class="btn-group"><a class="btn btn-small" href="%s"><i class="icon-user"></i> %s</a><a href="%s" title="Log out of this account" class="btn btn-warning btn-small">Log out?</a></div></p>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
 		
 		'comment_notes_before' => '',
 		

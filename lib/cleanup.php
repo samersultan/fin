@@ -12,7 +12,7 @@ function fin_cleanup_default_content() {
 	$post = get_page_by_title( 'Hello world!', 'OBJECT', 'post');
 	if($post) {	wp_delete_post($post->ID, true); }
 }
-add_action('after_setup_theme','fin_cleanup_default_content');
+add_action('after_switch_theme','fin_cleanup_default_content');
 
 /**
  * Replace default category name with 'General'
@@ -26,7 +26,7 @@ function fin_cleanup_default_category() {
 	}	
 	wp_update_term( $category->term_id, 'category', array( 'slug' => $category->slug, 'name'=> $category->name ) );
 }
-add_action('after_setup_theme','fin_cleanup_default_category');
+add_action('after_switch_theme','fin_cleanup_default_category');
 
 /**
  * Remove actions from wp_head
@@ -273,23 +273,23 @@ add_filter('edit_post_link', 'fin_edit_post_link');
  * 
  */
 function fin_change_previous_posts_link_attributes() {
-    return 'class="button secondary tiny left" rel="prev"';
+    return 'class="pull-left btn btn-tiny" rel="prev"';
 }
 add_filter('previous_posts_link_attributes', 'fin_change_previous_posts_link_attributes');
 
 function fin_change_next_posts_link_attributes() {
-    return 'class="button secondary tiny right"  rel="next"';
+    return 'class="pull-right btn btn-tiny"  rel="next"';
 }
 add_filter('next_posts_link_attributes', 'fin_change_next_posts_link_attributes');
 
 function fin_change_previous_post_link($link) {
-	$link = str_replace('href=', 'class="button secondary tiny right" href=', $link);
+	$link = str_replace('href=', 'class="pull-right btn btn-tiny" href=', $link);
 	return $link;
 }
 add_filter('previous_post_link', 'fin_change_previous_post_link');
 
 function fin_change_next_post_link($link) {
-	$link = str_replace('href=', 'class="button secondary tiny left" href=', $link);
+	$link = str_replace('href=', 'class="pull-left btn btn-tiny" href=', $link);
 	return $link;
 }
 add_filter('next_post_link', 'fin_change_next_post_link');

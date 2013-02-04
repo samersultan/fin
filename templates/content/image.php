@@ -1,4 +1,4 @@
-<article <?php post_class('single twelve columns centered'); ?>>
+<article <?php post_class('single span12'); ?>>
 	<?php $parent = $post->post_parent; ?>
 	<h3 class="entry-title"><a href="<?php echo get_permalink(); ?>" rel="bookmark" title="Bookmark for <?php echo get_the_title($parent); ?>" class="bookmark"><?php echo get_the_title($parent); ?></a></h3>
 	<figure class="entry-thumbnail">
@@ -32,7 +32,7 @@ $attachments = get_children(array(
 	'order' => 'ASC',
 	'numberposts' => 999));
 if(count($attachments > 1)){ /* More than one image in gallery */ ?>
-	<aside class="gallery twelve columns">
+	<aside class="gallery span12">
 		<?php echo do_shortcode( sprintf( '[gallery id="%1$s"]', $post->post_parent) ); ?>
 	</aside>
 <?php } ?>
