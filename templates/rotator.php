@@ -46,8 +46,8 @@ if($rotator_query->have_posts()){
 				</div>
 			<?php endwhile; ?>
 		</div>
-		<a class="carousel-control left" href="#rotator-<?php echo $location; ?>" data-slide="prev">&lsaquo;</a>
-		<a class="carousel-control right" href="#rotator-<?php echo $location; ?>" data-slide="next">&rsaquo;</a>
+		<a class="carousel-control left" href="#rotator-<?php echo $location; ?>" data-slide="prev"><i class="control icon-angle-left icon-2x"></i></a>
+		<a class="carousel-control right" href="#rotator-<?php echo $location; ?>" data-slide="next"><i class="control icon-angle-right icon-2x"></i></a>
 	</div>
 	<?php wp_reset_postdata(); ?>
 <?php } ?>
