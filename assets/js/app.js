@@ -1,3 +1,4 @@
+//@codekit-append "bootstrap/bootstrap-affix"
 //@codekit-append "bootstrap/bootstrap-alert"
 //@codekit-append "bootstrap/bootstrap-carousel"
 //@codekit-append "bootstrap/bootstrap-collapse"
