@@ -176,7 +176,7 @@ function fin_comment($comment, $args, $depth) {
   		<header class="comment-author vcard">
   		  <?php printf(__('<cite class="fn">%s</cite>', 'fin'), get_comment_author_link()); ?>
   		  <time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php printf(__('%1$s', 'fin'), get_comment_date(),  get_comment_time()); ?></a></time>
-  		  <?php edit_comment_link(__('(Edit)', 'fin'), '', ''); ?>
+  		  <?php edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', ''); ?>
   		</header>
       <?php comment_text(); ?>
     </section>
