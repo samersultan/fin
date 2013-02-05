@@ -81,7 +81,8 @@ function get_image_count($ID) {
 }
 
 // Exif Function for images
-function get_exif($att) {
+// Will output list (default) or button group
+function get_exif($att, $separator = '', $before = '', $after = '') {
 	$imgmeta = wp_get_attachment_metadata($att);
 	if($imgmeta) { // Check for Bad Data
 		if($imgmeta['image_meta']['focal_length'] == 0
@@ -102,15 +103,15 @@ function get_exif($att) {
 			} else {
 				$pshutter = $imgmeta['image_meta']['shutter_speed'] . " seconds";
 			}
-			// Create Output
-			$output = '<ul>';
-				$output .= '<li><time datetime="' . date('c', $imgmeta['image_meta']['created_timestamp']) . '"><span class="month">' . date('F', $imgmeta['image_meta']['created_timestamp']).'</span> <span class="day">'.date('j', $imgmeta['image_meta']['created_timestamp']) . '</span><span class="suffix">' . date('S', $imgmeta['image_meta']['created_timestamp']) . '</span> <span class="year">' . date('Y', $imgmeta['image_meta']['created_timestamp']) . '</span></time></li>';
-				$output .= '<li>' . $imgmeta['image_meta']['camera'] . '</li>';
-				$output .= '<li>' . $imgmeta['image_meta']['focal_length'] . 'mm</li>';
-				$output .= '<li><span style="font-style:italic;font-family: Trebuchet MS,Candara,Georgia; text-transform:lowercase">f</span>/' . $imgmeta['image_meta']['aperture'] . '</li>';
-				$output .= '<li>'. $pshutter .'</li>';
-				$output .= '<li>'. $imgmeta['image_meta']['iso'] .' ISO</li>';
-			$output .= '</ul>';
+			
+			$output = $before;
+				$output .=  '<time datetime="' . date('c', $imgmeta['image_meta']['created_timestamp']) . '"><span class="month">' . date('F', $imgmeta['image_meta']['created_timestamp']).'</span> <span class="day">'.date('j', $imgmeta['image_meta']['created_timestamp']) . '</span><span class="suffix">' . date('S', $imgmeta['image_meta']['created_timestamp']) . '</span> <span class="year">' . date('Y', $imgmeta['image_meta']['created_timestamp']) . '</span></time>' . $separator;
+				$output .=  $imgmeta['image_meta']['camera'] . $separator;
+				$output .=  $imgmeta['image_meta']['focal_length'] . 'mm' . $separator;
+				$output .=  '<span style="font-style:italic;font-family: Trebuchet MS,Candara,Georgia; text-transform:lowercase">f</span>/' . $imgmeta['image_meta']['aperture'] . $separator;
+				$output .=  $pshutter . $separator;
+				$output .=  $imgmeta['image_meta']['iso'] .' ISO';
+			$output .= $after;
 		}
 	}else { // No Data Found
 		$output = '';

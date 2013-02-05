@@ -12,6 +12,6 @@
 		<?php the_content(); ?>
 	</div>
 	<footer>
-			<?php get_template_part('templates/content/meta'); ?>
+		<?php get_template_part('templates/content/meta'); ?>
 	</footer>
 </article>

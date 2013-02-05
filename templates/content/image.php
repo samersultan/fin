@@ -21,6 +21,9 @@
 			echo '<p>' . $description . '</p>';
 		} ?>
 	</div>
+	<footer>
+		<?php get_template_part('templates/content/meta'); ?>
+	</footer>
 </article>
 <?php //Gallery
 $attachments = get_children(array(
