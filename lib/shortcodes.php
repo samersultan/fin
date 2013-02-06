@@ -236,8 +236,8 @@ add_shortcode( 'column', 'shortcode_column' );
   *
   * Creates a button
   *
-  * Example:
-  * [button type="(radius round)" size="(small medium large)" type="(primary secondary success alert)" nice="true false" url="http://#"]This is a button[/button]
+  * Examples:
+  * [button type="(radius round)" size="(mini small large)" type="(primary secondary success alert)" url="http://#"]This is a button[/button]
   * or
   * [button text="This is a button." url="http://#"]
   */
@@ -246,7 +246,6 @@ add_shortcode( 'column', 'shortcode_column' );
      'type' => 'radius', /* radius, round */
      'size' => 'medium', /* small, medium, large */
      'type' => 'secondary', /* primary, secondary, warning, success, error */
-     'nice' => 'false',
      'url'  => '',
      'text' => '', 
      ), $atts ) );
@@ -255,15 +254,13 @@ add_shortcode( 'column', 'shortcode_column' );
          $text = do_shortcode($content);
      }
       
-     $output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size . ' ' . $color;
-     if( $nice == 'true' ){ $output .= ' nice';}
+     $output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size;
      $output .= '">';
      $output .= $text;
      $output .= '</a>';
       
      return $output;
  }
-  
  add_shortcode('button', 'shortcode_button'); 
   
  /**
@@ -271,59 +268,97 @@ add_shortcode( 'column', 'shortcode_column' );
   *
   * Creates an alert
   *
-  * Example:
+  * Examples:
   * [alert type="(warning success error)" close="(true false)"]This is an alert[/alert]
   * or
   * [alert text="This is an alert."]
   */
- function shortcode_alert( $atts, $content = null ) {
-     extract( shortcode_atts( array(
-     'type' => '  ', /* warning, success, error */
-     'close' => 'true', /* display close link */
-     'text' => '', 
-     ), $atts ) );
-      
-     if($text == ''){
-         $text = do_shortcode($content);
-     }
-      
-     $output = '<div class="alert alert- '. $type . '">';
-     $output .= $text;
-     if($close == 'true') {
-         $output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-     }
-      
-     return $output;
+function shortcode_alert( $atts, $content = null ) {
+		extract( shortcode_atts( array(
+			'type' => '  ', /* warning, success, error */
+			'close' => 'true', /* display close link */
+			'text' => '', 
+		), $atts ) );
+		
+		if($text == '') {
+			$text = do_shortcode($content);
+		}
+		if($type != '') {
+			$type = ' alert-' . $type;
+		}
+		
+		$output = '<div class="alert'. $type . '">';
+		$output .= $text;
+		if($close == 'true') {
+			$output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+		}
+		$output .= '</div>';
+		
+		return $output;
  }
-  
  add_shortcode('alert', 'shortcode_alert');
   
  /**
-  * [panel] shortcode
+  * [well] shortcode
   *
   * Creates a panel
   *
-  * Example:
-  * [panel]This is panel[/panel]
+  * Examples:
+  * [well]This is well[/well]
   * or
-  * [panel text="This is a panel."]
+  * [well text="This is a well."]
   */
- function shortcode_panel( $atts, $content = null ) {
+ function shortcode_well( $atts, $content = null ) {
      extract( shortcode_atts( array(
-     'type' => '  ', /* warning, success, error */
-     'close' => 'false', /* display close link */
+     'size' => '', /* small large */
      'text' => '', 
      ), $atts ) );
       
-     if($text == ''){
+     if($size != '') {
+     	$size = ' well-'. $size;
+     }
+     if($text == '') {
          $text = do_shortcode($content);
      }
       
-     $output = '<div class="panel">';
+     $output = '<div class="well' . $size . '">';
      $output .= $text;
      $output .= '</div>';
       
      return $output;
  }
- add_shortcode('panel', 'shortcode_panel');
+ add_shortcode('well', 'shortcode_well');
  
+/**
+ * [modal] shortcode
+ *
+ * Creates a modal that is automatically launched (default) or launched by a button
+ *
+ * Examples:
+ * [modal]This is the text that will automatically pop-up when the page loads[/modal]
+ *
+ * [modal button="launch modal"]This text will load when the user presses the button created![/modal]
+ **/
+function shortcode_modal( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+	'text' => '',
+	'button' => '', 
+	), $atts ) );
+	 
+	$modalNum = rand();
+	if($text == '') {
+	    $text = do_shortcode($content);
+	}
+	$output = '';
+	if($button != '') {
+		$output .= '<a href="#modal-' . $modalNum . '" role="button" class="btn" data-toggle="modal">' . $button . '</a>';
+	}
+	
+	$output .= '<div id="modal-' . $modalNum . '" class="modal fade' . $size . '">';
+	//$output .= '<div class="modal-header"></div>';
+	$output .= '<div class="modal-body"><button type="button" class="close" data-dismiss="modal">&times;</button>' . $text . '</div>';
+	$output .= '</div>';
+	 
+	return $output;
+}
+ add_shortcode('modal', 'shortcode_modal');

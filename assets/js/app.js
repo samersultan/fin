@@ -3,6 +3,7 @@
 //@codekit-append "bootstrap/bootstrap-carousel"
 //@codekit-append "bootstrap/bootstrap-collapse"
 //@codekit-append "bootstrap/bootstrap-dropdown"
+//@codekit-append "bootstrap/bootstrap-modal"
 
 // Sticky Nav
 jQuery(document).scroll(function(){
