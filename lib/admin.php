@@ -73,7 +73,9 @@ add_action('wp_dashboard_setup', 'fin_remove_welcome_panel');
  */
 function fin_change_default_dashboard_panels() {
 	// remove_meta_box('dashboard_right_now', 'dashboard', 'core');    // Right Now Panel
-	// remove_meta_box('dashboard_recent_comments', 'dashboard', 'core'); // Comments Panel
+	if ( get_option( 'default_comment_status' ) == 'closed' ) {
+		remove_meta_box('dashboard_recent_comments', 'dashboard', 'core'); // Comments Panel
+	}
 	// remove_meta_box('dashboard_incoming_links', 'dashboard', 'core');  // Incoming Links Panel
 	remove_meta_box('dashboard_plugins', 'dashboard', 'core');         // Plugins Panel
 
@@ -82,7 +84,6 @@ function fin_change_default_dashboard_panels() {
 	remove_meta_box('dashboard_primary', 'dashboard', 'core');         // 
 	remove_meta_box('dashboard_secondary', 'dashboard', 'core');       //
 }
-// Remove the dashboard panels
 add_action('admin_menu', 'fin_change_default_dashboard_panels');
 
 /**
@@ -109,6 +110,41 @@ function fin_remove_update_alert() {
 	}
 }
 add_action('admin_init','fin_remove_update_alert');
+
+/**
+ * Remove/Add admin_bar menus
+ *
+ **/
+function fin_change_admin_bar_menu() {
+	if (is_admin_bar_showing() && $current_user->ID != 1) {
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu('wp-logo');
+    $wp_admin_bar->remove_menu('about');
+    $wp_admin_bar->remove_menu('wporg');
+    $wp_admin_bar->remove_menu('documentation');
+    $wp_admin_bar->remove_menu('support-forums');
+    $wp_admin_bar->remove_menu('feedback');
+	  //$wp_admin_bar->remove_menu('view-site');
+		    
+		    
+		//$wp_admin_bar->remove_menu('my-account');
+		//$wp_admin_bar->remove_menu('my-account-with-avatar');
+		//$wp_admin_bar->remove_menu('my-blogs');
+		//$wp_admin_bar->remove_menu('get-shortlink');
+		//$wp_admin_bar->remove_menu('edit');
+		//$wp_admin_bar->remove_menu('new-content ');
+		$wp_admin_bar->remove_menu('appearance');
+		$wp_admin_bar->remove_menu('updates');
+		if ( get_option( 'default_comment_status' ) == 'closed' ) {
+			$wp_admin_bar->remove_menu('comments');
+		}
+		
+		// Add Developer Link
+		
+		// Add Home_url logo link
+	}
+}
+add_action('wp_before_admin_bar_render', 'fin_change_admin_bar_menu', 0);
 /**
  * Remove Editor menu
  *
