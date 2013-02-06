@@ -102,7 +102,6 @@ add_action('admin_init', 'fin_check_tagline');
  *
  */
 function fin_remove_update_alert() {
-	global $current_user;
 	$current_user = wp_get_current_user();
 	if($current_user->ID != 1) {
 		add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
@@ -116,6 +115,7 @@ add_action('admin_init','fin_remove_update_alert');
  *
  **/
 function fin_change_admin_bar_menu() {
+	$current_user = wp_get_current_user();
 	if (is_admin_bar_showing() && $current_user->ID != 1) {
 		global $wp_admin_bar;
 		$wp_admin_bar->remove_menu('wp-logo');
@@ -150,7 +150,6 @@ add_action('wp_before_admin_bar_render', 'fin_change_admin_bar_menu', 0);
  *
  */
 function fin_remove_editor_menu() {
-	global $current_user;
 	$current_user = wp_get_current_user();
 	if($current_user->ID != 1) {
 	  remove_action('admin_menu', '_add_themes_utility_last', 101);
