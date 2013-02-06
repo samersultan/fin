@@ -119,6 +119,23 @@ function get_exif($att, $separator = '', $before = '', $after = '') {
 	return $output;
 }
 
+function get_time_ago($postTime) {
+	$currentTime = time();
+	$timDifference = $currentTime - $postTime;
+	
+	$minInSecs = 60;
+	$hourInSecs = 3600;
+	$dayInSecs = 86400;
+	$monthInSecs = $dayInSecs * 31;
+	$yearInSecs = $dayInSecs * 366;
+	
+	if($timDifference > ($yearInSecs)) {
+		return 'over ' . floor($timDifference/$yearInSecs) . __(' years ago');
+	}else {
+		return human_time_diff($postTime, $currentTime) . ' ' . __('ago');
+	}
+}
+
 function is_parent_category($cat = null) {
 	if(is_numeric($cat)) {
 		$category = get_the_category_by_ID($cat);

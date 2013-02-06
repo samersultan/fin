@@ -322,34 +322,37 @@ ul.children #respond { }
 }
 ol.commentlist {}
 li.comment {
+	clear: both;
+	.avatar {
+		.img-thumbnail;
+	}
 	.comment-author {
-		.comment-avatar img {}
 		cite {
 			a {}
 		}
 		time a {}
 	}
-	section {}
+	section.media-body {
+		min-height: 64px + 10px;
+	}
 	footer {
 		time {  }
 	}
-	a.comment-edit-link {
+	a.comment-edit-link, a.comment-reply-link {
 		.btn;
 		.btn-mini;
+		.btn-block;
+		visibility: hidden;
 	}
 	a.comment-reply-link {
-		.btn;
 		.btn-primary;
-		.btn-small;
-		visibility: hidden;
+		margin: 4px auto;
 	}
 }
 // Show Reply/Edit Options on hover
-li.comment {
-	article:hover {
-		a.comment-edit-link, a.comment-reply-link {
-			visibility: visible;
-		}
+li.comment:hover > .media-object {
+	&> a.comment-edit-link, &>a.comment-reply-link {
+		visibility: visible
 	}
 }
 
@@ -368,7 +371,8 @@ li.comment {
 // Comment Threading
 #comments {
 	li.comment.parent {}
-	ul.children {
+	ol.children {
+		margin-left: 64px + 10px;
 		li.comment.depth-1 {}
 		li.comment.depth-2 {}
 		li.comment.depth-3 {}

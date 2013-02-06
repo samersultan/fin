@@ -166,17 +166,14 @@ function fin_comment($comment, $args, $depth) {
   	  </div>
   	<?php } ?>
   	<div class="media-object pull-left">
-			<?php echo get_avatar($comment, $size = '64'); ?>
-			<br>
-			<div class="btn-group">
-				<?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => '<i class="icon-comments"></i> Reply'))); ?>
-			</div>
+			<?php echo get_avatar($comment, $size = '64');
+			comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => '<i class="icon-comments"></i> Reply')));
+			edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', ''); ?>
 		</div>
     <section class="comment media-body">
   		<header class="comment-author vcard">
   		  <?php printf(__('<cite class="fn">%s</cite>', 'fin'), get_comment_author_link()); ?>
-  		  <time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php printf(__('%1$s', 'fin'), get_comment_date(),  get_comment_time()); ?></a></time>
-  		  <?php edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', ''); ?>
+  		  <time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php echo get_time_ago(get_comment_time('U')); ?></a></time>
   		</header>
       <?php comment_text(); ?>
     </section>
@@ -233,9 +230,9 @@ function fin_change_comment_form($arg) {
 	    
 	    'id_submit' => 'submit',
 	
-	    'title_reply' => __( 'Leave a Reply' ),
+	    'title_reply' => __( 'Leave a comment' ),
 	    
-	    'title_reply_to' => __( 'Leave a Reply to %s' ),
+	    'title_reply_to' => __( 'Leave a reply to %s' ),
 	    
 	    'cancel_reply_link' => __( 'Cancel reply' ),
 	    
