@@ -8,7 +8,7 @@ body.login {
 			background-image: url(../img/logo.png);
 			background-position: top;
 			background-repeat: no-repeat;
-			background-size: 50% auto;
+			background-size: auto 100%;
 		}
 		#loginform {
 			p {
@@ -38,8 +38,17 @@ body.login {
 
 /** Adminbar CSS **/
 #wp-admin-bar-wp-logo {
-	display: none;
-	visibility: hidden;
+	//display: none;
+	//visibility: hidden;
+	span {
+		background: url(../img/favicon.png) !important;
+		background-position: top !important;
+		background-size: 100% auto !important;
+	}
+	.ab-sub-wrapper {
+		//display: none;
+		//visibility: hidden;
+	}
 }
 #wp-admin-bar-themes {
 	display: none;

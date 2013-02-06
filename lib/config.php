@@ -167,7 +167,7 @@ function fin_comment($comment, $args, $depth) {
   	<?php } ?>
   	<div class="media-object pull-left">
 			<?php echo get_avatar($comment, $size = '64');
-			comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => '<i class="icon-comments"></i> Reply')));
+			comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => '<i class="icon-comments"></i> reply')));
 			edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', ''); ?>
 		</div>
     <section class="comment media-body">

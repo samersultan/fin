@@ -6,4 +6,4 @@
 6. Make modal shortcode
 7. Make <pre><code> shortcode
 8. Review/test shortcodes
-9. 
+9. Add Logos/links back into admin bar

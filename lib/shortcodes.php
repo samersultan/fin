@@ -237,7 +237,7 @@ add_shortcode( 'column', 'shortcode_column' );
   * Creates a button
   *
   * Examples:
-  * [button type="(radius round)" size="(mini small large)" type="(primary secondary success alert)" url="http://#"]This is a button[/button]
+  * [button type="(radius round)" size="(mini small large)" type="(primary success info warning danger disabled)" url="http://#"]This is a button[/button]
   * or
   * [button text="This is a button." url="http://#"]
   */
@@ -287,7 +287,7 @@ function shortcode_alert( $atts, $content = null ) {
 			$type = ' alert-' . $type;
 		}
 		
-		$output = '<div class="alert'. $type . '">';
+		$output = '<div class="alert fade in'. $type . '">';
 		$output .= $text;
 		if($close == 'true') {
 			$output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
@@ -342,7 +342,8 @@ function shortcode_alert( $atts, $content = null ) {
 function shortcode_modal( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 	'text' => '',
-	'button' => '', 
+	'button' => '',
+	'size' => '', 
 	), $atts ) );
 	 
 	$modalNum = rand();
