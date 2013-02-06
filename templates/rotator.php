@@ -30,9 +30,11 @@ if($rotator_query->have_posts()){
 	?>
 	<div id="rotator-<?php echo $location; ?>" class="carousel slide">
 		<div class="carousel-inner">
-			<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
-				<div class="item">
-					<?php if (has_post_thumbnail()) {
+			<?php $active = ' active';
+			while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
+				<div class="item<?php echo $active; ?>">
+					<?php $active = '';
+					if (has_post_thumbnail()) {
 						the_post_thumbnail('full'); ?>
 						<?php if(has_excerpt()) { ?>
 							<div class="carousel-caption">

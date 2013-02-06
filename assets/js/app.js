@@ -4,6 +4,7 @@
 //@codekit-append "bootstrap/bootstrap-collapse"
 //@codekit-append "bootstrap/bootstrap-dropdown"
 //@codekit-append "bootstrap/bootstrap-modal"
+//@codekit-append "bootstrap/bootstrap-transition"
 
 // Sticky Nav
 jQuery(document).scroll(function(){
@@ -18,4 +19,16 @@ jQuery(document).scroll(function(){
         elem.addClass('navbar-fixed-top');
     else
         elem.removeClass('navbar-fixed-top');
+});
+
+// Disabled Submit
+jQuery(document).ready(function() {
+	jQuery('#commentform #submit').attr('disabled', true);
+	jQuery('#commentform input, #commentform textarea').on('input', function(e) {
+		if(jQuery('#commentform input:invalid, #commentform textarea:invalid').length <= 0) {
+			jQuery('#commentform #submit').removeAttr('disabled');
+		}else {
+			jQuery('#commentform #submit').attr('disabled', true);
+		}
+	});
 });
