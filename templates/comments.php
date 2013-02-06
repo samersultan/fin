@@ -1,7 +1,7 @@
 <div class="row">
 	<?php // Reply Form
 	if (comments_open()) { ?>
-		<div class="span6 pull-right">
+		<div class="span12">
 			<?php comment_form(); ?>
 		</div>
 	<?php }
@@ -9,7 +9,7 @@
 	$options = get_option('fin_theme_options');
 	$comments_warning = $options['comments_warning'];
 	if(post_password_required() && $comments_warning) { ?>
-	  <section id="comments span6">
+	  <section id="comments span12">
 		    <div class="alert alert-info">
 		      <button type="button" class="close" data-dismiss="alert">&times;</button>
 		      <p><?php _e('This area is password protected. Enter the password to view comments.', 'fin'); ?></p>

@@ -28,7 +28,7 @@ function fin_scripts() {
 		wp_enqueue_script('fin_js');
 		
 		// load wordpress comment reply if threaded comments are enabled
-		if (is_single() && comments_open() && get_option('thread_comments')) {
+		if (is_singular() && comments_open() && get_option('thread_comments')) {
 		  wp_enqueue_script('comment-reply');
 		}
 		
