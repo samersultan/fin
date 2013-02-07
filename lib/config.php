@@ -193,30 +193,34 @@ function fin_change_comment_form($arg) {
 	$emailReg = " pattern='"."^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$"."'";
 	$urlReg = "";
 	
+	$authorLabel = __( 'Name' ) .( $req ? ' *' : '' );
+	$emailLabel = __( 'Email' ) .( $req ? ' *' : '' );
+	$urlLabel = __( 'Website' );
+	
 	$fields = array(
-		'author' => '<label for="author" class="hide">' . __( 'Name' ) .( $req ? '<span class="required"> *</span>' : '' ) . '</label>
-		<div class="input-group span6">
-			<span class="input-group-addon"><i class="icon-user"></i></span>
-			<input id="author" name="author" type="text" value="' .esc_attr( $commenter['comment_author'] ) . '" placeholder="'. __( 'Name' ) . ($req ? ' (required)':'') . '" tabindex="1"' . ($req ? ' required ':'') . '>
+		'author' => '<label for="author" class="hide">' . $authorLabel . '</label>
+		<div class="span12 input-group">
+			<a href="#author" class="input-group-addon" data-toggle="tooltip" title="' . $authorLabel . '"><i class="icon-user"></i></a>
+			<input id="author" name="author" type="text" value="' .esc_attr( $commenter['comment_author'] ) . '" placeholder="' . $authorLabel . '" tabindex="1"' . ($req ? ' required ':'') . '>
 		</div><br>',
 		
-		'email'  => '<label for="email" class="hide">' . __( 'Email' ) .( $req ? '<span class="required"> *</span>' : '' ) . '</label>
-		<div class="input-group span6">
-			<span class="input-group-addon"><i class="icon-envelope"></i></span>
-			<input id="email" name="email" type="email"'.$emailReg.'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . __( 'Email' ) . ($req ? ' (required)':'') .'" tabindex="2"' . ($req ? ' required ':'') . '>
+		'email'  => '<label for="email" class="hide">' . $emailLabel . '</label>
+		<div class="span12 input-group">
+			<a href="#email" class="input-group-addon" data-toggle="tooltip" title="' . $emailLabel . '"><i class="icon-envelope"></i></a>
+			<input id="email" name="email" type="email"'.$emailReg.'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . $emailLabel .'" tabindex="2"' . ($req ? ' required ':'') . '>
 		</div><br>',
 		
-		'url'    => '<label for="url" class="hide">' . __( 'Website' ) .'</label>
-		<div class="input-group span6">
-			<span class="input-group-addon"><i class="icon-home"></i></span>
-			<input id="url" name="url" type="url"'.$urlReg.'" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . __( 'Website (optional)' ) .'" tabindex="3">
+		'url'    => '<label for="url" class="hide">' . $urlLabel .'</label>
+		<div class="span12 input-group">
+			<a href="#url" class="input-group-addon" data-toggle="tooltip" title="' . $urlLabel . '"><i class="icon-home"></i></a>
+			<input id="url" name="url" type="url"'.$urlReg.'" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . $urlLabel .'" tabindex="3">
 		</div><br>'
 		);
 
 	$arg = array(
 		'fields' => apply_filters('comment_form_default_fields', $fields),
 	
-	    'comment_field' => '<div class="input-group span6"><label for="comment" class="hide">' . __( 'Comment' ) . '<span class="required"> *</span></label><textarea id="comment" name="comment" cols="45" rows="9" placeholder="' . __( 'Your Comment (required)' ) .'" tabindex="4" required></textarea></div><br>',
+	    'comment_field' => '<div class="span12 input-group"><label for="comment" class="hide">' . __( 'Comment' ) . '<span class="required"> *</span></label><textarea id="comment" name="comment" cols="45" rows="9" placeholder="' . __( 'Your Comment (required)' ) .'" tabindex="4" required></textarea></div><br>',
 	                
 	    'must_log_in' => sprintf( __( 'You must be <a class="btn btn-primary" href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
 		
