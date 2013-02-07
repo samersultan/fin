@@ -345,17 +345,24 @@ function shortcode_modal( $atts, $content = null ) {
 	'button' => '',
 	'size' => '', 
 	), $atts ) );
-	 
-	$modalNum = rand();
+	
+	// get unique modal number 
+	$modalNum = substr(uniqid(), -4); //last 4 digits of uniqid will suffice
 	if($text == '') {
 	    $text = do_shortcode($content);
 	}
 	$output = '';
 	if($button != '') {
 		$output .= '<a href="#modal-' . $modalNum . '" role="button" class="btn" data-toggle="modal">' . $button . '</a>';
+	}else {
+		$output .= '<script type="text/javascript">
+		    jQuery(window).load(function(){
+		        jQuery("#modal-' . $modalNum . '").modal("show");
+		    });
+		</script>';
 	}
 	
-	$output .= '<div id="modal-' . $modalNum . '" class="modal fade' . $size . '">';
+	$output .= '<div id="modal-' . $modalNum . '" class="modal fade' . $size . '" role="dialog">';
 	//$output .= '<div class="modal-header"></div>';
 	$output .= '<div class="modal-body"><button type="button" class="close" data-dismiss="modal">&times;</button>' . $text . '</div>';
 	$output .= '</div>';
