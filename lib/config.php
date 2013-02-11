@@ -12,12 +12,6 @@ function fin_init() {
 	//Keep wordpress from reformatting posts
 	//remove_filter('the_content', 'wpautop');
 	
-	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
-	add_theme_support('post-thumbnails');
-	
-	// Add post formats (http://codex.wordpress.org/Post_Formats)
-	add_theme_support('post-formats', array('gallery', 'image', 'video', 'audio'));
-	
 	// Allow shortcodes in widgets
 	add_filter( 'widget_text', 'shortcode_unautop');
 	add_filter( 'widget_text', 'do_shortcode', 11);
@@ -62,6 +56,9 @@ add_action('after_switch_theme', 'fin_init');
 function fin_setup() {
 	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
 	add_theme_support('post-thumbnails');
+	
+	// Add post formats (http://codex.wordpress.org/Post_Formats)
+	add_theme_support('post-formats', array('gallery', 'image', 'video', 'audio'));
 }
 add_action('after_setup_theme', 'fin_setup');
 /**
