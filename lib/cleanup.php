@@ -117,6 +117,16 @@ add_action("publish_post", "fin_create_sitemap");
 add_action("publish_page", "fin_create_sitemap");
 
 /**
+ * Remove silly inline style
+ *
+ */
+function fin_remove_recent_comments_style() {
+	global $wp_widget_factory;
+	remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
+}
+add_action( 'widgets_init', 'fin_remove_recent_comments_style' );
+
+/**
  * Fix Canonical Links
  *
  */
@@ -263,10 +273,30 @@ add_filter('login_headertitle', 'fin_change_login_title');
  *
  */
 function fin_edit_post_link($output) {
- $output = str_replace('class="post-edit-link"', 'class="post-edit-link button secondary small"', $output);
+ $output = str_replace('class="post-edit-link"', 'class="post-edit-link btn btn-mini btn-info"', $output);
  return $output;
 }
 add_filter('edit_post_link', 'fin_edit_post_link');
+
+/**
+ * change the default edit_comment_link() 
+ *
+ */
+function fin_edit_comment_link($output) {
+$output = str_replace('class="comment-edit-link"', 'class="comment-edit-link btn btn-mini btn-info"', $output);
+ return $output;
+}
+add_filter('edit_comment_link', 'fin_edit_comment_link');
+
+/**
+ * change the default comment_reply_link() 
+ *
+ */
+function fin_comment_reply_link($output) {
+$output = str_replace("class='comment-reply-link'", "class='comment-reply-link btn btn-mini btn-primary btn-block'", $output);
+ return $output;
+}
+add_filter('comment_reply_link', 'fin_comment_reply_link');
 
 /**
  * Add classes to pagination links

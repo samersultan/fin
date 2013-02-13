@@ -1,4 +1,4 @@
-<article <?php post_class('single span12'); ?>>
+<article <?php post_class('span12 single'); ?>>
 	<h3 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Bookmark for <?php the_title_attribute(); ?>" class="bookmark"><?php the_title(); ?></a></h3>
 	<?php //Thumbnail
 	if(has_post_thumbnail($post->ID)) { ?>

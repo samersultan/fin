@@ -25,4 +25,4 @@ if($tags_list){ ?>
 	<span class="meta_tags btn-group"><span class="btn btn-small btn-info disabled"><i class="icon-tags"></i></span><?php echo $tags_list; ?></span>
 <?php }
 // Edit
-edit_post_link('<i class="icon-pencil"></i> edit', '<span class="meta_edit btn-group">', '</span>'); ?>
+edit_post_link('<i class="icon-pencil"></i> edit'); ?>

@@ -163,11 +163,6 @@ body {
 	}
 	.meta_edit { 
 		visibility: hidden;
-		a {
-			.btn;
-			.btn-small;
-			.btn-info;
-		}
 	}
 	&:hover {
 		.meta_edit {
@@ -317,34 +312,40 @@ li.comment {
 	clear: both;
 	.avatar {
 		.img-thumbnail;
+		.img-circle;
 	}
 	.comment-author {
+		margin-top: 1em;
 		cite {
+			font-size: 1.5em;
+			font-weight: bold;
 			a {}
 		}
 		time a {}
 	}
 	section.media-body {
 		min-height: 64px + 10px;
+		.alert {
+			margin-bottom: 0;
+		}
 	}
 	footer {
 		time {  }
 	}
 	a.comment-edit-link, a.comment-reply-link {
-		.btn;
-		.btn-mini;
-		.btn-block;
 		.transition(opacity .25s linear);
 		.opacity(0);
 	}
 	a.comment-reply-link {
-		.btn-primary;
 		margin: 4px auto;
+	}
+	a.comment-edit-link {
+		float: right;
 	}
 }
 // Show Reply/Edit Options on hover
-li.comment:hover > .media-object {
-	&> a.comment-edit-link, &>a.comment-reply-link {
+li.comment:hover {
+	&> .media-object > a.comment-reply-link, &> section.media-body > a.comment-edit-link {
 		.opacity(100);
 	}
 }

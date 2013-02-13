@@ -13,5 +13,5 @@
 	<div class="entry-content row">
 		<?php the_content(); ?>
 	</div>
-	<?php edit_post_link('<i class="icon-pencil"></i>edit', '<span class="meta_edit btn-group">', '</span>'); ?>
+	<?php edit_post_link('<i class="icon-pencil"></i> edit'); ?>
 </article>
