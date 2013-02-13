@@ -1,7 +1,7 @@
 <div class="row">
 	<?php // Reply Form
 	if (comments_open()) { ?>
-		<div class="span12">
+		<div class="span6">
 			<?php comment_form(); ?>
 		</div>
 	<?php }
@@ -22,7 +22,7 @@
 	    <h5><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h5>
 	
 	    <ol class="commentlist media-list">
-	      <?php wp_list_comments(array('callback' => 'fin_comment', 'style' => 'ol')); ?>
+	      <?php wp_list_comments(array('walker' => new Fin_Walker_Comment)); ?>
 	    </ol>
 	
 	    <?php /* Pagination */

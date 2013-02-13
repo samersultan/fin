@@ -13,8 +13,9 @@ require_once locate_template('/lib/options.php');    // Additional Theme Options
 require_once locate_template('/lib/sidebar.php');    // Create Sidebars
 require_once locate_template('/lib/post-types.php'); // Custom Post Types
 require_once locate_template('/lib/nav.php');        // Custom Nav Menus
-require_once locate_template('/lib/shortcodes.php'); // Custom Shortcodes
+require_once locate_template('/lib/comments.php');   // Custom Comment Structure
 require_once locate_template('/lib/scripts.php');    // Enqueue All Scripts
+require_once locate_template('/lib/shortcodes.php'); // Custom Shortcodes
 
 /**
  * Load Admin Scripts
