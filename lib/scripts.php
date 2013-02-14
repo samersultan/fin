@@ -23,8 +23,16 @@ function fin_scripts() {
 		  wp_enqueue_style('fin_child', get_stylesheet_uri(), false, null);
 		}
 		
+		// jQuery is loaded using the same method from HTML5 Boilerplate:
+		// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
+		// It's kept in the header instead of footer to avoid conflicts with plugins.
+		if (!is_admin()) {
+			wp_deregister_script('jquery');
+			wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, null, false);
+		}
+		
 		// load master js
-		wp_register_script('fin_js', get_template_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), null, false);
+		wp_register_script('fin_js', get_template_directory_uri() . '/assets/js/app.min.js', array( 'jquery' ), null, true);
 		wp_enqueue_script('fin_js');
 		
 		// load wordpress comment reply if threaded comments are enabled
@@ -33,12 +41,34 @@ function fin_scripts() {
 		}
 		
 		// regsiter carousel script
-		wp_register_script('fin_carousel', get_template_directory_uri() . '/assets/js/carousel.js', null, true);
+		wp_register_script('fin_carousel', get_template_directory_uri() . '/assets/js/carousel.js', array( 'jquery' ), null, true);
 	}
 }
 add_action('wp_enqueue_scripts','fin_scripts', 100);
 add_action('admin_enqueue_scripts', 'fin_scripts', 100);
 add_action('login_enqueue_scripts','fin_scripts', 10);
+
+/**
+ * jquery fallback
+ * http://wordpress.stackexchange.com/a/12450
+ */
+function fin_jquery_local_fallback($src, $handle) {
+	static $add_jquery_fallback = false;
+	
+	if ($add_jquery_fallback) {
+		echo '<script>window.jQuery || document.write(\'<script src="' . get_template_directory_uri() . '/assets/js/jquery-1.9.1.min.js"><\/script>\')</script>' . "\n";
+		$add_jquery_fallback = false;
+	}
+
+	if ($handle === 'jquery') {
+		$add_jquery_fallback = true;
+	}
+	return $src;
+}
+
+if (!is_admin()) {
+	add_filter('script_loader_src', 'fin_jquery_local_fallback', 10, 2);
+}
 
 /**
  * Add Google Analytics to footer
