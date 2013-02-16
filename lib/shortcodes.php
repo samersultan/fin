@@ -34,91 +34,114 @@ remove_shortcode('gallery', 'gallery_shortcode');
 function shortcode_gallery($attr) {
 	$post = get_post();
 	
-	  static $instance = 0;
-	  $instance++;
-	
-	  if (!empty($attr['ids'])) {
-	    if (empty($attr['orderby'])) {
-	      $attr['orderby'] = 'post__in';
-	    }
-	    $attr['include'] = $attr['ids'];
-	  }
-	
-	  $output = apply_filters('post_gallery', '', $attr);
-	
-	  if ($output != '') {
-	    return $output;
-	  }
-	
-	  if (isset($attr['orderby'])) {
-	    $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
-	    if (!$attr['orderby']) {
-	      unset($attr['orderby']);
-	    }
-	  }
-	
-	  extract(shortcode_atts(array(
-	    'order'      => 'ASC',
-	    'orderby'    => 'menu_order ID',
-	    'id'         => $post->ID,
-	    'itemtag'    => '',
-	    'icontag'    => '',
-	    'captiontag' => '',
-	    'columns'    => 3,
-	    'size'       => 'thumbnail',
-	    'include'    => '',
-	    'exclude'    => ''
-	  ), $attr));
-	
-	  $id = intval($id);
-	
-	  if ($order === 'RAND') {
-	    $orderby = 'none';
-	  }
-	
-	  if (!empty($include)) {
-	    $_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-	
-	    $attachments = array();
-	    foreach ($_attachments as $key => $val) {
-	      $attachments[$val->ID] = $_attachments[$key];
-	    }
-	  } elseif (!empty($exclude)) {
-	    $attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-	  } else {
-	    $attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
-	  }
-	
-	  if (empty($attachments)) {
-	    return '';
-	  }
-	
-	  if (is_feed()) {
-	    $output = "\n";
-	    foreach ($attachments as $att_id => $attachment) {
-	      $output .= wp_get_attachment_link($att_id, $size, true) . "\n";
-	    }
-	    return $output;
-	  }
-	
-	  $output = '<ul class="thumbnails gallery">';
-	
-	  $i = 0;
-	  foreach ($attachments as $id => $attachment) {
-	    $link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-	
-	    $output .= '<li>' . $link;
-	    if (trim($attachment->post_excerpt)) {
-	      $output .= '<div class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</div>';
-	    }
-	    $output .= '</li>';
-	  }
-	
-	  $output .= '</ul>';
-	
-	  return $output;
+	static $instance = 0;
+	$instance++;
+
+	if (!empty($attr['ids'])) {
+		if (empty($attr['orderby'])) {
+			$attr['orderby'] = 'post__in';
+		}
+		$attr['include'] = $attr['ids'];
+	}
+
+	$output = apply_filters('post_gallery', '', $attr);
+
+	if ($output != '') {
+		return $output;
+	}
+
+	if (isset($attr['orderby'])) {
+		$attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
+		if (!$attr['orderby']) {
+			unset($attr['orderby']);
+		}
+	}
+
+	extract(shortcode_atts(array(
+		'order'      => 'ASC',
+		'orderby'    => 'menu_order ID',
+		'id'         => $post->ID,
+		'itemtag'    => '',
+		'icontag'    => '',
+		'captiontag' => '',
+		'columns'    => 3,
+		'size'       => 'thumbnail',
+		'include'    => '',
+		'exclude'    => ''
+	), $attr));
+
+	$id = intval($id);
+
+	if ($order === 'RAND') {
+		$orderby = 'none';
+	}
+
+	if (!empty($include)) {
+		$_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+
+		$attachments = array();
+		foreach ($_attachments as $key => $val) {
+			$attachments[$val->ID] = $_attachments[$key];
+		}
+	} elseif (!empty($exclude)) {
+		$attachments = get_children(array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	} else {
+		$attachments = get_children(array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+	}
+
+	if (empty($attachments)) {
+		return '';
+	}
+
+	if (is_feed()) {
+		$output = "\n";
+		foreach ($attachments as $att_id => $attachment) {
+			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+		}
+		return $output;
+	}
+
+	$output = '<ul class="thumbnails gallery">';
+
+	$i = 0;
+	foreach ($attachments as $id => $attachment) {
+		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
+
+		$output .= '<li>' . $link;
+		if (trim($attachment->post_excerpt)) {
+			$output .= '<div class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</div>';
+		}
+		$output .= '</li>';
+	}
+
+	$output .= '</ul>';
+
+	return $output;
 }
 add_shortcode('gallery', 'shortcode_gallery');
+
+/**
+ * [email] shortcode
+ * 
+ * Encodes and creates an email link
+ *
+ * Example:
+ * [email]you@url.com[/email]
+ *
+ * [email address="you@url.com]
+ */
+function shortcode_email( $atts, $content, $adress ) {
+	extract( shortcode_atts( array(
+	'address' => '', 
+	), $atts ) );
+	
+	if($address == ''){
+		$address = do_shortcode($content);
+	}
+	 
+	return '<a href="mailto:'.antispambot($content).'">'.antispambot($content).'</a>';
+}
+add_shortcode('email', 'shortcode_email');
 
 /**
  * [child-pages] [sibling-pages] [list-pages] shortcodes
@@ -241,25 +264,25 @@ add_shortcode( 'column', 'shortcode_column' );
   * or
   * [button text="This is a button." url="http://#"]
   */
- function shortcode_button( $atts, $content = null ) {
-     extract( shortcode_atts( array(
-     'type' => 'radius', /* radius, round */
-     'size' => 'medium', /* small, medium, large */
-     'type' => 'secondary', /* primary, secondary, warning, success, error */
-     'url'  => '',
-     'text' => '', 
-     ), $atts ) );
-      
-     if($text == ''){
-         $text = do_shortcode($content);
-     }
-      
-     $output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size;
-     $output .= '">';
-     $output .= $text;
-     $output .= '</a>';
-      
-     return $output;
+function shortcode_button( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+	'type' => 'radius', /* radius, round */
+	'size' => 'medium', /* small, medium, large */
+	'type' => 'secondary', /* primary, secondary, warning, success, error */
+	'url'  => '',
+	'text' => '', 
+	), $atts ) );
+	
+	if($text == ''){
+		$text = do_shortcode($content);
+	}
+	
+	$output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size;
+	$output .= '">';
+	$output .= $text;
+	$output .= '</a>';
+	
+	return $output;
  }
  add_shortcode('button', 'shortcode_button'); 
   
@@ -274,27 +297,27 @@ add_shortcode( 'column', 'shortcode_column' );
   * [alert text="This is an alert."]
   */
 function shortcode_alert( $atts, $content = null ) {
-		extract( shortcode_atts( array(
-			'type' => '  ', /* warning, success, error */
-			'close' => 'true', /* display close link */
-			'text' => '', 
-		), $atts ) );
-		
-		if($text == '') {
-			$text = do_shortcode($content);
-		}
-		if($type != '') {
-			$type = ' alert-' . $type;
-		}
-		
-		$output = '<div class="alert fade in'. $type . '">';
-		$output .= $text;
-		if($close == 'true') {
-			$output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
-		}
-		$output .= '</div>';
-		
-		return $output;
+	extract( shortcode_atts( array(
+		'type' => '  ', /* warning, success, error */
+		'close' => 'true', /* display close link */
+		'text' => '', 
+	), $atts ) );
+	
+	if($text == '') {
+		$text = do_shortcode($content);
+	}
+	if($type != '') {
+		$type = ' alert-' . $type;
+	}
+	
+	$output = '<div class="alert fade in'. $type . '">';
+	$output .= $text;
+	if($close == 'true') {
+		$output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+	}
+	$output .= '</div>';
+	
+	return $output;
  }
  add_shortcode('alert', 'shortcode_alert');
   
@@ -308,24 +331,24 @@ function shortcode_alert( $atts, $content = null ) {
   * or
   * [well text="This is a well."]
   */
- function shortcode_well( $atts, $content = null ) {
-     extract( shortcode_atts( array(
-     'size' => '', /* small large */
-     'text' => '', 
-     ), $atts ) );
-      
-     if($size != '') {
-     	$size = ' well-'. $size;
-     }
-     if($text == '') {
-         $text = do_shortcode($content);
-     }
-      
-     $output = '<div class="well' . $size . '">';
-     $output .= $text;
-     $output .= '</div>';
-      
-     return $output;
+function shortcode_well( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+		'size' => '', /* small large */
+		'text' => '', 
+	), $atts ) );
+	
+	if($size != '') {
+		$size = ' well-'. $size;
+	}
+	if($text == '') {
+		$text = do_shortcode($content);
+	}
+	
+	$output = '<div class="well' . $size . '">';
+	$output .= $text;
+	$output .= '</div>';
+	
+	return $output;
  }
  add_shortcode('well', 'shortcode_well');
  
