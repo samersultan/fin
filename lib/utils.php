@@ -9,8 +9,11 @@ function fin_template_path() {
   return Fin_Wrapping::$main_template;
 }
 
-class Fin_Wrapping {
+function fin_sidebar_path() {
+  return Fin_Wrapping::sidebar();
+}
 
+class Fin_Wrapping {
   // Stores the full path to the main template file
   static $main_template;
 
@@ -29,7 +32,17 @@ class Fin_Wrapping {
     $templates = array('base.php');
 
     if (self::$base) {
-      array_unshift($templates, sprintf('base-%s.php', self::$base ));
+      array_unshift($templates, sprintf('base-%s.php', self::$base));
+    }
+
+    return locate_template($templates);
+  }
+
+  static function sidebar() {
+    $templates = array('templates/sidebar.php');
+
+    if (self::$base) {
+      array_unshift($templates, sprintf('templates/sidebar-%s.php', self::$base));
     }
 
     return locate_template($templates);
