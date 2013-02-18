@@ -1,3 +1,4 @@
+<?php do_action('get_header'); ?>
 <header role="banner">
 	<hgroup>
 		<h1 class="brand"><a href="<?php echo home_url(); ?>/"><?php bloginfo('name'); ?></a></h1>
