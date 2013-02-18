@@ -11,3 +11,6 @@
 9. Add Logos/links back into admin bar
 10. Add in post-format and page templates
 11. Add a sitemap wordpress page
+12. Add tweet# and facebook like shortcodes
+13. Consider adding contact shortcode back in
+14. Consider adding Twitter widget
