@@ -92,8 +92,8 @@ add_filter('the_content','fin_change_password_text');
 if (!isset($content_width)) { $content_width = 1000; }
 function fin_media_size() {
 	$lineHeight = 20;
-	$columnWidth = 83;
-	$gutterWidth = 30;
+	$columnWidth = 60;
+	$gutterWidth = 20;
 	
 	$thumb_w = ($columnWidth * 2) + ($gutterWidth * (2 - 1));
 	$medium_w = ($columnWidth * 4) + ($gutterWidth * (4 - 1));
