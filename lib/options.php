@@ -349,7 +349,7 @@ function fin_add_custom_styles() {
 	
 	$nav_background = $options['nav_background'];
 	if($nav_background) {
-		$output .= "#header { background:url(" . $nav_background . "); }";
+		$output .= "#header, .navbar { background:url(" . $nav_background . ") !important; }";
 	}
 	
 	$content_background = $options['content_background'];
@@ -376,9 +376,9 @@ function fin_add_custom_styles() {
 	
 	$nav_link_color = $options['nav_link_color'];
 	if($nav_link_color) {
-		$output .= "#nav-main a, #nav-main a:visited { color: $nav_link_color; }
-		#nav-main a:hover { color: " . brightness($link_color, .85) . "; }
-		#header h1 a, #header h2 a { color: $nav_link_color; }";
+		$output .= ".navbar a, .navbar a:visited { color: $nav_link_color !important; }
+		.navbar a:hover { color: " . brightness($link_color, .85) . " !important; }
+		#header h1 a, #header h2 a { color: $nav_link_color; !important}";
 	}
 	
 	$heading_font = $options['heading_font'];
