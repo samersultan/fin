@@ -1,11 +1,37 @@
 <?php 
 /** Customize Front End **/
 function fin_customize_register($wp_customize) {
+	/**** Navigation ****/
+	// Include Search in Nav
+	$wp_customize->add_setting( 'fin_theme_options[include_search]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'include_search', array(
+		'settings' => 'fin_theme_options[include_search]',
+		'label'    => __( 'Include Searchbar in Nav' ),
+		'section'  => 'nav',
+		'type'     => 'checkbox',
+		'priority' => 1,
+	) );
+	
 	/**** Backgrounds ****/
 	$wp_customize->add_section('fin_backgrounds', array(
 		'title'          => __( 'Backgrounds', 'fin' ),
 		'priority'       => 100,
 	) );
+	
+	// Logo
+	$wp_customize->add_setting( 'fin_theme_options[logo]', array(
+	  'default'        => '',
+	  'type'           => 'option',
+	  'capability'     => 'edit_theme_options',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'logo', array(
+		'label' => 'Custom Logo',
+		'section' => 'fin_backgrounds',
+		'settings' => 'fin_theme_options[logo]'
+	) ) );
 	
 	// Main Background
 	$wp_customize->add_setting( 'fin_theme_options[main_background]', array(
@@ -198,18 +224,6 @@ function fin_customize_register($wp_customize) {
 		'type'    => 'text',
 	) );
 	
-	// Include Search in Nav
-	$wp_customize->add_setting( 'fin_theme_options[include_search]', array(
-		'default'       => '',
-		'type'					=> 'option'
-	) );
-	$wp_customize->add_control( 'include_search', array(
-		'settings' => 'fin_theme_options[include_search]',
-		'label'    => __( 'Include Searchbar in Nav' ),
-		'section'  => 'fin_settings',
-		'type'     => 'checkbox'
-	) );
-	
 	// Suppress Comments Closed Warning
 	$wp_customize->add_setting( 'fin_theme_options[comments_warning]', array(
 		'default'       => '',
@@ -342,6 +356,7 @@ add_action('init', 'fin_reset_options');
 function fin_add_custom_styles() {
 	$options = get_option('fin_theme_options');
 	$output = '';
+	
 	$main_background = $options['main_background'];
 	if($main_background) {
 		$output .= "html, body { background:url(" . $main_background . "); }";
@@ -349,7 +364,9 @@ function fin_add_custom_styles() {
 	
 	$nav_background = $options['nav_background'];
 	if($nav_background) {
-		$output .= "#header, .navbar { background:url(" . $nav_background . ") !important; }";
+		$output .= "#header, .sticky.navbar { background:url(" . $nav_background . ") !important; }";
+	}elseif($main_background) {
+		$output .= ".sticky.navbar { background:url(" . $main_background . ") !important; }";
 	}
 	
 	$content_background = $options['content_background'];

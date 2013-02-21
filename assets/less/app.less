@@ -29,6 +29,9 @@ hr {
 }
 
 // ROTATOR //
+.carousel {
+	margin-bottom: @line-height-base;
+}
 .carousel .item {
 	.transition(opacity 1s ease);
 }
@@ -125,11 +128,27 @@ body {
 	width: 100%;
 	a, a:visited, a:hover { }
 	figure {
-		img {}
+		margin: 0 auto;
+		max-width: 100%;
+		height: auto;
+		padding: 0 10px;
+		text-align: center;
+		a {
+			border: 0;
+			outline: 0;
+			text-decoration: none;
+		}
+		img {
+			
+		}
 	}
+	hgroup { }
 	h1 { }
 	h2 { }
-	figure.logo + h1, figure.logo ~ h2 {}
+	figure.logo + h1, figure.logo ~ h2 {
+		.hide;
+		text-indent: -99999px;
+	}
 }
 
 // Main
@@ -282,9 +301,10 @@ body {
 ////////
 .hentry.page { }
 
-// Navigation
+// Pagination
 /////////////
-.nav-page, .nav-single {
+#pagination {
+	margin-bottom: @line-height-base;
 	.previous a, .next a { }
 	.previous { }
 	.next { }
@@ -292,17 +312,24 @@ body {
 // Respond
 //////////
 #respond {
-	.logged-in { }
+	h3#reply-title {
+		.alert;
+		.alert-info;
+		font-size: @font-size-base;
+		font-family: @font-family-base;
+		margin: 0;
+		text-align: left;
+	}
+	.logged-in-as {
+		display: block;
+		margin: 0;
+	}
 	a.logout {}	
 }
 
 // Reply Form
 ol #respond { }
-a#cancel-comment-reply-link {
-	.btn;
-	.btn-danger;
-	.btn-small;
-}
+a#cancel-comment-reply-link { }
 ol.children #respond { }
 
 // Comments
