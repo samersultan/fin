@@ -110,7 +110,7 @@ function fin_change_comment_form($arg) {
 	                
 	    'must_log_in' => sprintf( __( 'You must be <a class="btn btn-primary" href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
 		
-		'logged_in_as' => sprintf( __( '<p>Logged in as: <div class="btn-group"><a class="btn btn-small" href="%s"><i class="icon-user"></i> %s</a><a href="%s" title="Log out of this account" class="btn btn-warning btn-small">Log out?</a></div></p>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
+		'logged_in_as' => sprintf( __( '<span class="alert alert-success logged-in-as">Logged in as: <div class="btn-group alignright"><a class="btn btn-small" href="%s"><i class="icon-user"></i> %s</a><a href="%s" title="Log out of this account" class="btn btn-warning btn-small">Log out?</a></div></span>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
 		
 		'comment_notes_before' => '',
 		
@@ -122,7 +122,7 @@ function fin_change_comment_form($arg) {
 	
 	    'title_reply' => __( 'Leave a comment' ),
 	    
-	    'title_reply_to' => __( 'Leave a reply to %s' ),
+	    'title_reply_to' => __( 'Replying to %s' ),
 	    
 	    'cancel_reply_link' => __( 'Cancel reply' ),
 	    

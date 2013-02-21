@@ -243,7 +243,7 @@ add_filter('post_thumbnail_html', 'fin_remove_self_closing_tags'); // <img />
  *
  */
 function fin_protected_title_format($title) {
-       return '%s';
+	return '%s';
 }
 add_filter('protected_title_format', 'fin_protected_title_format');
 
@@ -258,14 +258,18 @@ add_filter('login_errors',create_function('$a', 'return null;'));
  * change the logo link from wordpress.org to your site
  *
  */
-function fin_change_login_url() { return get_bloginfo('url'); }
+function fin_change_login_url() {
+	return get_bloginfo('url');
+}
 add_filter('login_headerurl', 'fin_change_login_url');
 
 /**
  * change the alt text on the logo to show your site name 
  *
  */
-function fin_change_login_title() { return get_option('blogname'); }
+function fin_change_login_title() {
+	return get_option('blogname');
+}
 add_filter('login_headertitle', 'fin_change_login_title');
 
 /**
@@ -273,8 +277,8 @@ add_filter('login_headertitle', 'fin_change_login_title');
  *
  */
 function fin_edit_post_link($output) {
- $output = str_replace('class="post-edit-link"', 'class="post-edit-link btn btn-mini btn-info"', $output);
- return $output;
+	$output = str_replace('class="post-edit-link"', 'class="post-edit-link btn btn-small btn-info"', $output);
+	return $output;
 }
 add_filter('edit_post_link', 'fin_edit_post_link');
 
@@ -283,8 +287,8 @@ add_filter('edit_post_link', 'fin_edit_post_link');
  *
  */
 function fin_edit_comment_link($output) {
-$output = str_replace('class="comment-edit-link"', 'class="comment-edit-link btn btn-mini btn-info"', $output);
- return $output;
+	$output = str_replace('class="comment-edit-link"', 'class="comment-edit-link btn btn-mini btn-info"', $output);
+	return $output;
 }
 add_filter('edit_comment_link', 'fin_edit_comment_link');
 
@@ -293,10 +297,20 @@ add_filter('edit_comment_link', 'fin_edit_comment_link');
  *
  */
 function fin_comment_reply_link($output) {
-$output = str_replace("class='comment-reply-link'", "class='comment-reply-link btn btn-mini btn-primary btn-block'", $output);
- return $output;
+	$output = str_replace("class='comment-reply-link'", "class='comment-reply-link btn btn-mini btn-primary btn-block'", $output);
+	return $output;
 }
 add_filter('comment_reply_link', 'fin_comment_reply_link');
+
+/**
+ * change cancel_comment_reply_link()
+ *
+ */
+function fin_cancel_comment_reply_link($reply_link) {
+	$output = str_replace('id="cancel-comment-reply-link"', 'id="cancel-comment-reply-link" class="btn btn-danger btn-small alignright"', $reply_link);
+	return $output;
+}
+add_filter('cancel_comment_reply_link','fin_cancel_comment_reply_link');
 
 /**
  * Add classes to pagination links

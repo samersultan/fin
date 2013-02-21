@@ -8,7 +8,7 @@ if($options['construction'] && !is_admin() && !is_admin_bar_showing()) {
 		<section id="wrap" role="document">
 			<?php get_template_part('templates/header'); ?>
 			<main id="main" class="container" role="main">
-				<div id="content" class="row-fluid">
+				<div id="content" class="row">
 					<?php if(!have_posts()) {
 						get_template_part('templates/error','index');
 					}else {
