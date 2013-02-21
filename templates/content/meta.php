@@ -1,4 +1,4 @@
-<span class="meta_time btn btn-small btn-info disabled"><i class="icon-time"></i> <time class="published" datetime="<?php the_time('c'); ?>"><span class="month"><?php the_time('F'); ?></span> <span class="day"><?php the_time('j'); ?></span><sup class="suffix"><?php the_time('S'); ?></sup>, <span class="year"><?php the_time('Y'); ?></span></time></span>
+<span class="meta_time btn btn-small btn-info disabled"><i class="icon-time"></i> <time class="published" datetime="<?php the_time('c'); ?>"><?php echo get_time_ago(get_post_time('U')); ?></time></span>
 <?php 
 // Comments
 $comment_count = get_comment_count($post->ID);
