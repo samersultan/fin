@@ -15,7 +15,11 @@ function shortcode_rotator($atts) {
   ), $atts));
   global $rotator_loc;
   $rotator_loc = $location;
-  return get_template_part('templates/rotator', $location);
+  ob_start();
+  get_template_part('templates/rotator', $location);
+  $rotator = ob_get_contents();
+  ob_end_clean();
+  return $rotator;
 }
 add_shortcode('rotator', 'shortcode_rotator');
 
