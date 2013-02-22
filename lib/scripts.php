@@ -93,7 +93,7 @@ function fin_analytics() {
 		if($analyticsNumber != '' && $analyticsNumber != 'UA-#######-#') {
 			echo "<script type='text/javascript'>
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '$analyticsNumber;']);
+  _gaq.push(['_setAccount', '$analyticsNumber']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -106,4 +106,4 @@ function fin_analytics() {
 		}
 	}
 }
-add_action('wp_footer', 'fin_analytics');
+add_action('wp_head', 'fin_analytics');
