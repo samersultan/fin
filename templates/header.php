@@ -17,10 +17,10 @@
 	  <div class="navbar-inner">
 	    <div class="container">
 	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	        <b class="caret"></b>
+	        <i class="icon-caret-down icon-2x"></i>
 	      </a>
 	      <a class="brand visible-phone" href="<?php echo home_url(); ?>/">
-	        <?php bloginfo('name'); ?>
+	        <h4><?php bloginfo('name'); ?></h4>
 	      </a>
 	      <nav class="nav-main nav-collapse collapse">
 	        <?php wp_nav_menu(array('theme_location' => 'primary_menu', 'menu_class' => 'nav')); ?>
