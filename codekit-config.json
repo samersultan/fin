@@ -126,7 +126,7 @@
     },
     "\/assets\/js\/bootstrap\/bootstrap-scrollspy.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-scrollspy.js",
@@ -219,7 +219,7 @@
     },
     "\/assets\/js\/bootstrap\/bootstrap-typeahead.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-typeahead.js",
@@ -591,7 +591,7 @@
     },
     "\/assets\/js\/bootstrap\/bootstrap-tab.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-tab.js",
@@ -1178,7 +1178,7 @@
     },
     "\/assets\/js\/bootstrap\/bootstrap-button.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-button.js",
@@ -1257,7 +1257,7 @@
     },
     "\/assets\/less\/bootstrap\/counters.less" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/less\/bootstrap\/counters.less",
@@ -1283,7 +1283,7 @@
     },
     "\/assets\/js\/bootstrap\/bootstrap-popover.js" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-popover.js",

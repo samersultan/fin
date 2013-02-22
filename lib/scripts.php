@@ -83,7 +83,7 @@ if (!is_admin()) {
 }
 
 /**
- * Add Google Analytics to footer
+ * Add Google Analytics to head
  *
  */
 function fin_analytics() {

@@ -14,3 +14,13 @@
 12. Add tweet# and facebook like shortcodes
 13. Consider adding contact shortcode back in
 14. Consider adding Twitter widget
+15. Remove unnecessary WP_Widget queries
+
+
+// Minor TODOs
+// AKA, the easy list
+add icons to pagination and style better
+style meta junk
+Clean up comment form reply-title.
+Style dropdown menus
+Fix color scheme to be primary set - Content & secondary set - Header & Nav & tertiary set - Sidebar + Footer
