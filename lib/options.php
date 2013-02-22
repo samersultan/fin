@@ -364,9 +364,9 @@ function fin_add_custom_styles() {
 	
 	$nav_background = $options['nav_background'];
 	if($nav_background) {
-		$output .= "#header, .sticky.navbar { background:url(" . $nav_background . ") !important; }";
+		$output .= "#header, .navbar-fixed-top { background:url(" . $nav_background . ") !important; }";
 	}elseif($main_background) {
-		$output .= ".sticky.navbar { background:url(" . $main_background . ") !important; }";
+		$output .= ".navbar-fixed-top { background:url(" . $main_background . ") !important; }";
 	}
 	
 	$content_background = $options['content_background'];
