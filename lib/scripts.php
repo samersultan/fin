@@ -6,8 +6,20 @@
 function fin_scripts() {
 	// Load Google Fonts
 	$options = get_option('fin_theme_options');
-	if($options['text_font'] != '' || $options['heading_font'] != '') {
-		wp_enqueue_style( 'fin_fonts', 'http://fonts.googleapis.com/css?family=' . str_replace(" ", "+", $options['heading_font'] ) . '|' . str_replace(" ", "+", $options['text_font'] ) , false, null);
+	$headingFont = str_replace(' ', '+', $options['heading_font'] );
+	$textFont = str_replace(' ', '+', $options['text_font'] );
+	if($headingFont != '' || $textFont != '') {
+		$fontCSS = 'http://fonts.googleapis.com/css?family=';
+		if($headingFont != '') {
+			$fontCSS .= $headingFont;
+		}
+		if($headingFont != '' && $textFont != '') {
+			$fontCSS .= '|';
+		}
+		if($textFont != '') {
+			$fontCSS .= $textFont;
+		}
+		wp_enqueue_style( 'fin_fonts', $fontCSS , false, null);
 	}
 	
 	// Custom Admin and Login CSS
