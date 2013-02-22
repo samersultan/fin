@@ -32,7 +32,7 @@
  RewriteEngine On
  RewriteBase /
  RewriteCond %{QUERY_STRING} (environ|mosconfig|scanner) [NC,OR]
- RewriteCond %{QUERY_STRING} (menu|mod|path|tag)\=\.?/? [NC,OR]
+ RewriteCond %{QUERY_STRING} (mod|path|tag)\=\.?/? [NC,OR]
  RewriteCond %{QUERY_STRING} boot\.ini  [NC,OR]
  RewriteCond %{QUERY_STRING} echo.*kae  [NC,OR]
  RewriteCond %{QUERY_STRING} etc/passwd [NC,OR]
