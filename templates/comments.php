@@ -1,26 +1,23 @@
-<div class="row">
+<aside class="row">
 	<?php // Reply Form
 	if (comments_open()) { ?>
-		<div class="span6">
+		<section class="span6">
 			<?php comment_form(); ?>
-		</div>
+		</section>
 	<?php }
 	// Comments
 	$options = get_option('fin_theme_options');
 	$comments_warning = $options['comments_warning'];
 	if(post_password_required() && $comments_warning) { ?>
-	  <section id="comments span12">
-		    <div class="alert alert-info">
-		      <button type="button" class="close" data-dismiss="alert">&times;</button>
-		      <p><?php _e('This area is password protected. Enter the password to view comments.', 'fin'); ?></p>
-	    	</div>
-	  </section>
+    <div class="alert alert-info">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <p><?php _e('This area is password protected. Enter the password to view comments.', 'fin'); ?></p>
+  	</div>
 	<?php } ?>
 	
 	<?php if(have_comments()) { ?>
 	  <section id="comments" class="span6">
-	    <h5><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h5>
-	
+	    <h3><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h3>
 	    <ol class="commentlist media-list">
 	      <?php wp_list_comments(array('walker' => new Fin_Walker_Comment)); ?>
 	    </ol>
@@ -48,16 +45,14 @@
 	        <button type="button" class="close" data-dismiss="alert">&times;</button>
 	        <p><?php _e('Comments are closed.', 'fin'); ?></p>
 	      </div>
-	   <?php } ?>
-	  </section>
+			<?php } ?>
+		</section>
 	<?php } ?>
 	
 	<?php if(!have_comments() && !comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
-	  <section id="comments">
-	    <div class="alert alert-info">
-	      <button type="button" class="close" data-dismiss="alert">&times;</button>
-	      <p><?php _e('Comments are closed.', 'fin'); ?></p>
-	    </div>
-	  </section>
+    <div class="alert alert-info">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <p><?php _e('Comments are closed.', 'fin'); ?></p>
+    </div>
 	<?php } ?>
-</div>
+</aside>
