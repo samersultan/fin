@@ -18,7 +18,7 @@ if($options['construction'] && !is_admin() && !is_admin_bar_showing()) {
 					} ?>
 				</div>
 				<?php get_template_part('templates/pagination');
-				if(is_single() && !is_page()) {
+				if(is_single()) {
 					comments_template('/templates/comments.php');
 				}
 				get_template_part('templates/sidebar'); ?>

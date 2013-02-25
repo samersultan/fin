@@ -307,10 +307,13 @@ add_filter('comment_reply_link', 'fin_comment_reply_link');
  *
  */
 function fin_cancel_comment_reply_link($reply_link) {
-	$output = str_replace('id="cancel-comment-reply-link"', 'id="cancel-comment-reply-link" class="btn btn-danger btn-small alignright"', $reply_link);
+	$output = str_replace('<a rel="nofollow" id="cancel-comment-reply-link"', '<a rel="nofollow" id="cancel-comment-reply-link" class="close"', $reply_link);
+	
 	return $output;
 }
 add_filter('cancel_comment_reply_link','fin_cancel_comment_reply_link');
+
+
 
 /**
  * Add classes to pagination links
@@ -337,4 +340,3 @@ function fin_change_next_post_link($link) {
 	return $link;
 }
 add_filter('next_post_link', 'fin_change_next_post_link');
- 

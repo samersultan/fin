@@ -176,7 +176,7 @@ function fin_fix_hashed_comment($commentdata) {
 	}
 	return $commentdata;
 }
-add_filter('pre_comment_on_post', 'fin_fix_hashed_comment');
+add_action('pre_comment_on_post', 'fin_fix_hashed_comment');
 
 function fin_check_spamtrap($comment_id, $approved) {
 	if($approved != 'spam') { // No need to check twice
