@@ -344,6 +344,15 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
+    "\/templates\/content\/single-video.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/templates\/content\/single-video.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/assets\/img\/right-arrow-small.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -1052,6 +1061,15 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/assets\/js\/jquery-1.9.1.min.min.js",
       "fileType" : 64
+    },
+    "\/templates\/content\/single-audio.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/templates\/content\/single-audio.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/assets\/less\/bootstrap\/modals.less" : {
       "ignoreWasSetByUser" : 0,
