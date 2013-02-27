@@ -589,15 +589,6 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
-    "\/templates\/footer.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/templates\/footer.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
     "\/assets\/js\/bootstrap\/bootstrap-tab.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -608,6 +599,15 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/assets\/js\/bootstrap-tab.min.js",
       "fileType" : 64
+    },
+    "\/templates\/footer.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/templates\/footer.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/assets\/js\/bootstrap\/bootstrap-carousel.js" : {
       "ignoreWasSetByUser" : 0,
@@ -696,6 +696,19 @@
       "inputAbbreviatedPath" : "\/page.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
+    },
+    "\/assets\/less\/bootstrap\/labels.less" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/less\/bootstrap\/labels.less",
+      "outputStyle" : 2,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/assets\/css\/labels.css",
+      "strictImports" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
     },
     "\/lib\/config.php" : {
       "ignoreWasSetByUser" : 0,

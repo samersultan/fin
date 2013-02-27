@@ -4,7 +4,8 @@
 
 // Wrapper and base class
 .navbar {
-  padding: 15px;
+  position: relative;
+  padding: 10px 15px;
   background-color: @navbar-bg;
   border-radius: @border-radius-base;
   // Prevent floats from breaking the navbar
@@ -16,7 +17,8 @@
 
 .navbar {
   .nav {
-    margin-top: 15px; // space out from .navbar .brand and .btn-navbar
+    // space out from .navbar .brand and .btn-navbar
+    margin-top: 15px;
   }
   .nav > li > a {
     padding-top: (@navbar-height - @line-height-base) / 2;
@@ -45,11 +47,10 @@
 
 // Static navbar
 .navbar-static-top {
-  position: static;
   border-radius: 0;
 }
 
-// Fixed navbar
+// Fix the top/bottom navbars when screen real estate supports it
 .navbar-fixed-top,
 .navbar-fixed-bottom {
   position: fixed;
@@ -68,14 +69,19 @@
 // --------------------------------------------------
 
 // Brand/project name
-.navbar .brand {
-  display: inline-block;
+.navbar-brand {
+  display: block;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 7px 15px;
   font-size: 18px;
   font-weight: 500;
   line-height: @line-height-base;
   color: @navbar-brand-color;
-  &:hover {
+  text-align: center;
+  &:hover,
+  &:focus {
     color: @navbar-brand-color-hover;
     text-decoration: none;
     background-color: @navbar-brand-bg-hover;
@@ -83,23 +89,30 @@
 }
 
 // Collapsible navbar toggle
-.btn-navbar {
-  float: right;
-  padding: 10px 12px;
-  background-color: #ddd;
-  border: 0;
+.navbar-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  background-color: transparent;
+  border: 1px solid #ddd;
   border-radius: 4px;
+
+  &:hover,
+  &:focus {
+    background-color: #ddd;
+  }
 
   // Bars
   .icon-bar {
     display: block;
-    width: 20px;
+    width: 22px;
     height: 2px;
     background-color: #fff;
     border-radius: 1px;
   }
   .icon-bar + .icon-bar {
-    margin-top: 3px;
+    margin-top: 4px;
   }
 }
 
@@ -130,7 +143,8 @@
 // Dropdown menu items and carets
 .navbar .nav {
   // Caret should match text color on hover
-  li.dropdown > a:hover .caret {
+  li.dropdown > a:hover .caret,
+  li.dropdown > a:focus .caret {
     border-top-color: @navbar-link-color-hover;
     border-bottom-color: @navbar-link-color-hover;
   }
@@ -169,9 +183,10 @@
 .navbar-inverse {
   background-color: @navbar-inverse-bg;
 
-  .brand {
+  .navbar-brand {
     color: @navbar-inverse-brand-color;
-    &:hover {
+    &:hover,
+    &:focus {
       color: @navbar-inverse-brand-color-hover;
       background-color: @navbar-inverse-brand-bg-hover;
     }
@@ -197,8 +212,12 @@
   }
 
   // Darken the responsive nav toggle
-  .btn-navbar {
-    background-color: #444;
+  .navbar-toggle {
+    border-color: #333;
+    &:hover,
+    &:focus {
+      background-color: #333;
+    }
   }
 
   // Darken dividers
@@ -240,7 +259,7 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-  .navbar .brand {
+  .navbar-brand {
     float: left;
     padding-top: (@navbar-height - @line-height-base) / 2;
     padding-bottom: (@navbar-height - @line-height-base) / 2;
@@ -274,7 +293,10 @@
   }
 
   // Required to make the collapsing navbar work on regular desktops
-  .navbar .btn-navbar {
+  .navbar-toggle {
+    position: relative;
+    top: auto;
+    left: auto;
     display: none;
   }
   .nav-collapse.collapse {
