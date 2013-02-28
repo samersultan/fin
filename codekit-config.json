@@ -217,17 +217,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/assets\/js\/bootstrap\/bootstrap-typeahead.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-typeahead.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/assets\/js\/bootstrap-typeahead.min.js",
-      "fileType" : 64
-    },
     "\/assets\/less\/bootstrap\/component-animations.less" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -250,6 +239,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/assets\/js\/bootstrap-dropdown.min.js",
+      "fileType" : 64
+    },
+    "\/assets\/js\/bootstrap\/bootstrap-typeahead.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/assets\/js\/bootstrap\/bootstrap-typeahead.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/assets\/js\/bootstrap-typeahead.min.js",
       "fileType" : 64
     },
     "\/assets\/less\/bootstrap\/media.less" : {
@@ -432,6 +432,15 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
+    "\/index.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/index.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/assets\/img\/right-arrow.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -442,15 +451,6 @@
       "outputAbbreviatedPath" : "\/assets\/img\/right-arrow.png",
       "initialSize" : 3242,
       "fileType" : 8192
-    },
-    "\/index.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/index.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
     },
     "\/lib\/post-types.php" : {
       "ignoreWasSetByUser" : 0,
@@ -589,6 +589,15 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
+    "\/templates\/footer.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/templates\/footer.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/assets\/js\/bootstrap\/bootstrap-tab.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -599,15 +608,6 @@
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/assets\/js\/bootstrap-tab.min.js",
       "fileType" : 64
-    },
-    "\/templates\/footer.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/templates\/footer.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
     },
     "\/assets\/js\/bootstrap\/bootstrap-carousel.js" : {
       "ignoreWasSetByUser" : 0,

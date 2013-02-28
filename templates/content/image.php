@@ -1,4 +1,4 @@
-<article <?php post_class('single'); ?>>
+<article <?php post_class('single container'); ?>>
 	<?php $parent = $post->post_parent; ?>
 	<h3 class="entry-title"><a href="<?php echo get_permalink(); ?>" rel="bookmark" title="Bookmark for <?php echo get_the_title($parent); ?>" class="bookmark"><?php echo get_the_title($parent); ?></a></h3>
 	<figure class="entry-thumbnail">
