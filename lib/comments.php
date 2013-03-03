@@ -15,7 +15,7 @@ function fin_get_avatar($avatar) {
 class Fin_Walker_Comment extends Walker_Comment {
 	function start_lvl(&$output, $depth = 0, $args = array()) {
 		$GLOBALS['comment_depth'] = $depth + 1; ?>
-		<ol <?php comment_class('media unstyled comment-' . get_comment_ID()); ?>>
+		<ol <?php comment_class('unstyled'); ?>>
 	<?php }
 	
 	function end_lvl(&$output, $depth = 0, $args = array()) {
@@ -35,25 +35,25 @@ class Fin_Walker_Comment extends Walker_Comment {
 		
 		extract($args, EXTR_SKIP); ?>
 		
-		<li <?php comment_class('media comment-' . get_comment_ID()); ?>>
-			<div class="media-object pull-left">
-				<?php echo get_avatar($comment, $size = '64');
-				comment_reply_link(array_merge($args, array('reply_text' => '<i class="icon-comments"></i> reply', 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
-			</div>
-			<section class="media-body">
-				<header class="comment-author vcard">
-				  <?php printf(__('<cite class="fn">%s</cite>', 'fin'), get_comment_author_link()); ?>
-				  <time class="alignright" datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php echo get_time_ago(get_comment_time('U')); ?></a></time>
-				</header>
+		<li <?php comment_class('comment-' . get_comment_ID()); ?>>
+			<header class="small-2 columns small-offset-<?php echo ($depth * 2) - 2; ?>">
+				<figure><?php echo get_avatar($comment, $size = '64'); ?></figure>
+				<?php printf(__('<cite class="fn">%s</cite>', 'fin'), get_comment_author_link()); ?>
+			</header>
+			<section class="columns small-<?php echo (12 - $depth * 2); ?>">
 				<?php if ($comment->comment_approved == '0') { ?>
-					<div class="alert alert-info fade in">
-						<a class="close" data-dismiss="alert">&times;</a>
+					<div data-alert class="alert-box secondary">
+						<a href="#" class="close">&times;</a>
 						<i class="icon-magic"></i> <?php _e('Awaiting Moderation.', 'fin'); ?>
 					</div>
 				<?php }
-				echo get_comment_text();
-				edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', ''); ?>
+				echo get_comment_text(); ?>
 			</section>
+			<footer class="columns small-<?php echo (12 - $depth * 2); ?>">
+				<time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php echo get_time_ago(get_comment_time('U')); ?></a></time>
+				<?php edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', '');
+				comment_reply_link(array_merge($args, array('reply_text' => '<i class="icon-comments"></i> reply', 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
+			</footer>
 		<?php //</li> added below
 	}
 		
@@ -84,33 +84,25 @@ function fin_change_comment_form($arg) {
 	$urlLabel = __( 'Website' );
 	
 	$fields = array(
-		'author' => '<label for="author" class="hide">' . $authorLabel . '</label>
-		<div class="span12 input-group">
-			<a href="#author" class="input-group-addon" data-toggle="tooltip" title="' . $authorLabel . '"><i class="icon-user"></i></a>
-			<input id="author" name="author" type="text" value="' .esc_attr( $commenter['comment_author'] ) . '" placeholder="' . $authorLabel . '" tabindex="1"' . ($req ? ' required ':'') . '>
-		</div><br>',
+		'author' => '<label for="author"><i class="icon-user"></i><span class=""> ' . $authorLabel . '</span></label>
+			<input id="author" name="author" type="text" value="' .esc_attr( $commenter['comment_author'] ) . '" placeholder="' . $authorLabel . '" tabindex="1"' . ($req ? ' required ':'') . '>',
 		
-		'email'  => '<label for="email" class="hide">' . $emailLabel . '</label>
-		<div class="span12 input-group">
-			<a href="#email" class="input-group-addon" data-toggle="tooltip" title="' . $emailLabel . '"><i class="icon-envelope"></i></a>
-			<input id="email" name="email" type="email"'.$emailReg.'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . $emailLabel .'" tabindex="2"' . ($req ? ' required ':'') . '>
-		</div><br>',
+		'email'  => '<label for="email"><i class="icon-envelope"></i><span class=""> ' . $emailLabel . '</span></label>
+			<input id="email" name="email" type="email"'.$emailReg.'" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" placeholder="' . $emailLabel .'" tabindex="2"' . ($req ? ' required ':'') . '>',
 		
-		'url'    => '<label for="url" class="hide">' . $urlLabel .'</label>
-		<div class="span12 input-group">
-			<a href="#url" class="input-group-addon" data-toggle="tooltip" title="' . $urlLabel . '"><i class="icon-home"></i></a>
-			<input id="url" name="url" type="url"'.$urlReg.'" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . $urlLabel .'" tabindex="3">
-		</div><br>'
+		'url'    => '<label for="url"><i class="icon-home"></i><span class=""> ' . $urlLabel .'</span></label>
+			<input id="url" name="url" type="url"'.$urlReg.'" value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . $urlLabel .'" tabindex="3">'
 		);
 
 	$arg = array(
 		'fields' => apply_filters('comment_form_default_fields', $fields),
 	
-	    'comment_field' => '<div class="span12 input-group"><label for="comment" class="hide">' . __( 'Comment' ) . '<span class="required"> *</span></label><textarea id="comment" name="comment" cols="120" rows="9" placeholder="' . __( 'Your Comment (required)' ) .'" tabindex="4" required></textarea></div><br>',
+	    'comment_field' => '<label for="comment"><i class="icon-comment-alt"></i><span class=""> ' . __( 'Comment' ) . '</span></label>
+	    <textarea id="comment" name="comment" cols="120" rows="9" placeholder="' . __( 'Your Comment (required)' ) .'" tabindex="4" required></textarea>',
 	                
-	    'must_log_in' => sprintf( __( 'You must be <a class="btn btn-primary" href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
+	    'must_log_in' => sprintf( __( 'You must be <a class="button" href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
 		
-		'logged_in_as' => sprintf( __( '<span class="alert alert-success logged-in-as">Logged in as: <div class="btn-group alignright"><a class="btn btn-small" href="%s"><i class="icon-user"></i> %s</a><a href="%s" title="Log out of this account" class="btn btn-warning btn-small">Log out?</a></div></span>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
+		'logged_in_as' => sprintf( __( '<span class="alert alert-success logged-in-as">Logged in as: <a class="button small" href="%s"><i class="icon-user"></i> %s</a><a href="%s" title="Log out of this account" class="button small alert">Log out?</a></span>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
 		
 		'comment_notes_before' => '',
 		

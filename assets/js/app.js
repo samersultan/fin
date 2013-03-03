@@ -1,45 +1,17 @@
-//@codekit-append "bootstrap/bootstrap-affix"
-//@codekit-append "bootstrap/bootstrap-alert"
-//@codekit-append "bootstrap/bootstrap-carousel"
-//@codekit-append "bootstrap/bootstrap-collapse"
-//@codekit-append "bootstrap/bootstrap-dropdown"
-//@codekit-append "bootstrap/bootstrap-modal"
-//@codekit-append "bootstrap/bootstrap-tooltip"
-//@codekit-append "bootstrap/bootstrap-transition"
-
-// Tooltips
-jQuery(document).ready(function() {
-	jQuery(document).tooltip({
-    selector:'[data-toggle="tooltip"]',
-    placement:'top'
-  });
-  // fixed navbar overlap problem
-  var shiftWindow = function() { 
-  	if (elem.hasClass('navbar-fixed-top')) { // only fix if navbar is fixed
-  		scrollBy(0, -1 * jQuery(".navbar-fixed-top").outerHeight(true)); // scroll to offset navbar height
-  	}
-  };
-  if (location.hash) shiftWindow(); //on load
-  window.addEventListener("hashchange", shiftWindow); //on anchor click
-});
-
-// Sticky Nav
-jQuery(document).scroll(function(){
-	var elem = jQuery('.navbar.sticky');
-	if (!elem.attr('data-top')) {
-		if (elem.hasClass('navbar-fixed-top')) {
-			return;
-		}
-		var offset = elem.offset()
-		elem.attr('data-top', offset.top);
-	}
-	if (elem.attr('data-top') - elem.outerHeight() <= jQuery(this).scrollTop()) {
-		elem.addClass('navbar-fixed-top');
-		// Adjust window for anchor overlap problem
-	}	else {
-		elem.removeClass('navbar-fixed-top');
-	}
-});
+//@codekit-prepend "modernizr.min.js"
+//@codekit-prepend "foundation/foundation.js"
+//@codekit-prepend "foundation/foundation.alerts.js"
+//@codekit-prepend "foundation/foundation.clearing.js"
+//@codekit-prepend "foundation/foundation.cookie.js"
+//@codekit-prepend "foundation/foundation.dropdown.js"
+//@codekit-prepend "foundation/foundation.forms.js"
+//@codekit-prepend "foundation/foundation.joyride.js"
+//@codekit-prepend "foundation/foundation.magellan.js"
+//@codekit-prepend "foundation/foundation.placeholder.js"
+//@codekit-prepend "foundation/foundation.reveal.js"
+//@codekit-prepend "foundation/foundation.section.js"
+//@codekit-prepend "foundation/foundation.tooltips.js"
+//@codekit-prepend "foundation/foundation.topbar.js"
 
 // Disabled Submit
 jQuery(document).ready(function() {
@@ -53,4 +25,31 @@ jQuery(document).ready(function() {
 	});
 });
 
-
+jQuery(document).foundation('reveal',{
+  animation: 'fadeAndPop',
+  animationSpeed: 250,
+  closeOnBackgroundClick: true,
+  dismissModalClass: 'close-reveal-modal',
+  bgClass: 'reveal-modal-bg',
+  open: function(){},
+  opened: function(){},
+  close: function(){},
+  closed: function(){},
+  bg : $('.reveal-modal-bg'),
+  css : {
+    open : {
+      'opacity': 0,
+      'visibility': 'visible',
+      'display' : 'block'
+    },
+    close : {
+      'opacity': 1,
+      'visibility': 'hidden',
+      'display': 'none'
+    }
+  }
+});
+//jQuery(document).foundation(); // Don't log errors
+jQuery(document).foundation(function (response) { // log errors
+  console.log(response.errors);
+});

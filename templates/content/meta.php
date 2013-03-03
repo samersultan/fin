@@ -1,28 +1,28 @@
-<span class="meta_time btn btn-small btn-info disabled"><i class="icon-time"></i> <time class="published" datetime="<?php the_time('c'); ?>"><?php echo get_time_ago(get_post_time('U')); ?></time></span>
+<span class="meta_time small secondary button disabled"><i class="icon-time"></i> <time class="published" datetime="<?php the_time('c'); ?>"><?php echo get_time_ago(get_post_time('U')); ?></time></span>
 <?php 
 // Comments
 $comment_count = get_comment_count($post->ID);
 	if ( comments_open() && $comment_count['approved'] > 0 ){ ?>
-	<span class="meta_comments btn-group"><?php comments_popup_link('','<i class="icon-comment"></i> ' . __('1 Comment'), '<i class="icon-comments"></i> ' . __('% Comments'), 'btn btn-info btn-small'); ?></span>
+	<?php comments_popup_link('','<i class="icon-comment"></i> ' . __('1 Comment'), '<i class="icon-comments"></i> ' . __('% Comments'), 'small secondary button meta_comments'); ?>
 <?php }
 // Gallery image count
 $gallery = get_image_count($id);
 if($gallery > 0) { ?>
-	<span class="btn btn-small btn-info"><i class="icon-camera-retro"></i> <?php echo $gallery; ?></span>
+	<span class="small secondary button"><i class="icon-camera-retro"></i> <?php echo $gallery; ?></span>
 <?php }
 // Exif Information
-$exif = get_exif($id, '</span><span class="btn btn-small btn-info">', '<span class="btn btn-small btn-info">', '</span>');
+$exif = get_exif($id, '</span><span class="small secondary button">', '<span class="small secondary button">', '</span>');
 if($exif != '') { ?>
-	<span class="meta_exif btn-group"><span class="btn btn-small btn-info disabled"><i class="icon-camera"></i></span><?php echo $exif; ?></span>
+	<ul class="meta_exif button-group"><li><a href="#" class="small secondary button disabled"><i class="icon-camera"></i></a></li><?php echo $exif; ?></ul>
 <?php }
 // Categories
 if(count(get_the_category())) { ?>
-	<span class="meta_categories btn-group"><span class="btn btn-small btn-info disabled"><i class="icon-folder-close"></i></span><?php echo get_the_category_list(' '); ?></span>
+	<ul class="meta_categories button-group"><li><?php echo get_the_category_list('</li><li>'); ?></li></ul>
 <?php }
 // Tags
-$tags_list = get_the_tag_list('','');
+$tags_list = get_the_tag_list('<li>','</li><li>', '</li>');
 if($tags_list){ ?>
-	<span class="meta_tags btn-group"><span class="btn btn-small btn-info disabled"><i class="icon-tags"></i></span><?php echo $tags_list; ?></span>
+	<ul class="meta_tags button-group"><?php echo $tags_list; ?></ul>
 <?php }
 // Edit
 edit_post_link('<i class="icon-pencil"></i> edit'); ?>

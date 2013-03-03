@@ -21,33 +21,27 @@ $rotator_args = array(
 $rotator_query = new WP_Query($rotator_args);
 if($rotator_query->have_posts()){
 	// Add carousel js
-	wp_enqueue_script('fin_carousel');
+	wp_enqueue_script('fin_orbit');
 	
 	// pre-loop stuffs
 		$i = 0;
 		// collect captions
 		$captions='';
 	?>
-	<div id="rotator-<?php echo $location; ?>" class="carousel slide">
-		<div class="carousel-inner">
-			<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
-				<div class="item<?php if($i++ == 0) { echo ' active'; } ?>">
-					<?php if (has_post_thumbnail()) {
-						the_post_thumbnail('full'); ?>
-						<?php if(has_excerpt()) { ?>
-							<div class="carousel-caption">
-								<?php the_excerpt(); ?>
-							</div>
-						<? }
-					}else { ?>
-						<h3><?php the_title(); ?></h3>
-						<?php the_excerpt(); ?>
+	<ul data-orbit class="orbit">
+		<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
+			<li>
+				<?php if (has_post_thumbnail()) {
+					the_post_thumbnail('full');
+					if(has_excerpt()) { ?>
+						<div class="orbit-caption"><?php the_excerpt(); ?></div>
 					<?php } ?>
-				</div>
-			<?php endwhile; ?>
-		</div>
-		<a class="carousel-control left" href="#rotator-<?php echo $location; ?>" data-slide="prev"><i class="control icon-angle-left icon-2x"></i></a>
-		<a class="carousel-control right" href="#rotator-<?php echo $location; ?>" data-slide="next"><i class="control icon-angle-right icon-2x"></i></a>
-	</div>
+				<?php }else { ?>
+					<h3><?php the_title(); ?></h3>
+					<?php the_excerpt(); ?>
+				<?php } ?>
+			</li>
+		<?php endwhile; ?>
+	</ul>
 	<?php wp_reset_postdata(); ?>
 <?php } ?>

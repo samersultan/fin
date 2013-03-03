@@ -1,0 +1,11 @@
+@import
+	"foundation/foundation-global",
+	"foundation/components/type",
+	"foundation/components/buttons",
+	"foundation/components/forms";
+
+body {
+	background: $body-bg;
+	color: $body-font-color;
+	padding: 10px;
+}

@@ -277,7 +277,7 @@ add_filter('login_headertitle', 'fin_change_login_title');
  *
  */
 function fin_edit_post_link($output) {
-	$output = str_replace('class="post-edit-link"', 'class="post-edit-link btn btn-small btn-info"', $output);
+	$output = str_replace('class="post-edit-link"', 'class="post-edit-link button small secondary"', $output);
 	return $output;
 }
 add_filter('edit_post_link', 'fin_edit_post_link');
@@ -287,7 +287,7 @@ add_filter('edit_post_link', 'fin_edit_post_link');
  *
  */
 function fin_edit_comment_link($output) {
-	$output = str_replace('class="comment-edit-link"', 'class="comment-edit-link btn btn-mini btn-info"', $output);
+	$output = str_replace('class="comment-edit-link"', 'class="comment-edit-link button small secondary"', $output);
 	return $output;
 }
 add_filter('edit_comment_link', 'fin_edit_comment_link');
@@ -297,7 +297,7 @@ add_filter('edit_comment_link', 'fin_edit_comment_link');
  *
  */
 function fin_comment_reply_link($output) {
-	$output = str_replace("class='comment-reply-link'", "class='comment-reply-link btn btn-mini btn-primary btn-block'", $output);
+	$output = str_replace("class='comment-reply-link'", "class='comment-reply-link button small'", $output);
 	return $output;
 }
 add_filter('comment_reply_link', 'fin_comment_reply_link');
@@ -320,23 +320,23 @@ add_filter('cancel_comment_reply_link','fin_cancel_comment_reply_link');
  * 
  */
 function fin_change_previous_posts_link_attributes() {
-    return 'class="pull-left btn btn-tiny" rel="prev"';
+    return 'class="pull-left button small" rel="prev"';
 }
 add_filter('previous_posts_link_attributes', 'fin_change_previous_posts_link_attributes');
 
 function fin_change_next_posts_link_attributes() {
-    return 'class="pull-right btn btn-tiny"  rel="next"';
+    return 'class="pull-right button small"  rel="next"';
 }
 add_filter('next_posts_link_attributes', 'fin_change_next_posts_link_attributes');
 
 function fin_change_previous_post_link($link) {
-	$link = str_replace('href=', 'class="pull-right btn btn-tiny" href=', $link);
+	$link = str_replace('href=', 'class="pull-right button small" href=', $link);
 	return $link;
 }
 add_filter('previous_post_link', 'fin_change_previous_post_link');
 
 function fin_change_next_post_link($link) {
-	$link = str_replace('href=', 'class="pull-left btn btn-tiny" href=', $link);
+	$link = str_replace('href=', 'class="pull-left button small" href=', $link);
 	return $link;
 }
 add_filter('next_post_link', 'fin_change_next_post_link');

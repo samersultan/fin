@@ -3,14 +3,12 @@
 	$next = get_adjacent_post( false, '', false );
 	if($prev || $next) { ?>
 		<nav id="pagination" class="row" role="navigation">
-			<div class="container">
-				<?php if($next) {
-					next_post_link('%link', '&laquo; Newer', true);
-				}
-				if($prev) {
-					previous_post_link('%link','Older &raquo;', true);
-				} ?>
-			</div>
+			<?php if($next) {
+				next_post_link('%link', '&laquo; Newer', true);
+			}
+			if($prev) {
+				previous_post_link('%link','Older &raquo;', true);
+			} ?>
 		</nav>
 	<?php } ?>
 <?php }else {
@@ -19,14 +17,12 @@
 		$next = get_next_posts_link();
 		if($prev || $next) ?>
 		<nav id="pagination" class="row" role="navigation">
-			<div class="container">
-				<?php if($prev) {
-					previous_posts_link('&laquo; Newer');
-				}
-				if($next) {
-					next_posts_link('Older &raquo;');
-				} ?>
-			</div>
+			<?php if($prev) {
+				previous_posts_link('&laquo; Newer');
+			}
+			if($next) {
+				next_posts_link('Older &raquo;');
+			} ?>
 		</nav>
 	<?php }
 } ?>

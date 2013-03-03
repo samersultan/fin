@@ -1,11 +1,11 @@
-<form class="navbar-form form-search" role="search" method="get" id="searchbar" action="<?php echo home_url('/'); ?>">
-	<label class="hide" for="s"><?php _e('Search for:', 'fin'); ?></label>
-	<div class="input-group">
-		<input id="search" class="search-query" type="text" value="<?php if (is_search()) { echo get_search_query(); } ?>" name="s" placeholder="<?php _e('Search', 'fin'); ?>">
-		<span class="input-group-btn" style="width: auto;">
-			<button class="btn"id="searchsubmit">
-				<span class="hide"><?php _e('Search', 'fin'); ?></span><i class="icon-search"></i>
-			</button>
-		</span>
+<form class="navbar-form form-search row collapse input-group round" role="search" method="get" id="searchbar" action="<?php echo home_url('/'); ?>">
+	<div class="small-10 columns">
+		<label class="hide" for="s"><span class="hide"><?php _(' search'); ?></span></label>
+		<input id="search" class="search-query radius" type="text" value="<?php if (is_search()) { echo get_search_query(); } ?>" name="s" placeholder="<?php _e('Search', 'fin'); ?>">
+	</div>
+	<div class="small-2 columns">
+		<button class="button postfix" id="searchsubmit">
+			<i class="icon-search"></i><span class="hide"><?php _(' search'); ?></span>
+		</button>
 	</div>
 </form>

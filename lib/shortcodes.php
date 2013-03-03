@@ -160,7 +160,7 @@ add_shortcode('email', 'shortcode_email');
  *   <li><a href="/child2">Child Page #2</a></li>
  * </ul>
  */
- function shortcode_list_pages( $atts, $content, $tag ) {
+function shortcode_list_pages( $atts, $content, $tag ) {
  	global $post;
  	
  	// Child Pages
@@ -208,14 +208,14 @@ add_shortcode('email', 'shortcode_email');
  	// Create output
  	$out = wp_list_pages( $atts );
  	if ( !empty( $out ) )
- 		$out = '<ul class="' . $atts['class'] . '">' . $out . '</ul>';
+		$out = '<ul class="' . $atts['class'] . '">' . $out . '</ul>';
  	
- 	return apply_filters( 'shortcode_list_pages', $out, $atts, $content, $tag );
+	return apply_filters( 'shortcode_list_pages', $out, $atts, $content, $tag );
  	
- }
- add_shortcode( 'child-pages', 'shortcode_list_pages' );
- add_shortcode( 'sibling-pages', 'shortcode_list_pages' );
- add_shortcode( 'list-pages', 'shortcode_list_pages' );
+}
+add_shortcode( 'child-pages', 'shortcode_list_pages' );
+add_shortcode( 'sibling-pages', 'shortcode_list_pages' );
+add_shortcode( 'list-pages', 'shortcode_list_pages' );
  
  /**
   * [row] shortcode
@@ -226,9 +226,9 @@ add_shortcode('email', 'shortcode_email');
   * [row][/row]
   */
   
- function shortcode_row( $atts, $content = null ) {
-    return '<div class="row">' . do_shortcode($content) . '</div>';
- }
+function shortcode_row( $atts, $content = null ) {
+	return '<div class="row">' . do_shortcode($content) . '</div>';
+}
   
  add_shortcode( 'row', 'shortcode_row' );
   
@@ -242,19 +242,24 @@ add_shortcode('email', 'shortcode_email');
   */
 function shortcode_column( $atts, $content = null ) {
 	extract( shortcode_atts( array(
+		'centered' => '',
 		'span' => '',
 		'offset' => ''
 		), $atts ) );
+		
+	if($centered != '') {
+		$centered = ' ' . $centered;
+	}
 	
 	if($span != '') {
-		$span = 'span' . $span;
+		$span = ' ' . $span;
 	}
 	
 	if($offset != '') {
-		$offset = ' offset' . $offset;
+		$offset = ' offset-by-' . $offset;
 	}
 
-	return '<div class="' . esc_attr($span) . esc_attr($offset) . '">' . do_shortcode($content) . '</div>';
+	return '<div class="' . esc_attr($span) . esc_attr($offset) . esc_attr($centered) . '">' . do_shortcode($content) . '</div>';
 }
 add_shortcode( 'column', 'shortcode_column' );
  
@@ -281,14 +286,14 @@ function shortcode_button( $atts, $content = null ) {
 		$text = do_shortcode($content);
 	}
 	
-	$output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size;
+	$output = '<a href="' . $url . '" class="button '. $type . ' ' . $size;
 	$output .= '">';
 	$output .= $text;
 	$output .= '</a>';
 	
 	return $output;
- }
- add_shortcode('button', 'shortcode_button'); 
+}
+add_shortcode('button', 'shortcode_button'); 
   
  /**
   * [alert] shortcode
@@ -302,59 +307,54 @@ function shortcode_button( $atts, $content = null ) {
   */
 function shortcode_alert( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-		'type' => '  ', /* warning, success, error */
-		'close' => 'true', /* display close link */
-		'text' => '', 
+	'type' => '  ', /* warning, success, error */
+	'close' => 'true', /* display close link */
+	'text' => '', 
 	), $atts ) );
 	
 	if($text == '') {
 		$text = do_shortcode($content);
 	}
-	if($type != '') {
-		$type = ' alert-' . $type;
-	}
 	
-	$output = '<div class="alert fade in'. $type . '">';
+	$output = '<div data-alert class="alert-box '. $type . '">';
 	$output .= $text;
 	if($close == 'true') {
-		$output .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+		$output .= '<a href="#" class="close">&times;</a>';
 	}
 	$output .= '</div>';
 	
 	return $output;
- }
- add_shortcode('alert', 'shortcode_alert');
+}
+add_shortcode('alert', 'shortcode_alert');
   
  /**
-  * [well] shortcode
+  * [panel] shortcode
   *
   * Creates a panel
   *
-  * Examples:
-  * [well]This is well[/well]
+  * Example:
+  * [panel]This is panel[/panel]
   * or
-  * [well text="This is a well."]
+  * [panel text="This is a panel."]
   */
-function shortcode_well( $atts, $content = null ) {
+function shortcode_panel( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-		'size' => '', /* small large */
-		'text' => '', 
+	'type' => '  ', /* warning, success, error */
+	'close' => 'false', /* display close link */
+	'text' => '', 
 	), $atts ) );
 	
-	if($size != '') {
-		$size = ' well-'. $size;
-	}
-	if($text == '') {
+	if($text == ''){
 		$text = do_shortcode($content);
 	}
 	
-	$output = '<div class="well' . $size . '">';
+	$output = '<div class="panel">';
 	$output .= $text;
 	$output .= '</div>';
 	
 	return $output;
- }
- add_shortcode('well', 'shortcode_well');
+}
+add_shortcode('panel', 'shortcode_panel');
  
 /**
  * [modal] shortcode
@@ -366,34 +366,44 @@ function shortcode_well( $atts, $content = null ) {
  *
  * [modal button="launch modal"]This text will load when the user presses the button created![/modal]
  **/
-function shortcode_modal( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-	'text' => '',
-	'button' => '',
-	'size' => '', 
-	), $atts ) );
+class fin_modal {
+	protected static $modal;
 	
-	// get unique modal number 
-	$modalNum = substr(uniqid(), -4); //last 4 digits of uniqid will suffice
-	if($text == '') {
-	    $text = do_shortcode($content);
-	}
-	$output = '';
-	if($button != '') {
-		$output .= '<a href="#modal-' . $modalNum . '" role="button" class="btn" data-toggle="modal">' . $button . '</a>';
-	}else {
-		$output .= '<script type="text/javascript">
-		    jQuery(window).load(function(){
-		        jQuery("#modal-' . $modalNum . '").modal("show");
+	public static function shortcode_callback( $atts, $content = null) {
+		extract( shortcode_atts( array(
+		'text' => '',
+		'button' => '',
+		'size' => '', 
+		), $atts ) );
+		
+		// get unique modal number 
+		$modalNum = substr(uniqid(), -4); //last 4 digits of uniqid will suffice
+		if($text == '') {
+			$text = do_shortcode($content);
+		}
+		$script = '';
+		if($button != '') {
+			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="button">' . $button . '</a>';
+		}else { // regsiter reveal script
+			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="hide" id="button-' . $modalNum . '">' . $modalNum . '</a>';
+			$script = '<script type="text/javascript">
+		    jQuery(document).ready(function(){
+		        jQuery("#button-' . $modalNum . '").click();
 		    });
-		</script>';
+			</script>';
+		}
+		
+		self::$modal .= '<div id="modal-' . $modalNum . '" class="reveal-modal' . $size . '" role="dialog">';
+		self::$modal .= $text . '<a href="#" type="button" class="close-reveal-modal">&times;</a>';
+		self::$modal .= '</div>';
+		self::$modal .= $script;
+		
+		add_action('wp_footer', array( __CLASS__, 'footer' ), 300);
+		
+		return $button;
 	}
-	
-	$output .= '<div id="modal-' . $modalNum . '" class="modal fade' . $size . '" role="dialog">';
-	//$output .= '<div class="modal-header"></div>';
-	$output .= '<div class="modal-body"><button type="button" class="close" data-dismiss="modal">&times;</button>' . $text . '</div>';
-	$output .= '</div>';
-	 
-	return $output;
+	public static function footer() {
+		echo self::$modal;
+	}
 }
- add_shortcode('modal', 'shortcode_modal');
+add_shortcode('modal', array('fin_modal', 'shortcode_callback'));

@@ -1,7 +1,7 @@
 <aside class="row">
 	<?php // Reply Form
 	if (comments_open()) { ?>
-		<section class="span6">
+		<section class="large-6 small-12 columns">
 			<?php comment_form(); ?>
 		</section>
 	<?php }
@@ -10,15 +10,15 @@
 	$comments_warning = $options['comments_warning'];
 	if(post_password_required() && $comments_warning) { ?>
     <div class="alert alert-info">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <button type="button" class="close">&times;</button>
       <p><?php _e('This area is password protected. Enter the password to view comments.', 'fin'); ?></p>
   	</div>
 	<?php } ?>
 	
 	<?php if(have_comments()) { ?>
-	  <section id="comments" class="span6">
+	  <section id="comments" class="large-6 small-12 columns">
 	    <h3><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h3>
-	    <ol class="commentlist media-list">
+	    <ol class="unstyled commentlist">
 	      <?php wp_list_comments(array('walker' => new Fin_Walker_Comment)); ?>
 	    </ol>
 	
@@ -42,7 +42,7 @@
 	
 	    <?php if(!comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
 	      <div class="alert alert-info">
-	        <button type="button" class="close" data-dismiss="alert">&times;</button>
+	        <button type="button" class="close">&times;</button>
 	        <p><?php _e('Comments are closed.', 'fin'); ?></p>
 	      </div>
 			<?php } ?>
@@ -51,7 +51,7 @@
 	
 	<?php if(!have_comments() && !comments_open() && !is_page() && post_type_supports(get_post_type(), 'comments') && $comments_warning) { ?>
     <div class="alert alert-info">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <button type="button" class="close">&times;</button>
       <p><?php _e('Comments are closed.', 'fin'); ?></p>
     </div>
 	<?php } ?>

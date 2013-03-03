@@ -40,33 +40,33 @@ function fin_add_widget_classes($params) {
     // Add fraction class
     switch (count($sidebar_widgets)) {
     	case 1:
-    		$fraction = 'full';
+    		$fraction = 'small-12';
     		break;
     	case 2:
-    		$fraction = 'span6';
+    		$fraction = 'small-6';
     		break;
     	case 3:
-    		$fraction = 'span4';
+    		$fraction = 'small-4';
     		break;
     	case 4:
-    		$fraction = 'span3';
+    		$fraction = 'small-6 large-3';
     		break;
     	case 5:
-    		$fraction = 'span3';
+    		$fraction = 'small-6 one-fifth';
     		break;
     	case 6:
-    		$fraction = 'span3';
+    		$fraction = 'small-6 one-sixth';
     		break;
     	case 7:
-    		$fraction = 'span4';
+    		$fraction = 'small-6 one-seventh';
     		break;
     	case 8:
-    		$fraction = 'span4';
+    		$fraction = 'small-6 one-eighth';
     		break;
     	default:
-    		$fraction = 'span4';
+    		$fraction = 'small-6';
     }
-    $class = 'class="' . $fraction . ' ';
+    $class = 'class="' . $fraction . ' columns ';
   	
   	// Add widget-#
   	$class .= 'widget-' . $current_widget[$sidebar_id] . ' ';

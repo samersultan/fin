@@ -136,7 +136,7 @@ add_action('after_setup_theme', 'fin_media_size');
  *
  */
 function fin_the_category($list) {
-	$list = str_replace('rel="category tag">', 'rel="category tag" class="meta_category btn btn-small btn-info">', $list);
+	$list = str_replace('rel="category tag">', 'rel="category tag" class="meta_category small secondary button"><i class="icon-folder-close"></i> ', $list);
 	return $list;
 }
 add_filter('the_category', 'fin_the_category');
@@ -146,7 +146,7 @@ add_filter('the_category', 'fin_the_category');
  *
  */
 function fin_the_tags($list) {
-	$list = str_replace('rel="tag">', 'rel="tag" class="meta_tag btn btn-small btn-info">', $list);
+	$list = str_replace('rel="tag">', 'rel="tag" class="meta_tag button small secondary button"><i class="icon-tags"></i> ', $list);
 	return $list;
 }
 add_filter('the_tags', 'fin_the_tags');

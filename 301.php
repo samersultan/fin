@@ -49,7 +49,7 @@
 				<?php } ?>
 			</hgroup>
 		</header>
-		<main id="main" class="container" role="main">
+		<main id="main" role="main">
 			<?php $page = get_page_by_path('maintenance');
 			if($page) {
 				$content = apply_filters('the_content', $page->post_content);
@@ -70,7 +70,7 @@
 			} ?>
 			<?php $options = get_option('fin_theme_options');
 			if($options['social'] != '') { ?>
-				<div class="social span6">
+				<div class="social six columns">
 					<a href="<?php echo esc_url(get_permalink(get_page_by_title('Contact'))); ?>"<i class="icon-phone-sign icon-2x"></i></a>
 					<?php // Facebook
 					if($options['social_facebook'] != '') { ?>

@@ -52,8 +52,8 @@ function fin_scripts() {
 		  wp_enqueue_script('comment-reply');
 		}
 		
-		// regsiter carousel script
-		wp_register_script('fin_carousel', get_template_directory_uri() . '/assets/js/carousel.js', array( 'jquery' ), null, true);
+		// regsiter orbit script
+		wp_register_script('fin_orbit', get_template_directory_uri() . '/assets/js/orbit.min.js', array( 'jquery', 'fin_js' ), null, true);
 	}
 }
 add_action('wp_enqueue_scripts','fin_scripts', 100);

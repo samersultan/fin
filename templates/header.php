@@ -13,17 +13,15 @@
 	</hgroup>
 </header>
 <?php if (has_nav_menu('primary_menu')) { ?>
-	<div class="navbar sticky" role="navigation">
-		<div class="navbar-inner container">
-	    <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-	      <i class="icon-caret-down icon-2x"></i>
-	    </a>
-	    <a class="brand visible-phone" href="<?php echo home_url(); ?>/">
-	      <h4><?php bloginfo('name'); ?></h4>
-	    </a>
-	    <nav class="nav-main nav-collapse collapse">
-	      <?php wp_nav_menu(array('theme_location' => 'primary_menu', 'menu_class' => 'nav')); ?>
-	    </nav>
-		</div>
-	</div>
+		<nav data-magellan-expedition="fixed" id="primary_navigation" class="top-bar" role="navigation">
+			<ul class="title-area">
+		    <li class="name">
+	        <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+		    </li>
+		    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+			</ul>
+			<section class="top-bar-section">
+				<?php wp_nav_menu(array('theme_location' => 'primary_menu', 'menu_class' => 'right')); ?>
+			</section>
+		</nav>
 <?php } ?>
