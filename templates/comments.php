@@ -1,7 +1,7 @@
 <aside class="row">
 	<?php // Reply Form
 	if (comments_open()) { ?>
-		<section class="large-6 small-12 columns">
+		<section class="large-6 small-12 columns push-6">
 			<?php comment_form(); ?>
 		</section>
 	<?php }
@@ -16,7 +16,7 @@
 	<?php } ?>
 	
 	<?php if(have_comments()) { ?>
-	  <section id="comments" class="large-6 small-12 columns">
+	  <section id="comments" class="large-6 small-12 columns pull-6">
 	    <h3><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h3>
 	    <ol class="unstyled commentlist">
 	      <?php wp_list_comments(array('walker' => new Fin_Walker_Comment)); ?>

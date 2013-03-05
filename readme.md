@@ -12,12 +12,13 @@ Add tweet# and facebook like shortcodes
 Consider adding contact shortcode back in
 Consider adding Twitter widget
 Remove unnecessary WP_Widget queries
-
+Create a woocommerce branch
 
 // Minor TODOs
 // AKA, the easy list
+pricing tables shortcode
+add flex-video class to video template
 add icons to pagination and style better
 style meta junk better
 Clean up comment form reply-title.
-Style dropdown menus
 Fix color scheme to be primary set - Content & secondary set - Header & Nav & tertiary set - Sidebar + Footer

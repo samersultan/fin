@@ -251,3 +251,67 @@ function brightness($hex, $percent) {
 	}
 	return $hash.$hex;
 }
+
+function fin_get_avatar($comment, $size='64', $placeholder='404') {
+	if($size <= "60" && $size >= "34") {
+		$finalsize = $size."px;";
+		$suffix = "_normal";
+	}elseif ($size <= "35" && $size >= "0") {
+		$finalsize = $size."px;";
+		$suffix = "_mini";
+	}elseif ($size <= "90" && $size >= "61") {
+		$finalsize = $size."px;";
+		$suffix = "_bigger";
+	}elseif ($size >= "91") {
+		$finalsize = $size."px;";
+		$suffix = "";
+	}
+	
+	$twitterImg = false;
+	if($comment->user_id) { // check user profile for twitter id
+		$user_profile = get_userdata($comment->user_id);
+		$comment_author_twitter = $user_profile->twitter;
+	}
+	
+	if($twitterImg !== false) {
+		$quaseimg = $result->profile_image_url;  // we get user image from array we built in the process function
+		// we need to make some calcs to get the image without _normal.png (we will add .png later and _normal deppending on the choosen size)
+		
+		$wherestop = strrpos($quaseimg, "_");  
+		$lenght = strlen( $quaseimg  );
+		$takeof = $lenght-$wherestop;
+		$keepit = $lenght-4;
+		$fileextension = substr($quaseimg, $keepit, 4);
+		// Here we have a complete image url:
+		$image = substr($quaseimg, 0, -$takeof).$suffix.$fileextension; 
+		
+		// Set author name
+		$authorName = $result->name;
+		
+		// If in the url we find static.twitter.com it means is the default img so set result to false
+		if(strpos($quaseimg, "static.twitter.com") !== false) {
+			$result = false;
+		}
+	}
+	if($twitterImg == false) { // Check Gravatar
+		// Create gravatar url using placeholder or 404
+		if($placeholder != '404') {
+			$placeholder = urlencode($placeholder);
+		}
+		$image = 'http://www.gravatar.com/avatar/' . md5($comment->comment_author_email) . '?s=' . $size . '&d=' . $placeholder;
+		$authorName = $comment->comment_author;
+		$headers = get_headers($image);
+		if (!strpos($headers[0],'200')) {	// no avatar
+			return '';
+		}
+	}
+	
+	$avatar = '<img src="' . $image . '" class="avatar" alt="' . $authorName . '">';
+	
+	$authorURL = $comment->comment_author_url;
+	if($authorURL) {
+		return '<a href="' . $authorURL . '" rel="external nofollow" class="th">' . $avatar . '</a>';
+	}else { // no URL
+		return $avatar;
+	}
+}

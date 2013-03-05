@@ -1,6 +1,7 @@
+@import "variables";
 @import "normalize";
-@import "compass/css3";
 @import "foundation";
+@import "compass/css3";
 @import "font-awesome";
 
 // Sticky Footer
@@ -59,6 +60,14 @@ html, body { height: 100%; }
 .seven-eighths   { width: gridCalc(7, 8); }
 
 // BASE STYLES //
+.hide {
+	border: none !important; 
+	height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	visibility: hidden !important;
+	width: 0 !important;   
+}
 input[type="submit"] { }
 a:hover i {
 	text-decoration: none;
@@ -359,7 +368,9 @@ body {
 }
 
 // Reply Form
-ol #respond { }
+ol #respond { 
+	@include panel;
+}
 a#cancel-comment-reply-link { }
 ol.children #respond { }
 
@@ -368,43 +379,66 @@ ol.children #respond { }
 #comments {
 	h3 { }
 }
-ol.commentlist {}
+ol.commentlist {
+	ol.comment {
+		@include grid-column($offset:1, $collapse:null);
+	}
+}
+
 li.comment {
 	clear: both;
-	.avatar {	}
+	figure.avatar {
+		display: none;
+	}
+	&>header, &>section, &>footer {
+		@include grid-column(12, $float: right);
+	}
 	.comment-author {
-		margin-top: 1em;
 		cite {
-			font-size: 1.5em;
+			font-size: 2em;
 			font-weight: bold;
 			a {}
 		}
 		time a {}
 	}
-	section.media-body {
-		min-height: 64px + 10px;
-		.alert {
-			margin-bottom: 0;
-		}
-	}
+	section {	}
 	footer {
 		time {  }
 	}
+	a.comment-reply-link, a.comment-edit-link {
+		float: right;
+		z-index: 4;
+	}
+}
+
+@media #{$small} {
+	ol.commentlist ol.comment {
+		@include grid-column($offset:2, $collapse:null);	
+	}
+	li.comment {
+		figure.avatar {
+			@include grid-column(2, $float: left);
+			display: inherit;
+			padding-right: 0;
+			&~header, &~section, &~footer {
+				@include grid-column(10, $float: right);
+			}
+		}
+	}
+}
+// Show Reply/Edit Options on hover
+.no-touch {
 	a.comment-edit-link, a.comment-reply-link {
 		@include transition(opacity, .25s, linear);
 		@include opacity(0);
 	}
-	a.comment-reply-link {
-		margin: 4px auto;
-	}
-	a.comment-edit-link {
-		float: right;
-	}
 }
-// Show Reply/Edit Options on hover
+
 li.comment:hover {
-	&> .media-object > a.comment-reply-link, &> section.media-body > a.comment-edit-link {
-		@include opacity(100);
+	&> footer {
+		&> a.comment-edit-link, &>a.comment-reply-link {
+			@include opacity(100);
+		}
 	}
 }
 
