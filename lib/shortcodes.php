@@ -381,22 +381,18 @@ class fin_modal {
 		if($text == '') {
 			$text = do_shortcode($content);
 		}
-		$script = '';
-		if($button != '') {
-			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="button">' . $button . '</a>';
-		}else { // regsiter reveal script
-			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="hide" id="button-' . $modalNum . '">' . $modalNum . '</a>';
-			$script = '<script type="text/javascript">
-		    jQuery(document).ready(function(){
-		        jQuery("#button-' . $modalNum . '").click();
-		    });
-			</script>';
-		}
 		
 		self::$modal .= '<div id="modal-' . $modalNum . '" class="reveal-modal' . $size . '" role="dialog">';
 		self::$modal .= $text . '<a href="#" type="button" class="close-reveal-modal">&times;</a>';
 		self::$modal .= '</div>';
-		self::$modal .= $script;
+		
+		if($button != '') {
+			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="button">' . $button . '</a>';
+		}else {
+			self::$modal .= '<script type="text/javascript">
+		        jQuery("#modal-' . $modalNum . '").foundation("reveal","open");
+			</script>';
+		}
 		
 		add_action('wp_footer', array( __CLASS__, 'footer' ), 300);
 		

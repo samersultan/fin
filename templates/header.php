@@ -1,5 +1,5 @@
 <?php do_action('get_header'); ?>
-<header id="header" role="banner" <?php if(!is_front_page()) { echo 'class="hidden-phone"'; } ?>>
+<header id="header" role="banner" <?php if(!is_front_page()) { echo 'class="hide-for-small"'; } ?>>
 	<hgroup>
 		<?php $options = get_option('fin_theme_options');
 		$logo = $options['logo'];

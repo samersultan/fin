@@ -84,20 +84,36 @@ $include-print-styles: true !default;
 // We use this to create equal side border radius on elements.
 @mixin side-radius($side, $radius) {
   @if $side == left {
-    -webkit-border-radius: $radius 0 0 $radius;
-    border-radius: $radius 0 0 $radius;
+    -moz-border-radius-bottomleft: $radius;
+    -moz-border-radius-topleft: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+    border-top-left-radius: $radius;
   }
   @else if $side == right {
-    -webkit-border-radius: 0 $radius $radius 0;
-    border-radius: 0 $radius $radius 0;
+    -moz-border-radius-topright: $radius;
+    -moz-border-radius-bottomright: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
   }
   @else if $side == top {
-    -webkit-border-radius: $radius $radius 0 0;
-    border-radius: $radius $radius 0 0;
+    -moz-border-radius-topright: $radius;
+    -moz-border-radius-topleft: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
   }
   @else if $side == bottom {
-    -webkit-border-radius: 0 0 $radius $radius;
-    border-radius: 0 0 $radius $radius;
+    -moz-border-radius-bottomright: $radius;
+    -moz-border-radius-bottomleft: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
   }
 }
 
@@ -152,69 +168,6 @@ $include-print-styles: true !default;
   &:before, &:after { content: " "; display: table; }
   &:after { clear: both; }
 }
-
-
-// Set box-sizing globally to handle padding and border widths
-*,
-*:before,
-*:after {
-  @include box-sizing(border-box);
-}
-
-html,
-body { font-size: $em-base; }
-
-// Default body styles
-body {
-  background: $body-bg;
-  color: $body-font-color;
-  padding: 0;
-  font-family: $body-font-family;
-  font-weight: $body-font-weight;
-  font-style: $body-font-style;
-  line-height: 1;
-  -webkit-font-smoothing: $font-smoothing;
-}
-
-// Grid Defaults to get images and embeds to work properly
-img,
-object,
-embed { max-width: 100%; height: auto; }
-
-object,
-embed { height: 100%; }
-img { -ms-interpolation-mode: bicubic; }
-
-#map_canvas,
-.map_canvas {
-  img,
-  embed,
-  object { max-width: none !important;
-  }
-}
-
-// Miscellaneous useful HTML classes
-.left         { float: left; }
-.right        { float: right; }
-.text-left    { text-align: left; }
-.text-right   { text-align: right; }
-.text-center  { text-align: center; }
-.text-justify { text-align: justify; }
-.hide         { display: none; }
-
-// Get rid of gap under images by making them display: block; by default
-img { display: block; }
-
-//
-// Global resets for forms
-//
-
-// Make sure textarea takes on height automatically
-textarea { height: auto; min-height: 50px; }
-
-// Make select elements 100% width by default
-select { width: 100%; }
-
 
 // Media Queries
 $small-screen: emCalc(768px) !default;

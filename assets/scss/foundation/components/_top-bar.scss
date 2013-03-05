@@ -27,6 +27,7 @@ $topbar-dropdown-link-color: #fff !default;
 $topbar-dropdown-toggle-size: 5px !default;
 $topbar-dropdown-toggle-color: #fff !default;
 $topbar-dropdown-toggle-alpha: 0.5 !default;
+$dropdown-label-color: #555 !default;
 
 // Top menu icon styles
 $topbar-menu-link-transform: uppercase !default;
@@ -203,14 +204,14 @@ $topbar-media-query: "only screen and (min-width:"#{$topbar-breakpoint}")" !defa
     width: 100%;
   }
 
-  li {
+  ul li {
     & > a {
       display: block;
       width: 100%;
       padding: 12px 0 12px $topbar-height / 3;
       color: $topbar-link-color;
-      font-size: emCalc(13px);
-      font-weight: bold;
+      font-size: $topbar-link-font-size;
+      font-weight: $topbar-link-weight;
       background: $topbar-dropdown-bg;
 
       &:hover { background: darken($topbar-dropdown-bg, 3%); }
@@ -218,7 +219,7 @@ $topbar-media-query: "only screen and (min-width:"#{$topbar-breakpoint}")" !defa
 
       &.button {
         background: $primary-color;
-        font-size: emCalc(13px);
+        font-size: $topbar-link-font-size;
         &:hover {
           background: darken($primary-color, 10%);
         }
@@ -286,13 +287,21 @@ $topbar-media-query: "only screen and (min-width:"#{$topbar-breakpoint}")" !defa
         font-weight: normal;
         padding: 8px $topbar-height / 3;
       }
+
+      &.title h5 { margin-bottom: 0;
+        a {
+          color: $topbar-link-color;
+          line-height: $topbar-height / 2;
+          display: block;
+        }
+      }
     }
 
     label {
       padding: 8px $topbar-height / 3 2px;
       margin-bottom: 0;
       text-transform: uppercase;
-      color: #555;
+      color: $dropdown-label-color;
       font-weight: bold;
       font-size: emCalc(10px);
     }
@@ -328,6 +337,8 @@ $topbar-media-query: "only screen and (min-width:"#{$topbar-breakpoint}")" !defa
     &.expanded { background: $topbar-bg; }
   }
 
+  .contain-to-grid .top-bar { max-width: $row-width; margin: 0 auto; }
+
   .top-bar-section {
     @include single-transition(none,0,0);
     #{$default-float}: 0 !important;
@@ -348,7 +359,7 @@ $topbar-media-query: "only screen and (min-width:"#{$topbar-breakpoint}")" !defa
         padding: 0 $topbar-height / 3;
         line-height: $topbar-height;
         background: $topbar-bg;
-        &:hover { background: darken($topbar-dropdown-bg, 3%); }
+        &:hover { background: darken($topbar-dropdown-bg, 30%); }
       }
     }
 

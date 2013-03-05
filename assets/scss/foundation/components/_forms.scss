@@ -160,6 +160,8 @@ $input-error-message-font-color-alt: #333 !default;
   @if $is-button {
     padding-#{$default-float}: 0;
     padding-#{$default-opposite}: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     text-align: center;
     line-height: emCalc(34px);
   }
@@ -263,17 +265,18 @@ label { @include form-label;
 .postfix.button.radius { @include side-radius(right, $global-radius); }
 .prefix.button.round { @include side-radius(left, 1000px); }
 .postfix.button.round { @include side-radius(right, 1000px); }
+.prefix.button.round { @include side-radius(left, 1000px); }
+.postfix.button.round { @include side-radius(right, 1000px); }
 
 /* Separate prefix and postfix styles when on span so buttons keep their own */
 span.prefix { @include prefix();
   &.radius { @include side-radius(left, $global-radius); }
-  &.round { @include side-radius(left, 1000px); }
 }
 span.postfix { @include postfix();
   &.radius { @include side-radius(right, $global-radius); }
-  &.round { @include side-radius(right, 1000px); }
 }
 
+/* Input groups will automatically style first and last elements of the group */
 .input-group {
   &.radius {
     &>*:first-child,  &>*:first-child * {
