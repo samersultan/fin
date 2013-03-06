@@ -313,8 +313,6 @@ function fin_cancel_comment_reply_link($reply_link) {
 }
 add_filter('cancel_comment_reply_link','fin_cancel_comment_reply_link');
 
-
-
 /**
  * Add classes to pagination links
  * 
@@ -340,3 +338,107 @@ function fin_change_next_post_link($link) {
 	return $link;
 }
 add_filter('next_post_link', 'fin_change_next_post_link');
+
+/**
+ * Add a spam-trap to comment-form
+ *
+ * Include a hidden field called name and set it to hidden. If it receives an input, we have a bot!
+ */
+function get_decoy_fields() {
+	$decoys = array( 'firstname', 'lastname', 'email2', 'address', 'address2', 'city', 'state', 'zipcode', 'telephone', 'phone');
+	return $decoys;
+}
+function get_dailyID() {
+	srand(date('Ymd'));
+	$number = rand(0,9999999);
+	$hash = substr(sha1($number),0,8);
+	return $hash;
+}
+
+function fin_add_comment_spam_trap($arg) {
+	$decoyFields = get_decoy_fields();
+	$arg['fields'] = array_reverse($arg['fields'], true); //reverse order to place decoys at front of form.
+	
+	$hash = get_dailyID();
+	
+	$spamtrap = '';
+	foreach ($decoyFields as $decoy) {
+		$spamtrap .= '<label class="hide" for="' . $decoy . $hash . '" >' . $decoy . ' *</label><input class="hide" name="' . $decoy . $hash . '" type="text" autocomplete="off">';
+	}
+	$arg['fields']['spamtrap'] = $spamtrap;
+	$arg['fields'] = array_reverse($arg['fields'], true); //reverse back so fields are in regular order
+	
+	// Add hashes to author and email
+	$arg['fields']['author'] = str_replace('name="author"', 'name="author' . $hash . '"', $arg['fields']['author'] );
+	$arg['fields']['email'] = str_replace('name="email"', 'name="email' . $hash . '"', $arg['fields']['email'] );
+	return $arg;
+}
+add_filter('comment_form_defaults', 'fin_add_comment_spam_trap');
+
+function fin_add_register_spam_trap() {
+	$decoyFields = get_decoy_fields(); // List of names for decoy fields
+	$hash = get_dailyID(); // Get unique daily ID hash
+	
+	$output = '';
+	foreach ($decoyFields as $decoy) {
+		$output .= '<p class="hide"><label for="' . $decoy . $hash . '" >' . $decoy . ' *</label><input name="' . $decoy . $hash . '" type="text" autocomplete="off"></p>';
+	}
+	echo $output;
+}
+add_action('register_form', 'fin_add_register_spam_trap'); 
+
+function fin_fix_hashed_comment($commentdata) {
+	$hash = get_dailyID();
+	
+	// fix hashed author & email fields
+	if(isset($_POST['author' . $hash])) {
+		$_POST['author'] = trim(strip_tags($_POST['author' . $hash]));
+	}
+	if(isset($_POST['email' . $hash])) {
+		$_POST['email'] = trim(strip_tags($_POST['email' . $hash]));
+	}
+	return $commentdata;
+}
+add_action('pre_comment_on_post', 'fin_fix_hashed_comment');
+
+function fin_check_comment_spam_trap($comment_id, $approved) {
+	// first check http_referer
+	$siteURL = str_ireplace('www.', '', parse_url(get_bloginfo('url'), PHP_URL_HOST));
+	if(!stripos($_SERVER['HTTP_REFERER'], $siteURL)) {
+		wp_die('There was an error.', 'Error');
+		exit;
+	}
+	if($approved != 'spam') { // No need to check twice
+		$decoyFields = get_decoy_fields();
+		$hash = get_dailyID();
+		
+		foreach ($decoyFields as $decoy) {
+			if(isset($_POST[$decoy . $hash])) {
+				wp_spam_comment($comment_id);
+			}
+		}
+	}
+}
+add_action('comment_post', 'fin_check_comment_spam_trap');
+
+function fin_check_register_spam_trap($errors, $sanitized_user_login, $user_email) {
+	// first check http_referer
+	$siteURL = str_ireplace('www.', '', parse_url(get_bloginfo('url'), PHP_URL_HOST));
+	if(!stripos($_SERVER['HTTP_REFERER'], $siteURL)) {
+		wp_die('There was an error.', 'Error');
+		exit;
+	}
+	if(!$errors->get_error_code()) { // Check to see if there are already errors
+		$decoyFields = get_decoy_fields(); // List of names for decoy fields
+		$hash = get_dailyID(); // Get unique daily ID hash
+		
+		foreach ($decoyFields as $decoy) {
+			if(isset($_POST[$decoy . $hash])) {
+				wp_die('There was an error. Sorry', 'Error');
+				exit;
+			}
+		}
+	}
+	return $errors;
+}
+add_action('registration_errors', 'fin_check_register_spam_trap', 10, 3);

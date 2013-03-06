@@ -26,7 +26,7 @@ class Fin_Walker_Comment extends Walker_Comment {
 		
 		extract($args, EXTR_SKIP); ?>
 		
-		<li <?php comment_class('comment-' . get_comment_ID()); ?>>
+		<li id="<?php echo 'comment-' . get_comment_ID(); ?>" <?php comment_class(); ?>>
 			<?php // get avatar
 			$avatar = fin_get_avatar($comment, $size = '64');
 			if($avatar) { ?>
@@ -49,7 +49,7 @@ class Fin_Walker_Comment extends Walker_Comment {
 			<footer>
 				<time datetime="<?php echo comment_date('c'); ?>"><a href="<?php echo htmlspecialchars(get_comment_link($comment->comment_ID)); ?>"><?php echo get_time_ago(get_comment_time('U')); ?></a></time>
 				<?php edit_comment_link('<i class="icon-pencil"></i> ' . __('edit', 'fin'), '', '');
-				comment_reply_link(array_merge($args, array('reply_text' => '<i class="icon-comments"></i> reply', 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
+				comment_reply_link(array_merge($args, array('reply_text' => '<i class="icon-comments"></i> reply', 'depth' => $depth, 'max_depth' => $args['max_depth'])), $comment->comment_ID); ?>
 			</footer>
 		<?php //</li> added below
 	}
@@ -121,66 +121,3 @@ function fin_change_comment_form($arg) {
 	return $arg;
 }
 add_filter('comment_form_defaults', 'fin_change_comment_form');
-
-/**
- * Add a spam-trap to comment-form
- *
- * Include a hidden field called name and set it to hidden. If it receives an input, we have a bot!
- */
-function fin_add_spam_trap($arg) {
-	$decoyFields = array( 'firstname', 'lastname', 'email2', 'address', 'address2', 'city', 'state', 'zipcode', 'telephone', 'phone');
-	$arg['fields'] = array_reverse($arg['fields'], true); //reverse order to place decoys at front of form.
-	
-	// Get unique daily ID
-	srand(date('Ymd'));
-	$number = rand(0,9999999);
-	$hash = substr(sha1($number),0,8);
-	
-	$spamtrap = '';
-	foreach ($decoyFields as $decoy) {
-		$spamtrap .= '<label for="' . $decoy . '" class="hide">' . $decoy . ' *</label><input name="name" id="' . $decoy . $hash . '" type="text" class="hide">';
-	}
-	$arg['fields']['spamtrap'] = $spamtrap;
-	$arg['fields'] = array_reverse($arg['fields'], true); //reverse back so fields are in regular order
-	
-	// Add hashes to author and email
-	$arg['fields']['author'] = str_replace('name="author"', 'name="author' . $hash . '"', $arg['fields']['author'] );
-	$arg['fields']['email'] = str_replace('name="email"', 'name="email' . $hash . '"', $arg['fields']['email'] );
-	return $arg;
-}
-add_filter('comment_form_defaults', 'fin_add_spam_trap');
-
-function fin_fix_hashed_comment($commentdata) {
-	// Get unique daily ID
-	srand(date('Ymd'));
-	$number = rand(0,9999999);
-	$hash = substr(sha1($number),0,8);
-	
-	// fix hashed author & email fields
-	if(isset($_POST['author' . $hash])) {
-		$_POST['author'] = trim(strip_tags($_POST['author' . $hash]));
-	}
-	if(isset($_POST['email' . $hash])) {
-		$_POST['email'] = trim(strip_tags($_POST['email' . $hash]));
-	}
-	return $commentdata;
-}
-add_action('pre_comment_on_post', 'fin_fix_hashed_comment');
-
-function fin_check_spamtrap($comment_id, $approved) {
-	if($approved != 'spam') { // No need to check twice
-		$decoyFields = array( 'firstname', 'lastname', 'email2', 'address', 'address2', 'city', 'state', 'zipcode', 'telephone', 'phone');
-		
-		// Get unique daily ID
-		srand(date('Ymd'));
-		$number = rand(0,9999999);
-		$hash = substr(sha1($number),0,8);
-		
-		foreach ($decoyFields as $decoy) {
-			if(isset($_POST[$decoy . $hash])) {
-				wp_spam_comment($comment_id);
-			}
-		}
-	}
-}
-add_action('comment_post', 'fin_check_spamtrap');
