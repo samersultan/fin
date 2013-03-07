@@ -68,7 +68,7 @@ function shortcode_gallery($attr) {
 		'itemtag'    => '',
 		'icontag'    => '',
 		'captiontag' => '',
-		'columns'    => 3,
+		'columns'    => 4,
 		'size'       => 'thumbnail',
 		'include'    => '',
 		'exclude'    => ''
@@ -105,21 +105,22 @@ function shortcode_gallery($attr) {
 		return $output;
 	}
 
-	$output = '<ul class="thumbnails gallery">';
+	$output = '<ul class="clearing-thumbs small-block-grid-' . $columns . '" data-clearing>';
 
-	$i = 0;
 	foreach ($attachments as $id => $attachment) {
-		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-
-		$output .= '<li>' . $link;
+		$attachmentURL = 
+		$imageURL = wp_get_attachment_url($id);
+		$thumb = wp_get_attachment_image_src($id, $size);
+		$thumbURL = $thumb[0];
 		if (trim($attachment->post_excerpt)) {
-			$output .= '<div class="caption hidden">' . wptexturize($attachment->post_excerpt) . '</div>';
+			$caption = ' data-caption="' . wptexturize($attachment->post_excerpt) . '"';
+		}else {
+			$caption = '';
 		}
-		$output .= '</li>';
+		$output .= '<li><a class="th" href="' . $imageURL . '"><img src="' . $thumbURL . '"' . $caption . '></a></li>';
 	}
 
 	$output .= '</ul>';
-
 	return $output;
 }
 add_shortcode('gallery', 'shortcode_gallery');
