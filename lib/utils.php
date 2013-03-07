@@ -315,3 +315,49 @@ function fin_get_avatar($comment, $size='64', $placeholder='404') {
 		return $avatar;
 	}
 }
+
+/**
+ * Display Videos
+ *
+ */
+// Utility function - allow us to strpos an array
+function video_strpos_arr($haystack, $needle) {
+	if( !is_array($needle) ) {
+		$needle = array($needle);
+	}
+	foreach( $needle as $what ) {
+		if( ($pos = strpos($haystack, $what) ) !== false ) {
+			return $pos;
+		}
+	}
+	return false;
+}
+
+function get_the_video() {
+	// Get Ready Display the Video
+	$embedCheck     = array("<embed", "<video", "<ifram");// only checking against the first 6
+	$mykey_values   = get_post_custom_values('_format_video_embed');
+	$media_to_display = '';
+	
+	// iterate over values passed
+	foreach ( $mykey_values as $key => $value ) {
+		if ( !empty($value) ) {
+			$firstCar = substr($value, 0, 6); // get the first 6 char.
+	
+			// if its a http(s).
+			if ( strpos($firstCar, "http:/" ) !== false || strpos($firstCar, "https:" ) !== false ) {
+				// send it to wp_oembed to see if the link is oembed enabled.
+				if(wp_oembed_get($value) !==false) {
+					$media_to_display = '<div class="video" style="width:100%; overflow:hidden;">' . wp_oembed_get($value) . '</div>';
+				}else {
+					// if not output a link.
+					$media_to_display =  '<a class="button videolink" href="' . $value . '" target="_blank">Video link: ' . the_title() . '</a>';
+				}
+			}elseif ( video_strpos_arr($firstCar, $embedCheck ) !== false ) {
+				// if its the embed code that matches our array defined above.
+				$media_to_display = '<div class="video">' .$value. '</div>';
+			}
+		}
+		return apply_filters('the_content', $media_to_display );
+	} // end foreach
+}
