@@ -35,13 +35,13 @@ if($rotator_query->have_posts()){
 					the_post_thumbnail('full');
 					if(has_excerpt()) { ?>
 						<div class="orbit-caption"><?php the_excerpt(); ?></div>
-					<?php } ?>
-				<?php }else { ?>
+					<?php }
+				}else { ?>
 					<h3><?php the_title(); ?></h3>
-					<?php the_excerpt(); ?>
-				<?php } ?>
+					<?php the_excerpt();
+				} ?>
 			</li>
 		<?php endwhile; ?>
 	</ul>
-	<?php wp_reset_postdata(); ?>
-<?php } ?>
+	<?php wp_reset_postdata();
+} ?>

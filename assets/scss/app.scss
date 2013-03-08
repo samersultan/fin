@@ -29,34 +29,37 @@ html, body { height: 100%; }
 .one-eighth, .three-eighths, .five-eighths, .seven-eighths {
 	@include grid-column($columns:$total-columns, $float:$default-float);
 }
-.one-half,
-	.two-fourths,
-	.three-sixths,
-	.four-eights   { width: gridCalc(1, 2); }
-.one-third,
-	.two-sixths    { width: gridCalc(1, 3); }
-.two-thirds,
-	.four-sixths   { width: gridCalc(2, 3); }
-.one-fourth,
-	.two-eighths   { width: gridCalc(1, 4); }
-.three-fourths,
-	.four-eighths  { width: gridCalc(3, 4); }
-.one-fifth       { width: gridCalc(1, 5); }
-.two-fifths      { width: gridCalc(2, 5); }
-.three-fifths    { width: gridCalc(3, 5); }
-.four-fifths     { width: gridCalc(4, 5); }
-.one-sixth       { width: gridCalc(1, 6); }
-.five-sixths     { width: gridCalc(5, 6); }
-.one-seventh     { width: gridCalc(1, 7); }
-.two-sevenths    { width: gridCalc(2, 7); }
-.three-sevenths  { width: gridCalc(3, 7); }
-.four-sevenths   { width: gridCalc(4, 7); }
-.five-sevenths   { width: gridCalc(5, 7); }
-.six-sevenths    { width: gridCalc(6, 7); }
-.one-eighth      { width: gridCalc(1, 8); }
-.three-eighths   { width: gridCalc(3, 8); }
-.five-eighths    { width: gridCalc(5, 8); }
-.seven-eighths   { width: gridCalc(7, 8); }
+
+@media #{$small} {
+	.one-half,
+		.two-fourths,
+		.three-sixths,
+		.four-eights   { width: gridCalc(1, 2); }
+	.one-third,
+		.two-sixths    { width: gridCalc(1, 3); }
+	.two-thirds,
+		.four-sixths   { width: gridCalc(2, 3); }
+	.one-fourth,
+		.two-eighths   { width: gridCalc(1, 4); }
+	.three-fourths,
+		.four-eighths  { width: gridCalc(3, 4); }
+	.one-fifth       { width: gridCalc(1, 5); }
+	.two-fifths      { width: gridCalc(2, 5); }
+	.three-fifths    { width: gridCalc(3, 5); }
+	.four-fifths     { width: gridCalc(4, 5); }
+	.one-sixth       { width: gridCalc(1, 6); }
+	.five-sixths     { width: gridCalc(5, 6); }
+	.one-seventh     { width: gridCalc(1, 7); }
+	.two-sevenths    { width: gridCalc(2, 7); }
+	.three-sevenths  { width: gridCalc(3, 7); }
+	.four-sevenths   { width: gridCalc(4, 7); }
+	.five-sevenths   { width: gridCalc(5, 7); }
+	.six-sevenths    { width: gridCalc(6, 7); }
+	.one-eighth      { width: gridCalc(1, 8); }
+	.three-eighths   { width: gridCalc(3, 8); }
+	.five-eighths    { width: gridCalc(5, 8); }
+	.seven-eighths   { width: gridCalc(7, 8); }
+}
 
 // BASE STYLES //
 .hide {
@@ -77,6 +80,7 @@ h1,h2,h3,h4,h5,h6 {
 hr {
 	border-bottom: 2px solid rgba(255,255,255, .5);
 	border-top: 2px solid rgba(0,0,0, .1);
+	@include clearfix;
 }
 .alignleft { @extend .left; }
 .alignright { @extend .right }
@@ -86,6 +90,9 @@ hr {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+.video {
+	@include flex-video-container;
 }
 
 // ROTATOR //
@@ -109,8 +116,16 @@ hr {
 	}
 }
 
-// SITE LAYOUT //
+// Gallery //
+.clearing-thumbs {
+	@extend .unstyled;
+	li {
+		float: left;
+		padding-top: 3px; // block-grid fix
+	}
+}
 
+// SITE LAYOUT //
 // Body
 /////////////////
 html, body { }
@@ -203,35 +218,32 @@ body {
 #content {
 //	@include box-shadow(0 2px 10px rgba(0,0,0,.75));
 //	margin-bottom: 20px;
-//	padding: 20px 40px;
+	padding: 20px 40px;
 }
 
 // Articles & Excerpts & Pages
 //////////////////////
 .hentry {
-	@include grid-row();
-	.entry-thumbnail {}
-	.content {}
-	.gallery-image {}
-	footer {
-		ul { }
-		li {}
-		.meta_time { }
-		.meta_categories { 
-			a {}
-		}
-		.meta_tags {
-			a {	}
-		}
-		.meta_count { 
-			a {}
-		}
-		.meta_comments { 
-			a {}
-		}
+	&>header, &>section, &>footer {
+		@include grid-row;
 	}
-	.meta_edit { 
-		visibility: hidden;
+	header {
+		h3 { }
+	}
+	.entry-summary, .entry-content {
+		.entry-thumbnail { }
+	}
+	footer {
+		.meta_time { }
+		.meta_categories { }
+		.meta_images { }
+		.meta_exif { }
+		.meta_tags { }
+		.meta_count { }
+		.meta_comments { }
+		.meta_edit { 
+			visibility: hidden;
+		}
 	}
 	&:hover {
 		.meta_edit {
@@ -242,35 +254,7 @@ body {
 
 // Excerpts
 ///////////
-.hentry.excerpt {
-	.entry-title {  }
-	.entry-summary {  }	
-	.entry-title { }
-	.entry-thumbnail { }
-	footer {
-		ul { }
-		li { }
-		.meta_time { }
-		.meta_categories { 
-			a {}
-		}
-		.meta_tags { 
-			a {}
-		}
-		.meta_count { 
-			a {}
-		}
-		.meta_comments { 
-			a {}
-		}
-	}
-	.meta_edit { 
-		a {}
-	}
-	&:hover {
-		.meta_edit a {}
-	}
-}
+.hentry.excerpt { }
 
 // Post Formats
 .hentry.excerpt { 
@@ -294,34 +278,7 @@ body {
 
 // Articles
 ///////////
-.hentry.single {
-	.entry-title { }
-	.entry-thumbnail { }
-	.entry-content { }
-	footer {
-		ul { }
-		li { }
-		.meta_time { }
-		.meta_categories { 
-			a {}
-		}
-		.meta_tags { 
-			a {}
-		}
-		.meta_count { 
-			a {}
-		}
-		.meta_comments { 
-			a {}
-		}
-	}
-	.meta_edit { 
-		a {}
-	}
-	&:hover {
-		.meta_edit a {}
-	}
-}
+.hentry.single {}
 
 // Post Formats
 .hentry.single {
@@ -337,7 +294,6 @@ body {
 
 // Specific Article Types
 .hentry.single {
-	&.full { }
 	&.post { }
 	&.page { }
 	&.attachment { }
@@ -351,9 +307,25 @@ body {
 // Pagination
 /////////////
 #pagination {
+	@include grid-row;
+	padding: 20px 40px;
 	.previous a, .next a { }
 	.previous { }
 	.next { }
+}
+// Discussion
+///////////
+#discussion {
+	@include grid-row;
+	padding: 20px 40px;
+}
+@media #{$small} {
+	#respond {
+		@include grid-column(6, $push:6, $float:left);
+	}
+	#comments {
+		@include grid-column(6, $pull:6, $float:left);
+	}
 }
 // Respond
 //////////
@@ -364,6 +336,9 @@ body {
 		margin: 0;
 	}
 	a.logout {}	
+	textarea {
+		min-height: 8em; // ~ 6 lines
+	}
 }
 
 // Reply Form
@@ -371,26 +346,32 @@ ol #respond {
 	@include panel;
 }
 a#cancel-comment-reply-link { }
-ol.children #respond { }
 
 // Comments
 ///////////
 #comments {
 	h3 { }
 }
-ol.commentlist {
+ol.comment-list {
+	@extend .unstyled;
 	ol.comment {
 		@include grid-column($offset:1, $collapse:null);
+		@extend .unstyled;
 	}
 }
 
 li.comment {
 	clear: both;
 	figure.avatar {
-		display: none;
+		display: none; // hide-for-small
+		a {
+			@include thumb;
+			line-height: 0;
+			padding-bottom: 1px;
+		}
 	}
 	&>header, &>section, &>footer {
-		@include grid-column(12, $float: right);
+		@include grid-column(12, $float: left);
 	}
 	.comment-author {
 		cite {
@@ -402,7 +383,11 @@ li.comment {
 	}
 	section {	}
 	footer {
-		time {  }
+		time { 
+			a {
+				@include button($padding:$button-tny, $bg:$secondary-color, $radius:9999em);
+			}
+		}
 	}
 	a.comment-reply-link, a.comment-edit-link {
 		float: right;
@@ -411,13 +396,14 @@ li.comment {
 }
 
 @media #{$small} {
-	ol.commentlist ol.comment {
+	ol.comment-list ol.comment {
 		@include grid-column($offset:2, $collapse:null);	
 	}
 	li.comment {
 		figure.avatar {
 			@include grid-column(2, $float: left);
 			display: inherit;
+			margin-top: 4px;
 			padding-right: 0;
 			&~header, &~section, &~footer {
 				@include grid-column(10, $float: right);
@@ -442,7 +428,7 @@ li.comment:hover {
 }
 
 // Comment Striping
-.commentlist > li.comment {
+.comment-list > li.comment {
 	 &.alt {}
 	 &.odd {}
 	 &.even {}
@@ -455,23 +441,21 @@ li.comment:hover {
 
 // Comment Threading
 #comments {
-	li.comment.parent {}
-	ol.children {
-		margin-left: 64px + 10px;
-		li.comment.depth-1 {}
-		li.comment.depth-2 {}
-		li.comment.depth-3 {}
-		li.comment.depth-4 {}
-		li.comment.depth-5 {}
-	}
+	li.comment.depth-1 {}
+	li.comment.depth-2 {}
+	li.comment.depth-3 {}
+	li.comment.depth-4 {}
+	li.comment.depth-5 {}
 }
 // Specific Comment Types
-details ol.commentlist li.comment.byuser {/* User Comment */}
-details ol.commentlist li.comment.bypostauthor {/* Author Comment */}
-details ol.commentlist li.comment.comment-author-admin {/* Admin Comment */}
+#comments {
+	ol.comment-list li.comment.byuser {/* User Comment */}
+	ol.comment-list li.comment.bypostauthor {/* Author Comment */}
+	ol.comment-list li.comment.comment-author-admin {/* Admin Comment */}
+}
 
 // Comment Content Styles
-li.comment article {
+li.comment > section {
 	a {}
 	a:hover {}
 	acronym {}
@@ -489,7 +473,10 @@ li.comment article {
 
 // Sidebars
 ///////////
-.sidebar { }
+.sidebar {
+	@include grid-row;
+	padding: 20px 40px;
+}
 #sidebar-default { }
 #sidebar-home { }
 #sidebar-single { }
@@ -500,6 +487,8 @@ li.comment article {
 // Footer
 /////////
 #footer {
+	@include grid-row;
+	padding: 0 40px;
 	p, ul, li {
 	}
 	a {
@@ -513,10 +502,14 @@ li.comment article {
 	.social {}
 }
 
-@media only screen and (max-width: 768px) {
+@media #{$small} {
 	#footer { 
-		.copyright {}
-		.social {}
+		.copyright {
+			float: left;
+		}
+		.social {
+			float: right;
+		}
 	}
 }
 

@@ -1,9 +1,8 @@
-<aside class="row">
-	<?php // Reply Form
+<?php if(comments_open() || have_comments()) { ?>
+	<aside id="discussion">
+<?php }
 	if (comments_open()) { ?>
-		<section class="large-6 small-12 columns push-6">
-			<?php comment_form(); ?>
-		</section>
+		<?php comment_form(); ?>
 	<?php }
 	// Comments
 	$options = get_option('fin_theme_options');
@@ -16,13 +15,13 @@
 	<?php } ?>
 	
 	<?php if(have_comments()) { ?>
-	  <section id="comments" class="large-6 small-12 columns pull-6">
+	  <section id="comments">
 	    <h3><?php printf(_n('One Response to &ldquo;%2$s&rdquo;', '%1$s Responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'fin'), number_format_i18n(get_comments_number()), get_the_title()); ?></h3>
-	    <ol class="unstyled commentlist">
+	    <ol class="comment-list">
 	      <?php wp_list_comments(array('walker' => new Fin_Walker_Comment)); ?>
 	    </ol>
 	
-	    <?php /* Pagination */
+	    <?php /* Comment Pagination */
 	    if(get_comment_pages_count() > 1 && get_option('page_comments')) { // are there comments to navigate through ?>
 	      <nav id="comments-nav" class="pager">
 	        <ul class="pager">
@@ -55,4 +54,6 @@
       <p><?php _e('Comments are closed.', 'fin'); ?></p>
     </div>
 	<?php } ?>
-</aside>
+<?php if(comments_open() || have_comments()) { ?>
+	</aside>
+<?php }

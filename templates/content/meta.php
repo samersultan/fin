@@ -8,7 +8,7 @@ $comment_count = get_comment_count($post->ID);
 // Gallery image count
 $gallery = get_image_count($id);
 if($gallery > 0) { ?>
-	<span class="small secondary button"><i class="icon-camera-retro"></i> <?php echo $gallery; ?></span>
+	<span class="small secondary button meta_images"><i class="icon-camera-retro"></i> <?php echo $gallery; ?></span>
 <?php }
 // Exif Information
 $exif = get_exif($id, '</span><span class="small secondary button">', '<span class="small secondary button">', '</span>');

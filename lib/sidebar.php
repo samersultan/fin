@@ -38,44 +38,47 @@ function fin_add_widget_classes($params) {
     }
     
     // Add fraction class
-    switch (count($sidebar_widgets)) {
+    $i = count($sidebar_widgets);
+    $rows = ceil($i/8) - 1;
+    $columns = $i - 8*$rows;
+    switch ($columns) {
     	case 1:
-    		$fraction = 'small-12';
+    		$fraction = '';
     		break;
     	case 2:
-    		$fraction = 'small-6';
+    		$fraction = 'one-half';
     		break;
     	case 3:
-    		$fraction = 'small-4';
+    		$fraction = 'one-third';
     		break;
     	case 4:
-    		$fraction = 'small-6 large-3';
+    		$fraction = 'one-fourth';
     		break;
     	case 5:
-    		$fraction = 'small-6 one-fifth';
+    		$fraction = 'one-fifth';
     		break;
     	case 6:
-    		$fraction = 'small-6 one-sixth';
+    		$fraction = 'one-sixth';
     		break;
     	case 7:
-    		$fraction = 'small-6 one-seventh';
+    		$fraction = 'one-seventh';
     		break;
     	case 8:
-    		$fraction = 'small-6 one-eighth';
+    		$fraction = 'one-eighth';
     		break;
     	default:
-    		$fraction = 'small-6';
+    		$fraction = '';
     }
-    $class = 'class="' . $fraction . ' columns ';
+    $class = 'class="' . $fraction;
   	
   	// Add widget-#
-  	$class .= 'widget-' . $current_widget[$sidebar_id] . ' ';
+  	$class .= ' widget-' . $current_widget[$sidebar_id] . ' ';
   	
   	// Add widget-first and widget-last
     if ($current_widget[$sidebar_id] == 1) {
-      $class .= 'first ';
+      $class .= ' first ';
     } elseif ($current_widget[$sidebar_id] == count($sidebar_widgets)) {
-      $class .= 'last ';
+      $class .= ' last ';
     }
     
     // Add new classes

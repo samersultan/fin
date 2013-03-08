@@ -1,12 +1,39 @@
 <?php 
 /**
+ * Get_Avatar
+ * returns '' if no avatar.
+ *
+ */
+function fin_get_avatar($comment, $size='64', $placeholder='404') {
+	// Create gravatar url using placeholder or 404
+	if($placeholder != '404') {
+		$placeholder = urlencode($placeholder);
+	}
+	$image = 'http://www.gravatar.com/avatar/' . md5($comment->comment_author_email) . '?s=' . $size . '&d=' . $placeholder;
+	$authorName = $comment->comment_author;
+	$headers = get_headers($image);
+	if (!strpos($headers[0],'200')) {	// no avatar
+		return '';
+	}
+	
+	$avatar = '<img src="' . $image . '" class="avatar" alt="' . $authorName . '">';
+	
+	$authorURL = $comment->comment_author_url;
+	if($authorURL) {
+		return '<a href="' . $authorURL . '" rel="external nofollow">' . $avatar . '</a>';
+	}else { // no URL
+		return $avatar;
+	}
+}
+
+/**
  * Default Comment Structure
  *
  */
 class Fin_Walker_Comment extends Walker_Comment {
 	function start_lvl(&$output, $depth = 0, $args = array()) {
 		$GLOBALS['comment_depth'] = $depth + 1; ?>
-		<ol <?php comment_class('unstyled'); ?>>
+		<ol <?php comment_class(); ?>>
 	<?php }
 	
 	function end_lvl(&$output, $depth = 0, $args = array()) {

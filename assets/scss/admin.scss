@@ -1,10 +1,16 @@
 $include-html-classes: false;
 $include-print-styles: false;
 
-@import "foundation/foundation-global";
+@import
+	"variables",
+	"foundation/foundation-global",
+	"foundation/components/type",
+	"foundation/components/buttons",
+	"foundation/components/forms";
 
 /** Login CSS **/
 body.login {
+	background: $body-bg;
 	#login {
 		h1 a {
 			background-image: url(../img/logo.png);

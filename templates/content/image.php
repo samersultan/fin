@@ -1,4 +1,4 @@
-<article <?php post_class('single'); ?>>
+<section <?php post_class('single'); ?>>
 	<?php $parent = $post->post_parent; ?>
 	<h3 class="entry-title"><a href="<?php echo get_permalink(); ?>" rel="bookmark" title="Bookmark for <?php echo get_the_title($parent); ?>" class="bookmark"><?php echo get_the_title($parent); ?></a></h3>
 	<figure class="entry-thumbnail">
@@ -24,7 +24,7 @@
 	<footer>
 		<?php get_template_part('templates/content/meta'); ?>
 	</footer>
-</article>
+</section>
 <?php //Gallery
 $attachments = get_children(array(
 	'post_parent'=>$post->post_parent,

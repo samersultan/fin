@@ -13,15 +13,15 @@
 	</hgroup>
 </header>
 <?php if (has_nav_menu('primary_menu')) { ?>
-		<nav data-magellan-expedition="fixed" id="primary_navigation" class="top-bar" role="navigation">
-			<ul class="title-area">
-		    <li class="name">
-	        <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
-		    </li>
-		    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-			</ul>
-			<section class="top-bar-section">
-				<?php wp_nav_menu(array('theme_location' => 'primary_menu', 'menu_class' => 'right')); ?>
-			</section>
-		</nav>
+	<nav data-magellan-expedition="fixed" id="primary_navigation" class="top-bar" role="navigation">
+		<ul class="title-area">
+	    <li class="name">
+        <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+	    </li>
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
+		<section class="top-bar-section">
+			<?php wp_nav_menu(array('theme_location' => 'primary_menu', 'menu_class' => 'right')); ?>
+		</section>
+	</nav>
 <?php } ?>
