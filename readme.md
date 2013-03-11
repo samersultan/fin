@@ -5,7 +5,6 @@ Make header a rotating banner location
 Make <pre><code> shortcode
 Add Logos/links back into admin bar
 Add in post-format and page templates
-Add a sitemap wordpress page
 Add tweet# and facebook like shortcodes
 Remove unnecessary WP_Widget queries
 Add a breadcrumb nav option

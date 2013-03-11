@@ -224,7 +224,7 @@ body {
 // Articles & Excerpts & Pages
 //////////////////////
 .hentry {
-	&>header, &>section, &>footer {
+	&>header, &>.entry-content, &>footer {
 		@include grid-row;
 	}
 	header {
@@ -303,6 +303,15 @@ body {
 // Pages
 ////////
 .hentry.page { }
+
+// Sitemap
+//////////
+#sitemap-pages, #sitemap-articles, #sitemap-tags {
+	@include grid-column(4, $float:left);
+	h5, h6 {
+		text-align: left;
+	}
+}
 
 // Pagination
 /////////////

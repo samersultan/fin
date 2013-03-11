@@ -30,9 +30,11 @@ if(current_user_can('edit_posts')) {
  *
  */
 function fin_add_pages(){
-	$defaultPages = array('home', 'about', 'contact', 'copyrights', 'privacy', 'maintenance');
+	$defaultPages = array('home', 'about', 'contact', 'copyrights', 'privacy', 'maintenance', 'sitemap');
 	foreach ($defaultPages as $defaultPage) {
 		require_once locate_template('/lib/pages/page-' . $defaultPage . '.php');
 	}
 }
 add_action('after_switch_theme', 'fin_add_pages');
+
+add_theme_support('woocommerce');
