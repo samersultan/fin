@@ -130,21 +130,29 @@ add_shortcode('gallery', 'shortcode_gallery');
  * 
  * Encodes and creates an email link
  *
- * Example:
+ * Examples:
  * [email]you@url.com[/email]
  *
- * [email address="you@url.com]
+ * [email address="you@url.com]Your Name[/email]
+ *
+ * [email address="you@url.com label="Your Name"]
  */
-function shortcode_email( $atts, $content, $adress ) {
+function shortcode_email( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'address' => '', 
+	'address' => '',
+	'label' => '', 
 	), $atts ) );
 	
-	if($address == ''){
+	if($address == '') {
 		$address = do_shortcode($content);
+	}elseif($content != '') {
+		$label = do_shortcode($content);
+	}
+	if($label == '') {
+		$label = antispambot($address);
 	}
 	 
-	return '<a href="mailto:'.antispambot($content).'">'.antispambot($content).'</a>';
+	return '<a href="mailto:' . antispambot($address) . '">' . $label . '</a>';
 }
 add_shortcode('email', 'shortcode_email');
 
@@ -276,12 +284,12 @@ add_shortcode( 'column', 'shortcode_column' );
   */
 function shortcode_button( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'type' => 'radius', /* radius, round */
-	'size' => 'medium', /* small, medium, large */
-	'type' => 'secondary', /* primary, secondary, warning, success, error */
-	'url'  => '',
-	'text' => '', 
-	), $atts ) );
+		'type' => 'radius', /* radius, round */
+		'size' => 'medium', /* small, medium, large */
+		'type' => 'secondary', /* primary, secondary, warning, success, error */
+		'url'  => '',
+		'text' => '', 
+		), $atts ) );
 	
 	if($text == ''){
 		$text = do_shortcode($content);
