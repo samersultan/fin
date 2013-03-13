@@ -4,13 +4,39 @@
  * returns '' if no avatar.
  *
  */
-function fin_get_avatar($comment, $size='64', $placeholder='404') {
+function fin_get_avatar($id_or_email, $size='64', $placeholder='404') {
+	// get $email from input. Could be $comment, $email, or $user_id
+	$authorURL = '';
+	$authorName = '';
+	if(is_numeric($id_or_email)) {
+		$id = (int) $id_or_email;
+		$user = get_userdata($id);
+		if ( $user ) {
+			$email = $user->user_email;
+		}
+	}elseif(is_object($id_or_email)) {
+		if(!empty($id_or_email->user_id)) {
+			$id = (int) $id_or_email->user_id;
+			$user = get_userdata($id);
+			if ( $user ) {
+				$email = $user->user_email;
+				$authorName = $user->display_name;
+				$authorURL = get_edit_profile_url($id);
+			}
+		}elseif(!empty($id_or_email->comment_author_email)) {
+			$email = $id_or_email->comment_author_email;
+			$authorName = $comment->comment_author;
+			$authorURL = $comment->comment_author_url;
+		}
+	}else {
+		$email = $id_or_email;
+	}
+	
 	// Create gravatar url using placeholder or 404
 	if($placeholder != '404') {
 		$placeholder = urlencode($placeholder);
 	}
-	$image = 'http://www.gravatar.com/avatar/' . md5($comment->comment_author_email) . '?s=' . $size . '&d=' . $placeholder;
-	$authorName = $comment->comment_author;
+	$image = 'http://www.gravatar.com/avatar/' . md5($email) . '?s=' . $size . '&d=' . $placeholder;
 	$headers = get_headers($image);
 	if (!strpos($headers[0],'200')) {	// no avatar
 		return '';
@@ -18,7 +44,7 @@ function fin_get_avatar($comment, $size='64', $placeholder='404') {
 	
 	$avatar = '<img src="' . $image . '" class="avatar" alt="' . $authorName . '">';
 	
-	$authorURL = $comment->comment_author_url;
+	
 	if($authorURL) {
 		return '<a href="' . $authorURL . '" rel="external nofollow">' . $avatar . '</a>';
 	}else { // no URL

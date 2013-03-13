@@ -165,6 +165,8 @@ if($current_user->ID != 1) {
 	 **/
 	function fin_change_admin_bar_menu() {
 		global $wp_admin_bar;
+		
+		//Remove Menus
 		$wp_admin_bar->remove_menu('wp-logo');
     $wp_admin_bar->remove_menu('about');
     $wp_admin_bar->remove_menu('wporg');
@@ -185,6 +187,32 @@ if($current_user->ID != 1) {
 		if ( get_option( 'default_comment_status' ) == 'closed' ) {
 			$wp_admin_bar->remove_menu('comments');
 		}
+		
+		// Change Greeting
+		$user_id= get_current_user_id();
+		$profile_url = get_edit_profile_url($user_id);
+		$current_user = wp_get_current_user();
+		
+		if($user_id != 0) {
+			$avatar = fin_get_avatar( $user_id, 28 );
+			$greeting = __('Hello, ' . $current_user->display_name);
+			if($avatar) { 
+				$class = 'with-avatar';
+			}else {
+				$class= '';
+			}
+			$wp_admin_bar->add_menu( array(
+				'id' => 'my-account',
+				'parent' => 'top-secondary',
+				'title' => $greeting . $avatar,
+				'href' => $profile_url,
+				'meta' => array(
+					'class' => $class
+					),
+				)
+			);
+		}
+		
 		// TODO Add Developer Link
 		
 		// TODO Add Home_url logo link
