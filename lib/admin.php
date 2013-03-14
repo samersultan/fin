@@ -151,9 +151,12 @@ if($current_user->ID != 1) {
 	add_action('admin_menu', 'fin_change_default_menus');
 	
 	/**
-	 * Remove Editor menu
+	 * Remove Editor menus
 	 *
 	 */
+	define('DISALLOW_FILE_EDIT', true);
+	define('DISALLOW_FILE_MODS', true);
+	
 	function fin_remove_editor_menu() {
 		remove_action('admin_menu', '_add_themes_utility_last', 101);
 	}
