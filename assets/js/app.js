@@ -49,7 +49,7 @@ jQuery(document).foundation('reveal',{
     }
   }
 });
-//jQuery(document).foundation(); // Don't log errors
-jQuery(document).foundation(function (response) { // log errors
-  console.log(response.errors);
-});
+jQuery(document).foundation(); // Don't log errors
+//jQuery(document).foundation(function (response) { // log errors
+  //console.log(response.errors);
+//});

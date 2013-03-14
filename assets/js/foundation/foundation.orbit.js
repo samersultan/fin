@@ -135,7 +135,7 @@
 
         if ($slide.length === 1) {
           self._reset_timer($slides_container, true);
-          self.goto($slides_container, $slide.index(), function() {});
+          self._goto($slides_container, $slide.index(), function() {});
         }
       });
 
@@ -143,7 +143,7 @@
         .on('click.fndtn.orbit', '[data-orbit-slide-number]', function(e) {
           e.preventDefault();
           self._reset_timer($slides_container, true);
-          self.goto($slides_container, $(e.currentTarget).data('orbit-slide-number'),function() {});
+          self._goto($slides_container, $(e.currentTarget).data('orbit-slide-number'),function() {});
         });
 
       $container
@@ -157,12 +157,12 @@
         .on('orbit:next-slide.fndtn.orbit click.fndtn.orbit', '.' + self.settings.next_class, function(e) {
           e.preventDefault();
           self._reset_timer($slides_container, true);
-          self.goto($slides_container, 'next', function() {});
+          self._goto($slides_container, 'next', function() {});
         })
         .on('orbit:prev-slide.fndtn.orbit click.fndtn.orbit', '.' + self.settings.prev_class, function(e) {
           e.preventDefault();
           self._reset_timer($slides_container, true);
-          self.goto($slides_container, 'prev', function() {});
+          self._goto($slides_container, 'prev', function() {});
         })
         .on('orbit:toggle-play-pause.fndtn.orbit click.fndtn.orbit touchstart.fndtn.orbit', '.' + self.settings.timer_container_class, function(e) {
           e.preventDefault();
@@ -177,6 +177,7 @@
           }
         })
         .on('touchstart.fndtn.orbit', function(e) {
+          if (!e.touches) { e = e.originalEvent; }
           var data = {
             start_page_x: e.touches[0].pageX,
             start_page_y: e.touches[0].pageY,
@@ -188,6 +189,7 @@
           e.stopPropagation();
         })
         .on('touchmove.fndtn.orbit', function(e) {
+          if (!e.touches) { e = e.originalEvent; }
           // Ignore pinch/zoom events
           if(e.touches.length > 1 || e.scale && e.scale !== 1) return;
 
@@ -207,7 +209,7 @@
             self._stop_timer($slides_container);
             var direction = (data.delta_x < 0) ? 'next' : 'prev';
             data.active = true;
-            self.goto($slides_container, direction, function() {});
+            self._goto($slides_container, direction, function() {});
           }
         })
         .on('touchend.fndtn.orbit', function(e) {
@@ -232,7 +234,7 @@
 
       var callback = function() {
         self._reset_timer($slides_container, false);
-        self.goto($slides_container, 'next', function() {
+        self._goto($slides_container, 'next', function() {
           self._start_timer($slides_container);
         });
       };
@@ -290,7 +292,7 @@
       }
     },
 
-    goto: function($slides_container, index_or_direction, callback) {
+    _goto: function($slides_container, index_or_direction, callback) {
       var self = this,
           $container = $slides_container.parent(),
           $slides = $slides_container.children(),

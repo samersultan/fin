@@ -224,7 +224,7 @@ body {
 // Articles & Excerpts & Pages
 //////////////////////
 .hentry {
-	&>header, &>.entry-content, &>footer {
+	> header, > .entry-content, > footer {
 		@include grid-row;
 	}
 	header {
@@ -306,7 +306,7 @@ body {
 
 // Sitemap
 //////////
-#sitemap-pages, #sitemap-articles, #sitemap-tags {
+#sitemap-pages, #sitemap-articles {
 	@include grid-column(4, $float:left);
 	h5, h6 {
 		text-align: left;
@@ -524,3 +524,4 @@ li.comment > section {
 
 // Misc.
 ////////
+@import "woocommerce";

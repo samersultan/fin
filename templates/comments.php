@@ -1,9 +1,9 @@
 <?php if(comments_open() || have_comments()) { ?>
 	<aside id="discussion">
 <?php }
-	if (comments_open()) { ?>
-		<?php comment_form(); ?>
-	<?php }
+	if (comments_open()) {
+		comment_form();
+	}
 	// Comments
 	$options = get_option('fin_theme_options');
 	$comments_warning = $options['comments_warning'];
@@ -53,7 +53,7 @@
       <button type="button" class="close">&times;</button>
       <p><?php _e('Comments are closed.', 'fin'); ?></p>
     </div>
-	<?php } ?>
-<?php if(comments_open() || have_comments()) { ?>
+	<?php }
+if(comments_open() || have_comments()) { ?>
 	</aside>
 <?php }
