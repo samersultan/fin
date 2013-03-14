@@ -25,8 +25,8 @@ function fin_get_avatar($id_or_email, $size='64', $placeholder='404') {
 			}
 		}elseif(!empty($id_or_email->comment_author_email)) {
 			$email = $id_or_email->comment_author_email;
-			$authorName = $comment->comment_author;
-			$authorURL = $comment->comment_author_url;
+			$authorName = $id_or_email->comment_author;
+			$authorURL = $id_or_email->comment_author_url;
 		}
 	}else {
 		$email = $id_or_email;
