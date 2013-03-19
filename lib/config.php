@@ -136,7 +136,7 @@ add_action('after_setup_theme', 'fin_media_size');
  *
  */
 function fin_the_category($list) {
-	$list = str_replace('rel="category tag">', 'rel="category tag" class="meta_category small secondary button"><i class="icon-folder-close"></i> ', $list);
+	$list = str_replace('rel="category tag">', 'rel="category" class="meta_category small secondary button"><i class="icon-folder-close"></i> ', $list);
 	return $list;
 }
 add_filter('the_category', 'fin_the_category');

@@ -152,7 +152,10 @@ function fin_change_comment_form($arg) {
 	                
 	    'must_log_in' => sprintf( __( 'You must be <a class="button" href="%s">logged in</a> to post a comment.'), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ),
 		
-		'logged_in_as' => sprintf( __( '<span class="alert alert-success logged-in-as">Logged in as: <a class="button small" href="%s"><i class="icon-user"></i> %s</a><a href="%s" title="Log out of this account" class="button small alert">Log out?</a></span>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( ) ) ) ),
+		'logged_in_as' => '<ul class="button-group">
+			<li><a class="button small" href="' . admin_url( "profile.php" ) . '"><i class="icon-user"></i> ' . $user_identity . '</a></li>
+			<li><a class="button small alert" href="' . wp_logout_url( apply_filters( "the_permalink", get_permalink( ) ) ) . '"><i class="icon-ban-circle"></i> Log Out</a></li>
+		</ul>',
 		
 		'comment_notes_before' => '',
 		
