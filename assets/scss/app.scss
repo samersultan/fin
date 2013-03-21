@@ -354,8 +354,19 @@ body {
 // Reply Form
 ol #respond { 
 	@include panel;
+	@include grid-column(12, $float:left, $pull:0);
 }
-a#cancel-comment-reply-link { }
+@media #{$small} {
+	ol #respond { 
+		@include grid-column(12, $float:left, $pull:0);
+	}
+	#wp-temp-form-div + #comments {
+		@include grid-column(6, $push:0, $float:left);
+	}
+}
+a#cancel-comment-reply-link { 
+	@include alert-close;
+}
 
 // Comments
 ///////////
@@ -522,7 +533,3 @@ li.comment > section {
 		}
 	}
 }
-
-// Misc.
-////////
-@import "woocommerce";
