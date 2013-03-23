@@ -9,9 +9,6 @@ function fin_init() {
 		update_option('blogdescription','');
 	}
 	
-	//Keep wordpress from reformatting posts
-	//remove_filter('the_content', 'wpautop');
-	
 	// Allow shortcodes in widgets
 	add_filter( 'widget_text', 'shortcode_unautop');
 	add_filter( 'widget_text', 'do_shortcode', 11);
@@ -136,7 +133,7 @@ add_action('after_setup_theme', 'fin_media_size');
  *
  */
 function fin_the_category($list) {
-	$list = str_replace('rel="category tag">', 'rel="category" class="meta_category small secondary button"><i class="icon-folder-close"></i> ', $list);
+	$list = str_replace('rel="category tag">', 'rel="category" class="meta-category small secondary button"><i class="icon-folder-close"></i> ', $list);
 	return $list;
 }
 add_filter('the_category', 'fin_the_category');
@@ -146,7 +143,7 @@ add_filter('the_category', 'fin_the_category');
  *
  */
 function fin_the_tags($list) {
-	$list = str_replace('rel="tag">', 'rel="tag" class="meta_tag button small secondary button"><i class="icon-tags"></i> ', $list);
+	$list = str_replace('rel="tag">', 'rel="tag" class="meta-tag button small secondary button"><i class="icon-tags"></i> ', $list);
 	return $list;
 }
 add_filter('the_tags', 'fin_the_tags');
