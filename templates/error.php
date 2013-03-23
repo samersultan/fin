@@ -1,4 +1,4 @@
-<section class="error">
+<section>
 	<header>
 		<div data-alert class="alert-box alert">
 			<a href="#" type="button" class="close">&times;</a>

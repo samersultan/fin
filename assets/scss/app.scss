@@ -11,7 +11,7 @@ html, body { height: 100%; }
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
-	margin: 0 auto -$footer-height;
+	margin: 0 auto ($footer-height * -1);
 }
 #wrap > *:last-child {
 	padding-bottom: $footer-height;
@@ -71,20 +71,30 @@ html, body { height: 100%; }
 	visibility: hidden !important;
 	width: 0 !important;   
 }
-input[type="submit"] { }
+input[type="submit"]:not([disabled]) { 
+	@include button;
+}
+input[type="submit"][disabled] {
+	@include button($disabled:true);
+}
 a:hover i {
 	text-decoration: none;
 }
 h1,h2,h3,h4,h5,h6 {
 	text-align: center;
 }
+.entry-summary, .entry-content, .widget {
+	ol, ul {
+		padding-left: 1em;
+	}
+}
 hr {
 	border-bottom: 2px solid rgba(255,255,255, .5);
 	border-top: 2px solid rgba(0,0,0, .1);
 	@include clearfix;
 }
-.alignleft { @extend .left; }
-.alignright { @extend .right }
+.alignleft { @extend .left; margin-right: 1em; }
+.alignright { @extend .right; margin-left: 1em; }
 .aligncenter, .center { margin: 0 auto; }
 .alignnone { float: none; }
 .unstyled {
@@ -225,7 +235,7 @@ body {
 // Articles & Excerpts & Pages
 //////////////////////
 .hentry {
-	> header, > .entry-content, > footer {
+	&> header, &> .entry-content,.entry-summary, &> footer {
 		@include grid-row;
 	}
 	header {
@@ -235,19 +245,19 @@ body {
 		.entry-thumbnail { }
 	}
 	footer {
-		.meta_time { }
-		.meta_categories { }
-		.meta_images { }
-		.meta_exif { }
-		.meta_tags { }
-		.meta_count { }
-		.meta_comments { }
-		.meta_edit { 
+		.meta-time { }
+		.meta-categories { }
+		.meta-images { }
+		.meta-exif { }
+		.meta-tags { }
+		.meta-count { }
+		.meta-comments { }
+		.meta-edit { 
 			visibility: hidden;
 		}
 	}
 	&:hover {
-		.meta_edit {
+		.meta-edit {
 			visibility: visible;
 		}
 	}

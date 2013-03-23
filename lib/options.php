@@ -140,18 +140,14 @@ function fin_customize_register($wp_customize) {
 		'section' => 'fin_typography',
 		'type'    => 'select',
 		'choices'    => array(
-			'Great Vibes' => 'Great Vibes',
-			'Croissant One' => 'Croissant One',
-			'Elsie' => 'Elsie',
-			'Sail' => 'Sail',
+			'' => 'Default',
+			'Headline One'=>'Headline One',
+			'Arvo'=>'Arvo',
+			'Coustard'=>'Coustard',
+			'Holtwood One SC'=>'Holtwood One SC',
 			'Sevillana' => 'Sevillana',
-			'Cinzel Decorative' => 'Cinzel Decorative',
-			'Oleo Script Swash Caps' => 'Oleo Script Swash Caps',
 			'Alfa Slab One' => 'Alfa Slab One',
-			'Special Elite' => 'Special Elite',
-			'Glass Antiqua' => 'Glass Antiqua',
-			'Poiret One' => 'Poiret One',
-			'Cherry Swash' => 'Cherry Swash'
+			'Poiret One' => 'Poiret One'
 		),
 	) );
 	
@@ -166,20 +162,15 @@ function fin_customize_register($wp_customize) {
 		'section' => 'fin_typography',
 		'type'    => 'select',
 		'choices'    => array(
-			'Nixie One' => 'Nixie One',
-			'Corben' => 'Corben',
-			'Flamenco' => 'Flamenco',
-			'Special Elite' => 'Special Elite',
-			'Alegreya' => 'Alegreya',
-			'Prata' => 'Prata',
-			'Cutive' => 'Cutive',
-			'Kotta One' => 'Kotta One',
-			'Merriweather' => 'Merriweather',
-			'Poiret One' => 'Poiret One',
-			'Raleway' => 'Raleway',
-			'Duru Sans' => 'Duru Sans',
-			'Kreon' => 'Kreon',
-			'Enriqueta' => 'Enriqueta'
+			'' => 'Default',
+			'Merriweather Sans'=>'Merriweather Sans',
+			'Sintony'=>'Sintony',
+			'Open Sans'=>'Open Sans',
+			'Donegal One'=>'Donegal One',
+			'Raleway'=>'Raleway',
+			'Varela'=>'Varela',
+			'Andada'=>'Andada',
+			'Ledger'=>'Ledger'
 		),
 	) );
 	

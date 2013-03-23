@@ -12,7 +12,9 @@ Here are somethings that have been on my todo list for awhile.
 
 * Add a settings page to set the default carousel options
 
-* Make `<pre>` and `<code>` shortcodes
+* Make `[pre]` and `[code]` shortcodes
+
+* Create `[tel]` shortcode
 
 * Better templates for post-formats
 

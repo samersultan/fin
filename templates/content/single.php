@@ -6,6 +6,7 @@
 		<?php the_content(); ?>
 	</section>
 	<footer>
-		<?php get_template_part('templates/content/meta'); ?>
+		<?php get_template_part('templates/content/meta');
+		wp_link_pages(array('before' => '<nav class="page-nav">' . __('Pages:', 'fin'), 'after' => '</nav>')); ?>
 	</footer>
 </article>
