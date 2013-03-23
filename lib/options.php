@@ -129,6 +129,29 @@ function fin_customize_register($wp_customize) {
 		'priority'       => 102,
 	) );
 	
+	// Nav Font
+	$wp_customize->add_setting( 'fin_theme_options[nav_font]', array(
+	  'default'        => '',
+	  'type'           => 'option',
+	  'capability'     => 'edit_theme_options',
+	) );
+	$wp_customize->add_control( 'fin_theme_options[nav_font]', array(
+		'label'   => 'Navigation Font',
+		'section' => 'fin_typography',
+		'type'    => 'select',
+		'choices'    => array(
+			'' => 'Default',
+			'Merriweather Sans'=>'Merriweather Sans',
+			'Sintony'=>'Sintony',
+			'Open Sans'=>'Open Sans',
+			'Donegal One'=>'Donegal One',
+			'Raleway'=>'Raleway',
+			'Varela'=>'Varela',
+			'Andada'=>'Andada',
+			'Ledger'=>'Ledger'
+		),
+	) );
+	
 	// Headings Font
 	$wp_customize->add_setting( 'fin_theme_options[heading_font]', array(
 	  'default'        => '',
@@ -147,7 +170,9 @@ function fin_customize_register($wp_customize) {
 			'Holtwood One SC'=>'Holtwood One SC',
 			'Sevillana' => 'Sevillana',
 			'Alfa Slab One' => 'Alfa Slab One',
-			'Poiret One' => 'Poiret One'
+			'Poiret One' => 'Poiret One',
+			'Macondo Swash Caps'=>'Macondo Swash Caps',
+			'Abril Fatface'=>'Abril Fatface'
 		),
 	) );
 	
@@ -355,9 +380,9 @@ function fin_add_custom_styles() {
 	
 	$nav_background = $options['nav_background'];
 	if($nav_background) {
-		$output .= "#header, .navbar-fixed-top { background:url(" . $nav_background . ") !important; }";
+		$output .= "#primary_navigation, #primary_navigation ul.dropdown { background:url(" . $nav_background . ") !important; }";
 	}elseif($main_background) {
-		$output .= ".navbar-fixed-top { background:url(" . $main_background . ") !important; }";
+		$output .= "#primary_navigation, #primary_navigation ul.dropdown { background:url(" . $main_background . ") !important; }";
 	}
 	
 	$content_background = $options['content_background'];
@@ -387,6 +412,11 @@ function fin_add_custom_styles() {
 		$output .= ".navbar a, .navbar a:visited { color: $nav_link_color !important; }
 		.navbar a:hover { color: " . brightness($link_color, .85) . " !important; }
 		#header h1 a, #header h2 a { color: $nav_link_color; !important}";
+	}
+	
+	$nav_font = $options['nav_font'];
+	if($nav_font) {
+		$output .= "#primary_navigation #menu-primary-menu li, #primary_navigation #menu-primary-menu li a { font-family: $nav_font; }";
 	}
 	
 	$heading_font = $options['heading_font'];

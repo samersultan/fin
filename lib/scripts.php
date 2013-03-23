@@ -6,15 +6,22 @@
 function fin_scripts() {
 	// Load Google Fonts
 	$options = get_option('fin_theme_options');
+	$navFont = str_replace(' ', '+', $options['nav_font'] );
 	$headingFont = str_replace(' ', '+', $options['heading_font'] );
 	$textFont = str_replace(' ', '+', $options['text_font'] );
-	if($headingFont != '' || $textFont != '') {
+	if($headingFont != '' || $textFont != ''|| $navFont != '') {
 		$fontCSS = 'http://fonts.googleapis.com/css?family=';
+		if($navFont != '') {
+			$fontCSS .= $navFont;
+			if($headingFont != '' || $textFont != '') {
+				$fontCSS .= '|';
+			}
+		}
 		if($headingFont != '') {
 			$fontCSS .= $headingFont;
-		}
-		if($headingFont != '' && $textFont != '') {
-			$fontCSS .= '|';
+			if($textFont != '') {
+				$fontCSS .= '|';
+			}
 		}
 		if($textFont != '') {
 			$fontCSS .= $textFont;
