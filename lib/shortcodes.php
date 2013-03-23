@@ -104,8 +104,14 @@ function shortcode_gallery($attr) {
 		}
 		return $output;
 	}
-
-	$output = '<ul class="clearing-thumbs small-block-grid-' . $columns . '" data-clearing>';
+	
+	if($columns > 4) {
+		$grid='small-block-grid-4 large-block-grid-' . $columns;
+	}else {
+		$grid='small-block-grid-' . $columns;
+	}
+	
+	$output = '<ul class="clearing-thumbs ' . $grid . '" data-clearing>';
 
 	foreach ($attachments as $id => $attachment) {
 		$attachmentURL = 
@@ -133,9 +139,9 @@ add_shortcode('gallery', 'shortcode_gallery');
  * Examples:
  * [email]you@url.com[/email]
  *
- * [email address="you@url.com]Your Name[/email]
+ * [email address="you@url.com"]Your Name[/email]
  *
- * [email address="you@url.com label="Your Name"]
+ * [email address="you@url.com" label="Your Name"]
  */
 function shortcode_email( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -155,6 +161,40 @@ function shortcode_email( $atts, $content = null ) {
 	return '<a href="mailto:' . antispambot($address) . '">' . $label . '</a>';
 }
 add_shortcode('email', 'shortcode_email');
+
+/**
+ * [tel] shortcode
+ * 
+ * Encodes and creates an telephone link
+ *
+ * Examples:
+ * [tel]555-555-1234[/tel]
+ *
+ * [email number="555-555-1234"]Call Me[/email]
+ *
+ * [email number="555-555-1234" label="Call Me"]
+ */
+function shortcode_tel( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+	'number' => '',
+	'label' => '', 
+	), $atts ) );
+	
+	if($number == '') {
+		$number = do_shortcode($content);
+	}elseif($content != '') {
+		$label = do_shortcode($content);
+	}
+	if($label == '') {
+		$label = antispambot($number);
+	}
+	$number = preg_replace('/[^0-9]/', '', $number); //strip out all non-numeric characters
+	if(substr($number, 0, 1) == 1) { // remove leading 1 if it's there
+		$number = substr($number, 1);
+	}
+	return '<a href="tel:+1' . antispambot($number) . '">' . $label . '</a>';
+}
+add_shortcode('tel', 'shortcode_tel');
 
 /**
  * [child-pages] [sibling-pages] [list-pages] shortcodes
@@ -247,7 +287,7 @@ function shortcode_row( $atts, $content = null ) {
   * Creates a column
   *
   * Example:
-  * [column span="(one, two, three... one-third, three-fourths...)" offset="(one, two, three...)" centered="(true, false)"][/column]
+  * [column span="(small-1, small-12 large-4... one-third, three-fourths...)" offset="(one, two, three...)" centered="(true, false)"][/column]
   */
 function shortcode_column( $atts, $content = null ) {
 	extract( shortcode_atts( array(
@@ -278,7 +318,7 @@ add_shortcode( 'column', 'shortcode_column' );
   * Creates a button
   *
   * Examples:
-  * [button type="(radius round)" size="(mini small large)" type="(primary success info warning danger disabled)" url="http://#"]This is a button[/button]
+  * [button type="(radius round)" size="(mini small large)" type="(alert, success, secondary, disabled)" url="http://#"]This is a button[/button]
   * or
   * [button text="This is a button." url="http://#"]
   */
@@ -286,7 +326,7 @@ function shortcode_button( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 		'type' => 'radius', /* radius, round */
 		'size' => 'medium', /* small, medium, large */
-		'type' => 'secondary', /* primary, secondary, warning, success, error */
+		'type' => 'secondary', /* alert, success, secondary, disabled */
 		'url'  => '',
 		'text' => '', 
 		), $atts ) );
@@ -310,13 +350,13 @@ add_shortcode('button', 'shortcode_button');
   * Creates an alert
   *
   * Examples:
-  * [alert type="(warning success error)" close="(true false)"]This is an alert[/alert]
+  * [alert type="(alert, success, secondary)" close="(true false)"]This is an alert[/alert]
   * or
   * [alert text="This is an alert."]
   */
 function shortcode_alert( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'type' => '  ', /* warning, success, error */
+	'type' => '  ', /* alert, success, secondary */
 	'close' => 'true', /* display close link */
 	'text' => '', 
 	), $atts ) );
@@ -348,7 +388,7 @@ add_shortcode('alert', 'shortcode_alert');
   */
 function shortcode_panel( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'type' => '  ', /* warning, success, error */
+	'type' => '  ', /* callout */
 	'close' => 'false', /* display close link */
 	'text' => '', 
 	), $atts ) );
