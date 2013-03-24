@@ -7,6 +7,7 @@
 //@codekit-prepend "foundation/foundation.forms.js"
 //@codekit-prepend "foundation/foundation.joyride.js"
 //@codekit-prepend "foundation/foundation.magellan.js"
+//@codekit-prepend "foundation/foundation.orbit.js"
 //@codekit-prepend "foundation/foundation.placeholder.js"
 //@codekit-prepend "foundation/foundation.reveal.js"
 //@codekit-prepend "foundation/foundation.section.js"
@@ -49,7 +50,9 @@ jQuery(document).foundation('reveal',{
     }
   }
 });
+
 jQuery(document).foundation(); // Don't log errors
+
 //jQuery(document).foundation(function (response) { // log errors
   //console.log(response.errors);
 //});

@@ -20,15 +20,26 @@ $rotator_args = array(
 
 $rotator_query = new WP_Query($rotator_args);
 if($rotator_query->have_posts()){
-	// Add carousel js
-	wp_enqueue_script('fin_orbit');
-	
-	// pre-loop stuffs
-		$i = 0;
-		// collect captions
-		$captions='';
-	?>
-	<ul data-orbit class="orbit">
+	// Get Slideshow Options
+	$options = get_option('fin_theme_options');
+	$dataOptions = '';
+	$timerSpeed = $options['orbit_timer_speed'];
+	$animationSpeed = $options['orbit_animation_speed'];
+	$bullets = var_export($options['orbit_bullets'], true);
+	if($timerSpeed != '' || $animationSpeed != '' || $bullets != '') {
+		$dataOptions .= ' data-options="';
+		if($timerSpeed != '') {
+			$dataOptions .= 'timer_speed:' . $timerSpeed . ';';
+		}
+		if($animationSpeed != '') {
+			$dataOptions .= 'animation_speed:' . $animationSpeed . ';';
+		}
+		if($bullets != '') {
+			$dataOptions .= 'bullets:' . $bullets . ';';
+		}
+		$dataOptions .= '"';
+	}	?>
+	<ul data-orbit class="orbit"<?php echo $dataOptions; ?>>
 		<?php while ($rotator_query->have_posts()) : $rotator_query->the_post(); ?>
 			<li>
 				<?php if (has_post_thumbnail()) {

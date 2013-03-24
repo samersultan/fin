@@ -199,10 +199,50 @@ function fin_customize_register($wp_customize) {
 		),
 	) );
 	
+	/**** Slideshow ****/
+	$wp_customize->add_section('fin_slideshow', array(
+		'title'          => __( 'Slideshow', 'fin' ),
+		'priority'       => 103,
+	) );
+	
+	// Timer Speed
+	$wp_customize->add_setting( 'fin_theme_options[orbit_timer_speed]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'fin_theme_options[orbit_timer_speed]', array(
+		'label'   => __('Timer Speed (in ms)'),
+		'section' => 'fin_slideshow',
+		'type'    => 'text',
+	) );
+	
+	// Animation Speed
+	$wp_customize->add_setting( 'fin_theme_options[orbit_animation_speed]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'fin_theme_options[orbit_animation_speed]', array(
+		'label'   => __('Animation Speed (in ms)'),
+		'section' => 'fin_slideshow',
+		'type'    => 'text',
+	) );
+	
+	// Include bullets
+	$wp_customize->add_setting( 'fin_theme_options[orbit_bullets]', array(
+		'default'       => true,
+		'type'					=> 'option'
+	) );
+	$wp_customize->add_control( 'fin_theme_options[orbit_bullets]', array(
+		'settings' => 'fin_theme_options[orbit_bullets]',
+		'label'    => __( 'Include Bullets?' ),
+		'section'  => 'fin_slideshow',
+		'type'     => 'checkbox',
+	) );
+	
 	/**** Settings ****/
 	$wp_customize->add_section('fin_settings', array(
 		'title'          => __( 'Settings', 'fin' ),
-		'priority'       => 103,
+		'priority'       => 104,
 	) );
 	
 	// Reset
@@ -255,7 +295,7 @@ function fin_customize_register($wp_customize) {
 	/**** Social ****/
 	$wp_customize->add_section('fin_social', array(
 		'title'          => __( 'Social Links', 'fin' ),
-		'priority'       => 104,
+		'priority'       => 105,
 	) );
 	
 	// include ?

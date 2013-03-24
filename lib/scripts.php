@@ -58,9 +58,6 @@ function fin_scripts() {
 		if (is_singular() && comments_open() && get_option('thread_comments')) {
 		  wp_enqueue_script('comment-reply');
 		}
-		
-		// regsiter orbit script
-		wp_register_script('fin_orbit', get_template_directory_uri() . '/assets/js/orbit.min.js', array( 'jquery', 'fin_js' ), null, true);
 	}
 }
 add_action('wp_enqueue_scripts','fin_scripts', 100);
