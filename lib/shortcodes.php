@@ -388,7 +388,7 @@ add_shortcode('alert', 'shortcode_alert');
   */
 function shortcode_panel( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'type' => '  ', /* callout */
+	'type' => '', /* callout */
 	'close' => 'false', /* display close link */
 	'text' => '', 
 	), $atts ) );

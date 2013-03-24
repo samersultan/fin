@@ -8,13 +8,7 @@ Here are somethings that have been on my todo list for awhile.
 
 * More Documentation
 
-* Make options.php run through defaults on theme load
-
-* Add a settings page to set the default carousel options
-
 * Make `[pre]` and `[code]` shortcodes
-
-* Create `[tel]` shortcode
 
 * Better templates for post-formats
 
@@ -24,8 +18,6 @@ Here are somethings that have been on my todo list for awhile.
 
 * Strip out inline classes wherever possible
 
-* Fix Sticky Footer
-
 * pricing tables shortcode
 
 * add icons to pagination
@@ -33,3 +25,7 @@ Here are somethings that have been on my todo list for awhile.
 * style meta info better
 
 * Fix color option to be scheme oriented.
+
+* Fix [caption] shortcode nonsense
+
+* Remove width and height from media
