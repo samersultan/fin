@@ -28,8 +28,6 @@ add_shortcode('rotator', 'shortcode_rotator');
  *
  * Remove the standard gallery and enhance it.
  *
- * Example:
- * [gallery]
  */
 // Remove built in shortcode
 remove_shortcode('gallery', 'gallery_shortcode');
@@ -130,6 +128,42 @@ function shortcode_gallery($attr) {
 	return $output;
 }
 add_shortcode('gallery', 'shortcode_gallery');
+
+/**
+ * [caption] shortcode
+ *
+ * Fixes the default wordpress caption output
+ */
+function shortcode_caption($output, $attr, $content) {
+	if (is_feed()) {
+    return $output;
+  }
+  $defaults = array(
+		'id'      => '',
+		'align'   => 'alignnone',
+		'width'   => '',
+		'caption' => ''
+	);
+
+	$attr = shortcode_atts($defaults, $attr);
+
+	// If the width is less than 1 or there is no caption, return the content wrapped between the [caption] tags
+	if ($attr['width'] < 1 || empty($attr['caption'])) {
+		return $content;
+	}
+
+	// Set up the attributes for the caption <figure>
+	$attributes  = (!empty($attr['id']) ? ' id="' . esc_attr($attr['id']) . '"' : '' );
+	$attributes .= ' class="thumbnai ' . esc_attr($attr['align']) . '"';
+
+	$output  = '<figure' . $attributes .'>';
+	$output .= do_shortcode($content);
+	$output .= '<figcaption class="caption">' . $attr['caption'] . '</figcaption>';
+	$output .= '</figure>';
+
+  return $output;
+}
+add_filter('img_caption_shortcode', 'shortcode_caption', 10, 3);
 
 /**
  * [email] shortcode
@@ -265,21 +299,32 @@ function shortcode_list_pages( $atts, $content, $tag ) {
 add_shortcode( 'child-pages', 'shortcode_list_pages' );
 add_shortcode( 'sibling-pages', 'shortcode_list_pages' );
 add_shortcode( 'list-pages', 'shortcode_list_pages' );
- 
- /**
-  * [row] shortcode
-  *
-  * Creates a row 
-  *
-  * Example:
-  * [row][/row]
-  */
-  
+
+/**
+ * [code] and [pre] shortcodes
+ * 
+ * wraps content in <code></code> or <pre></pre> tags
+ * also overrides all shortcodes contained inside content
+ * 
+ */
+function shortcode_code( $atts, $content = null, $tag ) {
+	return '<' . $tag . '>' . $content . '</' . $tag . '>';
+}
+add_shortcode( 'code', 'shortcode_code' );
+add_shortcode( 'pre', 'shortcode_code' );
+
+/**
+ * [row] shortcode
+ *
+ * Creates a row 
+ *
+ * Example:
+ * [row][/row]
+ */
 function shortcode_row( $atts, $content = null ) {
 	return '<div class="row">' . do_shortcode($content) . '</div>';
 }
-  
- add_shortcode( 'row', 'shortcode_row' );
+add_shortcode( 'row', 'shortcode_row' );
   
  /**
   * [column] shortcode
@@ -308,7 +353,7 @@ function shortcode_column( $atts, $content = null ) {
 		$offset = ' offset-by-' . $offset;
 	}
 
-	return '<div class="' . esc_attr($span) . esc_attr($offset) . esc_attr($centered) . '">' . do_shortcode($content) . '</div>';
+	return '<div class="column ' . esc_attr($span) . esc_attr($offset) . esc_attr($centered) . '">' . do_shortcode($content) . '</div>';
 }
 add_shortcode( 'column', 'shortcode_column' );
  
@@ -397,7 +442,7 @@ function shortcode_panel( $atts, $content = null ) {
 		$text = do_shortcode($content);
 	}
 	
-	$output = '<div class="panel">';
+	$output = '<div class="panel ' . $type . '">';
 	$output .= $text;
 	$output .= '</div>';
 	
