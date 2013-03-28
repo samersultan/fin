@@ -1,38 +1,4 @@
-<html>
-<head>
-	<meta charset="utf-8">
-	
-	<title><?php bloginfo( 'name' );
-	wp_title( '|', true, 'left' );
-	if(get_bloginfo('description','Display')){
-			echo ' | ' . get_bloginfo('description', 'Display');
-	} ?></title>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<?php // Meta Description
-	if(get_bloginfo('description','Display')) {
-		echo '<meta name="description" content="' . get_bloginfo('description','Display') . '">';
-	}else {
-	
-	} ?>
-	<?php // Meta Keywords
-	$options = get_option('fin_theme_options');
-	$default_keywords = $options['keywords'];
-	$tags = '';
-	$posttags = get_the_tags();
-	if ($posttags) {
-		foreach($posttags as $tag) {
-			$tags .= $tag->name . ', ';
-		}
-	}
-	if($default_keywords != '' || $tags != '') {
-		echo '<meta name="keywords" content="' . $tags . $default_keywords . '">';
-	} ?>
-	
-	<?php wp_head(); ?>
-	
-</head>
+<?php get_template_part('templates/head'); ?>
 <body id="301">
 	<div id="wrap" role="document">
 		<?php do_action('get_header'); ?>
