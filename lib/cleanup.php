@@ -54,6 +54,9 @@ function fin_wpautop($pee, $br = 1) {
     $pee = preg_replace_callback('!(<pre[^>]*>)(.*?)</pre>!is', 'fin_clean_pre', $pee );
   $pee = preg_replace( "|\n</p>$|", '</p>', $pee );
 
+	// wrap imageas in a <figure> instead of P
+	$pee = preg_replace('/<p>\\s*?(<a .*?><img.*?><\\/a>|<img.*?>)?\\s*<\\/p>/s', '<div class="figure">$1</div>', $pee);
+	
   return $pee;
 }
 // Remove wpautop filters
@@ -62,6 +65,18 @@ remove_filter( 'the_excerpt', 'wpautop' );
 // Insert custom wpautop filters after do_shortcode calls
 add_filter( 'the_content', 'fin_wpautop', 99 );
 add_filter( 'the_excerpt', 'fin_wpautop', 99 );
+
+/**
+ * Clean up inserted images
+ *
+ */
+function fin_cleanup_images($html) {
+	$html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+	return $html;
+}
+add_filter('post_thumbnail_html', 'fin_cleanup_images', 10);
+add_filter('image_send_to_editor', 'fin_cleanup_images', 10);
+add_filter('the_content', 'fin_cleanup_images', 10);
 
 /**
  * Remove Default Wordpress Content
