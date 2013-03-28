@@ -43,7 +43,6 @@
 	if (wp_count_posts()->publish > 0) { ?>
 	<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> Feed" href="<?php echo home_url(); ?>/feed/">
 	<?php } ?>
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo get_bloginfo('stylesheet_directory'); ?>/assets/img/favicon.png" />
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo get_bloginfo('template_directory'); ?>/assets/img/favicon.png" />
 	<?php wp_head(); ?>
-	
 </head>

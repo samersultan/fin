@@ -13,6 +13,12 @@ define('FULL_RELATIVE_PLUGIN_PATH', WP_BASE . '/' . RELATIVE_PLUGIN_PATH);
 define('RELATIVE_CONTENT_PATH',     str_replace(site_url() . '/', '', content_url()));
 define('THEME_PATH',                RELATIVE_CONTENT_PATH . '/themes/' . THEME_NAME);
 
+if (is_child_theme()) {
+	$get_child_theme_name = explode('/themes/', get_stylesheet_directory());
+	define('CHILD_THEME_NAME',                next($get_child_theme_name));
+	define('CHILD_THEME_PATH',                RELATIVE_CONTENT_PATH . '/themes/' . CHILD_THEME_NAME);
+}
+
 if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_SOFTWARE'], 'litespeed') !== false) {
 
 	// Show an admin notice if .htaccess isn't writable
@@ -29,10 +35,6 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	  // general rewrites
 		global $wp_rewrite;
 		$fin_new_non_wp_rules = array(
-			'assets/css/(.*)'  => THEME_PATH . '/assets/css/$1',
-			'assets/js/(.*)'   => THEME_PATH . '/assets/js/$1',
-			'assets/img/(.*)'  => THEME_PATH . '/assets/img/$1',
-			'assets/font/(.*)' => THEME_PATH . '/assets/font/$1',
 			'plugins/(.*)'     => RELATIVE_PLUGIN_PATH . '/$1',
 			'login'					   => 'wp-login.php',
 			'admin'					   => 'wp-admin'
@@ -56,17 +58,42 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 		
 		return $content;
 	}
+	
+	// check child theme for files first
+	function fin_add_conditions($content) {
+	  $home_root = parse_url(home_url());
+	  if ( isset( $home_root['path'] ) )
+	    $home_root = trailingslashit($home_root['path']);
+	  else
+	    $home_root = '/';
+	
+	  $rules = array('RewriteRule ^index\.php$ - [L]');
+	  
+	  if (is_child_theme()) {
+	    $rules[] = 'RewriteCond %{DOCUMENT_ROOT}/' . $home_root . CHILD_THEME_PATH . '/$1 -f';
+	    $rules[] = 'RewriteRule ^(.*[^/])/?$ /' . $home_root . CHILD_THEME_PATH . '/$1 [QSA,L]';
+	  }
+	  
+	  $rules[] = 'RewriteCond %{DOCUMENT_ROOT}/' . $home_root . THEME_PATH  . '/$1 -f';
+	  $rules[] = 'RewriteRule ^(.*[^/])/?$ /' . $home_root . THEME_PATH . '/$1 [QSA,L]';
+	    
+	  return str_replace('RewriteRule ^index\.php$ - [L]', implode("\n", $rules), $content);
+	}
 
 	function fin_clean_urls($content) {
-		if (strpos($content, FULL_RELATIVE_PLUGIN_PATH) === 0) {
-			return str_replace(FULL_RELATIVE_PLUGIN_PATH, WP_BASE . '/plugins', $content);
-		} else {
-			return str_replace('/' . THEME_PATH, '', $content);
-		}
+	  if (strpos($content, FULL_RELATIVE_PLUGIN_PATH) === 0) {
+	    return str_replace(FULL_RELATIVE_PLUGIN_PATH, WP_BASE . '/plugins', $content);
+	  } else {
+	    if (is_child_theme()) {
+	     $content = str_replace(unleadingslashit(CHILD_THEME_PATH), '', $content);
+			}
+	    return untrailingslashit(str_replace(leadingslashit(THEME_PATH), '', $content));
+	  }
 	}
 
 	if (!is_multisite()) {
 		add_action('generate_rewrite_rules', 'fin_add_rewrites');
+		add_filter('mod_rewrite_rules', 'fin_add_conditions');
 	}
 	if (!is_admin()) {
 		$tags = array(

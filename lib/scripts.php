@@ -37,14 +37,10 @@ function fin_scripts() {
 		// load master stylesheet
 		wp_enqueue_style('fin_app', get_template_directory_uri() . '/assets/css/app.css', false, null);
 		
-		// load style.css from child theme
-		if (is_child_theme()) {
-		  wp_enqueue_style('fin_child', get_stylesheet_uri(), false, null);
-		}
-		
 		// jQuery is loaded using the same method from HTML5 Boilerplate:
 		// Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
 		// It's kept in the header instead of footer to avoid conflicts with plugins.
+		// This is temporary until WordPress updates its jQuery to 1.9 because it is needed for Foundation :(
 		if (!is_admin()) {
 			wp_deregister_script('jquery');
 			wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, null, false);
