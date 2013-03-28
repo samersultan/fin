@@ -8,8 +8,6 @@ Here are somethings that have been on my todo list for awhile.
 
 * More Documentation
 
-* Make `[pre]` and `[code]` shortcodes
-
 * Better templates for post-formats
 
 * Remove unnecessary WP_Widget queries
@@ -26,6 +24,10 @@ Here are somethings that have been on my todo list for awhile.
 
 * Fix color option to be scheme oriented.
 
-* Fix [caption] shortcode nonsense
+* Test [caption] shortcode nonsense
 
 * Remove width and height from media
+
+* Wrap functions in if_function_exists for child theme purposes
+
+* Consider changing Responses/Reply into tabs
