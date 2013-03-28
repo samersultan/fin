@@ -345,10 +345,10 @@ body {
 	padding: 20px 40px;
 }
 @media #{$small} {
-	#respond {
+	#discussion #respond {
 		@include grid-column(6, $push:6, $float:left);
 	}
-	#comments {
+	#discussion #comments {
 		@include grid-column(6, $pull:6, $float:left);
 	}
 }
