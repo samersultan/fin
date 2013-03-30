@@ -12,6 +12,8 @@ define('RELATIVE_PLUGIN_PATH',      str_replace(site_url() . '/', '', plugins_ur
 define('FULL_RELATIVE_PLUGIN_PATH', WP_BASE . '/' . RELATIVE_PLUGIN_PATH);
 define('RELATIVE_CONTENT_PATH',     str_replace(site_url() . '/', '', content_url()));
 define('THEME_PATH',                RELATIVE_CONTENT_PATH . '/themes/' . THEME_NAME);
+define('RELATIVE_INCLUDES_PATH',      str_replace(site_url() . '/', '', includes_url()));
+define('FULL_RELATIVE_INCLUDES_PATH', WP_BASE . '/' . RELATIVE_INCLUDES_PATH);
 
 if (is_child_theme()) {
 	$get_child_theme_name = explode('/themes/', get_stylesheet_directory());
@@ -36,6 +38,7 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 		global $wp_rewrite;
 		$fin_new_non_wp_rules = array(
 			'plugins/(.*)'     => RELATIVE_PLUGIN_PATH . '/$1',
+			'includes/(.*)'		=>  RELATIVE_INCLUDES_PATH . '$1',
 			'login'					   => 'wp-login.php',
 			'admin'					   => 'wp-admin'
 		);
@@ -45,7 +48,7 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 		$home_path = function_exists('get_home_path') ? get_home_path() : ABSPATH;
 		$htaccess_file = $home_path . '.htaccess';
 		$mod_rewrite_enabled = function_exists('got_mod_rewrite') ? got_mod_rewrite() : false;
-		
+		 
 		if ((!file_exists($htaccess_file) && is_writable($htaccess_file) && $wp_rewrite->using_mod_rewrite_permalinks()) || is_writable($htaccess_file)) {
 		  if ($mod_rewrite_enabled) {
 		    $customRules = extract_from_markers($htaccess_file, 'customRules');
@@ -83,7 +86,11 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	function fin_clean_urls($content) {
 	  if (strpos($content, FULL_RELATIVE_PLUGIN_PATH) === 0) {
 	    return str_replace(FULL_RELATIVE_PLUGIN_PATH, WP_BASE . '/plugins', $content);
-	  } else {
+	  }elseif (strpos($content, FULL_RELATIVE_INCLUDES_PATH)) {
+      return str_replace(FULL_RELATIVE_INCLUDES_PATH, WP_BASE . '/includes/', $content);
+    } elseif (strpos($content, RELATIVE_INCLUDES_PATH)) {
+      return str_replace(RELATIVE_INCLUDES_PATH, 'includes/', $content);
+    }else {
 	    if (is_child_theme()) {
 	     $content = str_replace(unleadingslashit(CHILD_THEME_PATH), '', $content);
 			}
@@ -107,3 +114,9 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 		add_filters($tags, 'fin_clean_urls');
 	}
 }
+
+function fin_flush_rewrite() {
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+}
+add_action('after_switch_theme', 'fin_flush_rewrite');
