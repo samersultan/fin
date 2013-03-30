@@ -10,7 +10,7 @@ require_once locate_template('/lib/config.php');     // Basic Config and Constan
 require_once locate_template('/lib/cleanup.php');    // Cleanup Wordpress Stuffs
 require_once locate_template('/lib/rewrites.php');   // Custom .htaccess rewrites
 require_once locate_template('/lib/options.php');    // Additional Theme Options
-require_once locate_template('/lib/sidebar.php');    // Create Sidebars
+require_once locate_template('/lib/sidebars.php');    // Create Sidebars
 require_once locate_template('/lib/post-types.php'); // Custom Post Types
 require_once locate_template('/lib/nav.php');        // Custom Nav Menus
 require_once locate_template('/lib/comments.php');   // Custom Comment Structure
