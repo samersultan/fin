@@ -98,6 +98,9 @@ hr {
 	border-top: 2px solid rgba(0,0,0, .1);
 	@include clearfix;
 }
+del {
+	@include opacity(.5);
+}
 .alignleft { @extend .left; margin-right: 1em; }
 .alignright { @extend .right; margin-left: 1em; }
 .aligncenter, .center { margin: 0 auto; }
