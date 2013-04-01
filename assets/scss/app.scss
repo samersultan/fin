@@ -73,6 +73,8 @@ html, body { height: 100%; }
 }
 input[type="submit"]:not([disabled]) { 
 	@include button;
+	@include inset-shadow();
+	@include single-transition(background-color);
 }
 input[type="submit"][disabled] {
 	@include button($disabled:true);
@@ -112,6 +114,14 @@ del {
 }
 .video {
 	@include flex-video-container;
+}
+.alert-box,
+.panel,
+.section-container > .section {
+	& > *:nth-last-child(2):not(.close):not[type="hidden"],
+	& > *:last-child:not(.close):not[type="hidden"] {
+		margin-bottom: 0;
+	}
 }
 
 // ROTATOR //
@@ -425,6 +435,8 @@ li.comment {
 		time { 
 			a {
 				@include button($padding:$button-tny, $bg:$secondary-color, $radius:9999em);
+				@include inset-shadow();
+				@include single-transition(background-color);
 			}
 		}
 	}
