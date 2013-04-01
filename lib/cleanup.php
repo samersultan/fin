@@ -15,15 +15,15 @@ function fin_clean_pre($matches) {
   return $text;
 }
 
-function fin_wpautop($pee, $br = 1) {
+function fin_wpautop($pee, $br = 0) {
   if ( trim($pee) === '' )
     return '';
   $pee = $pee . "\n"; // just to make things a little easier, pad the end
   $pee = preg_replace('|<br />\s*<br />|', "\n\n", $pee);
   // Space things out a little
   $allblocks = '(?:table|thead|tfoot|caption|col|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|select|option|form|map|area|blockquote|address|math|style|input|p|h[1-6]|hr|fieldset|legend|section|article|aside|hgroup|header|footer|nav|figure|figcaption|details|menu|summary)';
-  $pee = preg_replace('!(<' . $allblocks . '[^>]*>)!', "\n$1", $pee);
-  $pee = preg_replace('!(</' . $allblocks . '>)!', "$1\n\n", $pee);
+  $pee = preg_replace('~<p>\s*<(' . $allblocks . ')\b~i', '<$1', $pee);
+	$pee = preg_replace('~</(' . $allblocks . ')>\s*</p>~i', '</$1>', $pee);
   $pee = str_replace(array("\r\n", "\r"), "\n", $pee); // cross-platform newlines
   if ( strpos($pee, '<object') !== false ) {
     $pee = preg_replace('|\s*<param([^>]*)>\s*|', "<param$1>", $pee); // no pee inside object/embed
@@ -356,7 +356,7 @@ add_filter('login_headertitle', 'fin_change_login_title');
  *
  */
 function fin_edit_post_link($output) {
-	$output = str_replace('class="post-edit-link"', 'class="meta-edit button small secondary"', $output);
+	$output = str_replace('class="post-edit-link"', 'class="meta-edit button tiny secondary"', $output);
 	return $output;
 }
 add_filter('edit_post_link', 'fin_edit_post_link');
@@ -366,7 +366,7 @@ add_filter('edit_post_link', 'fin_edit_post_link');
  *
  */
 function fin_edit_comment_link($output) {
-	$output = str_replace('class="comment-edit-link"', 'class="meta-edit button small secondary"', $output);
+	$output = str_replace('class="comment-edit-link"', 'class="meta-edit button tiny secondary"', $output);
 	return $output;
 }
 add_filter('edit_comment_link', 'fin_edit_comment_link');
