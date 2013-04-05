@@ -4,7 +4,6 @@ Template Name: Sitemap
 */
 ?>
 
-<?php get_template_part('templates/page', 'header'); ?>
 <section <?php post_class('single'); ?>>
 	<header>
 		<h3 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="Bookmark for <?php the_title_attribute(); ?>" class="bookmark"><?php the_title(); ?></a></h3>

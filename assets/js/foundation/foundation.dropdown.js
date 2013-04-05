@@ -44,7 +44,7 @@
       $('*, html, body').on('click.fndtn.dropdown', function (e) {
         if (!$(e.target).data('dropdown')) {
           $('[data-dropdown-content]')
-            .css('left', '-99999px')
+            .css(Foundation.rtl ? 'right':'left', '-99999px')
             .removeClass(self.settings.activeClass);
         }
       });
@@ -59,11 +59,11 @@
     toggle : function (target, resize) {
       var dropdown = $('#' + target.data('dropdown'));
 
-      $('[data-dropdown-content]').not(dropdown).css('left', '-99999px').removeClass(this.settings.activeClass);
+      $('[data-dropdown-content]').not(dropdown).css(Foundation.rtl ? 'right':'left', '-99999px').removeClass(this.settings.activeClass);
 
       if (dropdown.hasClass(this.settings.activeClass)) {
         dropdown
-          .css('left', '-99999px')
+          .css(Foundation.rtl ? 'right':'left', '-99999px')
           .removeClass(this.settings.activeClass);
       } else {
         this
@@ -95,7 +95,7 @@
           top: position.top + this.outerHeight(target)
         });
       } else {
-        if ($(window).width() > this.outerWidth(dropdown) + target.offset().left) {
+        if (!Foundation.rtl && $(window).width() > this.outerWidth(dropdown) + target.offset().left) {
           var left = position.left;
         } else {
           if (!dropdown.hasClass('right')) {
@@ -103,6 +103,7 @@
           }
           var left = position.left - (this.outerWidth(dropdown) - this.outerWidth(target));
         }
+
         dropdown.attr('style', '').css({
           position : 'absolute',
           top: position.top + this.outerHeight(target),

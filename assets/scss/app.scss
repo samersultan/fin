@@ -72,12 +72,12 @@ html, body { height: 100%; }
 	width: 0 !important;   
 }
 input[type="submit"]:not([disabled]) { 
-	@include button;
+	@include button($bg: $success-color);
 	@include inset-shadow();
 	@include single-transition(background-color);
 }
 input[type="submit"][disabled] {
-	@include button($disabled:true);
+	@include button-style($disabled:true);
 }
 a:hover i {
 	text-decoration: none;
@@ -108,9 +108,9 @@ del {
 .aligncenter, .center { margin: 0 auto; }
 .alignnone { float: none; }
 .unstyled {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 .video {
 	@include flex-video-container;
@@ -355,7 +355,6 @@ body {
 ///////////
 #discussion {
 	@include grid-row;
-	padding: 20px 40px;
 }
 @media #{$small} {
 	#discussion #respond {
@@ -526,7 +525,6 @@ li.comment > section {
 ///////////
 .sidebar {
 	@include grid-row;
-	padding: 20px 40px;
 }
 #sidebar-default { }
 #sidebar-home { }
@@ -539,6 +537,7 @@ li.comment > section {
 /////////
 #footer {
 	@include grid-row;
+	clear: both;
 	padding: 0 40px;
 	p, ul, li {
 	}

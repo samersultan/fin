@@ -61,6 +61,16 @@ function wp_base_dir() {
   }
 }
 
+// get page ID from slug
+function get_pageID($page_slug) {
+	$page = get_page_by_path($page_slug);
+	if ($page) {
+		return $page->ID;
+	} else {
+		return null;
+	}
+}
+
 // opposite of built in WP functions for trailing slashes
 function leadingslashit($string) {
   return '/' . unleadingslashit($string);

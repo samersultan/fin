@@ -1,8 +1,7 @@
 <?php
 /*
-Template Name: Template
+Template Name: Custom
 */
 ?>
 
-<?php get_template_part('templates/page', 'header'); ?>
-<?php get_template_part('templates/content', 'page'); ?>
+<?php get_template_part('templates/content/page', 'custom'); ?>

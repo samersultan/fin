@@ -363,24 +363,37 @@ add_shortcode( 'column', 'shortcode_column' );
   * Creates a button
   *
   * Examples:
-  * [button type="(radius round)" size="(mini small large)" type="(alert, success, secondary, disabled)" url="http://#"]This is a button[/button]
+  * [button style="(radius round)(mini small large)(alert, success, secondary, disabled)" url/link="http://#"]This is a button[/button]
   * or
   * [button text="This is a button." url="http://#"]
   */
 function shortcode_button( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-		'type' => 'radius', /* radius, round */
-		'size' => 'medium', /* small, medium, large */
-		'type' => 'secondary', /* alert, success, secondary, disabled */
+		'style' => '', /* radius, round */
 		'url'  => '',
+		'link' => '',
 		'text' => '', 
 		), $atts ) );
 	
 	if($text == ''){
 		$text = do_shortcode($content);
 	}
+	// Allow user to use link="" or url=""
+	// Add http:// if user did not include it
+	if($url) {
+		if(!strpos($url, 'http') === 0) {
+			$url = 'http://' . $url;
+		}
+	}elseif($link) {
+		if(!strpos($link, 'http') === 0) {
+			$url = 'http://' . $link;
+		}
+	}
+	if($url) {
+		$url .= ' href="' . $url . '"';
+	}
 	
-	$output = '<a href="' . $url . '" class="button '. $type . ' ' . $size;
+	$output = '<a' . $url . ' class="button '. $style;
 	$output .= '">';
 	$output .= $text;
 	$output .= '</a>';
@@ -395,13 +408,13 @@ add_shortcode('button', 'shortcode_button');
   * Creates an alert
   *
   * Examples:
-  * [alert type="(alert, success, secondary)" close="(true false)"]This is an alert[/alert]
+  * [alert style="(alert, success, secondary)" close="(true false)"]This is an alert[/alert]
   * or
   * [alert text="This is an alert."]
   */
 function shortcode_alert( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'type' => '  ', /* alert, success, secondary */
+	'style' => '  ', /* alert, success, secondary */
 	'close' => 'true', /* display close link */
 	'text' => '', 
 	), $atts ) );
@@ -410,7 +423,7 @@ function shortcode_alert( $atts, $content = null ) {
 		$text = do_shortcode($content);
 	}
 	
-	$output = '<div data-alert class="alert-box '. $type . '">';
+	$output = '<div data-alert class="alert-box '. $style . '">';
 	$output .= $text;
 	if($close == 'true') {
 		$output .= '<a href="#" class="close">&times;</a>';
@@ -433,7 +446,7 @@ add_shortcode('alert', 'shortcode_alert');
   */
 function shortcode_panel( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-	'type' => '', /* callout */
+	'style' => '', /* callout */
 	'close' => 'false', /* display close link */
 	'text' => '', 
 	), $atts ) );
@@ -442,7 +455,7 @@ function shortcode_panel( $atts, $content = null ) {
 		$text = do_shortcode($content);
 	}
 	
-	$output = '<div class="panel ' . $type . '">';
+	$output = '<div class="panel ' . $style . '">';
 	$output .= $text;
 	$output .= '</div>';
 	
@@ -477,13 +490,13 @@ class fin_modal {
 		}
 		
 		self::$modal .= '<div id="modal-' . $modalNum . '" class="reveal-modal' . $size . '" role="dialog">';
-		self::$modal .= $text . '<a href="#" type="button" class="close-reveal-modal">&times;</a>';
+		self::$modal .= $text . '<a href="#" style="button" class="close-reveal-modal">&times;</a>';
 		self::$modal .= '</div>';
 		
 		if($button != '') {
 			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="button">' . $button . '</a>';
 		}else {
-			self::$modal .= '<script type="text/javascript">
+			self::$modal .= '<script style="text/javascript">
 		        jQuery("#modal-' . $modalNum . '").foundation("reveal","open");
 			</script>';
 		}
