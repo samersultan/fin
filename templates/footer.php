@@ -35,7 +35,11 @@
 			} ?>
 		</div>
 	<?php } ?>
-	<div class="copyrights">
-		<a href="<?php echo esc_url(get_permalink(get_page_by_title( 'Copyrights'))); ?>">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></a>
-	</div>
+	<?php if (has_nav_menu('secondary_menu')) {
+		wp_nav_menu(array('theme_location' => 'secondary_menu', 'menu_class' => 'inline-list'));
+	}else { ?>
+		<div class="copyrights">
+			<a href="<?php echo esc_url(get_permalink(get_page_by_title( 'Copyrights'))); ?>">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></a>
+		</div>
+	<?php } ?>
 </footer>
