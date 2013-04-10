@@ -37,10 +37,12 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	  // general rewrites
 		global $wp_rewrite;
 		$fin_new_non_wp_rules = array(
-			'plugins/(.*)'     => RELATIVE_PLUGIN_PATH . '/$1',
+			'plugins/(.*)'    =>  RELATIVE_PLUGIN_PATH . '/$1',
 			'includes/(.*)'		=>  RELATIVE_INCLUDES_PATH . '$1',
-			'login'					   => 'wp-login.php',
-			'admin'					   => 'wp-admin'
+			'login'					  => 'wp-login.php',
+			'logout'					=> 'wp-login.php?loggedout=true',
+			'admin/(.*)'			=> 'wp-admin/$1',
+			'register'				=> 'wp-login.php?action=register'
 		);
 		$wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $fin_new_non_wp_rules);
 		
