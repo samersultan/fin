@@ -96,8 +96,9 @@ h1,h2,h3,h4,h5,h6 {
 	}
 }
 hr {
-	border-bottom: 2px solid rgba(255,255,255, .5);
+	border-bottom: 2px solid rgba(255,255,255, .1);
 	border-top: 2px solid rgba(0,0,0, .1);
+	color: pink;
 	@include clearfix;
 }
 del {
@@ -232,9 +233,8 @@ body {
 
 // Menu
 ///////
-#primary_navigation {
+.top-bar {
 	// Override Magellan Settings
-	background: $topbar-bg;
 	padding: 0;
 	.name h1 {
 		text-align: left;
@@ -550,6 +550,9 @@ li.comment > section {
 	}
 	.copyright {}
 	.social {}
+}
+#menu-secondary-menu {
+	font-size: .8em;
 }
 
 @media #{$small} {

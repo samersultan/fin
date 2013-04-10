@@ -1,4 +1,4 @@
-<span class="meta_time tiny secondary button disabled"><i class="icon-time"></i> <time class="published" datetime="<?php the_time('c'); ?>"><?php echo get_time_ago(get_post_time('U')); ?></time></span>
+<span class="meta_time tiny secondary button"><i class="icon-time"></i> <time class="published" datetime="<?php the_time('c'); ?>"><?php echo get_time_ago(get_post_time('U')); ?></time></span>
 <?php 
 // Comments
 $comment_count = get_comment_count($post->ID);
@@ -13,7 +13,7 @@ if($gallery > 0) { ?>
 // Exif Information
 $exif = get_exif($id, '</span><span class="tiny secondary button">', '<span class="tiny secondary button">', '</span>');
 if($exif != '') { ?>
-	<ul class="meta_exif button-group"><li><a href="#" class="tiny secondary button disabled"><i class="icon-camera"></i></a></li><?php echo $exif; ?></ul>
+	<ul class="meta_exif button-group"><li><a href="#" class="tiny secondary button"><i class="icon-camera"></i></a></li><?php echo $exif; ?></ul>
 <?php }
 // Categories
 if(count(get_the_category())) { ?>

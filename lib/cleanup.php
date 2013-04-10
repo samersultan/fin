@@ -397,29 +397,29 @@ add_filter('cancel_comment_reply_link','fin_cancel_comment_reply_link');
  * 
  */
 function fin_change_previous_posts_link_attributes() {
-    return 'class="pull-left button small" rel="prev"';
+    return 'class="left button small" rel="prev"';
 }
 add_filter('previous_posts_link_attributes', 'fin_change_previous_posts_link_attributes');
 
 function fin_change_next_posts_link_attributes() {
-    return 'class="pull-right button small"  rel="next"';
+    return 'class="right button small"  rel="next"';
 }
 add_filter('next_posts_link_attributes', 'fin_change_next_posts_link_attributes');
 
 function fin_change_previous_post_link($link) {
-	$link = str_replace('href=', 'class="pull-right button small" href=', $link);
+	$link = str_replace('href=', 'class="right button small" href=', $link);
 	return $link;
 }
 add_filter('previous_post_link', 'fin_change_previous_post_link');
 
 function fin_change_next_post_link($link) {
-	$link = str_replace('href=', 'class="pull-left button small" href=', $link);
+	$link = str_replace('href=', 'class="left button small" href=', $link);
 	return $link;
 }
 add_filter('next_post_link', 'fin_change_next_post_link');
 
 /**
- * Add a spam-trap to comment-form
+ * Add a spam-trap to comment form and registration form
  *
  * Include a hidden field called name and set it to hidden. If it receives an input, we have a bot!
  */

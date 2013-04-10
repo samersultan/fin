@@ -14,9 +14,7 @@ Here are somethings that have been on my todo list for awhile.
 
 * Add a breadcrumb nav option
 
-* Strip out inline classes wherever possible
-
-* pricing tables shortcode
+* Strip out inline classes wherever possible and replace with mixin
 
 * add icons to pagination
 
@@ -24,7 +22,7 @@ Here are somethings that have been on my todo list for awhile.
 
 * Fix color option to be scheme oriented.
 
-* Test [caption] shortcode nonsense
+* Test [caption] shortcode
 
 * Remove width and height from media
 

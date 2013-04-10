@@ -4,7 +4,7 @@
  *
  */
 function fin_init() {
-	//Change Default Tagline
+	//Remove Default Tagline
 	if(get_bloginfo('description') == 'Just another WordPress site') {
 		update_option('blogdescription','');
 	}
@@ -88,9 +88,9 @@ add_filter('the_content','fin_change_password_text');
  */
 if (!isset($content_width)) { $content_width = 1000; }
 function fin_media_size() {
-	$lineHeight = 20;
-	$columnWidth = 60;
-	$gutterWidth = 20;
+	$lineHeight = 25;
+	$columnWidth = 50;
+	$gutterWidth = 30;
 	
 	$thumb_w = ($columnWidth * 2) + ($gutterWidth * (2 - 1));
 	$medium_w = ($columnWidth * 4) + ($gutterWidth * (4 - 1));
