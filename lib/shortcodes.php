@@ -1,5 +1,21 @@
 <?php 
 /**
+ * [code] and [pre] shortcodes
+ * 
+ * wraps content in <code></code> or <pre></pre> tags
+ * also overrides all shortcodes contained inside content
+ * 
+ */
+ 
+function shortcode_code( $atts, $content = null, $tag ) {
+	$content = clean_pre($content);
+	$content = str_replace('<', '<', $content);
+	return '<' . $tag . '>' . $content . '</' . $tag . '>';
+}
+add_shortcode( 'code', 'shortcode_code' );
+add_shortcode( 'pre', 'shortcode_code' ); 
+
+/**
  * [rotator] shortcode
  *
  * Output posts from the base_rotator custom post type
@@ -197,38 +213,61 @@ function shortcode_email( $atts, $content = null ) {
 add_shortcode('email', 'shortcode_email');
 
 /**
- * [tel] shortcode
+ * [tel] / [phone] shortcode
  * 
  * Encodes and creates an telephone link
  *
  * Examples:
  * [tel]555-555-1234[/tel]
  *
- * [email number="555-555-1234"]Call Me[/email]
+ * [tel number="555-555-1234"]Call Me[/email]
  *
- * [email number="555-555-1234" label="Call Me"]
+ * [tel number="555-555-1234" label="Call Me"]
  */
 function shortcode_tel( $atts, $content = null ) {
 	extract( shortcode_atts( array(
 	'number' => '',
-	'label' => '', 
+	'label' => '',
+	'button' => '',
+	'style' => '',
+	'text' => '',
+	'SMS' => '',
 	), $atts ) );
 	
+	// Set $number and $label based on available info
 	if($number == '') {
-		$number = do_shortcode($content);
+		$number = $content;
 	}elseif($content != '') {
-		$label = do_shortcode($content);
-	}
-	if($label == '') {
+		$label = $content;
+	}elseif(is_string($button)) {
+		$label = $button;
+	}elseif($label == '') {
 		$label = antispambot($number);
 	}
+	
+	// Set $link
 	$number = preg_replace('/[^0-9]/', '', $number); //strip out all non-numeric characters
-	if(substr($number, 0, 1) == 1) { // remove leading 1 if it's there
-		$number = substr($number, 1);
+	if(!substr($number, 0, 1) == 1) { // add leading 1 if it's not there
+		$number = '+1' . $number;
 	}
-	return '<a href="tel:+1' . antispambot($number) . '">' . $label . '</a>';
+	// Text or Call?
+	if($text == true || $SMS == true) {
+		$link = 'sms:' . antispambot($number);
+	}else {
+		$link = 'tel:+1' . antispambot($number);
+	}
+	
+	// Set $class
+	if($button != '' || $style != '') {
+		$class = 'class="button ' . $style;
+		$class .= '" ';
+	}else {
+	 $class = '';
+	}
+	return '<a ' . $class . 'href="' . $link . '">' . $label . '</a>';
 }
 add_shortcode('tel', 'shortcode_tel');
+add_shortcode('phone', 'shortcode_tel');
 
 /**
  * [child-pages] [sibling-pages] [list-pages] shortcodes
@@ -301,19 +340,6 @@ add_shortcode( 'sibling-pages', 'shortcode_list_pages' );
 add_shortcode( 'list-pages', 'shortcode_list_pages' );
 
 /**
- * [code] and [pre] shortcodes
- * 
- * wraps content in <code></code> or <pre></pre> tags
- * also overrides all shortcodes contained inside content
- * 
- */
-function shortcode_code( $atts, $content = null, $tag ) {
-	return '<' . $tag . '>' . $content . '</' . $tag . '>';
-}
-add_shortcode( 'code', 'shortcode_code' );
-add_shortcode( 'pre', 'shortcode_code' );
-
-/**
  * [row] shortcode
  *
  * Creates a row 
@@ -327,7 +353,7 @@ function shortcode_row( $atts, $content = null ) {
 add_shortcode( 'row', 'shortcode_row' );
   
  /**
-  * [column] shortcode
+  * [column] or [span] shortcode
   *
   * Creates a column
   *
@@ -336,17 +362,19 @@ add_shortcode( 'row', 'shortcode_row' );
   */
 function shortcode_column( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-		'centered' => '',
 		'span' => '',
-		'offset' => ''
+		'centered' => '',
+		'offset' => '',
 		), $atts ) );
 		
-	if($centered != '') {
-		$centered = ' ' . $centered;
-	}
-	
 	if($span != '') {
 		$span = ' ' . $span;
+	}else {
+		$span = ' ' . $atts[0];
+	}
+	
+	if($centered != '') {
+		$centered = ' ' . $centered;
 	}
 	
 	if($offset != '') {
@@ -356,7 +384,8 @@ function shortcode_column( $atts, $content = null ) {
 	return '<div class="column ' . esc_attr($span) . esc_attr($offset) . esc_attr($centered) . '">' . do_shortcode($content) . '</div>';
 }
 add_shortcode( 'column', 'shortcode_column' );
- 
+add_shortcode( 'span', 'shortcode_column' );
+
  /**
   * [button] shortcode
   *
@@ -369,9 +398,9 @@ add_shortcode( 'column', 'shortcode_column' );
   */
 function shortcode_button( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-		'style' => '', /* radius, round */
 		'url'  => '',
 		'link' => '',
+		'style' => '', /* radius, round */
 		'text' => '', 
 		), $atts ) );
 	
@@ -379,19 +408,16 @@ function shortcode_button( $atts, $content = null ) {
 		$text = do_shortcode($content);
 	}
 	// Allow user to use link="" or url=""
+	if($link != '') {
+			$url = $link;
+	}elseif($url == '') {
+		$url = $atts[0];
+	}
 	// Add http:// if user did not include it
-	if($url) {
-		if(!strpos($url, 'http') === 0) {
-			$url = 'http://' . $url;
-		}
-	}elseif($link) {
-		if(!strpos($link, 'http') === 0) {
-			$url = 'http://' . $link;
-		}
+	if(!strpos($url, 'http') === 0) { 
+		$url = 'http://' . $url;
 	}
-	if($url) {
-		$url .= ' href="' . $url . '"';
-	}
+	$url .= ' href="' . $url . '"';
 	
 	$output = '<a' . $url . ' class="button '. $style;
 	$output .= '">';
@@ -462,7 +488,76 @@ function shortcode_panel( $atts, $content = null ) {
 	return $output;
 }
 add_shortcode('panel', 'shortcode_panel');
- 
+
+/**
+ * [pricing] shortcode
+ *
+ * Options: [pricing_info] should have style="title, price, description, bullet-item, bullet, cta-button, or button"
+ *
+ * Example: [pricing] [pricing_info style="title"]Title[/pricing_info] [pricing_info text="description] [pricing_info style="bullet"]Bullet[/pricing_info] [/pricing]
+ */
+function shortcode_pricing( $atts, $content = null, $tag ) {
+	extract( shortcode_atts( array(
+		'style' => 'description',
+	), $atts ) );
+	if($tag == 'pricing') {
+		// create container
+		return '<ul class="pricing-table">' . do_shortcode($content) . '</ul>';
+	}else {
+		// create li
+		if($text == ''){
+			$text = do_shortcode($content);
+		}
+		
+		$style = ($style == 'bullet' ? 'bullet-item' : $style); // change bullet to bullet-item
+		$style = ($style == 'button' ? 'cta-button' : $style); // change button to cta-button
+		
+		return '<li class="' . $style . '">' . $text . '</li>';
+	}
+}
+add_shortcode('pricing', 'shortcode_pricing');
+add_shortcode('pricing_info', 'shortcode_pricing');
+
+/**
+ * [tabs] shortcode
+ *
+ * Creates tabbed content
+ *
+ * Options: style="auto, vertical-nav, horizontal-nav, accordian
+ * 
+ * Example:
+ * [tabs] [tab title="tab1]Content[/tab] [tab title="tab2"]Content[/tab] [/tabs]
+ *
+ */
+function shortcode_tab( $atts, $content = null, $tag ) {
+	extract( shortcode_atts( array(
+		'title' => '',
+		'style' => 'auto',
+		'text' => '',
+	), $atts ) );
+	
+	if($tag == 'tabs') {
+		// create container
+		if($style != 'auto') {
+			$style = ' ' . $style;
+			$data = '="' . $style . '"';
+		}else {
+			$action = '';
+		}
+		return '<div class="section-container ' . $style . '" data-section' . $action . '>' . do_shortcode($content) . '</div>';
+	}else {
+		// create tabs
+		if($title == '') {
+			$title = $atts[0];
+		}
+		$title = '<p class="title"><a href="#' . $title . '">' . $title . '</a></p>';
+		$content = '<div class="content">' . do_shortcode($content) . '</div>';
+		return '<section>' . $title . $content . '</section>';
+	}
+}
+add_shortcode('tabs', 'shortcode_tab');
+add_shortcode('tab', 'shortcode_tab');
+
 /**
  * [modal] shortcode
  *
@@ -480,6 +575,7 @@ class fin_modal {
 		extract( shortcode_atts( array(
 		'text' => '',
 		'button' => '',
+		'style' => '',
 		'size' => '', 
 		), $atts ) );
 		
@@ -489,12 +585,12 @@ class fin_modal {
 			$text = do_shortcode($content);
 		}
 		
-		self::$modal .= '<div id="modal-' . $modalNum . '" class="reveal-modal' . $size . '" role="dialog">';
+		self::$modal .= '<div id="modal-' . $modalNum . '" class="reveal-modal ' . $size . '" role="dialog">';
 		self::$modal .= $text . '<a href="#" style="button" class="close-reveal-modal">&times;</a>';
 		self::$modal .= '</div>';
 		
 		if($button != '') {
-			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="button">' . $button . '</a>';
+			$button = '<a href="#" data-reveal-id="modal-' . $modalNum . '" role="button" class="button ' . $style . '">' . $button . '</a>';
 		}else {
 			self::$modal .= '<script style="text/javascript">
 		        jQuery("#modal-' . $modalNum . '").foundation("reveal","open");
@@ -510,3 +606,8 @@ class fin_modal {
 	}
 }
 add_shortcode('modal', array('fin_modal', 'shortcode_callback'));
+add_shortcode('popup', array('fin_modal', 'shortcode_callback'));
+for($i=1; $i <= 10; $i++) {
+	add_shortcode('modal' . $i, array('fin_modal', 'shortcode_callback'));
+	add_shortcode('popup' . $i, array('fin_modal', 'shortcode_callback'));
+}
