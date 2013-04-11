@@ -3,46 +3,48 @@
  * Basic Config and Constants Setup After Installation
  *
  */
-function fin_init() {
-	//Remove Default Tagline
-	if(get_bloginfo('description') == 'Just another WordPress site') {
-		update_option('blogdescription','');
+if(!function_exists('fin_init')) {
+	function fin_init() {
+		//Remove Default Tagline
+		if(get_bloginfo('description') == 'Just another WordPress site') {
+			update_option('blogdescription','');
+		}
+		
+		// Allow shortcodes in widgets
+		add_filter( 'widget_text', 'shortcode_unautop');
+		add_filter( 'widget_text', 'do_shortcode', 11);
+		
+		// Change Uploads folder to /Assets
+		update_option('uploads_use_yearmonth_folders', 0);
+		update_option('upload_path', 'assets');
+		
+		// Rewrite Permalink Structure
+		update_option('category_base', '/site/');
+		update_option('permalink_structure', '/%category%/%postname%/');
+		
+		// change start of week to Sunday
+		update_option('start_of_week',0);
+		
+		// Disable Smilies
+		update_option('use_smilies', 0);
+		
+		// Default Comment Status
+		update_option( 'default_comment_status', 'closed' );
+		update_option( 'default_ping_status', 'closed' );
+		
+		// Set the size of the Post Editor
+		update_option('default_post_edit_rows', 60);
+		
+		// Set the post revisions to 5 unless previously set to avoid DB bloat
+		if (!defined('WP_POST_REVISIONS')) { define('WP_POST_REVISIONS', 3); }
+		
+		// Set Timezone
+		//$timezone = "America/New_York";
+		$timezone = "America/Chicago";
+		//$timezone = "America/Denver";
+		//$timezone = "America/Los_Angeles";
+		update_option('timezone_string',$timezone);
 	}
-	
-	// Allow shortcodes in widgets
-	add_filter( 'widget_text', 'shortcode_unautop');
-	add_filter( 'widget_text', 'do_shortcode', 11);
-	
-	// Change Uploads folder to /Assets
-	update_option('uploads_use_yearmonth_folders', 0);
-	update_option('upload_path', 'assets');
-	
-	// Rewrite Permalink Structure
-	update_option('category_base', '/site/');
-	update_option('permalink_structure', '/%category%/%postname%/');
-	
-	// change start of week to Sunday
-	update_option('start_of_week',0);
-	
-	// Disable Smilies
-	update_option('use_smilies', 0);
-	
-	// Default Comment Status
-	update_option( 'default_comment_status', 'closed' );
-	update_option( 'default_ping_status', 'closed' );
-	
-	// Set the size of the Post Editor
-	update_option('default_post_edit_rows', 60);
-	
-	// Set the post revisions to 5 unless previously set to avoid DB bloat
-	if (!defined('WP_POST_REVISIONS')) { define('WP_POST_REVISIONS', 3); }
-	
-	// Set Timezone
-	//$timezone = "America/New_York";
-	$timezone = "America/Chicago";
-	//$timezone = "America/Denver";
-	//$timezone = "America/Los_Angeles";
-	update_option('timezone_string',$timezone);
 }
 add_action('after_switch_theme', 'fin_init');
 
@@ -50,12 +52,14 @@ add_action('after_switch_theme', 'fin_init');
  * Basic Config and Constants Called Every Load
  *
  */
-function fin_setup() {
-	// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
-	add_theme_support('post-thumbnails');
-	
-	// Add post formats (http://codex.wordpress.org/Post_Formats)
-	add_theme_support('post-formats', array('gallery', 'image', 'video', 'audio'));
+if(!function_exists('fin_setup')) {
+	function fin_setup() {
+		// Add post thumbnails (http://codex.wordpress.org/Post_Thumbnails)
+		add_theme_support('post-thumbnails');
+		
+		// Add post formats (http://codex.wordpress.org/Post_Formats)
+		add_theme_support('post-formats', array('gallery', 'image', 'video', 'audio'));
+	}
 }
 add_action('after_setup_theme', 'fin_setup');
 
@@ -63,9 +67,11 @@ add_action('after_setup_theme', 'fin_setup');
  * Create default content for new posts and pages by pulling from /pages/page-default
  *
  */
-function fin_add_default_content($content) {
-	$content = file_get_contents(locate_template('/lib/pages/page-default.php'));
-	return $content;
+if(!function_exists('fin_add_default_content')) {
+	function fin_add_default_content($content) {
+		$content = file_get_contents(locate_template('/lib/pages/page-default.php'));
+		return $content;
+	}
 }
 add_filter('default_content', 'fin_add_default_content');
 
@@ -73,12 +79,14 @@ add_filter('default_content', 'fin_add_default_content');
  * Change text for password protected areas
  *
  */
-function fin_change_password_text($content) {
-	$content = str_replace(
-		'This post is password protected. To view it please enter your password below:', 
-		'This area is password protected. To view it please enter your password below:',
-		$content);
-	return $content;
+if(!function_exists('fin_change_password_text')) {
+	function fin_change_password_text($content) {
+		$content = str_replace(
+			'This post is password protected. To view it please enter your password below:', 
+			'This area is password protected. To view it please enter your password below:',
+			$content);
+		return $content;
+	}
 }
 add_filter('the_content','fin_change_password_text');
 

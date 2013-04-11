@@ -29,12 +29,12 @@ if(current_user_can('edit_posts')) {
  * Create Default Pages
  *
  */
-function fin_add_pages(){
-	$defaultPages = array('home', 'about', 'contact', 'copyrights', 'privacy', 'maintenance', 'sitemap');
-	foreach ($defaultPages as $defaultPage) {
-		require_once locate_template('/lib/pages/page-' . $defaultPage . '.php');
+if(!function_exists('fin_add_pages')) {
+	function fin_add_pages(){
+		$defaultPages = array('home', 'about', 'contact', 'copyrights', 'privacy', 'maintenance', 'sitemap');
+		foreach ($defaultPages as $defaultPage) {
+			require_once locate_template('/lib/pages/page-' . $defaultPage . '.php');
+		}
 	}
 }
 add_action('after_switch_theme', 'fin_add_pages');
-
-add_theme_support('woocommerce');
