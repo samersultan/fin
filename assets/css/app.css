@@ -543,16 +543,7 @@ select {
 .row:after {
   clear: both;
 }
-/* line 110, ../scss/foundation/components/_grid.scss */
-.row .column,
-.row .columns {
-  position: relative;
-  padding-left: 0.9375em;
-  padding-right: 0.9375em;
-  width: 100%;
-  float: left;
-}
-/* line 114, ../scss/foundation/components/_grid.scss */
+/* line 111, ../scss/foundation/components/_grid.scss */
 .row.collapse .column,
 .row.collapse .columns {
   position: relative;
@@ -560,7 +551,7 @@ select {
   padding-right: 0;
   float: left;
 }
-/* line 117, ../scss/foundation/components/_grid.scss */
+/* line 114, ../scss/foundation/components/_grid.scss */
 .row .row {
   width: auto;
   margin-left: -0.9375em;
@@ -579,7 +570,7 @@ select {
 .row .row:after {
   clear: both;
 }
-/* line 118, ../scss/foundation/components/_grid.scss */
+/* line 115, ../scss/foundation/components/_grid.scss */
 .row .row.collapse {
   width: auto;
   margin: 0;
@@ -596,10 +587,20 @@ select {
   clear: both;
 }
 
+/* line 120, ../scss/foundation/components/_grid.scss */
+.column,
+.columns {
+  position: relative;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+  width: 100%;
+  float: left;
+}
+
 @media only screen {
   /* line 125, ../scss/foundation/components/_grid.scss */
-  .row .column,
-  .row .columns {
+  .column,
+  .columns {
     position: relative;
     padding-left: 0.9375em;
     padding-right: 0.9375em;
@@ -607,133 +608,133 @@ select {
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-1 {
+  .small-1 {
     position: relative;
     width: 8.33333%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-2 {
+  .small-2 {
     position: relative;
     width: 16.66667%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-3 {
+  .small-3 {
     position: relative;
     width: 25%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-4 {
+  .small-4 {
     position: relative;
     width: 33.33333%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-5 {
+  .small-5 {
     position: relative;
     width: 41.66667%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-6 {
+  .small-6 {
     position: relative;
     width: 50%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-7 {
+  .small-7 {
     position: relative;
     width: 58.33333%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-8 {
+  .small-8 {
     position: relative;
     width: 66.66667%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-9 {
+  .small-9 {
     position: relative;
     width: 75%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-10 {
+  .small-10 {
     position: relative;
     width: 83.33333%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-11 {
+  .small-11 {
     position: relative;
     width: 91.66667%;
   }
 
   /* line 128, ../scss/foundation/components/_grid.scss */
-  .row .small-12 {
+  .small-12 {
     position: relative;
     width: 100%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-1 {
+  .small-offset-1 {
     position: relative;
     margin-left: 8.33333%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-2 {
+  .small-offset-2 {
     position: relative;
     margin-left: 16.66667%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-3 {
+  .small-offset-3 {
     position: relative;
     margin-left: 25%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-4 {
+  .small-offset-4 {
     position: relative;
     margin-left: 33.33333%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-5 {
+  .small-offset-5 {
     position: relative;
     margin-left: 41.66667%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-6 {
+  .small-offset-6 {
     position: relative;
     margin-left: 50%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-7 {
+  .small-offset-7 {
     position: relative;
     margin-left: 58.33333%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-8 {
+  .small-offset-8 {
     position: relative;
     margin-left: 66.66667%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-9 {
+  .small-offset-9 {
     position: relative;
     margin-left: 75%;
   }
 
   /* line 132, ../scss/foundation/components/_grid.scss */
-  .row .small-offset-10 {
+  .small-offset-10 {
     position: relative;
     margin-left: 83.33333%;
   }
@@ -760,133 +761,133 @@ select {
 /* Styles for screens that are atleast 768px; */
 @media only screen and (min-width: 48em) {
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-1 {
+  .large-1 {
     position: relative;
     width: 8.33333%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-2 {
+  .large-2 {
     position: relative;
     width: 16.66667%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-3 {
+  .large-3 {
     position: relative;
     width: 25%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-4 {
+  .large-4 {
     position: relative;
     width: 33.33333%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-5 {
+  .large-5 {
     position: relative;
     width: 41.66667%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-6 {
+  .large-6 {
     position: relative;
     width: 50%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-7 {
+  .large-7 {
     position: relative;
     width: 58.33333%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-8 {
+  .large-8 {
     position: relative;
     width: 66.66667%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-9 {
+  .large-9 {
     position: relative;
     width: 75%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-10 {
+  .large-10 {
     position: relative;
     width: 83.33333%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-11 {
+  .large-11 {
     position: relative;
     width: 91.66667%;
   }
 
   /* line 146, ../scss/foundation/components/_grid.scss */
-  .row .large-12 {
+  .large-12 {
     position: relative;
     width: 100%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-1 {
+  .large-offset-1 {
     position: relative;
     margin-left: 8.33333%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-2 {
+  .large-offset-2 {
     position: relative;
     margin-left: 16.66667%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-3 {
+  .large-offset-3 {
     position: relative;
     margin-left: 25%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-4 {
+  .large-offset-4 {
     position: relative;
     margin-left: 33.33333%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-5 {
+  .large-offset-5 {
     position: relative;
     margin-left: 41.66667%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-6 {
+  .large-offset-6 {
     position: relative;
     margin-left: 50%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-7 {
+  .large-offset-7 {
     position: relative;
     margin-left: 58.33333%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-8 {
+  .large-offset-8 {
     position: relative;
     margin-left: 66.66667%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-9 {
+  .large-offset-9 {
     position: relative;
     margin-left: 75%;
   }
 
   /* line 150, ../scss/foundation/components/_grid.scss */
-  .row .large-offset-10 {
+  .large-offset-10 {
     position: relative;
     margin-left: 83.33333%;
   }
@@ -8019,13 +8020,17 @@ del {
   height: auto;
 }
 
-/* line 152, ../scss/app.scss */
+/* line 150, ../scss/app.scss */
+.clearing-thumbs {
+  text-align: center;
+}
+/* line 153, ../scss/app.scss */
 .clearing-thumbs li {
-  float: left;
+  display: inline-block;
   padding-top: 3px;
 }
 
-/* line 162, ../scss/app.scss */
+/* line 163, ../scss/app.scss */
 body {
   /* home page */
   /* archive page */
@@ -8060,12 +8065,12 @@ body {
   /* individual paged (i.e. body.paged-3) */
 }
 
-/* line 204, ../scss/app.scss */
+/* line 205, ../scss/app.scss */
 #header {
   overflow: hidden;
   width: 100%;
 }
-/* line 211, ../scss/app.scss */
+/* line 212, ../scss/app.scss */
 #header figure {
   margin: 0 auto;
   max-width: 100%;
@@ -8073,36 +8078,36 @@ body {
   padding: 0 10px;
   text-align: center;
 }
-/* line 217, ../scss/app.scss */
+/* line 218, ../scss/app.scss */
 #header figure a {
   border: 0;
   outline: 0;
   text-decoration: none;
 }
-/* line 222, ../scss/app.scss */
+/* line 223, ../scss/app.scss */
 #header figure img {
   margin: 0 auto;
 }
-/* line 228, ../scss/app.scss */
+/* line 229, ../scss/app.scss */
 #header figure.logo + h1, #header figure.logo ~ h2 {
   text-indent: -99999px;
 }
 
-/* line 236, ../scss/app.scss */
+/* line 237, ../scss/app.scss */
 .top-bar {
   padding: 0;
 }
-/* line 239, ../scss/app.scss */
+/* line 240, ../scss/app.scss */
 .top-bar .name h1 {
   text-align: left;
 }
 
-/* line 247, ../scss/app.scss */
+/* line 248, ../scss/app.scss */
 #content {
   padding: 20px 40px;
 }
 
-/* line 256, ../scss/app.scss */
+/* line 257, ../scss/app.scss */
 .hentry > header, .hentry > .entry-content, .hentry .entry-summary, .hentry > footer {
   width: 100%;
   margin-left: auto;
@@ -8121,29 +8126,48 @@ body {
 .hentry > header:after, .hentry > .entry-content:after, .hentry .entry-summary:after, .hentry > footer:after {
   clear: both;
 }
-/* line 273, ../scss/app.scss */
+/* line 274, ../scss/app.scss */
 .hentry footer .meta-edit {
   visibility: hidden;
 }
-/* line 278, ../scss/app.scss */
+/* line 279, ../scss/app.scss */
 .hentry:hover .meta-edit {
   visibility: visible;
 }
 
-/* line 338, ../scss/app.scss */
-#sitemap-pages, #sitemap-articles {
+/* line 339, ../scss/app.scss */
+.sitemap-type {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5em;
+  *zoom: 1;
+}
+/* line 198, ../scss/foundation/_foundation-global.scss */
+.sitemap-type:before, .sitemap-type:after {
+  content: " ";
+  display: table;
+}
+/* line 199, ../scss/foundation/_foundation-global.scss */
+.sitemap-type:after {
+  clear: both;
+}
+/* line 341, ../scss/app.scss */
+.sitemap-type .sitemap-sub {
   position: relative;
   padding-left: 0.9375em;
   padding-right: 0.9375em;
   width: 33.33333%;
   float: left;
 }
-/* line 340, ../scss/app.scss */
-#sitemap-pages h5, #sitemap-pages h6, #sitemap-articles h5, #sitemap-articles h6 {
+/* line 344, ../scss/app.scss */
+.sitemap-type h5, .sitemap-type h6 {
   text-align: left;
 }
 
-/* line 347, ../scss/app.scss */
+/* line 351, ../scss/app.scss */
 #pagination {
   width: 100%;
   margin-left: auto;
@@ -8164,7 +8188,7 @@ body {
   clear: both;
 }
 
-/* line 356, ../scss/app.scss */
+/* line 360, ../scss/app.scss */
 #discussion {
   width: 100%;
   margin-left: auto;
@@ -8185,7 +8209,7 @@ body {
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 360, ../scss/app.scss */
+  /* line 364, ../scss/app.scss */
   #discussion #respond {
     position: relative;
     padding-left: 0.9375em;
@@ -8196,7 +8220,7 @@ body {
     float: left;
   }
 
-  /* line 363, ../scss/app.scss */
+  /* line 367, ../scss/app.scss */
   #discussion #comments {
     position: relative;
     padding-left: 0.9375em;
@@ -8207,17 +8231,17 @@ body {
     float: left;
   }
 }
-/* line 371, ../scss/app.scss */
+/* line 375, ../scss/app.scss */
 #respond .logged-in-as {
   display: block;
   margin: 0;
 }
-/* line 376, ../scss/app.scss */
+/* line 380, ../scss/app.scss */
 #respond textarea {
   min-height: 8em;
 }
 
-/* line 382, ../scss/app.scss */
+/* line 386, ../scss/app.scss */
 ol #respond {
   border-style: solid;
   border-width: 1px;
@@ -8256,7 +8280,7 @@ ol #respond h1.subheader, ol #respond h2.subheader, ol #respond h3.subheader, ol
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 387, ../scss/app.scss */
+  /* line 391, ../scss/app.scss */
   ol #respond {
     position: relative;
     padding-left: 0.9375em;
@@ -8267,7 +8291,7 @@ ol #respond h1.subheader, ol #respond h2.subheader, ol #respond h3.subheader, ol
     float: left;
   }
 
-  /* line 390, ../scss/app.scss */
+  /* line 394, ../scss/app.scss */
   #wp-temp-form-div + #comments {
     position: relative;
     padding-left: 0.9375em;
@@ -8278,7 +8302,7 @@ ol #respond h1.subheader, ol #respond h2.subheader, ol #respond h3.subheader, ol
     float: left;
   }
 }
-/* line 394, ../scss/app.scss */
+/* line 398, ../scss/app.scss */
 a#cancel-comment-reply-link {
   font-size: 1.375em;
   padding: 5px 4px 4px;
@@ -8294,22 +8318,22 @@ a#cancel-comment-reply-link:hover, a#cancel-comment-reply-link:focus {
   opacity: 0.5;
 }
 
-/* line 405, ../scss/app.scss */
+/* line 409, ../scss/app.scss */
 ol.comment-list ol.comment {
   position: relative;
   margin-left: 8.33333%;
   float: left;
 }
 
-/* line 411, ../scss/app.scss */
+/* line 415, ../scss/app.scss */
 li.comment {
   clear: both;
 }
-/* line 413, ../scss/app.scss */
+/* line 417, ../scss/app.scss */
 li.comment figure.avatar {
   display: none;
 }
-/* line 415, ../scss/app.scss */
+/* line 419, ../scss/app.scss */
 li.comment figure.avatar a {
   display: inline-block;
   border: solid 4px white;
@@ -8323,7 +8347,7 @@ li.comment figure.avatar a:hover, li.comment figure.avatar a:focus {
   -webkit-box-shadow: 0 0 6px 1px rgba(43, 166, 203, 0.5);
   box-shadow: 0 0 6px 1px rgba(43, 166, 203, 0.5);
 }
-/* line 421, ../scss/app.scss */
+/* line 425, ../scss/app.scss */
 li.comment > header, li.comment > section, li.comment > footer {
   position: relative;
   padding-left: 0.9375em;
@@ -8331,12 +8355,12 @@ li.comment > header, li.comment > section, li.comment > footer {
   width: 100%;
   float: left;
 }
-/* line 425, ../scss/app.scss */
+/* line 429, ../scss/app.scss */
 li.comment .comment-author cite {
   font-size: 2em;
   font-weight: bold;
 }
-/* line 435, ../scss/app.scss */
+/* line 439, ../scss/app.scss */
 li.comment footer time a {
   border-style: solid;
   border-width: 1px;
@@ -8379,21 +8403,21 @@ li.comment footer time a:active {
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
 }
-/* line 442, ../scss/app.scss */
+/* line 446, ../scss/app.scss */
 li.comment a.comment-reply-link, li.comment a.comment-edit-link {
   float: right;
   z-index: 4;
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 449, ../scss/app.scss */
+  /* line 453, ../scss/app.scss */
   ol.comment-list ol.comment {
     position: relative;
     margin-left: 16.66667%;
     float: left;
   }
 
-  /* line 453, ../scss/app.scss */
+  /* line 457, ../scss/app.scss */
   li.comment figure.avatar {
     position: relative;
     padding-left: 0.9375em;
@@ -8404,7 +8428,7 @@ li.comment a.comment-reply-link, li.comment a.comment-edit-link {
     margin-top: 4px;
     padding-right: 0;
   }
-  /* line 458, ../scss/app.scss */
+  /* line 462, ../scss/app.scss */
   li.comment figure.avatar ~ header, li.comment figure.avatar ~ section, li.comment figure.avatar ~ footer {
     position: relative;
     padding-left: 0.9375em;
@@ -8413,7 +8437,7 @@ li.comment a.comment-reply-link, li.comment a.comment-edit-link {
     float: right;
   }
 }
-/* line 466, ../scss/app.scss */
+/* line 470, ../scss/app.scss */
 .no-touch a.comment-edit-link, .no-touch a.comment-reply-link {
   -webkit-transition: opacity, 0.25s, linear;
   -moz-transition: opacity, 0.25s, linear;
@@ -8423,26 +8447,26 @@ li.comment a.comment-reply-link, li.comment a.comment-edit-link {
   opacity: 0;
 }
 
-/* line 474, ../scss/app.scss */
+/* line 478, ../scss/app.scss */
 li.comment:hover > footer > a.comment-edit-link, li.comment:hover > footer > a.comment-reply-link {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10000);
   opacity: 100;
 }
 
-/* line 502, ../scss/app.scss */
+/* line 506, ../scss/app.scss */
 #comments ol.comment-list li.comment.byuser {
   /* User Comment */
 }
-/* line 503, ../scss/app.scss */
+/* line 507, ../scss/app.scss */
 #comments ol.comment-list li.comment.bypostauthor {
   /* Author Comment */
 }
-/* line 504, ../scss/app.scss */
+/* line 508, ../scss/app.scss */
 #comments ol.comment-list li.comment.comment-author-admin {
   /* Admin Comment */
 }
 
-/* line 526, ../scss/app.scss */
+/* line 530, ../scss/app.scss */
 .sidebar {
   width: 100%;
   margin-left: auto;
@@ -8462,7 +8486,7 @@ li.comment:hover > footer > a.comment-edit-link, li.comment:hover > footer > a.c
   clear: both;
 }
 
-/* line 538, ../scss/app.scss */
+/* line 542, ../scss/app.scss */
 #footer {
   width: 100%;
   margin-left: auto;
@@ -8483,22 +8507,22 @@ li.comment:hover > footer > a.comment-edit-link, li.comment:hover > footer > a.c
 #footer:after {
   clear: both;
 }
-/* line 548, ../scss/app.scss */
+/* line 552, ../scss/app.scss */
 #footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
   text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 554, ../scss/app.scss */
+/* line 558, ../scss/app.scss */
 #menu-secondary-menu {
   font-size: .8em;
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 560, ../scss/app.scss */
+  /* line 564, ../scss/app.scss */
   #footer .copyright {
     float: left;
   }
-  /* line 563, ../scss/app.scss */
+  /* line 567, ../scss/app.scss */
   #footer .social {
     float: right;
   }

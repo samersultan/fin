@@ -149,8 +149,9 @@ del {
 // Gallery //
 .clearing-thumbs {
 	@extend .unstyled;
+	text-align: center;
 	li {
-		float: left;
+		display: inline-block;
 		padding-top: 3px; // block-grid fix
 	}
 }
@@ -335,8 +336,11 @@ body {
 
 // Sitemap
 //////////
-#sitemap-pages, #sitemap-articles {
-	@include grid-column(4, $float:left);
+.sitemap-type {
+	@include grid-row;
+	.sitemap-sub {
+		@include grid-column(4);
+	}
 	h5, h6 {
 		text-align: left;
 	}

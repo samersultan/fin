@@ -6,9 +6,13 @@ Please feel free to offer any suggestions, or point out any issues with the proj
 # TODO
 Here are somethings that have been on my todo list for awhile.
 
+* Expand Rotator posttype to work with galleries.
+
 * More Documentation
 
 * Better templates for post-formats
+
+* Sitemap - Display custom post-types that don't have a hierarchical taxonomy
 
 * Remove unnecessary WP_Widget queries
 
