@@ -366,12 +366,18 @@ function shortcode_column( $atts, $content = null ) {
 		'centered' => '',
 		'offset' => '',
 		), $atts ) );
-		
+	
+	// get span as [column span=""] or first variable	[column "small-4 large-8"]
 	if($span != '') {
-		$span = ' ' . $span;
+		$span = $span;
 	}else {
-		$span = ' ' . $atts[0];
+		$span = $atts[0];
 	}
+	// if span is just an integer, add large-#
+	if(is_integer($span)) {
+		$span = 'large-' . $span;
+	}
+	
 	
 	if($centered != '') {
 		$centered = ' ' . $centered;
