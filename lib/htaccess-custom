@@ -80,6 +80,14 @@
  RedirectMatch 403 labels\.rdf
 </ifModule>
 
+# Exclude the file upload and WP CRON scripts from authentication
+<FilesMatch "(async-upload\.php|wp-cron\.php|xmlrpc\.php)$">
+  Satisfy Any
+  Order allow,deny
+  Allow from all
+  Deny from none
+</FilesMatch>
+
 # "-Indexes" will have Apache block users from browsing folders without a default document
 # Usually you should leave this activated, because you shouldn't allow everybody to surf through
 # every folder on your server (which includes rather private places like CMS system folders).
