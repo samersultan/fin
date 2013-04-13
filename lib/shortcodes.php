@@ -9,35 +9,35 @@
  
 function shortcode_code( $atts, $content = null, $tag ) {
 	$content = clean_pre($content);
-	$content = str_replace('<', '<', $content);
+	$content = esc_html($content);
 	return '<' . $tag . '>' . $content . '</' . $tag . '>';
 }
 add_shortcode( 'code', 'shortcode_code' );
 add_shortcode( 'pre', 'shortcode_code' ); 
 
 /**
- * [rotator] shortcode
+ * [slideshow] shortcode
  *
- * Output posts from the base_rotator custom post type
+ * Output posts from the base_slideshow custom post type
  * Use location="" attribute to pull in posts from a specific location
- * from the fin_rotator_location taxonomy
+ * from the fin_slideshow_location taxonomy
  *
  * Example:
- * [rotator location="home"]
+ * [slideshow location="home"]
  */
-function shortcode_rotator($atts) {
+function shortcode_slideshow($atts) {
   extract(shortcode_atts(array(
     'location' => ''
   ), $atts));
-  global $rotator_loc;
-  $rotator_loc = $location;
+  global $slideshow_loc;
+  $slideshow_loc = $location;
   ob_start();
-  get_template_part('templates/rotator', $location);
-  $rotator = ob_get_contents();
+  get_template_part('templates/slideshow', $location);
+  $slideshow = ob_get_contents();
   ob_end_clean();
-  return $rotator;
+  return $slideshow;
 }
-add_shortcode('rotator', 'shortcode_rotator');
+add_shortcode('slideshow', 'shortcode_slideshow');
 
 /**
  * [gallery] shortcode

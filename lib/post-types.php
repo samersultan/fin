@@ -7,22 +7,22 @@
  */
 
 /**
- * Rotator custom post type
+ * slideshow custom post type
  */
-function register_post_type_rotator() {
+function register_post_type_slideshow() {
   $labels = array(
-    'name'               => 'Rotator Items',
-    'singular_name'      => 'Rotator Item',
-    'add_new'            => 'Add New',
-    'add_new_item'       => 'Add New Rotator Item',
-    'edit_item'          => 'Edit Rotator Item',
-    'new_item'           => 'New Rotator Item',
-    'view_item'          => 'View Rotator Item',
-    'search_items'       => 'Search Rotator Items',
-    'not_found'          => 'No rotator items found',
-    'not_found_in_trash' => 'No rotator items found in trash',
+    'name'               => 'Slides',
+    'singular_name'      => 'Slide',
+    'add_new'            => 'Add Slide',
+    'add_new_item'       => 'Add New Slide',
+    'edit_item'          => 'Edit Slide',
+    'new_item'           => 'New Slide',
+    'view_item'          => 'View Slide',
+    'search_items'       => 'Search Slides',
+    'not_found'          => 'No slides found',
+    'not_found_in_trash' => 'No slides items found in trash',
     'parent_item_colon'  => '',
-    'menu_name'          => 'Rotator'
+    'menu_name'          => 'Slides'
   );
 
   $args = array(
@@ -32,7 +32,7 @@ function register_post_type_rotator() {
     'show_ui'            => true,
     'show_in_menu'       => true,
     'query_var'          => true,
-    'rewrite'            => array('slug' => 'rotator'),
+    'rewrite'            => array('slug' => 'slide'),
     'capability_type'    => 'post',
     'has_archive'        => false,
     'hierarchical'       => false,
@@ -40,12 +40,12 @@ function register_post_type_rotator() {
     'supports'           => array('title', 'thumbnail', 'excerpt')
   );
 
-  register_post_type('rotator', $args);
+  register_post_type('slideshow', $args);
 }
-add_action('init', 'register_post_type_rotator');
+add_action('init', 'register_post_type_slideshow');
 
 /**
- * Rotator Location taxonomy
+ * slideshow Location taxonomy
  */
 function register_taxonomy_location() {
   $labels = array(
@@ -68,8 +68,8 @@ function register_taxonomy_location() {
     'show_ui'           => true,
     'show_admin_column' => true,
     'query_var'         => true,
-    'rewrite'           => array('slug' => 'rotator-location'),
+    'rewrite'           => array('slug' => 'slideshow-location'),
   );
-  register_taxonomy('rotator_location', 'rotator', $args);
+  register_taxonomy('slideshow_location', 'slideshow', $args);
 }
 add_action('init', 'register_taxonomy_location');
