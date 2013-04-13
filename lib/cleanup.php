@@ -67,6 +67,24 @@ add_filter( 'the_content', 'fin_wpautop', 99 );
 add_filter( 'the_excerpt', 'fin_wpautop', 99 );
 
 /**
+ * Strip shortcodes out of the_excerpt but keep content
+ *
+ */
+function custom_excerpt($the_content = '') {
+	$raw_excerpt = $the_content;
+	if ( '' == $the_content ) {
+		$the_content = get_the_content();
+		$the_content = preg_replace("~(?:\[/?)[^/\]]+/?\]~s", '', $the_content);  # strip shortcodes, keep shortcode content		
+		$excerpt_length = apply_filters('excerpt_length', 55);
+		$excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
+		$the_content = wp_trim_words( $the_content, $excerpt_length, $excerpt_more );
+	}
+	return apply_filters('wp_trim_excerpt', $the_content, $raw_excerpt);
+}
+remove_filter( 'get_the_excerpt', 'wp_trim_excerpt'  );
+add_filter( 'get_the_excerpt', 'custom_excerpt'  );
+
+/**
  * Clean up inserted images
  *
  */
