@@ -63,14 +63,7 @@ html, body { height: 100%; }
 }
 
 // BASE STYLES //
-.hide {
-	border: none !important; 
-	height: 0 !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	visibility: hidden !important;
-	width: 0 !important;   
-}
+
 input[type="submit"]:not([disabled]) { 
 	@include button($bg: $success-color);
 	@include inset-shadow();
@@ -153,6 +146,9 @@ del {
 	li {
 		display: inline-block;
 		padding-top: 3px; // block-grid fix
+		&.hide {
+			display: none;
+		}
 	}
 }
 
