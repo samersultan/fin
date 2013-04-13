@@ -83,6 +83,20 @@ $include-html-magellan-classes: $include-html-classes !default;
   @return percentage(($colNumber / $totalColumns));
 }
 
+@function reverse-lightness($color, $percent: 'auto') {
+	@if(lightness($color) < 50%) { // dark colors
+		@if($percent == 'auto') {
+			$percent: 2* ( 50 - lightness($color));
+		}
+		$color: lighten($color, $percent);
+	} @else {
+		@if($percent == 'auto') { // light colors
+			$percent: 2* ( lightness($color)- 50 );
+		}
+		$color: darken($color, $percent);
+	}
+	@return $color;
+}
 
 //
 // Mixins
