@@ -33,3 +33,5 @@ Here are somethings that have been on my todo list for awhile.
 * Wrap functions in if_function_exists for child theme purposes
 
 * Consider changing Responses/Reply into tabs
+
+* Add shortcode to create an analytics enabled link

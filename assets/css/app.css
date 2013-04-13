@@ -7805,17 +7805,7 @@ html, body {
     width: 87.5% !important;
   }
 }
-/* line 66, ../scss/app.scss */
-.hide, #header figure.logo + h1, #header figure.logo ~ h2 {
-  border: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  visibility: hidden !important;
-  width: 0 !important;
-}
-
-/* line 74, ../scss/app.scss */
+/* line 67, ../scss/app.scss */
 input[type="submit"]:not([disabled]) {
   border-style: solid;
   border-width: 1px;
@@ -7857,7 +7847,7 @@ input[type="submit"]:not([disabled]):active {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
 }
 
-/* line 79, ../scss/app.scss */
+/* line 72, ../scss/app.scss */
 input[type="submit"][disabled] {
   background-color: #2ba6cb;
   border-color: #2284a1;
@@ -7880,17 +7870,17 @@ input[type="submit"][disabled]:hover, input[type="submit"][disabled]:focus {
   background-color: #2ba6cb;
 }
 
-/* line 82, ../scss/app.scss */
+/* line 75, ../scss/app.scss */
 a:hover i {
   text-decoration: none;
 }
 
-/* line 85, ../scss/app.scss */
+/* line 78, ../scss/app.scss */
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-/* line 88, ../scss/app.scss */
+/* line 81, ../scss/app.scss */
 .entry-summary, .entry-content, .widget, .comment > section {
   font-family: inherit;
   font-weight: normal;
@@ -7898,12 +7888,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
   text-rendering: optimizeLegibility;
 }
-/* line 94, ../scss/app.scss */
+/* line 87, ../scss/app.scss */
 .entry-summary ol, .entry-summary ul, .entry-content ol, .entry-content ul, .widget ol, .widget ul, .comment > section ol, .comment > section ul {
   padding-left: 1em;
 }
 
-/* line 98, ../scss/app.scss */
+/* line 91, ../scss/app.scss */
 hr {
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   border-top: 2px solid rgba(0, 0, 0, 0.1);
@@ -7920,40 +7910,40 @@ hr:after {
   clear: both;
 }
 
-/* line 104, ../scss/app.scss */
+/* line 97, ../scss/app.scss */
 del {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
   opacity: 0.5;
 }
 
-/* line 107, ../scss/app.scss */
+/* line 100, ../scss/app.scss */
 .alignleft {
   margin-right: 1em;
 }
 
-/* line 108, ../scss/app.scss */
+/* line 101, ../scss/app.scss */
 .alignright {
   margin-left: 1em;
 }
 
-/* line 109, ../scss/app.scss */
+/* line 102, ../scss/app.scss */
 .aligncenter, .center {
   margin: 0 auto;
 }
 
-/* line 110, ../scss/app.scss */
+/* line 103, ../scss/app.scss */
 .alignnone {
   float: none;
 }
 
-/* line 111, ../scss/app.scss */
+/* line 104, ../scss/app.scss */
 .unstyled, .clearing-thumbs, ol.comment-list, ol.comment-list ol.comment {
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* line 116, ../scss/app.scss */
+/* line 109, ../scss/app.scss */
 .video {
   position: relative;
   padding-top: 1.5625em;
@@ -7982,7 +7972,7 @@ del {
   height: 100%;
 }
 
-/* line 123, ../scss/app.scss */
+/* line 116, ../scss/app.scss */
 .alert-box > *:nth-last-child(2):not(.close):not[type="hidden"], .alert-box > *:last-child:not(.close):not[type="hidden"],
 .panel > *:nth-last-child(2):not(.close):not[type="hidden"],
 .panel > *:last-child:not(.close):not[type="hidden"],
@@ -7991,7 +7981,7 @@ del {
   margin-bottom: 0;
 }
 
-/* line 130, ../scss/app.scss */
+/* line 123, ../scss/app.scss */
 .orbit-container .orbit-timer {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=25);
   opacity: 0.25;
@@ -8000,7 +7990,7 @@ del {
   -o-transition: opacity 0.5s ease-in;
   transition: opacity 0.5s ease-in;
 }
-/* line 134, ../scss/app.scss */
+/* line 127, ../scss/app.scss */
 .orbit-container .orbit-prev, .orbit-container .orbit-next, .orbit-container .orbit-slide-number {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -8009,28 +7999,32 @@ del {
   -o-transition: opacity 0.5s ease-in;
   transition: opacity 0.5s ease-in;
 }
-/* line 139, ../scss/app.scss */
+/* line 132, ../scss/app.scss */
 .orbit-container:hover .orbit-prev, .orbit-container:hover .orbit-next, .orbit-container:hover .orbit-slide-number, .orbit-container:hover .orbit-timer {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-/* line 143, ../scss/app.scss */
+/* line 136, ../scss/app.scss */
 .orbit-container img {
   width: 100%;
   height: auto;
 }
 
-/* line 150, ../scss/app.scss */
+/* line 143, ../scss/app.scss */
 .clearing-thumbs {
   text-align: center;
 }
-/* line 153, ../scss/app.scss */
+/* line 146, ../scss/app.scss */
 .clearing-thumbs li {
   display: inline-block;
   padding-top: 3px;
 }
+/* line 149, ../scss/app.scss */
+.clearing-thumbs li.hide {
+  display: none;
+}
 
-/* line 163, ../scss/app.scss */
+/* line 159, ../scss/app.scss */
 body {
   /* home page */
   /* archive page */
@@ -8065,12 +8059,12 @@ body {
   /* individual paged (i.e. body.paged-3) */
 }
 
-/* line 205, ../scss/app.scss */
+/* line 201, ../scss/app.scss */
 #header {
   overflow: hidden;
   width: 100%;
 }
-/* line 212, ../scss/app.scss */
+/* line 207, ../scss/app.scss */
 #header figure {
   margin: 0 auto;
   max-width: 100%;
@@ -8078,36 +8072,36 @@ body {
   padding: 0 10px;
   text-align: center;
 }
-/* line 218, ../scss/app.scss */
+/* line 213, ../scss/app.scss */
 #header figure a {
   border: 0;
   outline: 0;
   text-decoration: none;
 }
-/* line 223, ../scss/app.scss */
+/* line 218, ../scss/app.scss */
 #header figure img {
   margin: 0 auto;
 }
-/* line 229, ../scss/app.scss */
+/* line 224, ../scss/app.scss */
 #header figure.logo + h1, #header figure.logo ~ h2 {
   text-indent: -99999px;
 }
 
-/* line 237, ../scss/app.scss */
+/* line 232, ../scss/app.scss */
 .top-bar {
   padding: 0;
 }
-/* line 240, ../scss/app.scss */
+/* line 235, ../scss/app.scss */
 .top-bar .name h1 {
   text-align: left;
 }
 
-/* line 248, ../scss/app.scss */
+/* line 243, ../scss/app.scss */
 #content {
   padding: 20px 40px;
 }
 
-/* line 257, ../scss/app.scss */
+/* line 252, ../scss/app.scss */
 .hentry > header, .hentry > .entry-content, .hentry .entry-summary, .hentry > footer {
   width: 100%;
   margin-left: auto;
@@ -8126,16 +8120,16 @@ body {
 .hentry > header:after, .hentry > .entry-content:after, .hentry .entry-summary:after, .hentry > footer:after {
   clear: both;
 }
-/* line 274, ../scss/app.scss */
+/* line 269, ../scss/app.scss */
 .hentry footer .meta-edit {
   visibility: hidden;
 }
-/* line 279, ../scss/app.scss */
+/* line 274, ../scss/app.scss */
 .hentry:hover .meta-edit {
   visibility: visible;
 }
 
-/* line 339, ../scss/app.scss */
+/* line 334, ../scss/app.scss */
 .sitemap-type {
   width: 100%;
   margin-left: auto;
@@ -8154,7 +8148,7 @@ body {
 .sitemap-type:after {
   clear: both;
 }
-/* line 341, ../scss/app.scss */
+/* line 336, ../scss/app.scss */
 .sitemap-type .sitemap-sub {
   position: relative;
   padding-left: 0.9375em;
@@ -8162,12 +8156,12 @@ body {
   width: 33.33333%;
   float: left;
 }
-/* line 344, ../scss/app.scss */
+/* line 339, ../scss/app.scss */
 .sitemap-type h5, .sitemap-type h6 {
   text-align: left;
 }
 
-/* line 351, ../scss/app.scss */
+/* line 346, ../scss/app.scss */
 #pagination {
   width: 100%;
   margin-left: auto;
@@ -8188,7 +8182,7 @@ body {
   clear: both;
 }
 
-/* line 360, ../scss/app.scss */
+/* line 355, ../scss/app.scss */
 #discussion {
   width: 100%;
   margin-left: auto;
@@ -8209,7 +8203,7 @@ body {
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 364, ../scss/app.scss */
+  /* line 359, ../scss/app.scss */
   #discussion #respond {
     position: relative;
     padding-left: 0.9375em;
@@ -8220,7 +8214,7 @@ body {
     float: left;
   }
 
-  /* line 367, ../scss/app.scss */
+  /* line 362, ../scss/app.scss */
   #discussion #comments {
     position: relative;
     padding-left: 0.9375em;
@@ -8231,17 +8225,17 @@ body {
     float: left;
   }
 }
-/* line 375, ../scss/app.scss */
+/* line 370, ../scss/app.scss */
 #respond .logged-in-as {
   display: block;
   margin: 0;
 }
-/* line 380, ../scss/app.scss */
+/* line 375, ../scss/app.scss */
 #respond textarea {
   min-height: 8em;
 }
 
-/* line 386, ../scss/app.scss */
+/* line 381, ../scss/app.scss */
 ol #respond {
   border-style: solid;
   border-width: 1px;
@@ -8280,7 +8274,7 @@ ol #respond h1.subheader, ol #respond h2.subheader, ol #respond h3.subheader, ol
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 391, ../scss/app.scss */
+  /* line 386, ../scss/app.scss */
   ol #respond {
     position: relative;
     padding-left: 0.9375em;
@@ -8291,7 +8285,7 @@ ol #respond h1.subheader, ol #respond h2.subheader, ol #respond h3.subheader, ol
     float: left;
   }
 
-  /* line 394, ../scss/app.scss */
+  /* line 389, ../scss/app.scss */
   #wp-temp-form-div + #comments {
     position: relative;
     padding-left: 0.9375em;
@@ -8302,7 +8296,7 @@ ol #respond h1.subheader, ol #respond h2.subheader, ol #respond h3.subheader, ol
     float: left;
   }
 }
-/* line 398, ../scss/app.scss */
+/* line 393, ../scss/app.scss */
 a#cancel-comment-reply-link {
   font-size: 1.375em;
   padding: 5px 4px 4px;
@@ -8318,22 +8312,22 @@ a#cancel-comment-reply-link:hover, a#cancel-comment-reply-link:focus {
   opacity: 0.5;
 }
 
-/* line 409, ../scss/app.scss */
+/* line 404, ../scss/app.scss */
 ol.comment-list ol.comment {
   position: relative;
   margin-left: 8.33333%;
   float: left;
 }
 
-/* line 415, ../scss/app.scss */
+/* line 410, ../scss/app.scss */
 li.comment {
   clear: both;
 }
-/* line 417, ../scss/app.scss */
+/* line 412, ../scss/app.scss */
 li.comment figure.avatar {
   display: none;
 }
-/* line 419, ../scss/app.scss */
+/* line 414, ../scss/app.scss */
 li.comment figure.avatar a {
   display: inline-block;
   border: solid 4px white;
@@ -8347,7 +8341,7 @@ li.comment figure.avatar a:hover, li.comment figure.avatar a:focus {
   -webkit-box-shadow: 0 0 6px 1px rgba(43, 166, 203, 0.5);
   box-shadow: 0 0 6px 1px rgba(43, 166, 203, 0.5);
 }
-/* line 425, ../scss/app.scss */
+/* line 420, ../scss/app.scss */
 li.comment > header, li.comment > section, li.comment > footer {
   position: relative;
   padding-left: 0.9375em;
@@ -8355,12 +8349,12 @@ li.comment > header, li.comment > section, li.comment > footer {
   width: 100%;
   float: left;
 }
-/* line 429, ../scss/app.scss */
+/* line 424, ../scss/app.scss */
 li.comment .comment-author cite {
   font-size: 2em;
   font-weight: bold;
 }
-/* line 439, ../scss/app.scss */
+/* line 434, ../scss/app.scss */
 li.comment footer time a {
   border-style: solid;
   border-width: 1px;
@@ -8403,21 +8397,21 @@ li.comment footer time a:active {
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
 }
-/* line 446, ../scss/app.scss */
+/* line 441, ../scss/app.scss */
 li.comment a.comment-reply-link, li.comment a.comment-edit-link {
   float: right;
   z-index: 4;
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 453, ../scss/app.scss */
+  /* line 448, ../scss/app.scss */
   ol.comment-list ol.comment {
     position: relative;
     margin-left: 16.66667%;
     float: left;
   }
 
-  /* line 457, ../scss/app.scss */
+  /* line 452, ../scss/app.scss */
   li.comment figure.avatar {
     position: relative;
     padding-left: 0.9375em;
@@ -8428,7 +8422,7 @@ li.comment a.comment-reply-link, li.comment a.comment-edit-link {
     margin-top: 4px;
     padding-right: 0;
   }
-  /* line 462, ../scss/app.scss */
+  /* line 457, ../scss/app.scss */
   li.comment figure.avatar ~ header, li.comment figure.avatar ~ section, li.comment figure.avatar ~ footer {
     position: relative;
     padding-left: 0.9375em;
@@ -8437,7 +8431,7 @@ li.comment a.comment-reply-link, li.comment a.comment-edit-link {
     float: right;
   }
 }
-/* line 470, ../scss/app.scss */
+/* line 465, ../scss/app.scss */
 .no-touch a.comment-edit-link, .no-touch a.comment-reply-link {
   -webkit-transition: opacity, 0.25s, linear;
   -moz-transition: opacity, 0.25s, linear;
@@ -8447,26 +8441,26 @@ li.comment a.comment-reply-link, li.comment a.comment-edit-link {
   opacity: 0;
 }
 
-/* line 478, ../scss/app.scss */
+/* line 473, ../scss/app.scss */
 li.comment:hover > footer > a.comment-edit-link, li.comment:hover > footer > a.comment-reply-link {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=10000);
   opacity: 100;
 }
 
-/* line 506, ../scss/app.scss */
+/* line 501, ../scss/app.scss */
 #comments ol.comment-list li.comment.byuser {
   /* User Comment */
 }
-/* line 507, ../scss/app.scss */
+/* line 502, ../scss/app.scss */
 #comments ol.comment-list li.comment.bypostauthor {
   /* Author Comment */
 }
-/* line 508, ../scss/app.scss */
+/* line 503, ../scss/app.scss */
 #comments ol.comment-list li.comment.comment-author-admin {
   /* Admin Comment */
 }
 
-/* line 530, ../scss/app.scss */
+/* line 525, ../scss/app.scss */
 .sidebar {
   width: 100%;
   margin-left: auto;
@@ -8486,7 +8480,7 @@ li.comment:hover > footer > a.comment-edit-link, li.comment:hover > footer > a.c
   clear: both;
 }
 
-/* line 542, ../scss/app.scss */
+/* line 537, ../scss/app.scss */
 #footer {
   width: 100%;
   margin-left: auto;
@@ -8507,22 +8501,22 @@ li.comment:hover > footer > a.comment-edit-link, li.comment:hover > footer > a.c
 #footer:after {
   clear: both;
 }
-/* line 552, ../scss/app.scss */
+/* line 547, ../scss/app.scss */
 #footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
   text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* line 558, ../scss/app.scss */
+/* line 553, ../scss/app.scss */
 #menu-secondary-menu {
   font-size: .8em;
 }
 
 @media only screen and (min-width: 48em) {
-  /* line 564, ../scss/app.scss */
+  /* line 559, ../scss/app.scss */
   #footer .copyright {
     float: left;
   }
-  /* line 567, ../scss/app.scss */
+  /* line 562, ../scss/app.scss */
   #footer .social {
     float: right;
   }
