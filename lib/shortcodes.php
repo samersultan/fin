@@ -237,7 +237,7 @@ function shortcode_tel( $atts, $content = null ) {
 	// Set $number and $label based on available info
 	if($number == '') {
 		$number = $content;
-	}elseif($content != '') {
+	}if($label == '') {
 		$label = $content;
 	}elseif(is_string($button)) {
 		$label = $button;
