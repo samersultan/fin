@@ -60,8 +60,8 @@ function fin_wpautop($pee, $br = 0) {
   return $pee;
 }
 // Remove wpautop filters
-remove_filter( 'the_content', 'wpautop' );
-remove_filter( 'the_excerpt', 'wpautop' );
+//remove_filter( 'the_content', 'wpautop' );
+//remove_filter( 'the_excerpt', 'wpautop' );
 // Insert custom wpautop filters after do_shortcode calls
 add_filter( 'the_content', 'fin_wpautop', 99 );
 add_filter( 'the_excerpt', 'fin_wpautop', 99 );
