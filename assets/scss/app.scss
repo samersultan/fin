@@ -1,6 +1,6 @@
-@import "normalize";
-@import "settings";
-@import "foundation";
+@import "variables";
+@import "../vendor/foundation/scss/normalize";
+@import "../vendor/foundation/scss/foundation";
 @import "compass/css3";
 @import "font-awesome";
 
@@ -35,31 +35,31 @@ html, body { height: 100%; }
 	.one-half,
 		.two-fourths,
 		.three-sixths,
-		.four-eights   { width: gridCalc(1, 2) !important; }
+		.four-eighths   { width: gridCalc(1, 2); }
 	.one-third,
-		.two-sixths    { width: gridCalc(1, 3) !important; }
+		.two-sixths    { width: gridCalc(1, 3); }
 	.two-thirds,
-		.four-sixths   { width: gridCalc(2, 3) !important; }
+		.four-sixths   { width: gridCalc(2, 3); }
 	.one-fourth,
-		.two-eighths   { width: gridCalc(1, 4) !important; }
+		.two-eighths   { width: gridCalc(1, 4); }
 	.three-fourths,
-		.four-eighths  { width: gridCalc(3, 4) !important; }
-	.one-fifth       { width: gridCalc(1, 5) !important; }
-	.two-fifths      { width: gridCalc(2, 5) !important; }
-	.three-fifths    { width: gridCalc(3, 5) !important; }
-	.four-fifths     { width: gridCalc(4, 5) !important; }
-	.one-sixth       { width: gridCalc(1, 6) !important; }
-	.five-sixths     { width: gridCalc(5, 6) !important; }
-	.one-seventh     { width: gridCalc(1, 7) !important; }
-	.two-sevenths    { width: gridCalc(2, 7) !important; }
-	.three-sevenths  { width: gridCalc(3, 7) !important; }
-	.four-sevenths   { width: gridCalc(4, 7) !important; }
-	.five-sevenths   { width: gridCalc(5, 7) !important; }
-	.six-sevenths    { width: gridCalc(6, 7) !important; }
-	.one-eighth      { width: gridCalc(1, 8) !important; }
-	.three-eighths   { width: gridCalc(3, 8) !important; }
-	.five-eighths    { width: gridCalc(5, 8) !important; }
-	.seven-eighths   { width: gridCalc(7, 8) !important; }
+		.four-eighths  { width: gridCalc(3, 4); }
+	.one-fifth       { width: gridCalc(1, 5); }
+	.two-fifths      { width: gridCalc(2, 5); }
+	.three-fifths    { width: gridCalc(3, 5); }
+	.four-fifths     { width: gridCalc(4, 5); }
+	.one-sixth       { width: gridCalc(1, 6); }
+	.five-sixths     { width: gridCalc(5, 6); }
+	.one-seventh     { width: gridCalc(1, 7); }
+	.two-sevenths    { width: gridCalc(2, 7); }
+	.three-sevenths  { width: gridCalc(3, 7); }
+	.four-sevenths   { width: gridCalc(4, 7); }
+	.five-sevenths   { width: gridCalc(5, 7); }
+	.six-sevenths    { width: gridCalc(6, 7); }
+	.one-eighth      { width: gridCalc(1, 8); }
+	.three-eighths   { width: gridCalc(3, 8); }
+	.five-eighths    { width: gridCalc(5, 8); }
+	.seven-eighths   { width: gridCalc(7, 8); }
 }
 
 // BASE STYLES //
@@ -556,7 +556,7 @@ li.comment > section {
 
 @media #{$small} {
 	#footer { 
-		.copyright {
+		.copyright, .inline-list {
 			float: left;
 		}
 		.social {

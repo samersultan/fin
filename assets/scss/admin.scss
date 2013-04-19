@@ -1,13 +1,9 @@
+@import "variables";
+
 $include-html-classes: false;
 $include-print-styles: false;
 
-@import
-	"settings",
-	"foundation/foundation-global",
-	"foundation/components/alert-boxes",
-	"foundation/components/type",
-	"foundation/components/buttons",
-	"foundation/components/forms";
+@import "../vendor/foundation/scss/foundation";
 
 input[type="submit"]:not([disabled]) { 
 	@include button($bg: $success-color);
