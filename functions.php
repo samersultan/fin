@@ -38,3 +38,9 @@ if(!function_exists('fin_add_pages')) {
 	}
 }
 add_action('after_switch_theme', 'fin_add_pages');
+
+// add woocommerce support
+if(class_exists( 'Woocommerce' )) {
+	add_theme_support('woocommerce');
+	require_once('woocommerce/woo-functions.php');
+}
