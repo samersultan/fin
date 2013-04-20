@@ -1,6 +1,6 @@
 $include-woo-classes: false !default;
 
-@if $include-woo-classes == true {
+@if $include-woo-classes != false {
 	div.quantity {
 		margin-right: 1em;
 		position: relative;

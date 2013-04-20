@@ -2073,7 +2073,7 @@ table tfoot tr td {
     margin-top: -5px;
   }
 }
-/* line 8, ../scss/admin.scss */
+/* line 11, ../scss/admin.scss */
 input[type="submit"]:not([disabled]) {
   border-style: solid;
   border-width: 1px;
@@ -2114,7 +2114,7 @@ input[type="submit"]:not([disabled]):active {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
 }
 
-/* line 13, ../scss/admin.scss */
+/* line 16, ../scss/admin.scss */
 input[type="submit"][disabled] {
   background-color: #2ba6cb;
   border-color: #2284a1;
@@ -2138,11 +2138,11 @@ input[type="submit"][disabled]:hover, input[type="submit"][disabled]:focus {
 }
 
 /** Login/Register CSS **/
-/* line 18, ../scss/admin.scss */
+/* line 21, ../scss/admin.scss */
 body.login {
   background: white;
 }
-/* line 21, ../scss/admin.scss */
+/* line 24, ../scss/admin.scss */
 body.login #login .message {
   border-style: solid;
   border-width: 1px;
@@ -2156,14 +2156,14 @@ body.login #login .message {
   border-color: #2284a1;
   color: white;
 }
-/* line 24, ../scss/admin.scss */
+/* line 27, ../scss/admin.scss */
 body.login #login h1 a {
   background-image: url(../img/logo.png);
   background-position: top;
   background-repeat: no-repeat;
   background-size: auto 100%;
 }
-/* line 41, ../scss/admin.scss */
+/* line 44, ../scss/admin.scss */
 body.login #login #loginform p.submit input#wp-submit, body.login #login #registerform p.submit input#wp-submit {
   border-style: solid;
   border-width: 1px;
@@ -2204,13 +2204,13 @@ body.login #login #loginform p.submit input#wp-submit:active, body.login #login 
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
 }
-/* line 49, ../scss/admin.scss */
+/* line 52, ../scss/admin.scss */
 body.login #login #nav, body.login #login #backtoblog {
   color: white;
   margin: 0;
   text-align: center;
 }
-/* line 53, ../scss/admin.scss */
+/* line 56, ../scss/admin.scss */
 body.login #login #nav a, body.login #login #backtoblog a {
   border-style: solid;
   border-width: 1px;
@@ -2259,43 +2259,43 @@ body.login #login #nav a:active, body.login #login #backtoblog a:active {
   -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
 }
-/* line 61, ../scss/admin.scss */
+/* line 64, ../scss/admin.scss */
 body.login #login #login_error {
   display: none;
 }
 
 /** Adminbar CSS **/
-/* line 71, ../scss/admin.scss */
+/* line 74, ../scss/admin.scss */
 #wp-admin-bar-wp-logo span {
   background: url(../img/favicon.png) !important;
   background-position: top !important;
   background-size: 100% auto !important;
 }
 
-/* line 81, ../scss/admin.scss */
+/* line 84, ../scss/admin.scss */
 #wp-admin-bar-themes {
   display: none;
   visibility: hidden;
 }
 
-/* line 86, ../scss/admin.scss */
+/* line 89, ../scss/admin.scss */
 #header {
   margin-bottom: -28px;
 }
 
-/* line 89, ../scss/admin.scss */
+/* line 92, ../scss/admin.scss */
 #primary_navigation {
   margin-bottom: 28px;
   top: 28px !important;
 }
 
 /** Admin CSS **/
-/* line 94, ../scss/admin.scss */
+/* line 97, ../scss/admin.scss */
 #wp-version-message, #wp-version-message + br.clear {
   display: none;
 }
 
-/* line 97, ../scss/admin.scss */
+/* line 100, ../scss/admin.scss */
 body.users-php tr#user-1 {
   display: none;
 }

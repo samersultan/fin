@@ -5,93 +5,97 @@ $include-print-styles: false;
 
 @import "../vendor/foundation/scss/foundation";
 
-input[type="submit"]:not([disabled]) { 
-	@include button($bg: $success-color);
-	@include inset-shadow();
-	@include single-transition(background-color);
-}
-input[type="submit"][disabled] {
-	@include button-style($disabled:true);
-}
+$include-parent-classes: true !default;
 
-/** Login/Register CSS **/
-body.login {
-	background: $body-bg;
-	#login {
-		.message {
-			@include alert;  
-		}
-		h1 a {
-			background-image: url(../img/logo.png);
-			background-position: top;
-			background-repeat: no-repeat;
-			background-size: auto 100%;
-		}
-		#loginform, #registerform {
-			p {
-				label {}
+@if $include-parent-classes != false {
+	input[type="submit"]:not([disabled]) { 
+		@include button($bg: $success-color);
+		@include inset-shadow();
+		@include single-transition(background-color);
+	}
+	input[type="submit"][disabled] {
+		@include button-style($disabled:true);
+	}
+	
+	/** Login/Register CSS **/
+	body.login {
+		background: $body-bg;
+		#login {
+			.message {
+				@include alert;  
 			}
-			input {}
-			input#user_login {}
-			input#user_pass {}
-			p.forgetmenot {
-				input#rememberme {}
+			h1 a {
+				background-image: url(../img/logo.png);
+				background-position: top;
+				background-repeat: no-repeat;
+				background-size: auto 100%;
 			}
-			p.submit {
-				input#wp-submit {
-					@include button($bg: $success-color);
-					@include inset-shadow();
-					@include single-transition(background-color);
-					background-image: none;
+			#loginform, #registerform {
+				p {
+					label {}
+				}
+				input {}
+				input#user_login {}
+				input#user_pass {}
+				p.forgetmenot {
+					input#rememberme {}
+				}
+				p.submit {
+					input#wp-submit {
+						@include button($bg: $success-color);
+						@include inset-shadow();
+						@include single-transition(background-color);
+						background-image: none;
+					}
 				}
 			}
-		}
-		#nav, #backtoblog {
-			color: $body-bg;
-			margin: 0;
-			text-align: center;
-			a {
-				@include button($bg:$secondary-color, $radius:$button-radius, $full-width: true);
-				@include inset-shadow();
-				@include single-transition(background-color);
-				color: $button-font-color-alt !important;
+			#nav, #backtoblog {
+				color: $body-bg;
 				margin: 0;
+				text-align: center;
+				a {
+					@include button($bg:$secondary-color, $radius:$button-radius, $full-width: true);
+					@include inset-shadow();
+					@include single-transition(background-color);
+					color: $button-font-color-alt !important;
+					margin: 0;
+				}
+			}
+			#login_error {
+				display: none;
 			}
 		}
-		#login_error {
-			display: none;
-		}
 	}
-}
-
-/** Adminbar CSS **/
-#wp-admin-bar-wp-logo {
-	//display: none;
-	//visibility: hidden;
-	span {
-		background: url(../img/favicon.png) !important;
-		background-position: top !important;
-		background-size: 100% auto !important;
-	}
-	.ab-sub-wrapper {
+	
+	/** Adminbar CSS **/
+	#wp-admin-bar-wp-logo {
 		//display: none;
 		//visibility: hidden;
+		span {
+			background: url(../img/favicon.png) !important;
+			background-position: top !important;
+			background-size: 100% auto !important;
+		}
+		.ab-sub-wrapper {
+			//display: none;
+			//visibility: hidden;
+		}
 	}
+	#wp-admin-bar-themes {
+		display: none;
+		visibility: hidden;
+	}
+	// Offset for wp-admin-bar
+	#header {
+		margin-bottom: -28px;
+	}
+	#primary_navigation {
+		margin-bottom: 28px;
+		top: 28px !important; }
+	
+	/** Admin CSS **/
+	#wp-version-message, #wp-version-message + br.clear { display: none; }
+	
+	// Hide first admin user
+	body.users-php tr#user-1 { display: none; }
 }
-#wp-admin-bar-themes {
-	display: none;
-	visibility: hidden;
-}
-// Offset for wp-admin-bar
-#header {
-	margin-bottom: -28px;
-}
-#primary_navigation {
-	margin-bottom: 28px;
-	top: 28px !important; }
-
-/** Admin CSS **/
-#wp-version-message, #wp-version-message + br.clear { display: none; }
-
-// Hide first admin user
-body.users-php tr#user-1 { display: none; }

@@ -21,6 +21,22 @@ $em-base: 16px !default;
   @return $pxWidth / $em-base * 1em;
 }
 
+// Better Color Function
+@function reverse-lightness($color, $percent: 'auto') {
+	@if(lightness($color) < 50%) { // dark colors
+		@if($percent == 'auto') {
+			$percent: 2* ( 50 - lightness($color));
+		}
+		$color: lighten($color, $percent);
+	} @else {
+		@if($percent == 'auto') { // light colors
+			$percent: 2* ( lightness($color)- 50 );
+		}
+		$color: darken($color, $percent);
+	}
+	@return $color;
+}
+
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;

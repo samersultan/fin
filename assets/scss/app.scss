@@ -1,10 +1,15 @@
 @import "variables";
 @import "../vendor/foundation/scss/normalize";
 @import "../vendor/foundation/scss/foundation";
-@import "compass/css3";
 @import "font-awesome";
 
 @import "../../woocommerce/woocommerce";
+
+// You can set your child theme up without these parent classes by setting $include-parent-classes to false before importing this stylesheet.
+$include-parent-classes: true !default;
+
+// Mixins
+
 
 // Sticky Footer
 $footer-height: 5em;
@@ -65,504 +70,505 @@ html, body { height: 100%; }
 }
 
 // BASE STYLES //
-
-input[type="submit"]:not([disabled]) { 
-	@include button($bg: $success-color);
-	@include inset-shadow();
-	@include single-transition(background-color);
-}
-input[type="submit"][disabled] {
-	@include button-style($disabled:true);
-}
-a:hover i {
-	text-decoration: none;
-}
-h1,h2,h3,h4,h5,h6 {
-	text-align: center;
-}
-.entry-summary, .entry-content, .widget, .comment > section {
-	font-family: $paragraph-font-family;
-	font-weight: $paragraph-font-weight;
-	font-size: $paragraph-font-size;
-	line-height: $paragraph-line-height;
-	text-rendering: $paragraph-text-rendering;
-	ol, ul {
-		padding-left: 1em;
+@if $include-parent-classes != false {	
+	input[type="submit"]:not([disabled]) { 
+		@include button($bg: $success-color);
+		@include inset-shadow();
+		@include single-transition(background-color);
 	}
-}
-hr {
-	border-bottom: 2px solid rgba(255,255,255, .1);
-	border-top: 2px solid rgba(0,0,0, .1);
-	color: pink;
-	@include clearfix;
-}
-del {
-	@include opacity(.5);
-}
-.alignleft { @extend .left; margin-right: 1em; }
-.alignright { @extend .right; margin-left: 1em; }
-.aligncenter, .center { margin: 0 auto; }
-.alignnone { float: none; }
-.unstyled {
-	list-style: none !important;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-.video {
-	@include flex-video-container;
-}
-.alert-box,
-.panel,
-.section-container > .section {
-	& > *:nth-last-child(2):not(.close):not[type="hidden"],
-	& > *:last-child:not(.close):not[type="hidden"] {
-		margin-bottom: 0;
+	input[type="submit"][disabled] {
+		@include button-style($disabled:true);
 	}
-}
-
-// ROTATOR //
-.orbit-container {
-	.orbit-timer {
-		@include opacity(.25);
-		@include transition(opacity .5s ease-in);
-	}
-	.orbit-prev, .orbit-next, .orbit-slide-number {
-		@include opacity(0);
-		@include transition(opacity .5s ease-in);
-	}
-	&:hover {
-		.orbit-prev, .orbit-next, .orbit-slide-number, .orbit-timer {
-			@include opacity(1);
-		}
-	}
-	img {
-		width: 100%;
-		height: auto;
-	}
-}
-
-// Gallery //
-.clearing-thumbs {
-	@extend .unstyled;
-	text-align: center;
-	li {
-		display: inline-block;
-		padding-top: 3px; // block-grid fix
-		&.hide {
-			display: none;
-		}
-	}
-}
-
-// SITE LAYOUT //
-// Body
-/////////////////
-html, body { }
-body {
-	.rtl {}
-	.home {} /* home page */
-	.blog {} 
-	.archive {} /* archive page */
-	.date {} /* date archive page */
-		.date-paged-1 {} /* replace the number to the corresponding page number */
-	.search {} /* search page */
-		.search-results {} /* search result page */
-		.search-no-results {} /* no results search page */
-		.search-paged-1 {} /* individual paged search (i.e. body.search-paged-3) */
-	.error404 {} /* 404 page */
-	.single {} /* single post page */
-		.postid-1 {} /* individual post page by id (i.e. body.postid-73) */
-		.single-paged-1 {} /* individual paged single (i.e. body.single-paged-3) */
-	.attachment {} /* attatchment page */
-		.attachmentid-1 {} /* individual attatchment page (i.e. body.attachmentid-763) */
-		.attachment-mime-type {} /* style mime type pages */
-	.author {} /* author page */
-		.author-nicename {} /* user nicename (i.e. body.author-samueladams) */
-		.author-paged-1 {} /* paged author archives (i.e. body.author-paged-4) for page 4 */
-	.category {} /* category page */
-		.category-1 {} /* individual category page (i.e. body.category-6) */
-		.category-paged-1 {} /* replace the number to the corresponding page number */
-	.tag {} /* tag page */
-		.tag-slug {} /* individual tag page (i.e. body.tag-news) */
-		.tag-paged-1 {} /* replace the number to the corresponding page number */
-	.page-template {} /* custom page template page */
-		.page-template-page-php {} /* individual page template (i.e. body.page-template-contact-php */
-		.page-paged-1 {} /* replace the number to the corresponding page number */
-		.page-parent {}
-		.page-child {}
-		.parent-pageid-1 {} /* replace the number to the corresponding page number */
-	.logged-in {} /* if user is logged in */
-	.paged {} /* paged items like search results or archives */
-		.paged-1 {} /* individual paged (i.e. body.paged-3) */
-}
-
-#wrap { }
-
-// Header
-/////////
-#header {
-	//margin-bottom: -100px;
-	overflow: hidden;
-	//padding-bottom: 100px;
-	width: 100%;
-	a, a:visited, a:hover { }
-	figure {
-		margin: 0 auto;
-		max-width: 100%;
-		height: auto;
-		padding: 0 10px;
-		text-align: center;
-		a {
-			border: 0;
-			outline: 0;
-			text-decoration: none;
-		}
-		img {
-			margin: 0 auto;
-		}
-	}
-	h1 { }
-	h2 { }
-	figure.logo + h1, figure.logo ~ h2 {
-		@extend .hide;
-		text-indent: -99999px;
-	}
-}
-
-// Menu
-///////
-.top-bar {
-	// Override Magellan Settings
-	padding: 0;
-	.name h1 {
-		text-align: left;
-	}
-}
-
-// Main
-//////////
-#main {}
-#content {
-//	@include box-shadow(0 2px 10px rgba(0,0,0,.75));
-//	margin-bottom: 20px;
-	padding: 20px 40px;
-}
-
-// Articles & Excerpts & Pages
-//////////////////////
-.hentry {
-	&> header, &> .entry-content,.entry-summary, &> footer {
-		@include grid-row;
-	}
-	header {
-		h3 { }
-	}
-	.entry-summary, .entry-content {
-		.entry-thumbnail { }
-	}
-	footer {
-		.meta-time { }
-		.meta-categories { }
-		.meta-images { }
-		.meta-exif { }
-		.meta-tags { }
-		.meta-count { }
-		.meta-comments { }
-		.meta-edit { 
-			visibility: hidden;
-		}
-	}
-	&:hover {
-		.meta-edit {
-			visibility: visible;
-		}
-	}
-}
-
-// Excerpts
-///////////
-.hentry.excerpt { }
-
-// Post Formats
-.hentry.excerpt { 
-	&.format-aside { }
-	&.format-gallery { }
-	&.format-image { }
-	&.format-link { }
-	&.format-page { }
-	&.format-quote { }
-	&.format-slideshow { }
-	&.format-video { }
-}
-
-// Specific Article Types
-.hentry.excerpt {
-	&.post { }
-	&.page { }
-	&.attachment { }
-	&.sticky { }
-}
-
-// Articles
-///////////
-.hentry.single {}
-
-// Post Formats
-.hentry.single {
-	&.format-aside { }
-	&.format-gallery { }
-	&.format-image { }
-	&.format-link { }
-	&.format-page { }
-	&.format-quote { }
-	&.format-slideshow { }
-	&.format-video { }
-}
-
-// Specific Article Types
-.hentry.single {
-	&.post { }
-	&.page { }
-	&.attachment { }
-	&.sticky { }
-}
-
-// Pages
-////////
-.hentry.page { }
-
-// Sitemap
-//////////
-.sitemap-type {
-	@include grid-row;
-	.sitemap-sub {
-		@include grid-column(4);
-	}
-	h5, h6 {
-		text-align: left;
-	}
-}
-
-// Pagination
-/////////////
-#pagination {
-	@include grid-row;
-	padding: 20px 40px;
-	.previous a, .next a { }
-	.previous { }
-	.next { }
-}
-// Discussion
-///////////
-#discussion {
-	@include grid-row;
-}
-@media #{$small} {
-	#discussion #respond {
-		@include grid-column(6, $push:6, $float:left);
-	}
-	#discussion #comments {
-		@include grid-column(6, $pull:6, $float:left);
-	}
-}
-// Respond
-//////////
-#respond {
-	h3#reply-title {}
-	.logged-in-as {
-		display: block;
-		margin: 0;
-	}
-	a.logout {}	
-	textarea {
-		min-height: 8em; // ~ 6 lines
-	}
-}
-
-// Reply Form
-ol #respond { 
-	@include panel;
-	@include grid-column(12, $float:left, $pull:0);
-}
-@media #{$small} {
-	ol #respond { 
-		@include grid-column(12, $float:left, $pull:0);
-	}
-	#wp-temp-form-div + #comments {
-		@include grid-column(6, $push:0, $float:left);
-	}
-}
-a#cancel-comment-reply-link { 
-	@include alert-close;
-}
-
-// Comments
-///////////
-#comments {
-	h3 { }
-}
-ol.comment-list {
-	@extend .unstyled;
-	ol.comment {
-		@include grid-column($offset:1, $collapse:null);
-		@extend .unstyled;
-	}
-}
-
-li.comment {
-	clear: both;
-	figure.avatar {
-		display: none; // hide-for-small
-		a {
-			@include thumb;
-			line-height: 0;
-			padding-bottom: 1px;
-		}
-	}
-	&>header, &>section, &>footer {
-		@include grid-column(12, $float: left);
-	}
-	.comment-author {
-		cite {
-			font-size: 2em;
-			font-weight: bold;
-			a {}
-		}
-		time a {}
-	}
-	section {	}
-	footer {
-		time { 
-			a {
-				@include button($padding:$button-tny, $bg:$secondary-color, $radius:9999em);
-				@include inset-shadow();
-				@include single-transition(background-color);
-			}
-		}
-	}
-	a.comment-reply-link, a.comment-edit-link {
-		float: right;
-		z-index: 4;
-	}
-}
-
-@media #{$small} {
-	ol.comment-list ol.comment {
-		@include grid-column($offset:2, $collapse:null);	
-	}
-	li.comment {
-		figure.avatar {
-			@include grid-column(2, $float: left);
-			display: inherit;
-			margin-top: 4px;
-			padding-right: 0;
-			&~header, &~section, &~footer {
-				@include grid-column(10, $float: right);
-			}
-		}
-	}
-}
-// Show Reply/Edit Options on hover
-.no-touch {
-	a.comment-edit-link, a.comment-reply-link {
-		@include transition(opacity, .25s, linear);
-		@include opacity(0);
-	}
-}
-
-li.comment:hover {
-	&> footer {
-		&> a.comment-edit-link, &>a.comment-reply-link {
-			@include opacity(100);
-		}
-	}
-}
-
-// Comment Striping
-.comment-list > li.comment {
-	 &.alt {}
-	 &.odd {}
-	 &.even {}
-	 &.thread-alt {}
-	 &.thread-even {}
-	 ul.children .alt {}
-	 ul.children .odd {}
-	 ul.children .even {}
-}
-
-// Comment Threading
-#comments {
-	li.comment.depth-1 {}
-	li.comment.depth-2 {}
-	li.comment.depth-3 {}
-	li.comment.depth-4 {}
-	li.comment.depth-5 {}
-}
-// Specific Comment Types
-#comments {
-	ol.comment-list li.comment.byuser {/* User Comment */}
-	ol.comment-list li.comment.bypostauthor {/* Author Comment */}
-	ol.comment-list li.comment.comment-author-admin {/* Admin Comment */}
-}
-
-// Comment Content Styles
-li.comment > section {
-	a {}
-	a:hover {}
-	acronym {}
-	blockquote {}
-	b {}
-	cite {}
-	code {}
-	del {}
-	em {}
-	i {}
-	q {}
-	strike {}
-	strong {}
-}
-
-// Sidebars
-///////////
-.sidebar {
-	@include grid-row;
-}
-#sidebar-default { }
-#sidebar-home { }
-#sidebar-single { }
-
-// Widgets
-.widget {}
-
-// Footer
-/////////
-#footer {
-	@include grid-row;
-	clear: both;
-	padding: 0 40px;
-	p, ul, li {
-	}
-	a {
-		&:hover {
-		}
+	a:hover i {
+		text-decoration: none;
 	}
 	h1,h2,h3,h4,h5,h6 {
-		text-shadow: 1px 2px 0 rgba(0,0,0, .2);
+		text-align: center;
 	}
-	.copyright {}
-	.social {}
-}
-#menu-secondary-menu {
-	font-size: .8em;
-}
-
-@media #{$small} {
-	#footer { 
-		.copyright, .inline-list {
-			float: left;
+	.entry-summary, .entry-content, .widget, .comment > section {
+		font-family: $paragraph-font-family;
+		font-weight: $paragraph-font-weight;
+		font-size: $paragraph-font-size;
+		line-height: $paragraph-line-height;
+		text-rendering: $paragraph-text-rendering;
+		ol, ul {
+			padding-left: 1em;
 		}
-		.social {
+	}
+	hr {
+		border-bottom: 2px solid rgba(255,255,255, .1);
+		border-top: 2px solid rgba(0,0,0, .1);
+		color: pink;
+		@include clearfix;
+	}
+	del {
+		opacity: .5;
+	}
+	.alignleft { @extend .left; margin-right: 1em; }
+	.alignright { @extend .right; margin-left: 1em; }
+	.aligncenter, .center { margin: 0 auto; }
+	.alignnone { float: none; }
+	.unstyled {
+		list-style: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.video {
+		@include flex-video-container;
+	}
+	.alert-box,
+	.panel,
+	.section-container > .section {
+		& > *:nth-last-child(2):not(.close):not[type="hidden"],
+		& > *:last-child:not(.close):not[type="hidden"] {
+			margin-bottom: 0;
+		}
+	}
+	
+	// ROTATOR //
+	.orbit-container {
+		.orbit-timer {
+			opacity: .25;
+			@include single-transition(opacity, .5s, ease-in);
+		}
+		.orbit-prev, .orbit-next, .orbit-slide-number {
+			opacity: 0;
+			@include single-transition(opacity, .5s, ease-in);
+		}
+		&:hover {
+			.orbit-prev, .orbit-next, .orbit-slide-number, .orbit-timer {
+				opacity: 1;
+			}
+		}
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	
+	// Gallery //
+	.clearing-thumbs {
+		@extend .unstyled;
+		text-align: center;
+		li {
+			display: inline-block;
+			padding-top: 3px; // block-grid fix
+			&.hide {
+				display: none;
+			}
+		}
+	}
+	
+	// SITE LAYOUT //
+	// Body
+	/////////////////
+	html, body { }
+	body {
+		.rtl {}
+		.home {} /* home page */
+		.blog {} 
+		.archive {} /* archive page */
+		.date {} /* date archive page */
+			.date-paged-1 {} /* replace the number to the corresponding page number */
+		.search {} /* search page */
+			.search-results {} /* search result page */
+			.search-no-results {} /* no results search page */
+			.search-paged-1 {} /* individual paged search (i.e. body.search-paged-3) */
+		.error404 {} /* 404 page */
+		.single {} /* single post page */
+			.postid-1 {} /* individual post page by id (i.e. body.postid-73) */
+			.single-paged-1 {} /* individual paged single (i.e. body.single-paged-3) */
+		.attachment {} /* attatchment page */
+			.attachmentid-1 {} /* individual attatchment page (i.e. body.attachmentid-763) */
+			.attachment-mime-type {} /* style mime type pages */
+		.author {} /* author page */
+			.author-nicename {} /* user nicename (i.e. body.author-samueladams) */
+			.author-paged-1 {} /* paged author archives (i.e. body.author-paged-4) for page 4 */
+		.category {} /* category page */
+			.category-1 {} /* individual category page (i.e. body.category-6) */
+			.category-paged-1 {} /* replace the number to the corresponding page number */
+		.tag {} /* tag page */
+			.tag-slug {} /* individual tag page (i.e. body.tag-news) */
+			.tag-paged-1 {} /* replace the number to the corresponding page number */
+		.page-template {} /* custom page template page */
+			.page-template-page-php {} /* individual page template (i.e. body.page-template-contact-php */
+			.page-paged-1 {} /* replace the number to the corresponding page number */
+			.page-parent {}
+			.page-child {}
+			.parent-pageid-1 {} /* replace the number to the corresponding page number */
+		.logged-in {} /* if user is logged in */
+		.paged {} /* paged items like search results or archives */
+			.paged-1 {} /* individual paged (i.e. body.paged-3) */
+	}
+	
+	#wrap {
+		background: $body-bg;
+	}
+	
+	// Header
+	/////////
+	#header {
+		//margin-bottom: -100px;
+		overflow: hidden;
+		//padding-bottom: 100px;
+		width: 100%;
+		a, a:visited, a:hover { }
+		figure {
+			margin: 0 auto;
+			max-width: 100%;
+			height: auto;
+			padding: 0 10px;
+			text-align: center;
+			a {
+				border: 0;
+				outline: 0;
+				text-decoration: none;
+			}
+			img {
+				margin: 0 auto;
+			}
+		}
+		h1 { }
+		h2 { }
+		figure.logo + h1, figure.logo ~ h2 {
+			@extend .hide;
+			text-indent: -99999px;
+		}
+	}
+	
+	// Menu
+	///////
+	.top-bar {
+		// Override Magellan Settings
+		padding: 0;
+		.name h1 {
+			text-align: left;
+		}
+	}
+	
+	// Main
+	//////////
+	#main {}
+	#content {
+		padding: 20px 40px;
+	}
+	
+	// Articles & Excerpts & Pages
+	//////////////////////
+	.hentry {
+		&> header, &> .entry-content,.entry-summary, &> footer {
+			@include grid-row;
+		}
+		header {
+			h3 { }
+		}
+		.entry-summary, .entry-content {
+			.entry-thumbnail { }
+		}
+		footer {
+			.meta-time { }
+			.meta-categories { }
+			.meta-images { }
+			.meta-exif { }
+			.meta-tags { }
+			.meta-count { }
+			.meta-comments { }
+			.meta-edit { 
+				visibility: hidden;
+			}
+		}
+		&:hover {
+			.meta-edit {
+				visibility: visible;
+			}
+		}
+	}
+	
+	// Excerpts
+	///////////
+	.hentry.excerpt { }
+	
+	// Post Formats
+	.hentry.excerpt { 
+		&.format-aside { }
+		&.format-gallery { }
+		&.format-image { }
+		&.format-link { }
+		&.format-page { }
+		&.format-quote { }
+		&.format-slideshow { }
+		&.format-video { }
+	}
+	
+	// Specific Article Types
+	.hentry.excerpt {
+		&.post { }
+		&.page { }
+		&.attachment { }
+		&.sticky { }
+	}
+	
+	// Articles
+	///////////
+	.hentry.single {}
+	
+	// Post Formats
+	.hentry.single {
+		&.format-aside { }
+		&.format-gallery { }
+		&.format-image { }
+		&.format-link { }
+		&.format-page { }
+		&.format-quote { }
+		&.format-slideshow { }
+		&.format-video { }
+	}
+	
+	// Specific Article Types
+	.hentry.single {
+		&.post { }
+		&.page { }
+		&.attachment { }
+		&.sticky { }
+	}
+	
+	// Pages
+	////////
+	.hentry.page { }
+	
+	// Sitemap
+	//////////
+	.sitemap-type {
+		@include grid-row;
+		.sitemap-sub {
+			@include grid-column(4);
+		}
+		h5, h6 {
+			text-align: left;
+		}
+	}
+	
+	// Pagination
+	/////////////
+	#pagination {
+		@include grid-row;
+		padding: 20px 40px;
+		.previous a, .next a { }
+		.previous { }
+		.next { }
+	}
+	// Discussion
+	///////////
+	#discussion {
+		@include grid-row;
+	}
+	@media #{$small} {
+		#discussion #respond {
+			@include grid-column(6, $push:6, $float:left);
+		}
+		#discussion #comments {
+			@include grid-column(6, $pull:6, $float:left);
+		}
+	}
+	// Respond
+	//////////
+	#respond {
+		h3#reply-title {}
+		.logged-in-as {
+			display: block;
+			margin: 0;
+		}
+		a.logout {}	
+		textarea {
+			min-height: 8em; // ~ 6 lines
+		}
+	}
+	
+	// Reply Form
+	ol #respond { 
+		@include panel;
+		@include grid-column(12, $float:left, $pull:0);
+	}
+	@media #{$small} {
+		ol #respond { 
+			@include grid-column(12, $float:left, $pull:0);
+		}
+		#wp-temp-form-div + #comments {
+			@include grid-column(6, $push:0, $float:left);
+		}
+	}
+	a#cancel-comment-reply-link { 
+		@include alert-close;
+	}
+	
+	// Comments
+	///////////
+	#comments {
+		h3 { }
+	}
+	ol.comment-list {
+		@extend .unstyled;
+		ol.comment {
+			@include grid-column($offset:1, $collapse:null);
+			@extend .unstyled;
+		}
+	}
+	
+	li.comment {
+		clear: both;
+		figure.avatar {
+			display: none; // hide-for-small
+			a {
+				@include thumb;
+				line-height: 0;
+				padding-bottom: 1px;
+			}
+		}
+		&>header, &>section, &>footer {
+			@include grid-column(12, $float: left);
+		}
+		.comment-author {
+			cite {
+				font-size: 2em;
+				font-weight: bold;
+				a {}
+			}
+			time a {}
+		}
+		section {	}
+		footer {
+			time { 
+				a {
+					@include button($padding:$button-tny, $bg:$secondary-color, $radius:9999em);
+					@include inset-shadow();
+					@include single-transition(background-color);
+				}
+			}
+		}
+		a.comment-reply-link, a.comment-edit-link {
 			float: right;
+			z-index: 4;
+		}
+	}
+	
+	@media #{$small} {
+		ol.comment-list ol.comment {
+			@include grid-column($offset:2, $collapse:null);	
+		}
+		li.comment {
+			figure.avatar {
+				@include grid-column(2, $float: left);
+				display: inherit;
+				margin-top: 4px;
+				padding-right: 0;
+				&~header, &~section, &~footer {
+					@include grid-column(10, $float: right);
+				}
+			}
+		}
+	}
+	// Show Reply/Edit Options on hover
+	.no-touch {
+		a.comment-edit-link, a.comment-reply-link {
+			@include single-transition(opacity, .25s, linear);
+			opacity: 0;
+		}
+	}
+	
+	li.comment:hover {
+		&> footer {
+			&> a.comment-edit-link, &>a.comment-reply-link {
+				opacity: 1;
+			}
+		}
+	}
+	
+	// Comment Striping
+	.comment-list > li.comment {
+		 &.alt {}
+		 &.odd {}
+		 &.even {}
+		 &.thread-alt {}
+		 &.thread-even {}
+		 ul.children .alt {}
+		 ul.children .odd {}
+		 ul.children .even {}
+	}
+	
+	// Comment Threading
+	#comments {
+		li.comment.depth-1 {}
+		li.comment.depth-2 {}
+		li.comment.depth-3 {}
+		li.comment.depth-4 {}
+		li.comment.depth-5 {}
+	}
+	// Specific Comment Types
+	#comments {
+		ol.comment-list li.comment.byuser {/* User Comment */}
+		ol.comment-list li.comment.bypostauthor {/* Author Comment */}
+		ol.comment-list li.comment.comment-author-admin {/* Admin Comment */}
+	}
+	
+	// Comment Content Styles
+	li.comment > section {
+		a {}
+		a:hover {}
+		acronym {}
+		blockquote {}
+		b {}
+		cite {}
+		code {}
+		del {}
+		em {}
+		i {}
+		q {}
+		strike {}
+		strong {}
+	}
+	
+	// Sidebars
+	///////////
+	.sidebar {
+		@include grid-row;
+	}
+	#sidebar-default { }
+	#sidebar-home { }
+	#sidebar-single { }
+	
+	// Widgets
+	.widget {}
+	
+	// Footer
+	/////////
+	#footer {
+		@include grid-row;
+		clear: both;
+		padding: 0 40px;
+		p, ul, li {
+		}
+		a {
+			&:hover {
+			}
+		}
+		h1,h2,h3,h4,h5,h6 {
+			text-shadow: 1px 2px 0 rgba(0,0,0, .2);
+		}
+		.copyright {}
+		.social {}
+	}
+	#menu-secondary-menu {
+		font-size: .8em;
+	}
+	
+	@media #{$small} {
+		#footer { 
+			.copyright, .inline-list {
+				float: left;
+			}
+			.social {
+				float: right;
+			}
 		}
 	}
 }

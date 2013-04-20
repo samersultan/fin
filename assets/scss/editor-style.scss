@@ -8,8 +8,12 @@ $include-form-styles: true;
 
 @import "../vendor/foundation/scss/foundation";
 
-body {
-	background: $body-bg;
-	color: $body-font-color;
-	padding: 10px;
+$include-parent-classes: true !default;
+
+@if $include-parent-classes != false {
+	body {
+		background: $body-bg;
+		color: $body-font-color;
+		padding: 10px;
+	}
 }
