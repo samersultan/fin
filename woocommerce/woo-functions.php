@@ -173,6 +173,7 @@ function fin_get_average_rating($post) {
 	
 		if ( $count > 0 ) {
 			$average = number_format($rating / $count, 2);
+			$average = round($average*2) / 2;
 			$rating = $average * 10;
 			
 			$output = '<div class="star-rating">';
