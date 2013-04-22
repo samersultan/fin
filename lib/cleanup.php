@@ -183,16 +183,16 @@ function fin_create_sitemap() {
     
     $postdate = explode(" ", $post->post_modified);
     
-    $sitemap .= '<url>'.
-      '<loc>'. get_permalink($post->ID) .'</loc>'.
-      '<lastmod>'. $postdate[0] .'</lastmod>'.
-      '<changefreq>monthly</changefreq>'.
-    '</url>';
+    $sitemap .= '<url>
+    <loc>'. get_permalink($post->ID) .'</loc>
+      <lastmod>'. $postdate[0] .'</lastmod>
+      <changefreq>monthly</changefreq>
+     </url>';
   }
   
   $sitemap .= '</urlset>';
   
-  $fp = fopen(ABSPATH . "sitemap.xml", 'w');
+  $fp = fopen(get_home_path() . "sitemap.xml", 'w');
   fwrite($fp, $sitemap);
   fclose($fp);
 }
