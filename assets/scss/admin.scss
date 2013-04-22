@@ -8,15 +8,6 @@ $include-print-styles: false;
 $include-parent-classes: true !default;
 
 @if $include-parent-classes != false {
-	input[type="submit"]:not([disabled]) { 
-		@include button($bg: $success-color);
-		@include inset-shadow();
-		@include single-transition(background-color);
-	}
-	input[type="submit"][disabled] {
-		@include button-style($disabled:true);
-	}
-	
 	/** Login/Register CSS **/
 	body.login {
 		background: $body-bg;
