@@ -6,19 +6,28 @@ if (!defined('__DIR__')) { define('__DIR__', dirname(__FILE__)); }
 // Define helper constants
 $get_theme_name = explode('/themes/', get_template_directory());
 
-define('WP_BASE',                   wp_base_dir());
-define('THEME_NAME',                next($get_theme_name));
-define('RELATIVE_PLUGIN_PATH',      str_replace(site_url() . '/', '', plugins_url()));
-define('FULL_RELATIVE_PLUGIN_PATH', WP_BASE . '/' . RELATIVE_PLUGIN_PATH);
-define('RELATIVE_CONTENT_PATH',     str_replace(site_url() . '/', '', content_url()));
-define('THEME_PATH',                RELATIVE_CONTENT_PATH . '/themes/' . THEME_NAME);
-define('RELATIVE_INCLUDES_PATH',      str_replace(site_url() . '/', '', includes_url()));
-define('FULL_RELATIVE_INCLUDES_PATH', WP_BASE . '/' . RELATIVE_INCLUDES_PATH);
+//define('WP_BASE',                     wp_base_dir());
+//define('THEME_NAME',                  next($get_theme_name));
+//define('PLUGIN_PATH',        str_replace(home_url() . '/', '', plugins_url()));
+//define('FULL_PLUGIN_PATH',   WP_BASE . '/' . PLUGIN_PATH);
+//define('CONTENT_PATH',       str_replace(home_url() . '/', '', content_url()));
+//define('THEME_PATH',                  CONTENT_PATH . '/themes/' . THEME_NAME);
+//define('INCLUDES_PATH',      str_replace(home_url() . '/', '', includes_url()));
+//define('FULL_INCLUDES_PATH', WP_BASE . '/' . INCLUDES_PATH);
+
+define('WP_BASE', 							home_url()); //http://site.com
+define('THEME_NAME', 						next($get_theme_name));
+define('CONTENT_PATH',       		str_replace(home_url() . '/', '', content_url()) ); // 'content'
+define('THEME_PATH',            CONTENT_PATH . '/themes/' . THEME_NAME ); // 'content/themes/fin'
+define('PLUGIN_PATH',        		str_replace(home_url() . '/', '', plugins_url()) . '/' ); // 'content/plugins/'
+define('FULL_PLUGIN_PATH',   		WP_BASE . '/' . PLUGIN_PATH); // http://site.com/content/plugins/'
+define('INCLUDES_PATH',      		str_replace(home_url() . '/', '', includes_url())); // 'wp/wp-includes/'
+define('FULL_INCLUDES_PATH',		WP_BASE . '/' . INCLUDES_PATH); // http://site.com/wp/wp-includes/'
 
 if (is_child_theme()) {
 	$get_child_theme_name = explode('/themes/', get_stylesheet_directory());
 	define('CHILD_THEME_NAME',                next($get_child_theme_name));
-	define('CHILD_THEME_PATH',                RELATIVE_CONTENT_PATH . '/themes/' . CHILD_THEME_NAME);
+	define('CHILD_THEME_PATH',                CONTENT_PATH . '/themes/' . CHILD_THEME_NAME);
 }
 
 if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_SOFTWARE'], 'litespeed') !== false) {
@@ -37,8 +46,8 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	  // general rewrites
 		global $wp_rewrite;
 		$fin_new_non_wp_rules = array(
-			'plugins/(.*)'    =>  RELATIVE_PLUGIN_PATH . '/$1',
-			'includes/(.*)'		=>  RELATIVE_INCLUDES_PATH . '$1',
+			'plugins/(.*)'    =>  PLUGIN_PATH . '$1',
+			'includes/(.*)'		=>  INCLUDES_PATH . '$1',
 			'login'					  => 'wp-login.php',
 			'logout'					=> 'wp-login.php?loggedout=true',
 			'admin/(.*)'			=> 'wp-admin/$1',
@@ -75,28 +84,28 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 	  $rules = array('RewriteRule ^index\.php$ - [L]');
 	  
 	  if (is_child_theme()) {
-	    $rules[] = 'RewriteCond %{DOCUMENT_ROOT}/' . $home_root . CHILD_THEME_PATH . '/$1 -f';
-	    $rules[] = 'RewriteRule ^(.*[^/])/?$ /' . $home_root . CHILD_THEME_PATH . '/$1 [QSA,L]';
+	    $rules[] = 'RewriteCond %{DOCUMENT_ROOT}' . $home_root . CHILD_THEME_PATH . '/$1 -f';
+	    $rules[] = 'RewriteRule ^(.*[^/])/?$ ' . $home_root . CHILD_THEME_PATH . '/$1 [QSA,L]';
 	  }
 	  
-	  $rules[] = 'RewriteCond %{DOCUMENT_ROOT}/' . $home_root . THEME_PATH  . '/$1 -f';
-	  $rules[] = 'RewriteRule ^(.*[^/])/?$ /' . $home_root . THEME_PATH . '/$1 [QSA,L]';
+	  $rules[] = 'RewriteCond %{DOCUMENT_ROOT}' . $home_root . THEME_PATH  . '/$1 -f';
+	  $rules[] = 'RewriteRule ^(.*[^/])/?$ ' . $home_root . THEME_PATH . '/$1 [QSA,L]';
 	    
 	  return str_replace('RewriteRule ^index\.php$ - [L]', implode("\n", $rules), $content);
 	}
 
 	function fin_clean_urls($content) {
-	  if (strpos($content, FULL_RELATIVE_PLUGIN_PATH) === 0) {
-	    return str_replace(FULL_RELATIVE_PLUGIN_PATH, WP_BASE . '/plugins', $content);
-	  }elseif (strpos($content, FULL_RELATIVE_INCLUDES_PATH)) {
-      return str_replace(FULL_RELATIVE_INCLUDES_PATH, WP_BASE . '/includes/', $content);
-    } elseif (strpos($content, RELATIVE_INCLUDES_PATH)) {
-      return str_replace(RELATIVE_INCLUDES_PATH, 'includes/', $content);
+	  if (strpos($content, FULL_PLUGIN_PATH)) {
+	    return str_replace(FULL_PLUGIN_PATH, '/plugins/', $content);
+	  }elseif (strpos($content, FULL_INCLUDES_PATH)) {
+      return str_replace(FULL_INCLUDES_PATH, '/includes/', $content);
+    }elseif (strpos($content, INCLUDES_PATH)) {
+      return str_replace(INCLUDES_PATH, 'includes/', $content);
     }else {
 	    if (is_child_theme()) {
-	     $content = str_replace(unleadingslashit(CHILD_THEME_PATH), '', $content);
+				$content = str_replace('/' . CHILD_THEME_PATH, '', $content);
 			}
-	    return untrailingslashit(str_replace(leadingslashit(THEME_PATH), '', $content));
+	    return str_replace('/' . THEME_PATH, '', $content);
 	  }
 	}
 
