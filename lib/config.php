@@ -25,6 +25,14 @@ if(!function_exists('fin_init')) {
 		// change start of week to Sunday
 		update_option('start_of_week',0);
 		
+		// Change 'Uncategorized' to 'General'
+		$category = get_term_by('id', '1', 'category');
+		if($category) {
+			$category->name = 'General';
+			$category->slug = strtolower(str_replace('_', ' ', 'general'));
+		}	
+		wp_update_term( $category->term_id, 'category', array( 'slug' => $category->slug, 'name'=> $category->name ) );
+		
 		// Disable Smilies
 		update_option('use_smilies', 0);
 		
@@ -44,6 +52,12 @@ if(!function_exists('fin_init')) {
 		//$timezone = "America/Denver";
 		//$timezone = "America/Los_Angeles";
 		update_option('timezone_string',$timezone);
+		
+		// Remove unecessary widget queries
+		add_option( 'widget_pages', array ( '_multiwidget' => 1 ) );
+		add_option( 'widget_calendar', array ( '_multiwidget' => 1 ) );
+		add_option( 'widget_tag_cloud', array ( '_multiwidget' => 1 ) );
+		add_option( 'widget_nav_menu', array ( '_multiwidget' => 1 ) );
 	}
 }
 add_action('after_switch_theme', 'fin_init');

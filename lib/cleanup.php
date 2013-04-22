@@ -112,20 +112,6 @@ function fin_cleanup_default_content() {
 add_action('after_switch_theme','fin_cleanup_default_content');
 
 /**
- * Replace default category name with 'General'
- *
- */
-function fin_cleanup_default_category() {
-	$category = get_term_by('id', '1', 'category');
-	if($category) {
-		$category->name = 'General';
-		$category->slug = strtolower(str_replace('_', ' ', 'general'));
-	}	
-	wp_update_term( $category->term_id, 'category', array( 'slug' => $category->slug, 'name'=> $category->name ) );
-}
-add_action('after_switch_theme','fin_cleanup_default_category');
-
-/**
  * Remove actions from wp_head
  *
  */
@@ -287,7 +273,6 @@ function fin_nice_search_redirect() {
     exit();
   }
 }
-
 add_action('template_redirect', 'fin_nice_search_redirect');
 
 /**

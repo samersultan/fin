@@ -30,7 +30,7 @@ function fin_create_menus() {
 			set_theme_mod('nav_menu_locations', $locations);
 		}
 }
-add_action('after_setup_theme','fin_create_menus');
+add_action('after_switch_theme','fin_create_menus');
 
 // Register Menu Locations
 function fin_register_menus() {
