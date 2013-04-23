@@ -192,7 +192,7 @@ function fin_create_sitemap() {
   
   $sitemap .= '</urlset>';
   
-  $fp = fopen(get_home_path() . "sitemap.xml", 'w');
+  $fp = fopen(HOME_PATH . "sitemap.xml", 'w');
   fwrite($fp, $sitemap);
   fclose($fp);
 }

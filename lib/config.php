@@ -17,6 +17,7 @@ if(!function_exists('fin_init')) {
 		// Change Uploads folder to /Assets
 		update_option('uploads_use_yearmonth_folders', 0);
 		update_option('upload_path', 'assets');
+		update_option('upload_url_path', home_url() . '/assets');
 		
 		// Rewrite Permalink Structure
 		update_option('category_base', '/site/');
@@ -61,6 +62,19 @@ if(!function_exists('fin_init')) {
 	}
 }
 add_action('after_switch_theme', 'fin_init');
+
+function filter_upload_dir($uploads){
+	$uploads = array(
+		'path' => HOME_PATH . 'assets',
+		'url' => WP_BASE .'/assets',
+		'subdir' => '',
+		'basedir' => HOME_PATH . 'assets',
+		'baseurl' => WP_BASE .'/assets',
+		'error' => false
+	);
+	return $uploads;
+}
+add_filter( 'upload_dir', 'filter_upload_dir' );
 
 /**
  * Basic Config and Constants Called Every Load

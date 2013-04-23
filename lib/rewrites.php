@@ -1,29 +1,5 @@
 <?php 
 
-// Backwards compatibility for older than PHP 5.3.0
-if (!defined('__DIR__')) { define('__DIR__', dirname(__FILE__)); }
-
-// Define helper constants
-$get_theme_name = explode('/themes/', get_template_directory());
-
-//define('WP_BASE',                     wp_base_dir());
-//define('THEME_NAME',                  next($get_theme_name));
-//define('PLUGIN_PATH',        str_replace(home_url() . '/', '', plugins_url()));
-//define('FULL_PLUGIN_PATH',   WP_BASE . '/' . PLUGIN_PATH);
-//define('CONTENT_PATH',       str_replace(home_url() . '/', '', content_url()));
-//define('THEME_PATH',                  CONTENT_PATH . '/themes/' . THEME_NAME);
-//define('INCLUDES_PATH',      str_replace(home_url() . '/', '', includes_url()));
-//define('FULL_INCLUDES_PATH', WP_BASE . '/' . INCLUDES_PATH);
-
-define('WP_BASE', 							home_url()); //http://site.com
-define('THEME_NAME', 						next($get_theme_name));
-define('CONTENT_PATH',       		str_replace(home_url() . '/', '', content_url()) ); // 'content'
-define('THEME_PATH',            CONTENT_PATH . '/themes/' . THEME_NAME ); // 'content/themes/fin'
-define('PLUGIN_PATH',        		str_replace(home_url() . '/', '', plugins_url()) . '/' ); // 'content/plugins/'
-define('FULL_PLUGIN_PATH',   		WP_BASE . '/' . PLUGIN_PATH); // http://site.com/content/plugins/'
-define('INCLUDES_PATH',      		str_replace(home_url() . '/', '', includes_url())); // 'wp/wp-includes/'
-define('FULL_INCLUDES_PATH',		WP_BASE . '/' . INCLUDES_PATH); // http://site.com/wp/wp-includes/'
-
 if (is_child_theme()) {
 	$get_child_theme_name = explode('/themes/', get_stylesheet_directory());
 	define('CHILD_THEME_NAME',                next($get_child_theme_name));
@@ -34,7 +10,7 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 
 	// Show an admin notice if .htaccess isn't writable
 	function fin_htaccess_writable() {
-		if (!is_writable(get_home_path() . '.htaccess')) {
+		if (!is_writable(HOME_PATH . '.htaccess')) {
 			if (current_user_can('manage_options')) {
 				add_action('admin_notices', create_function('', "echo '<div class=\"error\"><p>" . sprintf(__('Please make sure your <a href="%s">.htaccess</a> file is writable ', 'fin'), admin_url('options-permalink.php')) . "</p></div>';"));
 			}
@@ -56,8 +32,7 @@ if (stristr($_SERVER['SERVER_SOFTWARE'], 'apache') || stristr($_SERVER['SERVER_S
 		$wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $fin_new_non_wp_rules);
 		
 		// insert contents of .htaccess-custom file
-		$home_path = function_exists('get_home_path') ? get_home_path() : ABSPATH;
-		$htaccess_file = $home_path . '.htaccess';
+		$htaccess_file = HOME_PATH . '.htaccess';
 		$mod_rewrite_enabled = function_exists('got_mod_rewrite') ? got_mod_rewrite() : false;
 		 
 		if ((!file_exists($htaccess_file) && is_writable($htaccess_file) && $wp_rewrite->using_mod_rewrite_permalinks()) || is_writable($htaccess_file)) {
