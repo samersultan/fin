@@ -1,10 +1,9 @@
-Fin
-===
+#fin
 
-Fin is a [WordPress](http://wordpress.org) theme built with a strong SCSS [Foundation](http://foundation.zurb.com)
 
-Features
-========
+fin is a [WordPress](http://wordpress.org) theme built with a strong SCSS [Foundation](http://foundation.zurb.com)
+
+##Features
 
 * HTML5, Responsive, Awesomeness
 
