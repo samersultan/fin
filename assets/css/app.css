@@ -2222,7 +2222,7 @@ dl {
 /* line 249, ../vendor/foundation/scss/foundation/components/_type.scss */
 ul li ul,
 ul li ol {
-  margin-left: 1.25em;
+  margin-left: 1.125em;
   margin-bottom: 0;
   font-size: 1em;
   /* Override nested font-size change */
@@ -2252,7 +2252,7 @@ ul.no-bullet {
 /* line 271, ../vendor/foundation/scss/foundation/components/_type.scss */
 ol li ul,
 ol li ol {
-  margin-left: 1.25em;
+  margin-left: 1.125em;
   margin-bottom: 0;
 }
 
@@ -3273,7 +3273,7 @@ form.custom .custom.dropdown ul {
   display: none;
   margin: 0;
   left: -1px;
-  top: auto;
+  top: none;
   -webkit-box-shadow: 0 2px 2px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 2px 0px rgba(0, 0, 0, 0.1);
   margin: 0;
@@ -4477,7 +4477,7 @@ form.custom .custom.disabled {
   left: 10px;
   font-size: 12px;
   color: white;
-  background: rgba(0, 0, 0, 0);
+  background: black;
 }
 /* line 70, ../vendor/foundation/scss/foundation/components/_orbit.scss */
 .orbit-container .orbit-slide-number span {
@@ -5197,7 +5197,7 @@ form.custom .custom.disabled {
 /* line 115, ../vendor/foundation/scss/foundation/components/_breadcrumbs.scss */
 .breadcrumbs {
   display: block;
-  padding: 0.5625em 0.875em 0.5625em;
+  padding: 0.375em 0.875em 0.5625em;
   overflow: hidden;
   margin-left: 0;
   list-style: none;

@@ -165,6 +165,7 @@ function fin_customize_register($wp_customize) {
 		'choices'    => array(
 			'' => 'Default',
 			'Headline One'=>'Headline One',
+			'Satisfy'=>'Satisfy',
 			'Arvo'=>'Arvo',
 			'Coustard'=>'Coustard',
 			'Holtwood One SC'=>'Holtwood One SC',
@@ -190,6 +191,7 @@ function fin_customize_register($wp_customize) {
 			'' => 'Default',
 			'Merriweather Sans'=>'Merriweather Sans',
 			'Sintony'=>'Sintony',
+			'Sanchez'=>'Sanchez',
 			'Open Sans'=>'Open Sans',
 			'Donegal One'=>'Donegal One',
 			'Raleway'=>'Raleway',
@@ -352,6 +354,17 @@ function fin_customize_register($wp_customize) {
 	) );	
 	$wp_customize->add_control( 'fin_theme_options[social_pinterest]', array(
 		'label'   => 'Pinterest URL',
+		'section' => 'fin_social',
+		'type'    => 'text',
+	) );
+	
+	// Instagram
+	$wp_customize->add_setting( 'fin_theme_options[social_instagram]', array(
+		'default'       => '',
+		'type'					=> 'option'
+	) );	
+	$wp_customize->add_control( 'fin_theme_options[social_instagram]', array(
+		'label'   => 'Instagram URL',
 		'section' => 'fin_social',
 		'type'    => 'text',
 	) );

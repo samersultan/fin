@@ -13,6 +13,10 @@
 			<?php }  // Google+
 			if($options['social_google_plus'] != '') { ?>
 				<a href="<?php echo 'http://' . preg_replace('`^http://`is', '', $options['social_google_plus']); ?>"><i class="icon-google-plus-sign icon-2x"></i></a>
+			<?php }
+			// Instagram
+			if($options['social_instagram'] != '') { ?>
+				<a class="instagram" href="<?php echo 'http://' . preg_replace('`^http://`is', '', $options['social_instagram']); ?>"><i class="icon-camera icon-2x"></i></a>
 			<?php } 
 			// Pinterest
 			if($options['social_pinterest'] != '') { ?>

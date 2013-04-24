@@ -3,17 +3,20 @@
 $include-html-classes: false;
 $include-print-styles: false;
 
-@import "../vendor/foundation/scss/foundation";
+// uncomment this when foundation accepts pull for zero output css
+//@import "../vendor/foundation";
 
 $include-parent-classes: true !default;
 
 @if $include-parent-classes != false {
 	/** Login/Register CSS **/
 	body.login {
-		background: $body-bg;
+		@if $body-bg {
+			background: $body-bg;
+		}
 		#login {
 			.message {
-				@include alert;  
+				// @include alert;  
 			}
 			h1 a {
 				background-image: url(../img/logo.png);
@@ -33,9 +36,9 @@ $include-parent-classes: true !default;
 				}
 				p.submit {
 					input#wp-submit {
-						@include button($bg: $success-color);
+						/*@include button($bg: $success-color);
 						@include inset-shadow();
-						@include single-transition(background-color);
+						@include single-transition(background-color);*/
 						background-image: none;
 					}
 				}
@@ -45,10 +48,10 @@ $include-parent-classes: true !default;
 				margin: 0;
 				text-align: center;
 				a {
-					@include button($bg:$secondary-color, $radius:$button-radius, $full-width: true);
+					/*@include button($bg:$secondary-color, $radius:$button-radius, $full-width: true);
 					@include inset-shadow();
-					@include single-transition(background-color);
-					color: $button-font-color-alt !important;
+					@include single-transition(background-color);*/
+					//color: $button-font-color-alt !important;
 					margin: 0;
 				}
 			}
